@@ -101,8 +101,8 @@ window.PROJECTS = [
       "bot",
       "QR"
     ],
-    "cover": "",
     "banner": "",
+    "cover": "assets/media/novabot/Nova_Site_Card.png",
     "guide": "",
     "about_ru": "NovaBot — Telegram-бот-конструктор QR-кодов на aiogram 3. Отправь ссылку — получи QR-код картинкой. Для одиночной ссылки бот предлагает стандартный QR или конструктор с живым превью прямо в сообщении: цвет (пресеты или свой #RRGGBB), фон, размер до 3000×3000, уровень коррекции ошибок.\n\nУмеет пакетный режим (до 10 ссылок одним сообщением), инлайн-режим @botname в любом чате, чтение QR с присланной картинки и личные настройки по умолчанию через /settings.",
     "about_en": "NovaBot is a Telegram QR-code constructor bot built on aiogram 3. Send a link — get a QR code back as an image. For a single link it offers a standard QR or a constructor with live preview right in the message: color (presets or custom #RRGGBB), background, size up to 3000×3000, error correction level.\n\nIt also does batch mode (up to 10 links per message), inline mode @botname in any chat, reverse QR reading from an image, and per-user defaults via /settings.",
