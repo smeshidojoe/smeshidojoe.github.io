@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>smeshidojoe — Portfolio</title>
-  <meta name="description" content="Портфолио проектов smeshidojoe: боты, инструменты, библиотеки.">
+  <title>Проект — smeshidojoe</title>
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>">
   <script src="data/config.js"></script>
@@ -25,15 +24,10 @@
   </header>
 
   <main>
-    <section class="hero container">
-      <h1 data-i18n="hero.title">Привет, я делаю инструменты и ботов</h1>
-      <p class="hero-sub" data-i18n="hero.sub">Python-библиотеки, Telegram-боты и утилиты для работы с медиа. Всё с открытым кодом.</p>
-    </section>
-
-    <section class="container">
-      <h2 class="section-title" data-i18n="nav.projects">Проекты</h2>
-      <div id="projects-grid" class="projects-grid"></div>
-    </section>
+    <article class="guide-article project-page">
+      <p><a href="index.html" data-i18n="back.projects">← Все проекты</a></p>
+      <div id="project-content"></div>
+    </article>
   </main>
 
   <footer class="site-footer">
@@ -42,9 +36,18 @@
     </div>
   </footer>
 
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" hidden>
+    <button class="lb-close" aria-label="Close">✕</button>
+    <button class="lb-prev" aria-label="Previous">‹</button>
+    <div class="lb-content"></div>
+    <button class="lb-next" aria-label="Next">›</button>
+    <div class="lb-counter"></div>
+  </div>
+
   <script src="data/projects.js"></script>
   <script src="assets/js/i18n.js"></script>
-  <script src="assets/js/main.js"></script>
+  <script src="assets/js/project.js"></script>
   <script src="assets/js/admin.js" defer></script>
 </body>
 </html>

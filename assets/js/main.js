@@ -1,4 +1,5 @@
-// Рендер карточек проектов + лайтбокс для скриншотов/видео.
+// Рендер карточек проектов. Клик по карточке открывает страницу проекта
+// (в Chrome — с морф-анимацией через cross-document view transition).
 (function () {
   const grid = document.getElementById("projects-grid");
   if (!grid || !window.PROJECTS) return;
@@ -11,15 +12,16 @@
     window.PROJECTS.forEach((p, idx) => {
       const card = document.createElement("article");
       card.className = "project-card";
+      card.title = p.name;
 
       // media preview
       const mediaDiv = document.createElement("div");
       mediaDiv.className = "card-media";
-      if (p.media && p.media.length) {
-        const first = p.media[0];
-        if (isVideo(first)) {
+      const cover = (p.media && p.media[0]) || p.banner;
+      if (cover) {
+        if (isVideo(cover)) {
           const v = document.createElement("video");
-          v.src = first;
+          v.src = cover;
           v.muted = true;
           v.loop = true;
           v.playsInline = true;
@@ -28,18 +30,17 @@
           mediaDiv.appendChild(v);
         } else {
           const img = document.createElement("img");
-          img.src = first;
+          img.src = cover;
           img.alt = p.name;
           img.loading = "lazy";
           mediaDiv.appendChild(img);
         }
-        if (p.media.length > 1) {
+        if (p.media && p.media.length > 1) {
           const count = document.createElement("span");
           count.className = "media-count";
           count.textContent = "🖼 " + p.media.length;
           mediaDiv.appendChild(count);
         }
-        mediaDiv.addEventListener("click", () => openLightbox(p.media, 0));
       } else {
         const ph = document.createElement("span");
         ph.className = "placeholder";
@@ -91,71 +92,30 @@
       repoLink.rel = "noopener";
       repoLink.textContent = (window.I18N ? window.I18N.t("card.repo") : "GitHub") + " ↗";
       links.appendChild(repoLink);
+      if (p.guide) {
+        const guideLink = document.createElement("a");
+        guideLink.href = p.guide;
+        guideLink.className = "guide-btn";
+        guideLink.textContent = "📖 " + (window.I18N ? window.I18N.t("card.guideLink") : "Guide");
+        links.appendChild(guideLink);
+      }
       body.appendChild(links);
-
       card.appendChild(body);
+
+      // клик по карточке (кроме ссылок и правки текста) → страница проекта
+      card.addEventListener("click", (e) => {
+        if (e.target.closest("a")) return;
+        if (e.target.closest(".card-desc") && e.target.closest(".card-desc").isContentEditable) return;
+        card.style.viewTransitionName = "project-hero";
+        location.href = "project.html?p=" + encodeURIComponent(p.name);
+      });
+
       grid.appendChild(card);
     });
   }
 
-  // Lightbox
-  const lb = document.getElementById("lightbox");
-  const lbContent = lb.querySelector(".lb-content");
-  const lbCounter = lb.querySelector(".lb-counter");
-  let lbMedia = [];
-  let lbIndex = 0;
-
-  function showMedia() {
-    lbContent.innerHTML = "";
-    const src = lbMedia[lbIndex];
-    if (isVideo(src)) {
-      const v = document.createElement("video");
-      v.src = src;
-      v.controls = true;
-      v.autoplay = true;
-      lbContent.appendChild(v);
-    } else {
-      const img = document.createElement("img");
-      img.src = src;
-      lbContent.appendChild(img);
-    }
-    lbCounter.textContent = (lbIndex + 1) + " / " + lbMedia.length;
-    lb.querySelector(".lb-prev").style.display = lbMedia.length > 1 ? "" : "none";
-    lb.querySelector(".lb-next").style.display = lbMedia.length > 1 ? "" : "none";
-  }
-
-  function openLightbox(media, index) {
-    lbMedia = media;
-    lbIndex = index;
-    lb.hidden = false;
-    document.body.style.overflow = "hidden";
-    showMedia();
-  }
-
-  function closeLightbox() {
-    lb.hidden = true;
-    lbContent.innerHTML = "";
-    document.body.style.overflow = "";
-  }
-
-  lb.querySelector(".lb-close").addEventListener("click", closeLightbox);
-  lb.querySelector(".lb-prev").addEventListener("click", () => {
-    lbIndex = (lbIndex - 1 + lbMedia.length) % lbMedia.length;
-    showMedia();
-  });
-  lb.querySelector(".lb-next").addEventListener("click", () => {
-    lbIndex = (lbIndex + 1) % lbMedia.length;
-    showMedia();
-  });
-  lb.addEventListener("click", (e) => { if (e.target === lb) closeLightbox(); });
-  document.addEventListener("keydown", (e) => {
-    if (lb.hidden) return;
-    if (e.key === "Escape") closeLightbox();
-    if (e.key === "ArrowLeft") lb.querySelector(".lb-prev").click();
-    if (e.key === "ArrowRight") lb.querySelector(".lb-next").click();
-  });
-
   document.addEventListener("langchange", render);
-  document.getElementById("year") && (document.getElementById("year").textContent = new Date().getFullYear());
+  const year = document.getElementById("year");
+  if (year) year.textContent = new Date().getFullYear();
   render();
 })();

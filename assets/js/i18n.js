@@ -11,6 +11,9 @@
       "guides.sub": "Инструкции по установке и использованию моих программ.",
       "card.repo": "Код на GitHub",
       "card.media": "Скриншоты",
+      "card.guideLink": "Гайд",
+      "project.gallery": "Скриншоты и видео",
+      "back.projects": "← Все проекты",
       "back": "← Назад к гайдам"
     },
     en: {
@@ -22,6 +25,9 @@
       "guides.sub": "Installation and usage instructions for my programs.",
       "card.repo": "Code on GitHub",
       "card.media": "Screenshots",
+      "card.guideLink": "Guide",
+      "project.gallery": "Screenshots & video",
+      "back.projects": "← All projects",
       "back": "← Back to guides"
     }
   };

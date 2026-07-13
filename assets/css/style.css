@@ -1,4 +1,6 @@
 /* ═══ Liquid Glass theme ═══ */
+@view-transition { navigation: auto; }
+
 :root {
   --bg: #07090f;
   --text: #f2f5f9;
@@ -200,6 +202,7 @@ a:hover { text-decoration: underline; }
 }
 
 .project-card {
+  cursor: pointer;
   background: var(--glass);
   backdrop-filter: blur(20px) saturate(160%);
   -webkit-backdrop-filter: blur(20px) saturate(160%);
@@ -421,6 +424,60 @@ a:hover { text-decoration: underline; }
 
 @media (max-width: 640px) {
   .guide-article { padding: 24px 20px; margin: 16px 12px 60px; }
+}
+
+/* ═══ Project page ═══ */
+.project-page { view-transition-name: project-hero; }
+
+.project-banner {
+  width: calc(100% + 80px);
+  margin: -36px -40px 24px;
+  max-width: none !important;
+  border: none !important;
+  border-radius: var(--radius) var(--radius) 0 0 !important;
+  display: block;
+}
+@media (max-width: 640px) {
+  .project-banner { width: calc(100% + 40px); margin: -24px -20px 18px; }
+}
+
+.project-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+.project-head h1 { font-size: 2rem; letter-spacing: -0.5px; }
+
+.project-about p { margin-bottom: 14px; color: var(--text); }
+
+.project-actions { margin: 22px 0 8px; }
+.card-links a.guide-btn {
+  background: var(--accent-soft);
+  color: var(--accent);
+  border: 1px solid var(--accent);
+}
+
+.project-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+.gallery-cell {
+  aspect-ratio: 16 / 9;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.04);
+  transition: transform 0.35s var(--spring), border-color 0.2s;
+}
+.gallery-cell:hover { transform: scale(1.04); border-color: var(--accent); }
+.gallery-cell img, .gallery-cell video {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  margin: 0 !important; border: none !important; border-radius: 0 !important;
 }
 
 /* i18n visibility */

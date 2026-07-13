@@ -10,7 +10,8 @@
 
   const token = () => localStorage.getItem(LS_TOKEN) || "";
   const isIndex = !!document.getElementById("projects-grid");
-  const isGuide = !!document.querySelector(".guide-article");
+  const isProject = !!document.getElementById("project-content");
+  const isGuide = !isProject && !!document.querySelector(".guide-article");
   let editMode = false;
 
   /* ── GitHub API ── */
@@ -125,16 +126,25 @@
   panel.className = "adm-panel";
   panel.hidden = true;
 
-  const contentSection = (isIndex || isGuide) ? `
+  const contentSection = (isIndex || isGuide || isProject) ? `
     <div class="adm-section">
       <label>Тексты на этой странице</label>
       <div class="adm-row">
         <button class="adm-btn" id="adm-edit">✏️ Редактировать</button>
         <button class="adm-btn primary" id="adm-save-text" disabled>💾 Сохранить</button>
       </div>
-      <p class="adm-hint">${isIndex
-        ? "Кликай в описания карточек и правь. Сохранение коммитит data/projects.js."
-        : "Кликай в текст гайда и правь. Сохранение коммитит этот HTML-файл."}</p>
+      <p class="adm-hint">${isGuide
+        ? "Кликай в текст гайда и правь. Сохранение коммитит этот HTML-файл."
+        : "Кликай в текст и правь. Правится активный язык (RU/EN). Сохранение коммитит data/projects.js."}</p>
+    </div>` : "";
+
+  const managerSection = isIndex ? `
+    <div class="adm-section">
+      <label>Карточки проектов</label>
+      <div class="adm-row">
+        <button class="adm-btn" id="adm-manage">📦 Проекты</button>
+      </div>
+      <p class="adm-hint">Добавить/удалить карточку, поля, баннер, гайд, медиа.</p>
     </div>` : "";
 
   panel.innerHTML = `
@@ -159,6 +169,7 @@
       </div>
     </div>
     ${contentSection}
+    ${managerSection}
     <div class="adm-section">
       <div class="adm-row">
         <button class="adm-btn" id="adm-logout">Выйти (удалить токен)</button>
@@ -238,7 +249,7 @@
         "// Настройки сайта. Меняются через админ-панель (⚙) или руками.\n" +
         "// accent: hex-цвет акцента, пустая строка = дефолт из CSS.\n" +
         "window.SITE_CONFIG = " + JSON.stringify({ accent }, null, 2) + ";\n",
-        "Set accent color via admin panel");
+        "Update site configuration");
       status("Цвет сохранён ✓ (Pages обновится ~через минуту)", "ok");
     } catch (e) { status(e.message, "err"); }
   }
@@ -251,9 +262,9 @@
 
   /* ── Редактирование текстов ── */
   function editableEls() {
-    return isIndex
-      ? [...document.querySelectorAll(".card-desc")]
-      : [...document.querySelectorAll(".guide-article .only-ru, .guide-article .only-en")];
+    if (isIndex) return [...document.querySelectorAll(".card-desc")];
+    if (isProject) return [...document.querySelectorAll(".project-about")];
+    return [...document.querySelectorAll(".guide-article .only-ru, .guide-article .only-en")];
   }
   function setEditMode(on) {
     editMode = on;
@@ -277,17 +288,23 @@
     // после смены языка карточки перерисовываются — вернуть режим правки
     document.addEventListener("langchange", () => { if (editMode) setEditMode(true); });
   }
+  if (isProject) {
+    document.getElementById("project-content").addEventListener("input", (e) => {
+      const el = e.target.closest(".project-about");
+      if (!el || el.dataset.idx === undefined) return;
+      const key = (window.I18N && window.I18N.getLang() === "en") ? "about_en" : "about_ru";
+      const parts = [...el.children].map(c => c.textContent.trim()).filter(Boolean);
+      window.PROJECTS[+el.dataset.idx][key] = parts.length ? parts.join("\n\n") : el.textContent.trim();
+    });
+    document.addEventListener("langchange", () => { if (editMode) setEditMode(true); });
+  }
   if ($("adm-edit")) {
     $("adm-edit").addEventListener("click", () => setEditMode(!editMode));
     $("adm-save-text").addEventListener("click", async () => {
       status("Сохраняю тексты…");
       try {
-        if (isIndex) {
-          await saveFile("data/projects.js", () =>
-            "// Проекты портфолио. Добавляй медиа в assets/media/<имя-проекта>/\n" +
-            "// media: массив путей относительно корня сайта; картинки (.png .jpg .webp .gif) и видео (.mp4 .webm)\n" +
-            "window.PROJECTS = " + JSON.stringify(window.PROJECTS, null, 2) + ";\n",
-            "Edit project descriptions via admin panel");
+        if (isIndex || isProject) {
+          await commitProjects();
         } else {
           await saveFile(repoPath(), (src) => {
             const doc = new DOMParser().parseFromString(src, "text/html");
@@ -297,11 +314,191 @@
               if (live && target) target.innerHTML = live.innerHTML;
             });
             return "<!DOCTYPE html>\n" + doc.documentElement.outerHTML + "\n";
-          }, "Edit guide text via admin panel");
+          }, "Update page content");
         }
         setEditMode(false);
         status("Тексты сохранены ✓ (Pages обновится ~через минуту)", "ok");
       } catch (e) { status(e.message, "err"); }
+    });
+  }
+
+  function commitProjects() {
+    return saveFile("data/projects.js", () =>
+      "// Проекты портфолио. Правится через панель (⚙ → 📦 Проекты) или руками.\n" +
+      "// media: пути относительно корня сайта или полные URL; картинки (.png .jpg .webp .gif) и видео (.mp4 .webm)\n" +
+      "// banner: картинка-шапка страницы проекта; guide: путь к гайду (\"\" = нет);\n" +
+      "// about_ru/about_en: описание для страницы проекта, абзацы разделяются пустой строкой.\n" +
+      "window.PROJECTS = " + JSON.stringify(window.PROJECTS, null, 2) + ";\n",
+      "Update project data");
+  }
+
+  /* ── Менеджер проектов (только на главной) ── */
+  if (isIndex && $("adm-manage")) {
+    const overlay = document.createElement("div");
+    overlay.className = "adm-overlay";
+    overlay.hidden = true;
+    document.body.appendChild(overlay);
+
+    const mstyle = document.createElement("style");
+    mstyle.textContent = `
+      .adm-overlay {
+        position: fixed; inset: 0; z-index: 300;
+        background: rgba(0,0,0,.6); backdrop-filter: blur(8px);
+        display: flex; align-items: center; justify-content: center; padding: 20px;
+      }
+      .adm-overlay[hidden] { display: none; }
+      .adm-modal {
+        width: 520px; max-width: 100%; max-height: 88vh; overflow-y: auto;
+        background: rgba(13,17,23,.95); border: 1px solid var(--glass-border);
+        border-radius: 18px; padding: 20px; color: var(--text); font-size: .9rem;
+      }
+      .adm-modal h4 { margin: 0 0 12px; }
+      .adm-field { margin-bottom: 10px; }
+      .adm-field label { display: block; color: var(--text-dim); font-size: .78rem; margin-bottom: 4px; }
+      .adm-field input, .adm-field textarea, .adm-field select {
+        width: 100%; background: rgba(255,255,255,.06); color: var(--text);
+        border: 1px solid var(--glass-border); border-radius: 8px; padding: 6px 10px;
+        font-size: .85rem; font-family: inherit;
+      }
+      .adm-field textarea { min-height: 90px; resize: vertical; }
+      .adm-media-row { display: flex; gap: 6px; align-items: center; margin-bottom: 6px; }
+      .adm-media-row input { flex: 1; }
+      .adm-modal .adm-row { margin-top: 14px; flex-wrap: wrap; }
+    `;
+    document.head.appendChild(mstyle);
+
+    function projectForm(p, idx) {
+      const isNew = idx === -1;
+      overlay.innerHTML = `<div class="adm-modal">
+        <h4>${isNew ? "➕ Новый проект" : "✏️ " + p.name}</h4>
+        <div class="adm-field"><label>Выбрать проект</label>
+          <select id="pm-select">
+            <option value="-1"${isNew ? " selected" : ""}>— новый —</option>
+            ${window.PROJECTS.map((x, i) => `<option value="${i}"${i === idx ? " selected" : ""}>${x.name}</option>`).join("")}
+          </select></div>
+        <div class="adm-field"><label>Название</label><input id="pm-name" value="${p.name || ""}"></div>
+        <div class="adm-field"><label>Ссылка на репозиторий</label><input id="pm-repo" value="${p.repo || ""}"></div>
+        <div class="adm-field"><label>Язык (бейдж, пусто = нет)</label><input id="pm-lang" value="${p.lang || ""}"></div>
+        <div class="adm-field"><label>Теги через запятую</label><input id="pm-tags" value="${(p.tags || []).join(", ")}"></div>
+        <div class="adm-field"><label>Баннер (путь или URL, пусто = нет)</label><input id="pm-banner" value="${p.banner || ""}"></div>
+        <div class="adm-field"><label>Гайд (например guides/snatchr.html, пусто = нет)</label><input id="pm-guide" value="${p.guide || ""}"></div>
+        <div class="adm-field"><label>Короткое описание RU</label><textarea id="pm-desc-ru">${p.desc_ru || ""}</textarea></div>
+        <div class="adm-field"><label>Короткое описание EN</label><textarea id="pm-desc-en">${p.desc_en || ""}</textarea></div>
+        <div class="adm-field"><label>Полное описание RU (абзацы через пустую строку)</label><textarea id="pm-about-ru">${p.about_ru || ""}</textarea></div>
+        <div class="adm-field"><label>Полное описание EN</label><textarea id="pm-about-en">${p.about_en || ""}</textarea></div>
+        <div class="adm-field"><label>Медиа (скриншоты/видео)</label><div id="pm-media"></div>
+          <div class="adm-row" style="margin-top:6px">
+            <button class="adm-btn" id="pm-media-add">➕ URL</button>
+            <label class="adm-btn" style="cursor:pointer">⬆ Загрузить файл<input type="file" id="pm-upload" hidden accept="image/*,video/mp4,video/webm"></label>
+          </div></div>
+        <div class="adm-row">
+          <button class="adm-btn primary" id="pm-save">💾 Сохранить в репо</button>
+          ${isNew ? "" : '<button class="adm-btn" id="pm-delete">🗑 Удалить проект</button>'}
+          <button class="adm-btn" id="pm-close">Закрыть</button>
+        </div>
+        <div class="adm-status" id="pm-status"></div>
+      </div>`;
+
+      const q = (id) => overlay.querySelector("#" + id);
+      const pstatus = (msg, cls) => { const el = q("pm-status"); el.textContent = msg; el.className = "adm-status" + (cls ? " " + cls : ""); };
+      const media = [...(p.media || [])];
+
+      function renderMedia() {
+        const box = q("pm-media");
+        box.innerHTML = "";
+        media.forEach((src, i) => {
+          const row = document.createElement("div");
+          row.className = "adm-media-row";
+          const inp = document.createElement("input");
+          inp.value = src;
+          inp.addEventListener("input", () => { media[i] = inp.value.trim(); });
+          const del = document.createElement("button");
+          del.className = "adm-btn";
+          del.textContent = "✕";
+          del.addEventListener("click", () => { media.splice(i, 1); renderMedia(); });
+          row.append(inp, del);
+          box.appendChild(row);
+        });
+      }
+      renderMedia();
+
+      q("pm-select").addEventListener("change", (e) => {
+        const i = +e.target.value;
+        projectForm(i === -1 ? {} : window.PROJECTS[i], i);
+      });
+      q("pm-media-add").addEventListener("click", () => { media.push(""); renderMedia(); });
+
+      q("pm-upload").addEventListener("change", async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const slug = (q("pm-name").value.trim() || "misc").toLowerCase().replace(/[^a-z0-9_-]+/g, "-");
+        const path = "assets/media/" + slug + "/" + file.name.replace(/[^\w.\-]+/g, "_");
+        pstatus("Загружаю " + file.name + "…");
+        try {
+          const b64 = await new Promise((res, rej) => {
+            const r = new FileReader();
+            r.onload = () => res(r.result.split(",")[1]);
+            r.onerror = rej;
+            r.readAsDataURL(file);
+          });
+          let sha;
+          try { sha = (await ghGet(path)).sha; } catch (_) { /* новый файл */ }
+          const r = await fetch(API + path, {
+            method: "PUT",
+            headers: headers(),
+            body: JSON.stringify({ message: "Add media file", content: b64, sha, branch: BRANCH })
+          });
+          if (!r.ok) throw new Error("Upload → " + r.status);
+          media.push(path);
+          renderMedia();
+          pstatus("Файл в репо ✓ (" + path + "). Не забудь 💾 Сохранить.", "ok");
+        } catch (err) { pstatus(err.message, "err"); }
+        e.target.value = "";
+      });
+
+      q("pm-save").addEventListener("click", async () => {
+        const data = {
+          name: q("pm-name").value.trim(),
+          repo: q("pm-repo").value.trim(),
+          lang: q("pm-lang").value.trim() || null,
+          desc_ru: q("pm-desc-ru").value,
+          desc_en: q("pm-desc-en").value,
+          tags: q("pm-tags").value.split(",").map(s => s.trim()).filter(Boolean),
+          banner: q("pm-banner").value.trim(),
+          guide: q("pm-guide").value.trim(),
+          about_ru: q("pm-about-ru").value,
+          about_en: q("pm-about-en").value,
+          media: media.map(s => s.trim()).filter(Boolean)
+        };
+        if (!data.name) return pstatus("Название пустое", "err");
+        if (idx === -1) window.PROJECTS.push(data);
+        else window.PROJECTS[idx] = data;
+        pstatus("Сохраняю…");
+        try {
+          await commitProjects();
+          document.dispatchEvent(new CustomEvent("langchange", { detail: window.I18N ? window.I18N.getLang() : "ru" }));
+          pstatus("Сохранено ✓ (Pages обновится ~через минуту)", "ok");
+        } catch (err) { pstatus(err.message, "err"); }
+      });
+
+      if (!isNew) q("pm-delete").addEventListener("click", async () => {
+        if (!confirm("Удалить карточку «" + p.name + "» с сайта? (файлы медиа в репо останутся)")) return;
+        window.PROJECTS.splice(idx, 1);
+        pstatus("Удаляю…");
+        try {
+          await commitProjects();
+          document.dispatchEvent(new CustomEvent("langchange", { detail: window.I18N ? window.I18N.getLang() : "ru" }));
+          overlay.hidden = true;
+        } catch (err) { pstatus(err.message, "err"); }
+      });
+
+      q("pm-close").addEventListener("click", () => { overlay.hidden = true; });
+    }
+
+    overlay.addEventListener("click", (e) => { if (e.target === overlay) overlay.hidden = true; });
+    $("adm-manage").addEventListener("click", () => {
+      overlay.hidden = false;
+      projectForm(window.PROJECTS[0] || {}, window.PROJECTS.length ? 0 : -1);
     });
   }
 })();
