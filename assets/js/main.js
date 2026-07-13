@@ -1,10 +1,103 @@
-// Рендер карточек проектов. Клик по карточке открывает страницу проекта
-// (в Chrome — с морф-анимацией через cross-document view transition).
+// Рендер карточек проектов. Клик по карточке раскрывает её в модаль
+// прямо на главной (FLIP-анимация), фон затемняется и размывается.
 (function () {
   const grid = document.getElementById("projects-grid");
   if (!grid || !window.PROJECTS) return;
 
   const isVideo = (src) => /\.(mp4|webm)$/i.test(src);
+
+  /* ── Модаль-раскрытие карточки ── */
+  let modal = null; // { backdrop, panel, card, idx }
+
+  function targetRect() {
+    const w = Math.min(860, window.innerWidth * 0.94);
+    const h = Math.min(window.innerHeight * 0.88, 900);
+    return {
+      top: (window.innerHeight - h) / 2,
+      left: (window.innerWidth - w) / 2,
+      width: w,
+      height: h
+    };
+  }
+
+  function setRect(el, r) {
+    el.style.top = r.top + "px";
+    el.style.left = r.left + "px";
+    el.style.width = r.width + "px";
+    el.style.height = r.height + "px";
+  }
+
+  function openProject(idx, card, instant) {
+    if (modal) return;
+    const p = window.PROJECTS[idx];
+
+    const backdrop = document.createElement("div");
+    backdrop.className = "modal-backdrop";
+    const panel = document.createElement("div");
+    panel.className = "modal-panel";
+
+    const closeBtn = document.createElement("button");
+    closeBtn.className = "modal-close";
+    closeBtn.setAttribute("aria-label", "Close");
+    closeBtn.textContent = "✕";
+    const content = document.createElement("div");
+    content.className = "modal-content";
+    window.ProjectRender.render(content, p, idx);
+    panel.append(closeBtn, content);
+
+    const from = card ? card.getBoundingClientRect() : null;
+    setRect(panel, from && !instant ? from : targetRect());
+
+    document.body.append(backdrop, panel);
+    document.body.style.overflow = "hidden";
+    modal = { backdrop, panel, card, idx };
+
+    void panel.offsetWidth; // зафиксировать стартовую геометрию до transition
+    backdrop.classList.add("show");
+    setRect(panel, targetRect());
+    setTimeout(() => panel.classList.add("ready"), instant ? 0 : 300);
+
+    backdrop.addEventListener("click", () => history.back());
+    closeBtn.addEventListener("click", () => history.back());
+
+    if (!instant || !location.hash.startsWith("#p=")) {
+      history.pushState({ project: p.name }, "", "#p=" + encodeURIComponent(p.name));
+    }
+  }
+
+  function closeProject() {
+    if (!modal) return;
+    const { backdrop, panel, card } = modal;
+    modal = null;
+    panel.classList.remove("ready");
+    backdrop.classList.remove("show");
+    // обратная анимация к текущему положению карточки
+    const to = card && card.isConnected ? card.getBoundingClientRect() : null;
+    if (to) setRect(panel, to);
+    else panel.style.opacity = "0";
+    setTimeout(() => {
+      backdrop.remove();
+      panel.remove();
+      document.body.style.overflow = "";
+    }, 460);
+  }
+
+  window.addEventListener("popstate", () => {
+    if (modal) closeProject();
+    else if (location.hash.startsWith("#p=")) tryOpenFromHash(true);
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal && document.getElementById("lightbox")?.hidden !== false) history.back();
+  });
+
+  function tryOpenFromHash(instant) {
+    if (!location.hash.startsWith("#p=")) return;
+    const name = decodeURIComponent(location.hash.slice(3));
+    const idx = window.PROJECTS.findIndex(p => p.name === name);
+    if (idx === -1) return;
+    const card = grid.children[idx];
+    openProject(idx, card || null, instant);
+  }
 
   function render() {
     const lang = window.I18N ? window.I18N.getLang() : "ru";
@@ -17,7 +110,7 @@
       // media preview
       const mediaDiv = document.createElement("div");
       mediaDiv.className = "card-media";
-      const cover = (p.media && p.media[0]) || p.banner;
+      const cover = p.cover || (p.media && p.media[0]) || p.banner;
       if (cover) {
         if (isVideo(cover)) {
           const v = document.createElement("video");
@@ -102,12 +195,11 @@
       body.appendChild(links);
       card.appendChild(body);
 
-      // клик по карточке (кроме ссылок и правки текста) → страница проекта
+      // клик по карточке (кроме ссылок и правки текста) → раскрытие в модаль
       card.addEventListener("click", (e) => {
         if (e.target.closest("a")) return;
         if (e.target.closest(".card-desc") && e.target.closest(".card-desc").isContentEditable) return;
-        card.style.viewTransitionName = "project-hero";
-        location.href = "project.html?p=" + encodeURIComponent(p.name);
+        openProject(idx, card, false);
       });
 
       grid.appendChild(card);
@@ -118,4 +210,5 @@
   const year = document.getElementById("year");
   if (year) year.textContent = new Date().getFullYear();
   render();
+  tryOpenFromHash(true);
 })();

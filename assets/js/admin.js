@@ -381,6 +381,7 @@
         <div class="adm-field"><label>Язык (бейдж, пусто = нет)</label><input id="pm-lang" value="${p.lang || ""}"></div>
         <div class="adm-field"><label>Теги через запятую</label><input id="pm-tags" value="${(p.tags || []).join(", ")}"></div>
         <div class="adm-field"><label>Баннер (путь или URL, пусто = нет)</label><input id="pm-banner" value="${p.banner || ""}"></div>
+        <div class="adm-field"><label>Обложка карточки (пусто = первое медиа/баннер)</label><input id="pm-cover" value="${p.cover || ""}"></div>
         <div class="adm-field"><label>Гайд (например guides/snatchr.html, пусто = нет)</label><input id="pm-guide" value="${p.guide || ""}"></div>
         <div class="adm-field"><label>Короткое описание RU</label><textarea id="pm-desc-ru">${p.desc_ru || ""}</textarea></div>
         <div class="adm-field"><label>Короткое описание EN</label><textarea id="pm-desc-en">${p.desc_en || ""}</textarea></div>
@@ -465,6 +466,7 @@
           desc_en: q("pm-desc-en").value,
           tags: q("pm-tags").value.split(",").map(s => s.trim()).filter(Boolean),
           banner: q("pm-banner").value.trim(),
+          cover: q("pm-cover").value.trim(),
           guide: q("pm-guide").value.trim(),
           about_ru: q("pm-about-ru").value,
           about_en: q("pm-about-en").value,

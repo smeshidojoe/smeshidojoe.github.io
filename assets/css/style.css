@@ -1,6 +1,4 @@
 /* ═══ Liquid Glass theme ═══ */
-@view-transition { navigation: auto; }
-
 :root {
   --bg: #07090f;
   --text: #f2f5f9;
@@ -426,19 +424,13 @@ a:hover { text-decoration: underline; }
   .guide-article { padding: 24px 20px; margin: 16px 12px 60px; }
 }
 
-/* ═══ Project page ═══ */
-.project-page { view-transition-name: project-hero; }
-
+/* ═══ Project page / modal content ═══ */
 .project-banner {
-  width: calc(100% + 80px);
-  margin: -36px -40px 24px;
-  max-width: none !important;
-  border: none !important;
-  border-radius: var(--radius) var(--radius) 0 0 !important;
+  width: 100%;
+  border-radius: 16px;
+  border: 1px solid var(--glass-border);
+  margin: 0 0 22px;
   display: block;
-}
-@media (max-width: 640px) {
-  .project-banner { width: calc(100% + 40px); margin: -24px -20px 18px; }
 }
 
 .project-head {
@@ -453,11 +445,6 @@ a:hover { text-decoration: underline; }
 .project-about p { margin-bottom: 14px; color: var(--text); }
 
 .project-actions { margin: 22px 0 8px; }
-.card-links a.guide-btn {
-  background: var(--accent-soft);
-  color: var(--accent);
-  border: 1px solid var(--accent);
-}
 
 .project-gallery {
   display: grid;
@@ -548,6 +535,72 @@ a:hover { text-decoration: underline; }
   color: var(--text-dim);
   font-size: 0.9rem;
 }
+
+/* ═══ Expanding project modal ═══ */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  background: rgba(5, 7, 12, 0.55);
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  opacity: 0;
+  transition: opacity 0.4s ease, backdrop-filter 0.4s ease, -webkit-backdrop-filter 0.4s ease;
+}
+.modal-backdrop.show {
+  opacity: 1;
+  backdrop-filter: blur(14px) saturate(120%);
+  -webkit-backdrop-filter: blur(14px) saturate(120%);
+}
+
+.modal-panel {
+  position: fixed;
+  z-index: 95;
+  background: #10151d;
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: top 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+              left 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+              width 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+              height 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.modal-content {
+  height: 100%;
+  overflow-y: auto;
+  padding: 30px 34px 34px;
+  opacity: 0;
+  transition: opacity 0.28s ease;
+}
+.modal-panel.ready .modal-content { opacity: 1; }
+@media (max-width: 640px) {
+  .modal-content { padding: 20px 18px; }
+}
+
+.modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  color: var(--text);
+  border: 1px solid var(--glass-border);
+  font-size: 1.05rem;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.25s ease, transform 0.3s var(--spring), background 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal-panel.ready .modal-close { opacity: 1; }
+.modal-close:hover { background: rgba(255, 255, 255, 0.18); transform: scale(1.1); }
 
 /* ═══ Footer ═══ */
 .site-footer {

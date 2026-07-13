@@ -1,6 +1,7 @@
 // Проекты портфолио. Правится через панель (⚙ → 📦 Проекты) или руками.
 // media: пути относительно корня сайта или полные URL; картинки (.png .jpg .webp .gif) и видео (.mp4 .webm)
-// banner: картинка-шапка страницы проекта; guide: путь к гайду ("" = нет);
+// banner: картинка-шапка страницы проекта; cover: отдельная обложка карточки (пусто = первое медиа/баннер);
+// guide: путь к гайду ("" = нет);
 // about_ru/about_en: общее описание для страницы проекта, абзацы разделяются пустой строкой.
 window.PROJECTS = [
   {
@@ -10,6 +11,7 @@ window.PROJECTS = [
     desc_ru: "Просто скачай что угодно. Загрузчик видео и аудио для Windows: живёт в трее, качает с 1000+ сайтов.",
     desc_en: "Just Download Anything. Video & audio downloader for Windows: lives in the tray, grabs from 1,000+ sites.",
     tags: ["Windows", "tray", "downloader"],
+    cover: "",
     banner: "https://github.com/user-attachments/assets/5ea0767e-f54c-4648-9721-7c406e40c31b",
     guide: "guides/snatchr.html",
     about_ru: "Snatchr — быстрый и лёгкий загрузчик видео и аудио для Windows, который живёт в системном трее. Качает медиа с 1000+ сайтов — YouTube, Instagram, TikTok, Twitch, Vimeo, Reddit, VK, RuTube и всё остальное — без браузера, рекламы и командной строки.\n\nГлавная фишка — Spotlight-лаунчер по Ctrl+E: вставил ссылку — и она уже качается в фоне в лучшем качестве. Несколько загрузок параллельно, общая история со всеми файлами, обрезка прямо на месте с покадровым слайдером и копирование готового файла в один клик — сразу в чат или проводник.\n\nУмеет следить за буфером обмена: скопировал ссылку — выскочил тост с предложением скачать. Есть выбор качества и формата (вплоть до «только звук» в MP3), пакетная загрузка и плейлисты, скачивание фрагмента по таймкодам, перегон в чистый MP4 для монтажа и несколько тем оформления, включая стеклянные.\n\nНикакой настройки: программа сама скачивает и обновляет всё, что ей нужно для работы.",
@@ -23,6 +25,7 @@ window.PROJECTS = [
     desc_ru: "Python-библиотека и CLI для извлечения и скачивания медиа из соцсетей.",
     desc_en: "A Python library and CLI for extracting and downloading media from social platforms.",
     tags: ["library", "CLI", "media"],
+    cover: "",
     banner: "",
     guide: "",
     about_ru: "Ember — встраиваемая Python-библиотека и консольная утилита для извлечения и скачивания медиа из соцсетей, компактная альтернатива cobalt. Даёшь ссылку на пост — получаешь прямые ссылки на медиа с метаданными, а скачать Ember может и сам, включая HLS-потоки, без yt-dlp.\n\nПоддерживает 15 сервисов: TikTok, Twitter/X, Instagram, Reddit, Vimeo, SoundCloud, Pinterest, Tumblr, Bluesky, Newgrounds, Rutube, OK.ru, VK, Facebook и клипы Twitch.\n\nЕдинственная обязательная зависимость — requests. Работает и как Python API (import ember), и как команда ember в терминале. Умеет подхватывать cookies из браузера для приватного контента.",
@@ -36,6 +39,7 @@ window.PROJECTS = [
     desc_ru: "Telegram-бот для скачивания медиа на базе библиотеки Ember.",
     desc_en: "Telegram media downloader bot based on the Ember library.",
     tags: ["Telegram", "bot"],
+    cover: "",
     banner: "",
     guide: "",
     about_ru: "EmberBot — Telegram-бот для скачивания медиа, построенный на библиотеке Ember. Кидаешь боту ссылку на пост из соцсети — получаешь медиа прямо в чат.\n\nПоддерживает те же 15 сервисов, что и Ember: TikTok, Twitter/X, Instagram, Reddit, VK, SoundCloud и другие.",
@@ -49,6 +53,7 @@ window.PROJECTS = [
     desc_ru: "Быстрая обрезка и склейка видео без перекодирования и потери качества.",
     desc_en: "Fast, lossless video trimming and merging. No re-encoding, no quality loss.",
     tags: ["video", "tool"],
+    cover: "",
     banner: "",
     guide: "",
     about_ru: "CopyPasta — инструмент для быстрой обрезки и склейки видео без перекодирования. Файл не пережимается, поэтому операции занимают секунды, а качество остаётся исходным до последнего бита.",
@@ -62,6 +67,7 @@ window.PROJECTS = [
     desc_ru: "Telegram-бот для модерации чатов.",
     desc_en: "Telegram moderation bot.",
     tags: ["Telegram", "bot"],
+    cover: "",
     banner: "",
     guide: "",
     about_ru: "Gremlin — Telegram-бот для модерации чатов: следит за порядком, чтобы админам не приходилось.",
@@ -75,6 +81,7 @@ window.PROJECTS = [
     desc_ru: "Telegram-конструктор QR-кодов с живым превью, пакетным режимом и чтением QR.",
     desc_en: "Telegram QR constructor with live preview, batch mode and QR reading.",
     tags: ["Telegram", "bot", "QR"],
+    cover: "",
     banner: "",
     guide: "",
     about_ru: "NovaBot — Telegram-бот-конструктор QR-кодов на aiogram 3. Отправь ссылку — получи QR-код картинкой. Для одиночной ссылки бот предлагает стандартный QR или конструктор с живым превью прямо в сообщении: цвет (пресеты или свой #RRGGBB), фон, размер до 3000×3000, уровень коррекции ошибок.\n\nУмеет пакетный режим (до 10 ссылок одним сообщением), инлайн-режим @botname в любом чате, чтение QR с присланной картинки и личные настройки по умолчанию через /settings.",
@@ -88,6 +95,7 @@ window.PROJECTS = [
     desc_ru: "Telegram-бот, который превращает видео в кружочки.",
     desc_en: "A Telegram bot which converts videos to circles.",
     tags: ["Telegram", "bot", "video"],
+    cover: "",
     banner: "",
     guide: "",
     about_ru: "Бот, который превращает обычные видео в телеграмовские кружочки (video notes). Кидаешь видео — бот сам его обрезает, масштабирует и возвращает готовый кружок.\n\nБыстрая обработка с оптимизированными настройками, ничего настраивать не нужно.",
