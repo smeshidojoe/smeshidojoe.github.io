@@ -384,8 +384,16 @@
         <div class="adm-field"><label>Ссылка на репозиторий</label><input id="pm-repo" value="${p.repo || ""}"></div>
         <div class="adm-field"><label>Язык (бейдж, пусто = нет)</label><input id="pm-lang" value="${p.lang || ""}"></div>
         <div class="adm-field"><label>Теги через запятую</label><input id="pm-tags" value="${(p.tags || []).join(", ")}"></div>
-        <div class="adm-field"><label>Баннер (путь или URL, пусто = нет)</label><input id="pm-banner" value="${p.banner || ""}"></div>
-        <div class="adm-field"><label>Обложка карточки (пусто = первое медиа/баннер)</label><input id="pm-cover" value="${p.cover || ""}"></div>
+        <div class="adm-field"><label>Баннер (путь или URL, пусто = нет)</label>
+          <div class="adm-row">
+            <input id="pm-banner" value="${p.banner || ""}">
+            <label class="adm-btn" style="cursor:pointer" title="Загрузить с ПК">⬆<input type="file" id="pm-banner-up" hidden accept="image/*"></label>
+          </div></div>
+        <div class="adm-field"><label>Обложка карточки (пусто = первое медиа/баннер)</label>
+          <div class="adm-row">
+            <input id="pm-cover" value="${p.cover || ""}">
+            <label class="adm-btn" style="cursor:pointer" title="Загрузить с ПК">⬆<input type="file" id="pm-cover-up" hidden accept="image/*,video/mp4,video/webm"></label>
+          </div></div>
         <div class="adm-field"><label>Гайд (например guides/snatchr.html, пусто = нет)</label><input id="pm-guide" value="${p.guide || ""}"></div>
         <div class="adm-field"><label>Короткое описание RU</label><textarea id="pm-desc-ru">${p.desc_ru || ""}</textarea></div>
         <div class="adm-field"><label>Короткое описание EN</label><textarea id="pm-desc-en">${p.desc_en || ""}</textarea></div>
@@ -433,33 +441,42 @@
       });
       q("pm-media-add").addEventListener("click", () => { media.push(""); renderMedia(); });
 
-      q("pm-upload").addEventListener("change", async (e) => {
-        const file = e.target.files[0];
-        if (!file) return;
+      // загрузка файла с ПК в assets/media/<проект>/, возвращает путь в репо
+      async function uploadToRepo(file) {
         const slug = (q("pm-name").value.trim() || "misc").toLowerCase().replace(/[^a-z0-9_-]+/g, "-");
         const path = "assets/media/" + slug + "/" + file.name.replace(/[^\w.\-]+/g, "_");
         pstatus("Загружаю " + file.name + "…");
-        try {
-          const b64 = await new Promise((res, rej) => {
-            const r = new FileReader();
-            r.onload = () => res(r.result.split(",")[1]);
-            r.onerror = rej;
-            r.readAsDataURL(file);
-          });
-          let sha;
-          try { sha = (await ghGet(path)).sha; } catch (_) { /* новый файл */ }
-          const r = await fetch(API + path, {
-            method: "PUT",
-            headers: headers(),
-            body: JSON.stringify({ message: "Add media file", content: b64, sha, branch: BRANCH })
-          });
-          if (!r.ok) throw new Error("Upload → " + r.status);
-          media.push(path);
-          renderMedia();
-          pstatus("Файл в репо ✓ (" + path + "). Не забудь 💾 Сохранить.", "ok");
-        } catch (err) { pstatus(err.message, "err"); }
-        e.target.value = "";
-      });
+        const b64 = await new Promise((res, rej) => {
+          const r = new FileReader();
+          r.onload = () => res(r.result.split(",")[1]);
+          r.onerror = rej;
+          r.readAsDataURL(file);
+        });
+        let sha;
+        try { sha = (await ghGet(path)).sha; } catch (_) { /* новый файл */ }
+        const r = await fetch(API + path, {
+          method: "PUT",
+          headers: headers(),
+          body: JSON.stringify({ message: "Add media file", content: b64, sha, branch: BRANCH })
+        });
+        if (!r.ok) throw new Error("Upload → " + r.status);
+        return path;
+      }
+      function bindUpload(inputId, onDone) {
+        q(inputId).addEventListener("change", async (e) => {
+          const file = e.target.files[0];
+          if (!file) return;
+          try {
+            const path = await uploadToRepo(file);
+            onDone(path);
+            pstatus("Файл в репо ✓ (" + path + "). Не забудь 💾 Сохранить.", "ok");
+          } catch (err) { pstatus(err.message, "err"); }
+          e.target.value = "";
+        });
+      }
+      bindUpload("pm-upload", (path) => { media.push(path); renderMedia(); });
+      bindUpload("pm-banner-up", (path) => { q("pm-banner").value = path; });
+      bindUpload("pm-cover-up", (path) => { q("pm-cover").value = path; });
 
       q("pm-save").addEventListener("click", async () => {
         const data = {
