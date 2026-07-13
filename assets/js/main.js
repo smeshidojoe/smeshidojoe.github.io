@@ -45,12 +45,20 @@
     window.ProjectRender.render(content, p, idx);
     panel.append(closeBtn, content);
 
+    // смена языка при открытой модалке перерисовывает её содержимое
+    const rerenderModal = () => {
+      window.ProjectRender.render(content, p, idx);
+      document.dispatchEvent(new CustomEvent("projectmodal"));
+    };
+    document.addEventListener("langchange", rerenderModal);
+
     const from = card ? card.getBoundingClientRect() : null;
     setRect(panel, from && !instant ? from : targetRect());
 
     document.body.append(backdrop, panel);
     document.body.style.overflow = "hidden";
-    modal = { backdrop, panel, card, idx };
+    modal = { backdrop, panel, card, idx, rerenderModal };
+    document.dispatchEvent(new CustomEvent("projectmodal"));
 
     void panel.offsetWidth; // зафиксировать стартовую геометрию до transition
     backdrop.classList.add("show");
@@ -67,7 +75,8 @@
 
   function closeProject() {
     if (!modal) return;
-    const { backdrop, panel, card } = modal;
+    const { backdrop, panel, card, rerenderModal } = modal;
+    if (rerenderModal) document.removeEventListener("langchange", rerenderModal);
     modal = null;
     panel.classList.remove("ready");
     backdrop.classList.remove("show");

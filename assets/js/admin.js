@@ -262,7 +262,8 @@
 
   /* ── Редактирование текстов ── */
   function editableEls() {
-    if (isIndex) return [...document.querySelectorAll(".card-desc")];
+    // на главной правятся и описания карточек, и описание в открытой модалке проекта
+    if (isIndex) return [...document.querySelectorAll(".card-desc, .project-about")];
     if (isProject) return [...document.querySelectorAll(".project-about")];
     return [...document.querySelectorAll(".guide-article .only-ru, .guide-article .only-en")];
   }
@@ -288,15 +289,18 @@
     // после смены языка карточки перерисовываются — вернуть режим правки
     document.addEventListener("langchange", () => { if (editMode) setEditMode(true); });
   }
-  if (isProject) {
-    document.getElementById("project-content").addEventListener("input", (e) => {
-      const el = e.target.closest(".project-about");
+  if (isProject || isIndex) {
+    // правки полного описания (страница проекта или модалка на главной)
+    document.addEventListener("input", (e) => {
+      const el = e.target.closest && e.target.closest(".project-about");
       if (!el || el.dataset.idx === undefined) return;
       const key = (window.I18N && window.I18N.getLang() === "en") ? "about_en" : "about_ru";
       const parts = [...el.children].map(c => c.textContent.trim()).filter(Boolean);
       window.PROJECTS[+el.dataset.idx][key] = parts.length ? parts.join("\n\n") : el.textContent.trim();
     });
     document.addEventListener("langchange", () => { if (editMode) setEditMode(true); });
+    // модалка появляется после включения режима правки — подхватить её содержимое
+    document.addEventListener("projectmodal", () => { if (editMode) setEditMode(true); });
   }
   if ($("adm-edit")) {
     $("adm-edit").addEventListener("click", () => setEditMode(!editMode));
