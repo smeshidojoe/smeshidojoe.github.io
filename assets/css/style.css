@@ -226,7 +226,7 @@ a:hover { text-decoration: underline; }
   box-shadow: var(--shadow), inset 0 1px 0 var(--glass-highlight);
 }
 
-/* shine sweep on hover */
+/* shine sweep on hover (no reverse: transition only while hovered) */
 .project-card::after {
   content: "";
   position: absolute;
@@ -235,9 +235,9 @@ a:hover { text-decoration: underline; }
   background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.12), transparent);
   transform: skewX(-20deg);
   pointer-events: none;
-  transition: left 0.7s ease;
+  transition: none;
 }
-.project-card:hover::after { left: 130%; }
+.project-card:hover::after { left: 130%; transition: left 0.7s ease; }
 
 .card-media {
   aspect-ratio: 16 / 9;
@@ -354,9 +354,9 @@ a:hover { text-decoration: underline; }
   background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.1), transparent);
   transform: skewX(-20deg);
   pointer-events: none;
-  transition: left 0.7s ease;
+  transition: none;
 }
-.guide-card:hover::after { left: 130%; }
+.guide-card:hover::after { left: 130%; transition: left 0.7s ease; }
 .guide-card h3 { margin-bottom: 6px; }
 .guide-card p { color: var(--text-dim); font-size: 0.92rem; }
 

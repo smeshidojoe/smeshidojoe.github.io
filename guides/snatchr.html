@@ -27,55 +27,100 @@
 
       <!-- ═══════════ РУССКАЯ ВЕРСИЯ ═══════════ -->
       <div class="only-ru">
-        <h1>Snatchr: установка и использование</h1>
-        <p class="guide-meta">Обновлено: июль 2026 · <a href="https://github.com/smeshidojoe/Snatchr" target="_blank" rel="noopener">Репозиторий</a></p>
-
-        <div class="callout">Это шаблон гайда — замени текст на реальные шаги. Скриншоты клади в <code>assets/media/guides/</code> и вставляй через <code>&lt;img&gt;</code>, видео — через <code>&lt;video controls&gt;</code>.</div>
+        <h1>Snatchr: обзор функций</h1>
+        <p class="guide-meta">Обновлено: июль 2026 · <a href="https://github.com/smeshidojoe/Snatchr" target="_blank" rel="noopener">Репозиторий</a> · <a href="https://github.com/smeshidojoe/Snatchr/releases/latest" target="_blank" rel="noopener">Скачать</a></p>
 
         <h2>Что это</h2>
-        <p>Snatchr — универсальный загрузчик: скачивает что угодно одной командой.</p>
+        <p><strong>Snatchr</strong> — быстрый и лёгкий загрузчик видео и аудио для Windows, который живёт в системном трее. Качает медиа с 1000+ сайтов (всё, что поддерживает yt-dlp: YouTube, Instagram, TikTok, Twitch, Vimeo, Reddit, VK, RuTube и т.д.) без браузера, рекламы и командной строки. Скачал — тут же обрезал, скопировал, перекачал в другом качестве.</p>
 
         <h2>Установка</h2>
         <ol>
-          <li>Установи Python 3.10+</li>
-          <li>Склонируй репозиторий:</li>
+          <li>Скачай свежий <code>.exe</code> со страницы <a href="https://github.com/smeshidojoe/Snatchr/releases/latest" target="_blank" rel="noopener">Releases</a>.</li>
+          <li>Запусти — установить можно куда угодно. Нужен Windows 10 или новее.</li>
         </ol>
-        <pre><code>git clone https://github.com/smeshidojoe/Snatchr.git
-cd Snatchr
-pip install -r requirements.txt</code></pre>
+        <div class="callout">Никакой настройки: Snatchr сам скачивает и обновляет свой бэкенд (<code>yt-dlp</code>, <code>ffmpeg</code>). Python и терминал не нужны. Программа сама обновляется и никогда не запускается вторым экземпляром.</div>
+        <p>Настройки, история и служебные файлы лежат в <code>C:\Users\&lt;имя&gt;\AppData\Roaming\Snatchr</code>.</p>
 
-        <h2>Первый запуск</h2>
-        <p>Пример команды:</p>
-        <pre><code>python snatchr.py &lt;ссылка&gt;</code></pre>
-        <!-- Пример вставки скриншота:
-        <img src="../assets/media/guides/snatchr-run.png" alt="Snatchr в терминале">
-        Пример вставки видео:
-        <video src="../assets/media/guides/snatchr-demo.mp4" controls></video>
-        -->
+        <h2>Жизнь в трее</h2>
+        <p>Никакого окна на панели задач — Snatchr тихо сидит в трее. <strong>Левый клик</strong> по иконке открывает приложение, <strong>правый</strong> — быстрые действия (вставить ссылку, открыть, выйти). Пока что-то качается, иконка крутится; по завершении выскакивает зелёная галочка.</p>
+
+        <h2>Spotlight — сердце программы</h2>
+        <p>Нажми <strong><code>Ctrl + E</code></strong> в любом месте системы — появится лаунчер в стиле macOS Spotlight:</p>
+        <ul>
+          <li><strong>Вставил — готово.</strong> Кидаешь ссылку, и она качается в фоне в лучшем качестве, без диалогов.</li>
+          <li><strong>Несколько загрузок сразу</strong> — каждая своей строкой с живым прогресс-баром и превью.</li>
+          <li><strong>Общая история</strong> всех загрузок (из окна, трея, Spotlight) — с источником и разрешением, свежие сверху.</li>
+          <li><strong>Обрезка на месте</strong> — вырезаешь кусок слайдером с кадровой лентой и превью, сохраняешь рядом с оригиналом или копируешь в буфер.</li>
+          <li><strong>Копирование в один клик</strong> — готовый файл сразу в чат или проводник.</li>
+        </ul>
+        <p>Горячая клавиша и поведение закрытия меняются в настройках.</p>
+
+        <h2>Тост из буфера обмена</h2>
+        <p>Включи <strong>слежение за буфером</strong> — скопировал поддерживаемую ссылку, и появляется маленький тост с предложением скачать. Левый клик — качает в фоне, правый — закрыть. Когда загрузка закончится, тост об успехе открывает файл по клику.</p>
+
+        <h2>Качество и форматы</h2>
+        <ul>
+          <li><strong>Выбор качества</strong> — прогони ссылку через анализ и выбери разрешение, кодек или только звук (MP3).</li>
+          <li><strong>Пакеты и плейлисты</strong> — вставляй сразу пачку ссылок, окно сворачивается и качает в фоне.</li>
+          <li><strong>Обрезка по таймкоду</strong> — скачивай только нужный кусок видео (From / To).</li>
+          <li><strong>Конверт для монтажа</strong> — опционально перегоняет ролики YouTube в чистый MP4 под видеоредактор (на GPU, с fallback на CPU).</li>
+        </ul>
+
+        <h2>Ещё</h2>
+        <ul>
+          <li><strong>Cookies</strong> — используй логин своего браузера для приватного и возрастного контента (браузер выбирается в настройках).</li>
+          <li><strong>Темы</strong> — несколько тем, включая Glass, Dark Glass и Blackout.</li>
+          <li><strong>Плавный интерфейс</strong> — инерционный скролл в стиле macOS, анимации, чёткое автомасштабирование на 1080p/1440p и выше.</li>
+        </ul>
       </div>
 
       <!-- ═══════════ ENGLISH VERSION ═══════════ -->
       <div class="only-en">
-        <h1>Snatchr: installation and usage</h1>
-        <p class="guide-meta">Updated: July 2026 · <a href="https://github.com/smeshidojoe/Snatchr" target="_blank" rel="noopener">Repository</a></p>
-
-        <div class="callout">This is a guide template — replace with real steps. Put screenshots in <code>assets/media/guides/</code>, embed with <code>&lt;img&gt;</code>, videos with <code>&lt;video controls&gt;</code>.</div>
+        <h1>Snatchr: feature overview</h1>
+        <p class="guide-meta">Updated: July 2026 · <a href="https://github.com/smeshidojoe/Snatchr" target="_blank" rel="noopener">Repository</a> · <a href="https://github.com/smeshidojoe/Snatchr/releases/latest" target="_blank" rel="noopener">Download</a></p>
 
         <h2>What it is</h2>
-        <p>Snatchr is a universal downloader: just download anything with one command.</p>
+        <p><strong>Snatchr</strong> is a fast, lightweight video &amp; audio downloader for Windows that lives in your system tray. It grabs media from 1,000+ sites (everything yt-dlp supports: YouTube, Instagram, TikTok, Twitch, Vimeo, Reddit, VK, RuTube and more) without a browser, ads, or the command line — then lets you trim, copy, and re-download in a couple of clicks.</p>
 
         <h2>Installation</h2>
         <ol>
-          <li>Install Python 3.10+</li>
-          <li>Clone the repository:</li>
+          <li>Download the latest <code>.exe</code> from the <a href="https://github.com/smeshidojoe/Snatchr/releases/latest" target="_blank" rel="noopener">Releases</a> page.</li>
+          <li>Run it — install anywhere you like. Requires Windows 10 or later.</li>
         </ol>
-        <pre><code>git clone https://github.com/smeshidojoe/Snatchr.git
-cd Snatchr
-pip install -r requirements.txt</code></pre>
+        <div class="callout">Zero setup: Snatchr automatically downloads and manages its own backend (<code>yt-dlp</code>, <code>ffmpeg</code>). No Python, no terminal. It self-updates in place and only ever runs as a single instance.</div>
+        <p>Settings, history and backend tools live in <code>C:\Users\&lt;username&gt;\AppData\Roaming\Snatchr</code>.</p>
 
-        <h2>First run</h2>
-        <p>Example command:</p>
-        <pre><code>python snatchr.py &lt;url&gt;</code></pre>
+        <h2>Lives in the tray</h2>
+        <p>No taskbar window, no clutter — Snatchr sits quietly in the system tray. <strong>Left-click</strong> the icon to open the app, <strong>right-click</strong> for quick actions (paste a link, open, exit). While anything is downloading the tray icon spins, and a green check pops when it's done.</p>
+
+        <h2>Spotlight — the heart of it</h2>
+        <p>Press <strong><code>Ctrl + E</code></strong> anywhere to summon a Spotlight-style launcher:</p>
+        <ul>
+          <li><strong>Paste → done.</strong> Drop a link and it downloads in the background at best quality — no dialogs.</li>
+          <li><strong>Several downloads at once</strong>, each as its own row with a live progress bar and thumbnail.</li>
+          <li><strong>Unified history</strong> of everything you've downloaded (window, tray, or Spotlight) — with source and resolution, newest on top.</li>
+          <li><strong>Trim on the spot</strong> — cut a clip with a frame filmstrip range slider and preview, save it next to the original or copy to clipboard.</li>
+          <li><strong>One-click copy</strong> of any finished file, straight into a chat or Explorer.</li>
+        </ul>
+        <p>The shortcut and dismiss behaviour are customizable in Settings.</p>
+
+        <h2>Clipboard toast</h2>
+        <p>Turn on <strong>clipboard watching</strong> and Snatchr keeps an eye out: copy a supported link and a little toast appears offering to grab it. Left-click to download in the background, right-click to dismiss. Finished downloads pop a success toast you can click to reveal the file.</p>
+
+        <h2>Quality and formats</h2>
+        <ul>
+          <li><strong>Pick your quality</strong> — analyze a link, then choose resolution, codec, or audio-only (MP3).</li>
+          <li><strong>Batch &amp; playlists</strong> — paste many links at once; the window collapses and fetches them in the background.</li>
+          <li><strong>Trim by timecode</strong> — download just a section of a video (From / To).</li>
+          <li><strong>Editor-friendly convert</strong> — optionally re-encode YouTube videos into a clean, edit-ready MP4 (GPU-accelerated, CPU fallback).</li>
+        </ul>
+
+        <h2>More</h2>
+        <ul>
+          <li><strong>Cookies support</strong> — use your browser's login for private / age-restricted content (choose the browser in Settings).</li>
+          <li><strong>Themes</strong> — several looks including Glass, Dark Glass, and Blackout.</li>
+          <li><strong>Buttery UI</strong> — inertial macOS-style scrolling, smooth animations, crisp auto-scaling on 1080p, 1440p and beyond.</li>
+        </ul>
       </div>
     </article>
   </main>

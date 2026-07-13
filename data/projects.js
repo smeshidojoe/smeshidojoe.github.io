@@ -5,9 +5,9 @@ window.PROJECTS = [
     name: "Snatchr",
     repo: "https://github.com/smeshidojoe/Snatchr",
     lang: "Python",
-    desc_ru: "Просто скачай что угодно. Универсальный загрузчик.",
-    desc_en: "Just Download Anything. A universal downloader.",
-    tags: ["CLI", "downloader"],
+    desc_ru: "Просто скачай что угодно. Загрузчик видео и аудио для Windows: живёт в трее, качает с 1000+ сайтов.",
+    desc_en: "Just Download Anything. Video & audio downloader for Windows: lives in the tray, grabs from 1,000+ sites.",
+    tags: ["Windows", "tray", "downloader"],
     media: []
   },
   {
