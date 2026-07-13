@@ -82,6 +82,11 @@
     }, 620);
   }
 
+  // при изменении окна модаль перецентровывается
+  window.addEventListener("resize", () => {
+    if (modal) setRect(modal.panel, targetRect());
+  });
+
   window.addEventListener("popstate", () => {
     if (modal) closeProject();
     else if (location.hash.startsWith("#p=")) tryOpenFromHash(true);

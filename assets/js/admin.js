@@ -75,7 +75,7 @@
     .adm-gear:hover { transform: rotate(30deg) scale(1.1); }
     .adm-panel {
       position: fixed; right: 18px; bottom: 78px; z-index: 200;
-      width: 300px; max-height: 74vh; overflow-y: auto;
+      width: min(300px, calc(100vw - 36px)); max-height: 74vh; overflow-y: auto;
       background: rgba(13, 17, 23, .88);
       border: 1px solid var(--glass-border); border-radius: 18px;
       backdrop-filter: blur(24px) saturate(160%);
