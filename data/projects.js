@@ -40,6 +40,24 @@ window.PROJECTS = [
     "media": []
   },
   {
+    "name": "NovaBot",
+    "repo": "https://github.com/smeshidojoe/NovaBot",
+    "lang": "Python",
+    "desc_ru": "Telegram-конструктор QR-кодов с живым превью, пакетным режимом и чтением QR.",
+    "desc_en": "Telegram QR constructor with live preview, batch mode and QR reading.",
+    "tags": [
+      "Telegram",
+      "bot",
+      "QR"
+    ],
+    "banner": "",
+    "cover": "assets/media/novabot/Nova_Site_Card.png",
+    "guide": "",
+    "about_ru": "NovaBot — Telegram-бот-конструктор QR-кодов на aiogram 3. Отправь ссылку — получи QR-код картинкой. Для одиночной ссылки бот предлагает стандартный QR или конструктор с живым превью прямо в сообщении: цвет (пресеты или свой #RRGGBB), фон, размер до 3000×3000, уровень коррекции ошибок.\n\nУмеет пакетный режим (до 10 ссылок одним сообщением), инлайн-режим @botname в любом чате, чтение QR с присланной картинки и личные настройки по умолчанию через /settings.",
+    "about_en": "NovaBot is a Telegram QR-code constructor bot built on aiogram 3. Send a link — get a QR code back as an image. For a single link it offers a standard QR or a constructor with live preview right in the message: color (presets or custom #RRGGBB), background, size up to 3000×3000, error correction level.\n\nIt also does batch mode (up to 10 links per message), inline mode @botname in any chat, reverse QR reading from an image, and per-user defaults via /settings.",
+    "media": []
+  },
+  {
     "name": "EmberBot",
     "repo": "https://github.com/smeshidojoe/EmberBot",
     "lang": "Python",
@@ -54,23 +72,6 @@ window.PROJECTS = [
     "guide": "",
     "about_ru": "EmberBot — Telegram-бот для скачивания медиа, построенный на библиотеке Ember. Кидаешь боту ссылку на пост из соцсети — получаешь медиа прямо в чат.\n\nПоддерживает те же 15 сервисов, что и Ember: TikTok, Twitter/X, Instagram, Reddit, VK, SoundCloud и другие.",
     "about_en": "EmberBot is a Telegram media downloader bot built on the Ember library. Send it a social media post link — get the media right in the chat.\n\nSupports the same 15 services as Ember: TikTok, Twitter/X, Instagram, Reddit, VK, SoundCloud and more.",
-    "media": []
-  },
-  {
-    "name": "CopyPasta",
-    "repo": "https://github.com/smeshidojoe/CopyPasta",
-    "lang": null,
-    "desc_ru": "Быстрая обрезка и склейка видео без перекодирования и потери качества.",
-    "desc_en": "Fast, lossless video trimming and merging. No re-encoding, no quality loss.",
-    "tags": [
-      "video",
-      "tool"
-    ],
-    "cover": "",
-    "banner": "",
-    "guide": "",
-    "about_ru": "CopyPasta — инструмент для быстрой обрезки и склейки видео без перекодирования. Файл не пережимается, поэтому операции занимают секунды, а качество остаётся исходным до последнего бита.",
-    "about_en": "CopyPasta is a tool for fast video trimming and merging without re-encoding. The file is never recompressed, so operations take seconds and quality stays bit-perfect.",
     "media": []
   },
   {
@@ -91,24 +92,6 @@ window.PROJECTS = [
     "media": []
   },
   {
-    "name": "NovaBot",
-    "repo": "https://github.com/smeshidojoe/NovaBot",
-    "lang": "Python",
-    "desc_ru": "Telegram-конструктор QR-кодов с живым превью, пакетным режимом и чтением QR.",
-    "desc_en": "Telegram QR constructor with live preview, batch mode and QR reading.",
-    "tags": [
-      "Telegram",
-      "bot",
-      "QR"
-    ],
-    "banner": "",
-    "cover": "assets/media/novabot/Nova_Site_Card.png",
-    "guide": "",
-    "about_ru": "NovaBot — Telegram-бот-конструктор QR-кодов на aiogram 3. Отправь ссылку — получи QR-код картинкой. Для одиночной ссылки бот предлагает стандартный QR или конструктор с живым превью прямо в сообщении: цвет (пресеты или свой #RRGGBB), фон, размер до 3000×3000, уровень коррекции ошибок.\n\nУмеет пакетный режим (до 10 ссылок одним сообщением), инлайн-режим @botname в любом чате, чтение QR с присланной картинки и личные настройки по умолчанию через /settings.",
-    "about_en": "NovaBot is a Telegram QR-code constructor bot built on aiogram 3. Send a link — get a QR code back as an image. For a single link it offers a standard QR or a constructor with live preview right in the message: color (presets or custom #RRGGBB), background, size up to 3000×3000, error correction level.\n\nIt also does batch mode (up to 10 links per message), inline mode @botname in any chat, reverse QR reading from an image, and per-user defaults via /settings.",
-    "media": []
-  },
-  {
     "name": "VideoToCircle",
     "repo": "https://github.com/smeshidojoe/VideoToCircle-TelegramBot",
     "lang": "Python",
@@ -124,6 +107,23 @@ window.PROJECTS = [
     "guide": "",
     "about_ru": "Бот, который превращает обычные видео в телеграмовские кружочки (video notes). Кидаешь видео — бот сам его обрезает, масштабирует и возвращает готовый кружок.\n\nБыстрая обработка с оптимизированными настройками, ничего настраивать не нужно.",
     "about_en": "A bot that converts regular videos into Telegram round video messages (video notes). Send a video — the bot crops, resizes and returns a ready circle automatically.\n\nFast processing with optimized settings, nothing to configure.",
+    "media": []
+  },
+  {
+    "name": "CopyPasta",
+    "repo": "https://github.com/smeshidojoe/CopyPasta",
+    "lang": null,
+    "desc_ru": "Быстрая обрезка и склейка видео без перекодирования и потери качества.",
+    "desc_en": "Fast, lossless video trimming and merging. No re-encoding, no quality loss.",
+    "tags": [
+      "video",
+      "tool"
+    ],
+    "cover": "",
+    "banner": "",
+    "guide": "",
+    "about_ru": "CopyPasta — инструмент для быстрой обрезки и склейки видео без перекодирования. Файл не пережимается, поэтому операции занимают секунды, а качество остаётся исходным до последнего бита.",
+    "about_en": "CopyPasta is a tool for fast video trimming and merging without re-encoding. The file is never recompressed, so operations take seconds and quality stays bit-perfect.",
     "media": []
   }
 ];
