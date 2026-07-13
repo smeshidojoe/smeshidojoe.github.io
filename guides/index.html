@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Гайды — smeshidojoe</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav container">
+      <a href="../index.html" class="logo">smeshi<span>dojoe</span></a>
+      <div class="nav-links">
+        <a href="../index.html" data-i18n="nav.projects">Проекты</a>
+        <a href="index.html" class="active" data-i18n="nav.guides">Гайды</a>
+        <a href="https://github.com/smeshidojoe" target="_blank" rel="noopener">GitHub ↗</a>
+        <button id="lang-toggle" class="lang-toggle" title="Switch language">EN</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero container">
+      <h1 data-i18n="guides.title">Гайды</h1>
+      <p class="hero-sub" data-i18n="guides.sub">Инструкции по установке и использованию моих программ.</p>
+    </section>
+
+    <section class="container guides-list">
+      <a class="guide-card" href="snatchr.html">
+        <h3>Snatchr</h3>
+        <p class="only-ru">Установка и первый запуск: как скачать что угодно одной командой.</p>
+        <p class="only-en">Installation and first run: how to download anything with one command.</p>
+      </a>
+      <!-- Новый гайд: скопируй guides/snatchr.html, поправь текст, добавь карточку сюда -->
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> smeshidojoe · <a href="https://github.com/smeshidojoe" target="_blank" rel="noopener">GitHub</a></p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/i18n.js"></script>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>

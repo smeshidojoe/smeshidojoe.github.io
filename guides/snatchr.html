@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Гайд: Snatchr — smeshidojoe</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav container">
+      <a href="../index.html" class="logo">smeshi<span>dojoe</span></a>
+      <div class="nav-links">
+        <a href="../index.html" data-i18n="nav.projects">Проекты</a>
+        <a href="index.html" class="active" data-i18n="nav.guides">Гайды</a>
+        <a href="https://github.com/smeshidojoe" target="_blank" rel="noopener">GitHub ↗</a>
+        <button id="lang-toggle" class="lang-toggle" title="Switch language">EN</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <article class="guide-article">
+      <p><a href="index.html" data-i18n="back">← Назад к гайдам</a></p>
+
+      <!-- ═══════════ РУССКАЯ ВЕРСИЯ ═══════════ -->
+      <div class="only-ru">
+        <h1>Snatchr: установка и использование</h1>
+        <p class="guide-meta">Обновлено: июль 2026 · <a href="https://github.com/smeshidojoe/Snatchr" target="_blank" rel="noopener">Репозиторий</a></p>
+
+        <div class="callout">Это шаблон гайда — замени текст на реальные шаги. Скриншоты клади в <code>assets/media/guides/</code> и вставляй через <code>&lt;img&gt;</code>, видео — через <code>&lt;video controls&gt;</code>.</div>
+
+        <h2>Что это</h2>
+        <p>Snatchr — универсальный загрузчик: скачивает что угодно одной командой.</p>
+
+        <h2>Установка</h2>
+        <ol>
+          <li>Установи Python 3.10+</li>
+          <li>Склонируй репозиторий:</li>
+        </ol>
+        <pre><code>git clone https://github.com/smeshidojoe/Snatchr.git
+cd Snatchr
+pip install -r requirements.txt</code></pre>
+
+        <h2>Первый запуск</h2>
+        <p>Пример команды:</p>
+        <pre><code>python snatchr.py &lt;ссылка&gt;</code></pre>
+        <!-- Пример вставки скриншота:
+        <img src="../assets/media/guides/snatchr-run.png" alt="Snatchr в терминале">
+        Пример вставки видео:
+        <video src="../assets/media/guides/snatchr-demo.mp4" controls></video>
+        -->
+      </div>
+
+      <!-- ═══════════ ENGLISH VERSION ═══════════ -->
+      <div class="only-en">
+        <h1>Snatchr: installation and usage</h1>
+        <p class="guide-meta">Updated: July 2026 · <a href="https://github.com/smeshidojoe/Snatchr" target="_blank" rel="noopener">Repository</a></p>
+
+        <div class="callout">This is a guide template — replace with real steps. Put screenshots in <code>assets/media/guides/</code>, embed with <code>&lt;img&gt;</code>, videos with <code>&lt;video controls&gt;</code>.</div>
+
+        <h2>What it is</h2>
+        <p>Snatchr is a universal downloader: just download anything with one command.</p>
+
+        <h2>Installation</h2>
+        <ol>
+          <li>Install Python 3.10+</li>
+          <li>Clone the repository:</li>
+        </ol>
+        <pre><code>git clone https://github.com/smeshidojoe/Snatchr.git
+cd Snatchr
+pip install -r requirements.txt</code></pre>
+
+        <h2>First run</h2>
+        <p>Example command:</p>
+        <pre><code>python snatchr.py &lt;url&gt;</code></pre>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> smeshidojoe · <a href="https://github.com/smeshidojoe" target="_blank" rel="noopener">GitHub</a></p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/i18n.js"></script>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>
