@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Гайд: Ember — smeshidojoe</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>">
+  <script src="../data/config.js"></script>
+  <script src="../assets/js/theme.js"></script>
+</head>
+<body>
+  <div class="bg-orbs" aria-hidden="true"><i></i><i></i><i></i></div>
+  <header class="site-header">
+    <nav class="nav container">
+      <a href="../index.html" class="logo">smeshido<span>joe</span></a>
+      <div class="nav-links">
+        <a href="../index.html" data-i18n="nav.projects">Проекты</a>
+        <a href="index.html" class="active" data-i18n="nav.guides">Гайды</a>
+        <a href="https://github.com/smeshidojoe" target="_blank" rel="noopener">GitHub ↗</a>
+        <button id="lang-toggle" class="lang-toggle" title="Switch language">EN</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <article class="guide-article">
+      <p><a href="index.html" data-i18n="back">← Назад к гайдам</a></p>
+
+      <!-- ═══════════ РУССКАЯ ВЕРСИЯ ═══════════ -->
+      <div class="only-ru">
+        <h1>Ember: установка и работа с библиотекой</h1>
+        <p class="guide-meta">Обновлено: июль 2026 · <a href="https://github.com/smeshidojoe/Ember" target="_blank" rel="noopener">Репозиторий</a> · <a href="https://github.com/smeshidojoe/Ember/blob/main/API.md" target="_blank" rel="noopener">API-справочник</a></p>
+
+        <h2>Что это</h2>
+        <p>Ember — Python-библиотека и консольная утилита для извлечения и скачивания медиа из соцсетей. Даёшь ссылку на пост — получаешь прямые ссылки на файлы с метаданными; скачать Ember умеет и сам, включая HLS-потоки, без yt-dlp. Поддерживает 15 сервисов: TikTok, Twitter/X, Instagram, Reddit, Vimeo, SoundCloud, Pinterest, Tumblr, Bluesky, Newgrounds, Rutube, OK.ru, VK, Facebook и клипы Twitch.</p>
+
+        <h2>Шаг 1. Установка</h2>
+        <ol>
+          <li>Нужен Python 3.9+.</li>
+          <li>Пакета на PyPI нет — ставь из Git:</li>
+        </ol>
+        <pre><code>pip install git+https://github.com/smeshidojoe/Ember.git</code></pre>
+        <p>После установки доступны и Python API (<code>import ember</code>), и команда <code>ember</code> в терминале. Единственная обязательная зависимость — <code>requests</code>.</p>
+        <div class="callout">ffmpeg нужен не всегда: прямые mp4 и простые HLS качаются без него. Он требуется для склейки раздельных видео+аудио дорожек, режима «только звук» и вшивания метаданных. Достаточно положить <code>ffmpeg</code> в PATH.</div>
+
+        <h2>Шаг 2. Первые команды (CLI)</h2>
+        <p>Главное правило: <strong>без флага <code>-d</code> ничего не скачивается</strong> — команда только печатает прямые ссылки и метаданные. Ссылку бери в кавычки.</p>
+        <pre><code># посмотреть ссылки и метаданные
+ember "https://x.com/user/status/123456789"
+
+# то же самое в JSON
+ember "https://www.tiktok.com/@user/video/7123456789" --json
+
+# СКАЧАТЬ: -d включает загрузку
+ember -d "https://vimeo.com/76979871"
+
+# своё имя файла (-o) и папка (-p)
+ember -d -o myclip -p downloads "https://vimeo.com/76979871"</code></pre>
+
+        <h2>Шаг 3. Качество, звук, плейлисты</h2>
+        <pre><code># ограничить качество и качать HLS в 6 потоков
+ember -d --max-height 720 --concurrency 6 "https://rutube.ru/video/<id>/"
+
+# только звук + метаданные в файл (нужен ffmpeg)
+ember -d --audio-only --embed-metadata "https://soundcloud.com/user/track"
+
+# список доступных качеств без скачивания
+ember -F "https://vimeo.com/76979871"
+
+# целый плейлист (пока SoundCloud-сеты)
+ember -d --playlist "https://soundcloud.com/user/sets/name"
+
+# последние посты автора по ссылке на профиль
+ember -d --timeline --limit 30 "https://x.com/nasa"</code></pre>
+        <p>Пачка ссылок из файла: <code>ember -d -a links.txt</code> (одна ссылка на строку, <code>#</code> — комментарий). Полный список флагов — <code>ember -h</code>.</p>
+
+        <h2>Шаг 4. Куки: приватный и NSFW-контент</h2>
+        <p>Часть контента отдаётся только залогиненным: NSFW-твиты, приватные и полнокачественные посты Instagram, публичные видео Facebook. Ember умеет брать куки прямо из браузера:</p>
+        <pre><code>ember -d --cookies-from-browser firefox "https://x.com/user/status/123"</code></pre>
+        <ul>
+          <li><strong>Рекомендуется Firefox</strong> — куки читаются из коробки на любой ОС.</li>
+          <li>Из не-хромовских Chromium-браузеров на Windows тоже работает: <strong>Vivaldi</strong>, Opera.</li>
+          <li>Chrome/Edge/Brave последних версий шифруют куки (App-Bound Encryption) — чтение из них чаще всего не работает. Не мучайся, поставь Firefox.</li>
+        </ul>
+        <div class="callout"><strong>Совет: отдельный браузер под куки.</strong> Поставь браузер, которым не пользуешься (например Firefox или Vivaldi), войди в аккаунты сервисов, с которых собираешься качать, — и больше его не открывай. Куки останутся валидными, основной браузер не при делах, а залогиненная сессия не будет случайно разлогинена.</div>
+        <p>Альтернативы: куки строкой <code>--cookies "auth_token=...; ct0=..."</code> или файлом <code>--cookies-file cookies.txt</code> (формат Netscape, как у yt-dlp). Профиль браузера выбирается через <code>--browser-profile</code>.</p>
+
+        <h2>Шаг 5. Python API</h2>
+        <p>Базовый цикл — извлечь и скачать:</p>
+        <pre><code>import ember
+
+result = ember.extract("https://vimeo.com/76979871")
+print(result.title, result.author)
+for m in result.media:
+    print(m.kind, m.quality, m.url)
+
+paths = ember.download(result, "downloads/",
+                       max_height=720, concurrency=6,
+                       embed_metadata=True)</code></pre>
+        <p>Полезные проверки:</p>
+        <pre><code>ember.can_extract(url)                      # поддерживается ли ссылка
+ember.available_qualities(result.media[0])  # например [1080, 720, 480]
+ember.ffmpeg_available()                    # есть ли ffmpeg
+ember.probe_size(result.media[0])           # размер файла до скачивания</code></pre>
+        <p>Куки в API: <code>ember.extract(url, cookies_from_browser="firefox")</code> или словарём <code>cookies={"auth_token": "..."}</code>. Прогресс — колбэком <code>on_progress</code>, плейлисты — <code>extract_playlist()</code>, посты автора — <code>extract_timeline(url, limit=30)</code>.</p>
+        <p>Типовой паттерн встраивания — Ember первым, yt-dlp запасным:</p>
+        <pre><code>if not ember.can_extract(url):
+    return run_ytdlp(url)
+try:
+    result = ember.extract(url)
+except ember.EmberError:
+    return run_ytdlp(url)
+ember.download(result, out_dir)</code></pre>
+        <p>Все ошибки наследуются от <code>ember.EmberError</code> — лови его одного. Подробности по каждой функции и моделям данных (<code>Result</code>, <code>Media</code>, <code>Playlist</code>) — в <a href="https://github.com/smeshidojoe/Ember/blob/main/API.md" target="_blank" rel="noopener">API.md</a>.</p>
+
+        <h2>Ограничения</h2>
+        <ul>
+          <li><strong>Instagram</strong> — анонимно часто отдаёт только превью; с куками — полное качество.</li>
+          <li><strong>Reddit, Newgrounds, OK.ru</strong> — блокируют запросы с датацентровых/VPN-адресов; с домашнего IP работают. Поможет <code>--proxy</code>.</li>
+          <li><strong>Twitter/X</strong> — NSFW-твиты требуют куки аккаунта.</li>
+          <li><strong>YouTube</strong> — вне поддержки, для него бери yt-dlp.</li>
+        </ul>
+      </div>
+
+      <!-- ═══════════ ENGLISH VERSION ═══════════ -->
+      <div class="only-en">
+        <h1>Ember: installation and usage</h1>
+        <p class="guide-meta">Updated: July 2026 · <a href="https://github.com/smeshidojoe/Ember" target="_blank" rel="noopener">Repository</a> · <a href="https://github.com/smeshidojoe/Ember/blob/main/API.md" target="_blank" rel="noopener">API reference</a></p>
+
+        <h2>What it is</h2>
+        <p>Ember is a Python library and CLI for extracting and downloading media from social platforms. Give it a post URL — it returns direct media links with metadata, and can download by itself too, including HLS streams, without yt-dlp. Supports 15 services: TikTok, Twitter/X, Instagram, Reddit, Vimeo, SoundCloud, Pinterest, Tumblr, Bluesky, Newgrounds, Rutube, OK.ru, VK, Facebook and Twitch clips.</p>
+
+        <h2>Step 1. Installation</h2>
+        <ol>
+          <li>Python 3.9+ required.</li>
+          <li>Not on PyPI — install from Git:</li>
+        </ol>
+        <pre><code>pip install git+https://github.com/smeshidojoe/Ember.git</code></pre>
+        <p>Both the Python API (<code>import ember</code>) and the <code>ember</code> command become available. The only required dependency is <code>requests</code>.</p>
+        <div class="callout">ffmpeg is not always needed: direct mp4 and plain HLS download without it. It's required for muxing separate video+audio tracks, audio-only mode and embedding metadata. Just put <code>ffmpeg</code> on PATH.</div>
+
+        <h2>Step 2. First commands (CLI)</h2>
+        <p>Key rule: <strong>without <code>-d</code> nothing downloads</strong> — the command only prints direct links and metadata. Quote the URL.</p>
+        <pre><code># show direct links and metadata
+ember "https://x.com/user/status/123456789"
+
+# same as JSON
+ember "https://www.tiktok.com/@user/video/7123456789" --json
+
+# DOWNLOAD: -d enables it
+ember -d "https://vimeo.com/76979871"
+
+# custom file name (-o) and folder (-p)
+ember -d -o myclip -p downloads "https://vimeo.com/76979871"</code></pre>
+
+        <h2>Step 3. Quality, audio, playlists</h2>
+        <pre><code># cap quality, fetch HLS in 6 threads
+ember -d --max-height 720 --concurrency 6 "https://rutube.ru/video/<id>/"
+
+# audio only + embed metadata (needs ffmpeg)
+ember -d --audio-only --embed-metadata "https://soundcloud.com/user/track"
+
+# list available qualities without downloading
+ember -F "https://vimeo.com/76979871"
+
+# a whole playlist (SoundCloud sets for now)
+ember -d --playlist "https://soundcloud.com/user/sets/name"
+
+# an author's latest posts by profile URL
+ember -d --timeline --limit 30 "https://x.com/nasa"</code></pre>
+        <p>Batch from a file: <code>ember -d -a links.txt</code> (one URL per line, <code>#</code> comments). Full flag list — <code>ember -h</code>.</p>
+
+        <h2>Step 4. Cookies: private and NSFW content</h2>
+        <p>Some content is only served to logged-in users: NSFW tweets, private and full-quality Instagram posts, public Facebook videos. Ember can read cookies straight from a browser:</p>
+        <pre><code>ember -d --cookies-from-browser firefox "https://x.com/user/status/123"</code></pre>
+        <ul>
+          <li><strong>Firefox is recommended</strong> — cookies read out of the box on any OS.</li>
+          <li>Non-Chrome Chromium browsers on Windows work too: <strong>Vivaldi</strong>, Opera.</li>
+          <li>Recent Chrome/Edge/Brave encrypt cookies (App-Bound Encryption) — reading them usually fails. Don't fight it, install Firefox.</li>
+        </ul>
+        <div class="callout"><strong>Tip: a dedicated cookies browser.</strong> Install a browser you don't normally use (Firefox or Vivaldi), log into the services you plan to download from — and never open it again. The cookies stay valid, your main browser is untouched, and the session won't get logged out by accident.</div>
+        <p>Alternatives: cookies as a string <code>--cookies "auth_token=...; ct0=..."</code> or a file <code>--cookies-file cookies.txt</code> (Netscape format, same as yt-dlp). Pick a browser profile with <code>--browser-profile</code>.</p>
+
+        <h2>Step 5. Python API</h2>
+        <p>The basic loop — extract and download:</p>
+        <pre><code>import ember
+
+result = ember.extract("https://vimeo.com/76979871")
+print(result.title, result.author)
+for m in result.media:
+    print(m.kind, m.quality, m.url)
+
+paths = ember.download(result, "downloads/",
+                       max_height=720, concurrency=6,
+                       embed_metadata=True)</code></pre>
+        <p>Useful checks:</p>
+        <pre><code>ember.can_extract(url)                      # is the link supported
+ember.available_qualities(result.media[0])  # e.g. [1080, 720, 480]
+ember.ffmpeg_available()                    # is ffmpeg present
+ember.probe_size(result.media[0])           # file size before downloading</code></pre>
+        <p>Cookies in the API: <code>ember.extract(url, cookies_from_browser="firefox")</code> or a dict <code>cookies={"auth_token": "..."}</code>. Progress via the <code>on_progress</code> callback, playlists via <code>extract_playlist()</code>, author posts via <code>extract_timeline(url, limit=30)</code>.</p>
+        <p>Typical embedding pattern — Ember first, yt-dlp as fallback:</p>
+        <pre><code>if not ember.can_extract(url):
+    return run_ytdlp(url)
+try:
+    result = ember.extract(url)
+except ember.EmberError:
+    return run_ytdlp(url)
+ember.download(result, out_dir)</code></pre>
+        <p>All errors inherit from <code>ember.EmberError</code> — catch that one. Details on every function and data model (<code>Result</code>, <code>Media</code>, <code>Playlist</code>) — in <a href="https://github.com/smeshidojoe/Ember/blob/main/API.md" target="_blank" rel="noopener">API.md</a>.</p>
+
+        <h2>Limitations</h2>
+        <ul>
+          <li><strong>Instagram</strong> — anonymously often preview-only; cookies give full quality.</li>
+          <li><strong>Reddit, Newgrounds, OK.ru</strong> — block datacenter/VPN IPs; fine on a home IP. <code>--proxy</code> helps.</li>
+          <li><strong>Twitter/X</strong> — NSFW tweets require account cookies.</li>
+          <li><strong>YouTube</strong> — out of scope, use yt-dlp for it.</li>
+        </ul>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> smeshidojoe · <a href="https://github.com/smeshidojoe" target="_blank" rel="noopener">GitHub</a></p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/i18n.js"></script>
+  <script src="../assets/js/admin.js" defer></script>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>

@@ -2,6 +2,16 @@
 (function () {
   const isVideo = (src) => /\.(mp4|webm)$/i.test(src);
 
+  // Кнопка «Гайд» показывается только если файл гайда реально существует.
+  const guideCache = {};
+  function guideExists(path) {
+    if (!path) return Promise.resolve(false);
+    if (!(path in guideCache)) {
+      guideCache[path] = fetch(path, { method: "HEAD" }).then(r => r.ok).catch(() => false);
+    }
+    return guideCache[path];
+  }
+
   function render(root, project, idx) {
     const lang = window.I18N ? window.I18N.getLang() : "ru";
     root.innerHTML = "";
@@ -57,11 +67,14 @@
     repoLink.textContent = (window.I18N ? window.I18N.t("card.repo") : "GitHub") + " ↗";
     actions.appendChild(repoLink);
     if (project.guide) {
-      const guideLink = document.createElement("a");
-      guideLink.href = project.guide;
-      guideLink.className = "guide-btn";
-      guideLink.textContent = "📖 " + (window.I18N ? window.I18N.t("card.guideLink") : "Guide");
-      actions.appendChild(guideLink);
+      guideExists(project.guide).then(ok => {
+        if (!ok) return;
+        const guideLink = document.createElement("a");
+        guideLink.href = project.guide;
+        guideLink.className = "guide-btn";
+        guideLink.textContent = "📖 " + (window.I18N ? window.I18N.t("card.guideLink") : "Guide");
+        actions.appendChild(guideLink);
+      });
     }
     root.appendChild(actions);
 
@@ -153,5 +166,5 @@
     });
   }
 
-  window.ProjectRender = { render, openLightbox };
+  window.ProjectRender = { render, openLightbox, guideExists };
 })();

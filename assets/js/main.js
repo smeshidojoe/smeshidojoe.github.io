@@ -55,7 +55,7 @@
     void panel.offsetWidth; // зафиксировать стартовую геометрию до transition
     backdrop.classList.add("show");
     setRect(panel, targetRect());
-    setTimeout(() => panel.classList.add("ready"), instant ? 0 : 300);
+    setTimeout(() => panel.classList.add("ready"), instant ? 0 : 420);
 
     backdrop.addEventListener("click", () => history.back());
     closeBtn.addEventListener("click", () => history.back());
@@ -79,7 +79,7 @@
       backdrop.remove();
       panel.remove();
       document.body.style.overflow = "";
-    }, 460);
+    }, 620);
   }
 
   window.addEventListener("popstate", () => {
@@ -185,12 +185,15 @@
       repoLink.rel = "noopener";
       repoLink.textContent = (window.I18N ? window.I18N.t("card.repo") : "GitHub") + " ↗";
       links.appendChild(repoLink);
-      if (p.guide) {
-        const guideLink = document.createElement("a");
-        guideLink.href = p.guide;
-        guideLink.className = "guide-btn";
-        guideLink.textContent = "📖 " + (window.I18N ? window.I18N.t("card.guideLink") : "Guide");
-        links.appendChild(guideLink);
+      if (p.guide && window.ProjectRender) {
+        window.ProjectRender.guideExists(p.guide).then(ok => {
+          if (!ok) return;
+          const guideLink = document.createElement("a");
+          guideLink.href = p.guide;
+          guideLink.className = "guide-btn";
+          guideLink.textContent = "📖 " + (window.I18N ? window.I18N.t("card.guideLink") : "Guide");
+          links.appendChild(guideLink);
+        });
       }
       body.appendChild(links);
       card.appendChild(body);
