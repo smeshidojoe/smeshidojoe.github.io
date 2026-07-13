@@ -22,24 +22,6 @@ window.PROJECTS = [
     "media": []
   },
   {
-    "name": "Ember",
-    "repo": "https://github.com/smeshidojoe/Ember",
-    "lang": "Python",
-    "desc_ru": "Python-библиотека и CLI для извлечения и скачивания медиа из соцсетей.",
-    "desc_en": "A Python library and CLI for extracting and downloading media from social platforms.",
-    "tags": [
-      "library",
-      "CLI",
-      "media"
-    ],
-    "banner": "",
-    "cover": "assets/media/ember/Ember_Site_Card.png",
-    "guide": "guides/ember.html",
-    "about_ru": "Ember — встраиваемая Python-библиотека и консольная утилита для извлечения и скачивания медиа из соцсетей, компактная альтернатива cobalt. Даёшь ссылку на пост — получаешь прямые ссылки на медиа с метаданными, а скачать Ember может и сам, включая HLS-потоки, без yt-dlp.\n\nПоддерживает 15 сервисов: TikTok, Twitter/X, Instagram, Reddit, Vimeo, SoundCloud, Pinterest, Tumblr, Bluesky, Newgrounds, Rutube, OK.ru, VK, Facebook и клипы Twitch.\n\nЕдинственная обязательная зависимость — requests. Работает и как Python API (import ember), и как команда ember в терминале. Умеет подхватывать cookies из браузера для приватного контента.",
-    "about_en": "Ember is an embeddable Python library and CLI for extracting and downloading media from social platforms — a compact alternative to cobalt. Give it a post URL and it returns direct media URLs with metadata, and it can download by itself too, including HLS streams, without yt-dlp.\n\nSupports 15 services: TikTok, Twitter/X, Instagram, Reddit, Vimeo, SoundCloud, Pinterest, Tumblr, Bluesky, Newgrounds, Rutube, OK.ru, VK, Facebook and Twitch clips.\n\nThe only required dependency is requests. Works both as a Python API (import ember) and as the ember terminal command. Can pick up browser cookies for private content.",
-    "media": []
-  },
-  {
     "name": "NovaBot",
     "repo": "https://github.com/smeshidojoe/NovaBot",
     "lang": "Python",
@@ -55,6 +37,24 @@ window.PROJECTS = [
     "guide": "",
     "about_ru": "NovaBot — Telegram-бот-конструктор QR-кодов на aiogram 3. Отправь ссылку — получи QR-код картинкой. Для одиночной ссылки бот предлагает стандартный QR или конструктор с живым превью прямо в сообщении: цвет (пресеты или свой #RRGGBB), фон, размер до 3000×3000, уровень коррекции ошибок.\n\nУмеет пакетный режим (до 10 ссылок одним сообщением), инлайн-режим @botname в любом чате, чтение QR с присланной картинки и личные настройки по умолчанию через /settings.",
     "about_en": "NovaBot is a Telegram QR-code constructor bot built on aiogram 3. Send a link — get a QR code back as an image. For a single link it offers a standard QR or a constructor with live preview right in the message: color (presets or custom #RRGGBB), background, size up to 3000×3000, error correction level.\n\nIt also does batch mode (up to 10 links per message), inline mode @botname in any chat, reverse QR reading from an image, and per-user defaults via /settings.",
+    "media": []
+  },
+  {
+    "name": "Ember",
+    "repo": "https://github.com/smeshidojoe/Ember",
+    "lang": "Python",
+    "desc_ru": "Python-библиотека и CLI для извлечения и скачивания медиа из соцсетей.",
+    "desc_en": "A Python library and CLI for extracting and downloading media from social platforms.",
+    "tags": [
+      "library",
+      "CLI",
+      "media"
+    ],
+    "banner": "",
+    "cover": "assets/media/ember/Ember_Site_Card.png",
+    "guide": "guides/ember.html",
+    "about_ru": "Ember — встраиваемая Python-библиотека и консольная утилита для извлечения и скачивания медиа из соцсетей, компактная альтернатива cobalt. Даёшь ссылку на пост — получаешь прямые ссылки на медиа с метаданными, а скачать Ember может и сам, включая HLS-потоки, без yt-dlp.\n\nПоддерживает 15 сервисов: TikTok, Twitter/X, Instagram, Reddit, Vimeo, SoundCloud, Pinterest, Tumblr, Bluesky, Newgrounds, Rutube, OK.ru, VK, Facebook и клипы Twitch.\n\nЕдинственная обязательная зависимость — requests. Работает и как Python API (import ember), и как команда ember в терминале. Умеет подхватывать cookies из браузера для приватного контента.",
+    "about_en": "Ember is an embeddable Python library and CLI for extracting and downloading media from social platforms — a compact alternative to cobalt. Give it a post URL and it returns direct media URLs with metadata, and it can download by itself too, including HLS streams, without yt-dlp.\n\nSupports 15 services: TikTok, Twitter/X, Instagram, Reddit, Vimeo, SoundCloud, Pinterest, Tumblr, Bluesky, Newgrounds, Rutube, OK.ru, VK, Facebook and Twitch clips.\n\nThe only required dependency is requests. Works both as a Python API (import ember) and as the ember terminal command. Can pick up browser cookies for private content.",
     "media": []
   },
   {
