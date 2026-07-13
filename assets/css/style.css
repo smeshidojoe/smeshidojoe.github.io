@@ -1,5 +1,6 @@
 /* ═══ Liquid Glass theme ═══ */
 :root {
+  color-scheme: dark;
   --bg: #07090f;
   --text: #f2f5f9;
   --text-dim: #9aa3b2;

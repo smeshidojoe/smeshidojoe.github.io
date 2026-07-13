@@ -362,8 +362,9 @@
       .adm-field input, .adm-field textarea, .adm-field select {
         width: 100%; background: rgba(255,255,255,.06); color: var(--text);
         border: 1px solid var(--glass-border); border-radius: 8px; padding: 6px 10px;
-        font-size: .85rem; font-family: inherit;
+        font-size: .85rem; font-family: inherit; color-scheme: dark;
       }
+      .adm-field select option { background: #10151d; color: #f2f5f9; }
       .adm-field textarea { min-height: 90px; resize: vertical; }
       .adm-media-row { display: flex; gap: 6px; align-items: center; margin-bottom: 6px; }
       .adm-media-row input { flex: 1; }
