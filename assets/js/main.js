@@ -120,6 +120,7 @@
       const card = document.createElement("article");
       card.className = "project-card";
       card.title = p.name;
+      card.dataset.idx = idx;
 
       // media preview
       const mediaDiv = document.createElement("div");
@@ -214,6 +215,7 @@
 
       // клик по карточке (кроме ссылок и правки текста) → раскрытие в модаль
       card.addEventListener("click", (e) => {
+        if (card.draggable) return; // режим перетаскивания
         if (e.target.closest("a")) return;
         if (e.target.closest(".card-desc") && e.target.closest(".card-desc").isContentEditable) return;
         openProject(idx, card, false);

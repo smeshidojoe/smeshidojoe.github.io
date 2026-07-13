@@ -12,7 +12,9 @@
   const isIndex = !!document.getElementById("projects-grid");
   const isProject = !!document.getElementById("project-content");
   const isGuide = !isProject && !!document.querySelector(".guide-article");
+  const isGuidesIndex = !!document.querySelector(".guides-list");
   let editMode = false;
+  let reorderMode = false;
 
   /* ── GitHub API ── */
   function b64encode(str) {
@@ -112,6 +114,33 @@
     .adm-status.ok { color: #51cf66; }
     .adm-hint { font-size: .75rem; color: var(--text-dim); margin-top: 6px; line-height: 1.4; }
     .adm-editable { outline: 2px dashed var(--accent); outline-offset: 4px; border-radius: 4px; }
+    .adm-reorder { cursor: grab; }
+    .adm-dragging { opacity: .45; }
+    .adm-drop-target { outline: 2px dashed var(--accent); outline-offset: 4px; }
+    .adm-overlay {
+      position: fixed; inset: 0; z-index: 300;
+      background: rgba(0,0,0,.6); backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: center; padding: 20px;
+    }
+    .adm-overlay[hidden] { display: none; }
+    .adm-modal {
+      width: 520px; max-width: 100%; max-height: 88vh; overflow-y: auto;
+      background: rgba(13,17,23,.95); border: 1px solid var(--glass-border);
+      border-radius: 18px; padding: 20px; color: var(--text); font-size: .9rem;
+    }
+    .adm-modal h4 { margin: 0 0 12px; }
+    .adm-field { margin-bottom: 10px; }
+    .adm-field label { display: block; color: var(--text-dim); font-size: .78rem; margin-bottom: 4px; }
+    .adm-field input, .adm-field textarea, .adm-field select {
+      width: 100%; background: rgba(255,255,255,.06); color: var(--text);
+      border: 1px solid var(--glass-border); border-radius: 8px; padding: 6px 10px;
+      font-size: .85rem; font-family: inherit; color-scheme: dark;
+    }
+    .adm-field select option { background: #10151d; color: #f2f5f9; }
+    .adm-field textarea { min-height: 90px; resize: vertical; }
+    .adm-media-row { display: flex; gap: 6px; align-items: center; margin-bottom: 6px; }
+    .adm-media-row input { flex: 1; }
+    .adm-modal .adm-row { margin-top: 14px; flex-wrap: wrap; }
   `;
   document.head.appendChild(style);
 
@@ -143,8 +172,18 @@
       <label>Карточки проектов</label>
       <div class="adm-row">
         <button class="adm-btn" id="adm-manage">📦 Проекты</button>
+        <button class="adm-btn" id="adm-reorder">↕ Порядок</button>
       </div>
-      <p class="adm-hint">Добавить/удалить карточку, поля, баннер, гайд, медиа.</p>
+      <p class="adm-hint">📦 — добавить/удалить карточку, поля, медиа. ↕ — перетаскивай карточки мышкой, потом 💾 Сохранить.</p>
+    </div>` : "";
+
+  const guidesSection = isGuidesIndex ? `
+    <div class="adm-section">
+      <label>Гайды</label>
+      <div class="adm-row">
+        <button class="adm-btn" id="adm-new-guide">➕ Новый гайд</button>
+      </div>
+      <p class="adm-hint">Создаёт страницу гайда и карточку в списке. Текст потом правится на самой странице (✏️).</p>
     </div>` : "";
 
   panel.innerHTML = `
@@ -170,6 +209,7 @@
     </div>
     ${contentSection}
     ${managerSection}
+    ${guidesSection}
     <div class="adm-section">
       <div class="adm-row">
         <button class="adm-btn" id="adm-logout">Выйти (удалить токен)</button>
@@ -336,41 +376,207 @@
       "Update project data");
   }
 
+  /* ── Перетаскивание карточек (главная) ── */
+  if (isIndex && $("adm-reorder")) {
+    const grid = document.getElementById("projects-grid");
+    let dragFrom = null;
+
+    function applyReorder() {
+      document.querySelectorAll(".project-card").forEach(c => {
+        c.draggable = reorderMode;
+        c.classList.toggle("adm-reorder", reorderMode);
+      });
+    }
+    $("adm-reorder").addEventListener("click", () => {
+      reorderMode = !reorderMode;
+      $("adm-reorder").classList.toggle("on", reorderMode);
+      applyReorder();
+      status(reorderMode ? "Перетащи карточку на новое место, затем 💾 Сохранить" : "");
+    });
+    document.addEventListener("langchange", () => { if (reorderMode) applyReorder(); });
+
+    grid.addEventListener("dragstart", (e) => {
+      const c = e.target.closest(".project-card");
+      if (!c || !reorderMode) return;
+      dragFrom = +c.dataset.idx;
+      e.dataTransfer.effectAllowed = "move";
+      c.classList.add("adm-dragging");
+    });
+    grid.addEventListener("dragend", () => {
+      document.querySelectorAll(".adm-dragging, .adm-drop-target")
+        .forEach(c => c.classList.remove("adm-dragging", "adm-drop-target"));
+    });
+    grid.addEventListener("dragover", (e) => {
+      if (!reorderMode) return;
+      e.preventDefault();
+      const c = e.target.closest(".project-card");
+      document.querySelectorAll(".adm-drop-target").forEach(x => x.classList.remove("adm-drop-target"));
+      if (c && +c.dataset.idx !== dragFrom) c.classList.add("adm-drop-target");
+    });
+    grid.addEventListener("drop", (e) => {
+      if (!reorderMode || dragFrom === null) return;
+      e.preventDefault();
+      const c = e.target.closest(".project-card");
+      if (c) {
+        const to = +c.dataset.idx;
+        if (to !== dragFrom) {
+          const [moved] = window.PROJECTS.splice(dragFrom, 1);
+          window.PROJECTS.splice(to, 0, moved);
+          document.dispatchEvent(new CustomEvent("langchange", { detail: window.I18N ? window.I18N.getLang() : "ru" }));
+          applyReorder();
+          $("adm-save-text").disabled = false;
+          status("Порядок изменён — нажми 💾 Сохранить");
+        }
+      }
+      dragFrom = null;
+    });
+  }
+
+  /* ── Создание нового гайда (страница гайдов) ── */
+  if (isGuidesIndex && $("adm-new-guide")) {
+    const goverlay = document.createElement("div");
+    goverlay.className = "adm-overlay";
+    goverlay.hidden = true;
+    document.body.appendChild(goverlay);
+    goverlay.addEventListener("click", (e) => { if (e.target === goverlay) goverlay.hidden = true; });
+
+    function guideTemplate(name, slug) {
+      const now = new Date();
+      const dateRu = now.toLocaleString("ru-RU", { month: "long", year: "numeric" });
+      const dateEn = now.toLocaleString("en-US", { month: "long", year: "numeric" });
+      return `<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Гайд: ${name} — smeshidojoe</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>">
+  <script src="../data/config.js"><\/script>
+  <script src="../assets/js/theme.js"><\/script>
+</head>
+<body>
+  <div class="bg-orbs" aria-hidden="true"><i></i><i></i><i></i></div>
+  <header class="site-header">
+    <nav class="nav container">
+      <a href="../index.html" class="logo">smeshido<span>joe</span></a>
+      <div class="nav-links">
+        <a href="../index.html" data-i18n="nav.projects">Проекты</a>
+        <a href="index.html" class="active" data-i18n="nav.guides">Гайды</a>
+        <a href="https://github.com/smeshidojoe" target="_blank" rel="noopener">GitHub ↗</a>
+        <button id="lang-toggle" class="lang-toggle" title="Switch language">EN</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <article class="guide-article">
+      <p><a href="index.html" data-i18n="back">← Назад к гайдам</a></p>
+
+      <!-- ═══════════ РУССКАЯ ВЕРСИЯ ═══════════ -->
+      <div class="only-ru">
+        <h1>${name}: гайд</h1>
+        <p class="guide-meta">Обновлено: ${dateRu}</p>
+        <h2>Раздел</h2>
+        <p>Текст гайда. Открой режим правки (⚙ → ✏️) и пиши прямо здесь.</p>
+      </div>
+
+      <!-- ═══════════ ENGLISH VERSION ═══════════ -->
+      <div class="only-en">
+        <h1>${name}: guide</h1>
+        <p class="guide-meta">Updated: ${dateEn}</p>
+        <h2>Section</h2>
+        <p>Guide text. Open edit mode (⚙ → ✏️) and write right here.</p>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> smeshidojoe · <a href="https://github.com/smeshidojoe" target="_blank" rel="noopener">GitHub</a></p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/i18n.js"><\/script>
+  <script src="../assets/js/admin.js" defer><\/script>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();<\/script>
+</body>
+</html>
+`;
+    }
+
+    function guideForm() {
+      goverlay.innerHTML = `<div class="adm-modal">
+        <h4>➕ Новый гайд</h4>
+        <div class="adm-field"><label>Название (заголовок и карточка)</label><input id="ng-name" placeholder="Например: CopyPasta"></div>
+        <div class="adm-field"><label>Имя файла (латиницей, без .html)</label><input id="ng-slug" placeholder="copypasta"></div>
+        <div class="adm-field"><label>Описание карточки RU</label><input id="ng-desc-ru" placeholder="О чём гайд"></div>
+        <div class="adm-field"><label>Описание карточки EN</label><input id="ng-desc-en" placeholder="What the guide covers"></div>
+        <div class="adm-row">
+          <button class="adm-btn primary" id="ng-create">💾 Создать</button>
+          <button class="adm-btn" id="ng-close">Закрыть</button>
+        </div>
+        <div class="adm-status" id="ng-status"></div>
+      </div>`;
+
+      const q = (id) => goverlay.querySelector("#" + id);
+      const gstatus = (msg, cls) => { const el = q("ng-status"); el.textContent = msg; el.className = "adm-status" + (cls ? " " + cls : ""); };
+      let slugTouched = false;
+
+      q("ng-name").addEventListener("input", () => {
+        if (!slugTouched) q("ng-slug").value = q("ng-name").value.trim().toLowerCase().replace(/[^a-z0-9_-]+/g, "-").replace(/^-+|-+$/g, "");
+      });
+      q("ng-slug").addEventListener("input", () => { slugTouched = true; });
+      q("ng-close").addEventListener("click", () => { goverlay.hidden = true; });
+
+      q("ng-create").addEventListener("click", async () => {
+        const name = q("ng-name").value.trim();
+        const slug = q("ng-slug").value.trim().toLowerCase();
+        const descRu = q("ng-desc-ru").value.trim();
+        const descEn = q("ng-desc-en").value.trim();
+        if (!name || !slug) return gstatus("Название и имя файла обязательны", "err");
+        if (!/^[a-z0-9_-]+$/.test(slug)) return gstatus("Имя файла — только латиница, цифры, - и _", "err");
+        const path = "guides/" + slug + ".html";
+        gstatus("Создаю…");
+        try {
+          let exists = true;
+          try { await ghGet(path); } catch (_) { exists = false; }
+          if (exists) return gstatus("Файл " + path + " уже существует", "err");
+
+          await ghPut(path, guideTemplate(name, slug), undefined, "Add guide page");
+
+          await saveFile("guides/index.html", (src) => {
+            const card = `      <a class="guide-card" href="${slug}.html">\n` +
+                         `        <h3>${name}</h3>\n` +
+                         `        <p class="only-ru">${descRu}</p>\n` +
+                         `        <p class="only-en">${descEn}</p>\n` +
+                         `      </a>\n`;
+            const marker = src.indexOf("<!-- Новый гайд");
+            if (marker !== -1) {
+              const lineStart = src.lastIndexOf("\n", marker) + 1;
+              return src.slice(0, lineStart) + card + src.slice(lineStart);
+            }
+            const last = src.lastIndexOf("</section>");
+            return src.slice(0, last) + card + "    " + src.slice(last);
+          }, "Add guide card");
+
+          gstatus("Гайд создан ✓ — " + slug + ".html. Pages обновится ~через минуту, дальше открой его и правь текст через ✏️.", "ok");
+        } catch (err) { gstatus(err.message, "err"); }
+      });
+    }
+
+    $("adm-new-guide").addEventListener("click", () => {
+      goverlay.hidden = false;
+      guideForm();
+    });
+  }
+
   /* ── Менеджер проектов (только на главной) ── */
   if (isIndex && $("adm-manage")) {
     const overlay = document.createElement("div");
     overlay.className = "adm-overlay";
     overlay.hidden = true;
     document.body.appendChild(overlay);
-
-    const mstyle = document.createElement("style");
-    mstyle.textContent = `
-      .adm-overlay {
-        position: fixed; inset: 0; z-index: 300;
-        background: rgba(0,0,0,.6); backdrop-filter: blur(8px);
-        display: flex; align-items: center; justify-content: center; padding: 20px;
-      }
-      .adm-overlay[hidden] { display: none; }
-      .adm-modal {
-        width: 520px; max-width: 100%; max-height: 88vh; overflow-y: auto;
-        background: rgba(13,17,23,.95); border: 1px solid var(--glass-border);
-        border-radius: 18px; padding: 20px; color: var(--text); font-size: .9rem;
-      }
-      .adm-modal h4 { margin: 0 0 12px; }
-      .adm-field { margin-bottom: 10px; }
-      .adm-field label { display: block; color: var(--text-dim); font-size: .78rem; margin-bottom: 4px; }
-      .adm-field input, .adm-field textarea, .adm-field select {
-        width: 100%; background: rgba(255,255,255,.06); color: var(--text);
-        border: 1px solid var(--glass-border); border-radius: 8px; padding: 6px 10px;
-        font-size: .85rem; font-family: inherit; color-scheme: dark;
-      }
-      .adm-field select option { background: #10151d; color: #f2f5f9; }
-      .adm-field textarea { min-height: 90px; resize: vertical; }
-      .adm-media-row { display: flex; gap: 6px; align-items: center; margin-bottom: 6px; }
-      .adm-media-row input { flex: 1; }
-      .adm-modal .adm-row { margin-top: 14px; flex-wrap: wrap; }
-    `;
-    document.head.appendChild(mstyle);
 
     function projectForm(p, idx) {
       const isNew = idx === -1;
