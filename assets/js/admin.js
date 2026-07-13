@@ -4,7 +4,7 @@
 // хранится в localStorage ЭТОГО браузера и никуда кроме api.github.com не уходит.
 // Правки коммитятся прямо в main; GitHub Pages пересобирает сайт ~за минуту.
 (function () {
-  const OWNER = "smeshidojoe", REPO = "MySite", BRANCH = "main";
+  const OWNER = "smeshidojoe", REPO = "smeshidojoe.github.io", BRANCH = "main";
   const API = "https://api.github.com/repos/" + OWNER + "/" + REPO + "/contents/";
   const LS_TOKEN = "gh-admin-token";
 

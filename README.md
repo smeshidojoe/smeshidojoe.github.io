@@ -1,6 +1,6 @@
-# MySite — портфолио
+# Портфолио
 
-Статичный сайт для GitHub Pages: [smeshidojoe.github.io/MySite](https://smeshidojoe.github.io/MySite/)
+Статичный сайт для GitHub Pages: [smeshidojoe.github.io](https://smeshidojoe.github.io/)
 
 ## Структура
 
