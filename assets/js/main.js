@@ -67,6 +67,7 @@
 
       const desc = document.createElement("p");
       desc.className = "card-desc";
+      desc.dataset.idx = idx;
       desc.textContent = lang === "en" ? p.desc_en : p.desc_ru;
       body.appendChild(desc);
 

@@ -35,6 +35,20 @@ media: [
 2. Замени текст в блоках `only-ru` / `only-en`.
 3. Добавь карточку-ссылку в `guides/index.html`.
 
+## Админ-панель (только для владельца)
+
+Открытие: зайди на сайт с `#admin` в адресе (`…/MySite/#admin`) или нажми `Ctrl+Shift+A`.
+
+Что умеет:
+- **Акцентный цвет** — пипетка + hex, применяется сразу, «💾» коммитит `data/config.js`.
+- **Тексты проектов** — на главной жми «✏️ Редактировать», правь описания карточек прямо на странице, «💾 Сохранить» коммитит `data/projects.js`.
+- **Тексты гайдов** — на странице гайда тот же режим, сохранение коммитит HTML-файл гайда.
+
+Нужен fine-grained personal access token: [создать](https://github.com/settings/personal-access-tokens/new),
+Repository access → Only select repositories → `MySite`, Permissions → Contents: **Read and write**.
+Токен хранится в localStorage твоего браузера и уходит только на `api.github.com`.
+После сохранения GitHub Pages пересобирает сайт ~за минуту. Локальную копию репо после правок с сайта обнови через `git pull`.
+
 ## Локальный просмотр
 
 Просто открой `index.html` в браузере — сборка не нужна.
