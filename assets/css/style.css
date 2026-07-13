@@ -74,6 +74,29 @@ a:hover { text-decoration: underline; }
   opacity: 0.28;
   animation: drift3 38s ease-in-out infinite alternate;
 }
+/* ═══ Edge refraction ring (Chrome/Edge; others fall back to plain glass) ═══
+   Pseudo-element covers the whole panel, backdrop-filter runs the SVG
+   displacement filter, and the mask keeps only the outer ring visible,
+   so the background "bends" along the edges like thick glass. */
+.nav::before,
+.project-card::before,
+.guide-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 0;
+  backdrop-filter: url(#liquid-distort) blur(2px) saturate(170%) brightness(1.07);
+  -webkit-backdrop-filter: url(#liquid-distort) blur(2px) saturate(170%) brightness(1.07);
+  padding: 14px;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+}
+.nav::before { padding: 10px; }
+
 @keyframes drift1 { to { transform: translate(140px, 100px) scale(1.15); } }
 @keyframes drift2 { to { transform: translate(-120px, -90px) scale(1.1); } }
 @keyframes drift3 { to { transform: translate(-160px, 80px) scale(0.9); } }
@@ -92,6 +115,7 @@ a:hover { text-decoration: underline; }
 }
 
 .nav {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
