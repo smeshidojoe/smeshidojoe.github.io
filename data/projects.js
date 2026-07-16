@@ -84,8 +84,8 @@ window.PROJECTS = [
       "Telegram",
       "bot"
     ],
-    "cover": "",
     "banner": "",
+    "cover": "assets/media/gremlin/ChatGPT_Image_8_._2026_._22_04_14.png",
     "guide": "",
     "about_ru": "Gremlin — Telegram-бот для модерации чатов: следит за порядком, чтобы админам не приходилось.",
     "about_en": "Gremlin is a Telegram moderation bot: it keeps chats in order so admins don't have to.",
