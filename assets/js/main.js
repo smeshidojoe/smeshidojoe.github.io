@@ -121,6 +121,7 @@
       card.className = "project-card";
       card.title = p.name;
       card.dataset.idx = idx;
+      card.style.animationDelay = (idx * 0.06) + "s";
 
       // media preview
       const mediaDiv = document.createElement("div");
