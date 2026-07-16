@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Foldr</title>
+  <meta name="description" content="Foldr privacy policy. Nothing leaves your computer.">
+  <meta property="og:title" content="Privacy Policy — Foldr">
+  <meta property="og:description" content="Foldr privacy policy. Nothing leaves your computer.">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/svg+xml" href="/Foldr/assets/logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a08;
+      --bg-elevated: #11110e;
+      --surface: rgba(255, 255, 255, 0.025);
+      --border: rgba(198, 179, 162, 0.08);
+      --primary: #C6B3A2;
+      --primary-dim: rgba(198, 179, 162, 0.12);
+      --text: #f5f0ec;
+      --text-muted: #8a7e75;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body { font-family: var(--font-body); background: var(--bg); color: var(--text); line-height: 1.7; }
+    ::selection { background: var(--primary-dim); color: var(--text); }
+    .noise { position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); opacity: 0.025; pointer-events: none; z-index: 9998; }
+    .container { max-width: 720px; margin: 0 auto; padding: 0 1.5rem; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; transition: all 0.5s var(--ease-out-expo); }
+    nav.scrolled { background: rgba(10, 10, 8, 0.75); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+    .logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; color: var(--text); font-weight: 600; font-size: 1.05rem; letter-spacing: -0.01em; }
+    .logo img { border-radius: 6px; width: 28px; height: 28px; }
+    .nav-links { display: flex; gap: 2.25rem; list-style: none; align-items: center; }
+    .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.82rem; font-weight: 500; transition: color 0.3s; position: relative; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--primary); transition: width 0.4s var(--ease-out-expo); }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-github { color: #e3b341 !important; }
+    .nav-github::after { background: #e3b341 !important; }
+    .nav-support { color: #d4a574 !important; opacity: 0.9; }
+    .nav-support::after { background: #d4a574 !important; }
+    .nav-cta { background: var(--primary); color: var(--bg); padding: 8px 22px; border-radius: 100px; font-size: 0.78rem; font-weight: 600; text-decoration: none; transition: all 0.3s var(--ease-out-expo); }
+    .nav-cta:hover { background: #d4c4b5; }
+    .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+    .menu-toggle span { display: block; width: 20px; height: 1.5px; background: var(--text); transition: all 0.3s var(--ease-out-expo); }
+    .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(4.5px, 4.5px); }
+    .menu-toggle.active span:nth-child(2) { transform: rotate(-45deg); }
+
+    .page { padding-top: 120px; padding-bottom: 5rem; }
+    .page h1 { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; margin-bottom: 2.5rem; }
+    .page h2 { font-family: var(--font-display); font-size: 1.3rem; font-weight: 400; margin: 2.5rem 0 0.75rem; color: var(--text); }
+    .page p { color: var(--text-muted); font-size: 0.92rem; margin-bottom: 1rem; }
+    .page ul { color: var(--text-muted); font-size: 0.9rem; padding-left: 1.2rem; margin-bottom: 1rem; }
+    .page ul li { margin-bottom: 0.4rem; }
+    .page a { color: var(--primary); text-decoration: none; }
+    .page a:hover { text-decoration: underline; }
+    .page code { background: var(--surface); padding: 2px 6px; border-radius: 4px; font-size: 0.85em; color: var(--primary); }
+    .page strong { color: var(--text); font-weight: 500; }
+    .page .last-updated { color: var(--text-muted); font-size: 0.8rem; margin-bottom: 2rem; }
+    .page .template-note { border: 1px solid var(--border); border-left: 2px solid var(--primary); background: var(--surface); border-radius: 8px; padding: 1rem 1.25rem; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 2.5rem; }
+
+    footer { border-top: 1px solid var(--border); padding: 2.5rem 0; text-align: center; }
+    .footer-brand { display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem; font-family: var(--font-display); font-size: 1.1rem; color: var(--text); }
+    .footer-brand img { border-radius: 5px; width: 22px; height: 22px; }
+    .footer-copy { color: var(--text-muted); font-size: 0.78rem; margin-bottom: 1rem; }
+    .footer-copy a { color: var(--primary); text-decoration: none; font-weight: 500; position: relative; transition: color 0.3s; }
+    .footer-copy a::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1px; background: var(--primary); transition: width 0.4s var(--ease-out-expo); }
+    .footer-copy a:hover { color: #d4c4b5; }
+    .footer-copy a:hover::after { width: 100%; }
+    .footer-legal { display: flex; gap: 1.5rem; justify-content: center; margin-top: 0.75rem; }
+    .footer-legal a { color: var(--text-muted); text-decoration: none; font-size: 0.72rem; font-weight: 400; opacity: 0.6; transition: opacity 0.3s, color 0.3s; }
+    .footer-legal a:hover { opacity: 1; color: var(--text); }
+
+    .cookie-banner { position: fixed; bottom: 0; left: 0; right: 0; z-index: 1000; background: rgba(10,10,8,0.92); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-top: 1px solid var(--border); padding: 1rem 1.5rem; display: none; align-items: center; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+    .cookie-banner p { color: var(--text-muted); font-size: 0.82rem; margin: 0; }
+    .cookie-banner p a { color: var(--primary); text-decoration: none; }
+    .cookie-banner .cb-actions { display: flex; gap: 0.5rem; }
+    .cookie-banner button { border: none; cursor: pointer; font-family: var(--font-body); font-size: 0.78rem; font-weight: 500; padding: 7px 18px; border-radius: 100px; transition: all 0.3s; }
+    .cookie-banner .cb-accept { background: var(--primary); color: var(--bg); }
+    .cookie-banner .cb-accept:hover { background: #d4c4b5; }
+    .cookie-banner .cb-reject { background: transparent; color: var(--text-muted); border: 1px solid var(--border); }
+    .cookie-banner .cb-reject:hover { color: var(--text); border-color: var(--text-muted); }
+
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      .menu-toggle { display: flex; }
+      .nav-links.mobile-open { display: flex; flex-direction: column; position: absolute; top: 72px; left: 0; right: 0; background: rgba(10, 10, 8, 0.97); backdrop-filter: blur(24px); padding: 1.5rem 2rem; gap: 1.25rem; border-bottom: 1px solid var(--border); }
+      .page { padding-top: 100px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition-duration: 0.01ms !important; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="noise"></div>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="/Foldr/" class="logo">
+        <img src="/Foldr/assets/logo.svg" alt="" width="28" height="28">
+        <span>Foldr</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="/Foldr/">Home</a></li>
+        <li><a href="/Foldr/about/">About</a></li>
+        <li><a href="/Foldr/#features">Features</a></li>
+        <li><a href="/Foldr/#faq">FAQ</a></li>
+        <li><a href="#" class="nav-github"><span id="gh-stars">GitHub: ★</span></a></li>
+        <li><a href="/Foldr/#support" class="nav-support">Support us</a></li>
+      </ul>
+      <a href="/Foldr/#download" class="nav-cta">Download</a>
+      <button class="menu-toggle" aria-label="Toggle menu"><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <main class="page">
+    <div class="container">
+      <p class="last-updated">Last updated: July 2026</p>
+      <h1>Privacy Policy</h1>
+
+      <p class="template-note"><strong>Template.</strong> The text below matches how this site is currently built —
+        no analytics, no tracking. Adjust every section to match what you actually ship, fill in the contact details,
+        and have someone qualified check it before you rely on it as a legal document.</p>
+
+      <h2>The app</h2>
+      <p>Foldr is a desktop application that runs entirely on your own machine. <strong>File names, file contents,
+        and usage data never leave your device.</strong> Sorting rules, action history, and settings are held in a
+        local SQLite database on your own disk.</p>
+
+      <h2>The website</h2>
+      <p>This site is a set of static pages. It runs <strong>no analytics and no tracking scripts</strong>, so no
+        cookies are set and no visitor data is collected or stored.</p>
+      <p>A consent banner ships with the site for the case where you later add analytics. Any such tool must load
+        only after a visitor explicitly accepts, and this section has to be rewritten to name the tool and list what
+        it collects (typically IP address, device and browser details, pages visited, referrer, approximate
+        location).</p>
+      <p>The only third-party request the pages make is to <strong>Google Fonts</strong> for the two webfonts. Your
+        browser contacts Google's servers to fetch them, which exposes your IP address to Google. Self-host the font
+        files to avoid that.</p>
+
+      <h2>What we do not do</h2>
+      <ul>
+        <li>We do not sell, rent, or share data with third parties</li>
+        <li>We do not run advertising or tracking pixels</li>
+        <li>We do not embed social media widgets that follow you around</li>
+        <li>We do not build profiles of visitors</li>
+      </ul>
+
+      <h2>Your rights</h2>
+      <p>Under GDPR you may request access to, correction of, deletion of, or restricted processing of your personal
+        data. As things stand no personal data is collected, so there is nothing on file to act on — but the request
+        channel below is open regardless.</p>
+
+      <h2>Contact</h2>
+      <p>Questions about this policy? Write to <a href="mailto:you@example.com">you@example.com</a> or open an issue
+        on <a href="#">GitHub</a>.</p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-brand">
+        <img src="/Foldr/assets/logo.svg" alt="" width="22" height="22">
+        <span>Foldr</span>
+      </div>
+      <p class="footer-copy">Open source under MIT License. Built with care by <a href="#">yourname</a>.</p>
+      <div class="footer-legal">
+        <a href="/Foldr/privacy/">Privacy</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="cookie-banner" id="cookie-banner">
+    <p>We use cookies to analyze traffic. <a href="/Foldr/privacy/">Learn more</a></p>
+    <div class="cb-actions">
+      <button class="cb-accept" onclick="acceptCookies()">Accept</button>
+      <button class="cb-reject" onclick="rejectCookies()">Reject</button>
+    </div>
+  </div>
+
+  <script>
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 50); });
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    menuToggle.addEventListener('click', () => { menuToggle.classList.toggle('active'); navLinks.classList.toggle('mobile-open'); });
+    navLinks.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => { menuToggle.classList.remove('active'); navLinks.classList.remove('mobile-open'); }); });
+
+    /* Cookie banner — wire your own analytics into loadAnalytics() if you add any. */
+    function loadAnalytics() {
+      /* Add your analytics snippet here once you have one. */
+    }
+    const consent = localStorage.getItem('cookie-consent');
+    if (consent === 'accepted') { loadAnalytics(); }
+    else if (!consent) { document.getElementById('cookie-banner').style.display = 'flex'; }
+    function acceptCookies() { localStorage.setItem('cookie-consent', 'accepted'); loadAnalytics(); document.getElementById('cookie-banner').style.display = 'none'; }
+    function rejectCookies() { localStorage.setItem('cookie-consent', 'rejected'); document.getElementById('cookie-banner').style.display = 'none'; }
+  </script>
+</body>
+</html>

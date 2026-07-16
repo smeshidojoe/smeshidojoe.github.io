@@ -210,6 +210,15 @@
           links.appendChild(guideLink);
         });
       }
+      if (p.site) {
+        const siteLink = document.createElement("a");
+        siteLink.href = p.site;
+        siteLink.target = "_blank";
+        siteLink.rel = "noopener";
+        siteLink.className = "site-btn";
+        siteLink.textContent = "🌐 " + (window.I18N ? window.I18N.t("card.siteLink") : "Website");
+        links.appendChild(siteLink);
+      }
       body.appendChild(links);
       card.appendChild(body);
 

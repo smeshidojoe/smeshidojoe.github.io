@@ -1,0 +1,20 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" width="800" height="420">
+  <rect width="800" height="420" fill="#11110e"/>
+  <rect x="0" y="0" width="800" height="44" fill="#171712"/>
+  <circle cx="22" cy="22" r="6" fill="#8a7e75" opacity="0.5"/>
+  <circle cx="44" cy="22" r="6" fill="#8a7e75" opacity="0.35"/>
+  <circle cx="66" cy="22" r="6" fill="#8a7e75" opacity="0.2"/>
+  <rect x="40" y="90" width="200" height="290" rx="12" fill="#ffffff" opacity="0.03"/>
+  <rect x="60" y="115" width="140" height="12" rx="6" fill="#C6B3A2" opacity="0.5"/>
+  <rect x="60" y="145" width="120" height="10" rx="5" fill="#8a7e75" opacity="0.4"/>
+  <rect x="60" y="170" width="130" height="10" rx="5" fill="#8a7e75" opacity="0.3"/>
+  <rect x="60" y="195" width="110" height="10" rx="5" fill="#8a7e75" opacity="0.25"/>
+  <rect x="270" y="90" width="490" height="130" rx="12" fill="#ffffff" opacity="0.03"/>
+  <rect x="290" y="115" width="220" height="14" rx="7" fill="#f5f0ec" opacity="0.5"/>
+  <rect x="290" y="145" width="440" height="10" rx="5" fill="#8a7e75" opacity="0.35"/>
+  <rect x="290" y="170" width="400" height="10" rx="5" fill="#8a7e75" opacity="0.25"/>
+  <rect x="270" y="240" width="235" height="140" rx="12" fill="#ffffff" opacity="0.03"/>
+  <rect x="525" y="240" width="235" height="140" rx="12" fill="#ffffff" opacity="0.03"/>
+  <text x="400" y="345" text-anchor="middle" font-family="Georgia, serif" font-size="26" fill="#C6B3A2" opacity="0.55">Settings</text>
+  <text x="400" y="372" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" letter-spacing="3" fill="#8a7e75" opacity="0.6">SCREENSHOT PLACEHOLDER 4 / 4</text>
+</svg>

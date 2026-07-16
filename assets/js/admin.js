@@ -602,6 +602,7 @@
             <label class="adm-btn" style="cursor:pointer" title="Загрузить с ПК">⬆<input type="file" id="pm-cover-up" hidden accept="image/*,video/mp4,video/webm"></label>
           </div></div>
         <div class="adm-field"><label>Гайд (например guides/snatchr.html, пусто = нет)</label><input id="pm-guide" value="${p.guide || ""}"></div>
+        <div class="adm-field"><label>Сайт проекта (например /Foldr/ или URL, пусто = нет)</label><input id="pm-site" value="${p.site || ""}"></div>
         <div class="adm-field"><label>Короткое описание RU</label><textarea id="pm-desc-ru">${p.desc_ru || ""}</textarea></div>
         <div class="adm-field"><label>Короткое описание EN</label><textarea id="pm-desc-en">${p.desc_en || ""}</textarea></div>
         <div class="adm-field"><label>Полное описание RU (абзацы через пустую строку)</label><textarea id="pm-about-ru">${p.about_ru || ""}</textarea></div>
@@ -696,6 +697,7 @@
           banner: q("pm-banner").value.trim(),
           cover: q("pm-cover").value.trim(),
           guide: q("pm-guide").value.trim(),
+          site: q("pm-site").value.trim(),
           about_ru: q("pm-about-ru").value,
           about_en: q("pm-about-en").value,
           media: media.map(s => s.trim()).filter(Boolean)

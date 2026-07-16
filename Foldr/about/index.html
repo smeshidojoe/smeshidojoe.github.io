@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Foldr - Keep Your Downloads Folder Tidy</title>
+  <meta name="description" content="Where Foldr came from, what it stands for, and how to use it.">
+  <meta property="og:title" content="About Foldr — a tidy desktop, on autopilot.">
+  <meta property="og:description" content="Where Foldr came from, what it stands for, and how to use it.">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/svg+xml" href="/Foldr/assets/logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a08;
+      --bg-elevated: #11110e;
+      --surface: rgba(255, 255, 255, 0.025);
+      --surface-hover: rgba(255, 255, 255, 0.045);
+      --border: rgba(198, 179, 162, 0.08);
+      --border-hover: rgba(198, 179, 162, 0.18);
+      --primary: #C6B3A2;
+      --primary-dim: rgba(198, 179, 162, 0.12);
+      --text: #f5f0ec;
+      --text-muted: #8a7e75;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+      --radius-sm: 10px;
+      --radius-md: 16px;
+      --radius-lg: 22px;
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    ::selection {
+      background: var(--primary-dim);
+      color: var(--text);
+    }
+
+    .noise {
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      opacity: 0.025;
+      pointer-events: none;
+      z-index: 9998;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    section {
+      padding: 5rem 0;
+    }
+
+    .section-header {
+      margin-bottom: 3rem;
+    }
+
+    .section-label {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--primary);
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 400;
+      line-height: 1.08;
+    }
+
+    /* Nav */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      transition: all 0.5s var(--ease-out-expo);
+    }
+
+    nav.scrolled {
+      background: rgba(10, 10, 8, 0.75);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 600;
+      font-size: 1.05rem;
+      letter-spacing: -0.01em;
+    }
+
+    .logo img {
+      border-radius: 6px;
+      width: 28px;
+      height: 28px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.25rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 500;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--primary);
+      transition: width 0.4s var(--ease-out-expo);
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-links a.active {
+      color: var(--text);
+    }
+
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .nav-github { color: #e3b341 !important; }
+    .nav-github::after { background: #e3b341 !important; }
+    .nav-support { color: #d4a574 !important; opacity: 0.9; }
+    .nav-support::after { background: #d4a574 !important; }
+
+    .nav-cta {
+      background: var(--primary);
+      color: var(--bg);
+      padding: 8px 22px;
+      border-radius: 100px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s var(--ease-out-expo);
+      letter-spacing: 0.01em;
+    }
+
+    .nav-cta:hover {
+      background: #d4c4b5;
+      transform: translateY(-1px);
+    }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 20px;
+      height: 1.5px;
+      background: var(--text);
+      transition: all 0.3s var(--ease-out-expo);
+    }
+
+    .menu-toggle.active span:nth-child(1) {
+      transform: rotate(45deg) translate(4.5px, 4.5px);
+    }
+
+    .menu-toggle.active span:nth-child(2) {
+      transform: rotate(-45deg);
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      background: radial-gradient(ellipse 60% 50% at 30% 20%, rgba(198, 179, 162, 0.07) 0%, transparent 60%), radial-gradient(ellipse 50% 40% at 70% 80%, rgba(198, 179, 162, 0.04) 0%, transparent 60%), var(--bg);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      max-width: 680px;
+      padding: 0 1.5rem;
+      padding-top: 72px;
+    }
+
+    .hero-logo-big {
+      width: clamp(80px, 15vw, 140px);
+      height: clamp(80px, 15vw, 140px);
+      border-radius: 24px;
+      margin-bottom: 2rem;
+    }
+
+    .hero-headline {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+    }
+
+    .hero-sub {
+      font-size: clamp(0.95rem, 2vw, 1.15rem);
+      color: var(--text-muted);
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.7;
+      font-weight: 400;
+    }
+
+    /* Content sections */
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3rem;
+    }
+
+    .about-block h3 {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 400;
+      margin-bottom: 0.75rem;
+      color: var(--text);
+    }
+
+    .about-block p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    .about-block p strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .about-block ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .about-block ul li {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      padding-left: 1.2rem;
+      position: relative;
+      margin-bottom: 0.4rem;
+    }
+
+    .about-block ul li::before {
+      content: '-';
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+    }
+
+    /* Docs */
+    .docs-nav {
+      position: sticky;
+      top: 90px;
+      align-self: start;
+    }
+
+    .docs-nav-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .docs-nav-list a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .docs-nav-list a:hover {
+      color: var(--text);
+    }
+
+    .docs-layout {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 3rem;
+    }
+
+    .docs-content h3 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 400;
+      margin: 2.5rem 0 1rem;
+    }
+
+    .docs-content h3:first-child {
+      margin-top: 0;
+    }
+
+    .docs-content p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    .docs-content code {
+      background: var(--surface);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.85em;
+      color: var(--primary);
+    }
+
+    .docs-content pre {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1rem;
+      overflow-x: auto;
+      margin-bottom: 1rem;
+    }
+
+    .docs-content pre code {
+      background: none;
+      padding: 0;
+    }
+
+    .docs-content ol,
+    .docs-content ul {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      padding-left: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .docs-content ol li,
+    .docs-content ul li {
+      margin-bottom: 0.4rem;
+    }
+
+    .docs-content strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* CTA */
+    .support {
+      text-align: center;
+      padding: 5rem 0;
+    }
+
+    .support-content {
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .support-content p {
+      color: var(--text-muted);
+      margin: 1.5rem 0 2rem;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--bg);
+      padding: 14px 32px;
+      border-radius: 100px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.35s var(--ease-out-expo);
+    }
+
+    .btn-primary:hover {
+      background: #d4c4b5;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(198, 179, 162, 0.18);
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 3rem 0;
+      text-align: center;
+    }
+
+    .footer-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: var(--text);
+    }
+
+    .footer-brand img {
+      border-radius: 5px;
+      width: 22px;
+      height: 22px;
+    }
+
+    .footer-copy {
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .footer-copy a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+      position: relative;
+      transition: color 0.3s;
+    }
+
+    .footer-copy a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--primary);
+      transition: width 0.4s var(--ease-out-expo);
+    }
+
+    .footer-copy a:hover {
+      color: #d4c4b5;
+    }
+
+    .footer-copy a:hover::after {
+      width: 100%;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.75rem;
+      justify-content: center;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: var(--text);
+    }
+
+    .footer-legal { display: flex; gap: 1.5rem; justify-content: center; margin-top: 0.75rem; }
+    .footer-legal a { color: var(--text-muted); text-decoration: none; font-size: 0.72rem; font-weight: 400; opacity: 0.5; transition: opacity 0.3s, color 0.3s; }
+    .footer-legal a:hover { opacity: 1; color: var(--text); }
+
+    .contact-panel { margin-top: 3rem; padding: 2.5rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); text-align: center; }
+    .contact-panel h3 { font-family: var(--font-display); font-size: 1.3rem; font-weight: 400; margin-bottom: 1.25rem; color: var(--text); }
+    .contact-links { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; }
+    .contact-links a { color: var(--primary); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; position: relative; }
+    .contact-links a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1px; background: var(--primary); transition: width 0.4s var(--ease-out-expo); }
+    .contact-links a:hover { color: #d4c4b5; }
+    .contact-links a:hover::after { width: 100%; }
+
+    .cookie-banner { position: fixed; bottom: 0; left: 0; right: 0; z-index: 1000; background: rgba(10,10,8,0.92); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-top: 1px solid var(--border); padding: 1rem 1.5rem; display: none; align-items: center; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+    .cookie-banner p { color: var(--text-muted); font-size: 0.82rem; margin: 0; }
+    .cookie-banner p a { color: var(--primary); text-decoration: none; }
+    .cookie-banner .cb-actions { display: flex; gap: 0.5rem; }
+    .cookie-banner button { border: none; cursor: pointer; font-family: var(--font-body); font-size: 0.78rem; font-weight: 500; padding: 7px 18px; border-radius: 100px; transition: all 0.3s; }
+    .cookie-banner .cb-accept { background: var(--primary); color: var(--bg); }
+    .cookie-banner .cb-accept:hover { background: #d4c4b5; }
+    .cookie-banner .cb-reject { background: transparent; color: var(--text-muted); border: 1px solid var(--border); }
+    .cookie-banner .cb-reject:hover { color: var(--text); border-color: var(--text-muted); }
+
+    /* Reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.9s var(--ease-out-expo), transform 0.9s var(--ease-out-expo);
+    }
+
+    .reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .delay-1 {
+      transition-delay: 0.1s;
+    }
+
+    .delay-2 {
+      transition-delay: 0.2s;
+    }
+
+    @media (max-width: 768px) {
+
+      .nav-links,
+      .nav-cta {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+
+      .nav-links.mobile-open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        right: 0;
+        background: rgba(10, 10, 8, 0.97);
+        backdrop-filter: blur(24px);
+        padding: 1.5rem 2rem;
+        gap: 1.25rem;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .docs-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .docs-nav {
+        position: static;
+        margin-bottom: 2rem;
+      }
+
+      .docs-nav-list {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+
+      section {
+        padding: 3rem 0;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      html {
+        scroll-behavior: auto;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="noise"></div>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="/Foldr/" class="logo">
+        <img src="/Foldr/assets/logo.svg" alt="" width="28" height="28">
+        <span>Foldr</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="/Foldr/">Home</a></li>
+        <li><a href="/Foldr/#features">Features</a></li>
+        <li><a href="/Foldr/about/" class="active">About</a></li>
+        <li><a href="/Foldr/#faq">FAQ</a></li>
+        <li><a href="#" class="nav-github"><span id="gh-stars">GitHub: ★</span></a></li>
+        <li><a href="#support" class="nav-support">Support us</a></li>
+      </ul>
+      <a href="/Foldr/#download" class="nav-cta">Download</a>
+      <button class="menu-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-content">
+      <img src="/Foldr/assets/logo.svg" alt="Foldr" class="hero-logo-big">
+      <h1 class="hero-headline">About Foldr</h1>
+      <p class="hero-sub">A tidy desktop, on autopilot. A quiet, local-first organizer for people who would rather
+        not hand their file names to somebody's server.</p>
+    </div>
+  </header>
+
+  <section id="about">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">The Story</span>
+        <h2 class="section-title">Why this exists.</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-block reveal">
+          <h3>Origin Story</h3>
+          <p>This project started with a folder that had quietly turned into a landfill — installers from two years
+            ago, screenshots nobody named, and the one invoice that always went missing exactly when it was needed.</p>
+          <p>Everything on the market was either heavy, rented by the month, or eager to upload file names somewhere.
+            The wish list was short: something that <strong>works in the background</strong>, never phones home, and
+            never asks for attention.</p>
+        </div>
+        <div class="about-block reveal delay-1">
+          <h3>Project Goals</h3>
+          <p>This is not an attempt to build the most powerful file manager on earth. The target is the
+            <strong>calmest and most boring</strong> way to keep one folder in order.
+          </p>
+          <ul>
+            <li>Useful the second it launches, no setup</li>
+            <li>Runs entirely offline</li>
+            <li>No accounts, no subscriptions, no ads</li>
+            <li>Never steals focus with pop-ups</li>
+          </ul>
+        </div>
+        <div class="about-block reveal">
+          <h3>Philosophy</h3>
+          <p><strong>Local and private.</strong> Nothing is transmitted off the machine. Rules, history, and settings
+            live in a local SQLite file. System entries such as <code>desktop.ini</code>, <code>Thumbs.db</code>, and
+            <code>.DS_Store</code> are left untouched.</p>
+          <p><strong>Open source (MIT).</strong> The source is public — read it, fork it, ship your own build. There
+            is nothing in there worth hiding.</p>
+          <p><strong>No interruptions.</strong> It waits in the tray and speaks only through a small toast once
+            something has been filed.</p>
+        </div>
+        <div class="about-block reveal delay-1">
+          <h3>Under the Hood</h3>
+          <p>The stack is deliberately unexciting and dependable:</p>
+          <ul>
+            <li><strong>Rust</strong> core — folder watcher, SQLite, rule engine</li>
+            <li><strong>Tauri 2.x</strong> — small native shell around it</li>
+            <li><strong>React 19 + TypeScript</strong> — quick, type-safe interface</li>
+            <li><strong>Tailwind CSS</strong> — tidy, low-maintenance styling</li>
+          </ul>
+          <p>The whole thing lands around 3 MB and idles on a rounding error of RAM.</p>
+        </div>
+      </div>
+      <div class="contact-panel reveal">
+        <h3>Get in touch</h3>
+        <div class="contact-links">
+          <a href="mailto:you@example.com">you@example.com</a>
+          <a href="#">github.com/yourname</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="docs" style="border-top: 1px solid var(--border);">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Documentation</span>
+        <h2 class="section-title">Everything you need to know.</h2>
+      </div>
+      <div class="docs-layout">
+        <nav class="docs-nav reveal">
+          <ul class="docs-nav-list">
+            <li><a href="#docs">Documentation</a></li>
+            <li><a href="#getting-started">Getting Started</a></li>
+            <li><a href="#linux-installation">Linux Installation</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#configuration">Configuration</a></li>
+            <li><a href="#archive-import">Archive Import</a></li>
+            <li><a href="#ignore-rules">Ignore Rules</a></li>
+            <li><a href="#privacy">Privacy &amp; Security</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#troubleshooting">Troubleshooting</a></li>
+          </ul>
+        </nav>
+        <div class="docs-content reveal delay-1">
+
+          <h3 id="getting-started">Getting Started</h3>
+          <p><strong>Windows:</strong> grab the auto-installer (<code>.exe</code>) or the MSI from the
+            <a href="/Foldr/#download" style="color:var(--primary)">homepage</a> and run it. The app launches on its own and
+            drops an icon into the system tray.</p>
+          <p><strong>Linux:</strong> grab the AppImage, <code>.deb</code>, or <code>.rpm</code> from the
+            <a href="/Foldr/#download" style="color:var(--primary)">homepage</a>, then follow the Linux notes below.</p>
+          <p><strong>1. Start the app.</strong> Out of the box it watches your Downloads folder and nothing else.</p>
+          <p><strong>2. Left-click</strong> the tray icon for the popup — recent moves, weekly stats, and a manual
+            clean button.</p>
+          <p><strong>3. Right-click</strong> the tray icon for the menu: <strong>Clean Now</strong>,
+            <strong>Settings</strong>, <strong>Quit</strong>.
+          </p>
+          <p><strong>4. Drop any file</strong> into the folder and watch it land in the correct subfolder a couple of
+            seconds later.</p>
+
+          <h3 id="linux-installation">Linux Installation</h3>
+          <p>Most current distributions work out of the box. Two libraries need to be present — on a normal desktop
+            install they already are:</p>
+          <ul>
+            <li><code>libwebkit2gtk-4.1</code></li>
+            <li><code>libayatana-appindicator3</code></li>
+          </ul>
+
+          <p><strong>AppImage</strong> (universal, nothing to install):</p>
+          <pre><code>chmod +x Foldr_0.1.0_amd64.AppImage
+./Foldr_0.1.0_amd64.AppImage</code></pre>
+
+          <p><strong>.deb</strong> (Debian, Ubuntu, Mint, Pop!_OS):</p>
+          <pre><code>sudo dpkg -i Foldr_0.1.0_amd64.deb
+sudo apt-get install -f</code></pre>
+
+          <p><strong>.rpm</strong> (Fedora, openSUSE, RHEL):</p>
+          <pre><code>sudo dnf install Foldr-0.1.0-1.x86_64.rpm</code></pre>
+
+          <p>On distros with AppArmor or comparable sandboxing, grant access to your home directory so folders can be
+            watched and files moved.</p>
+
+          <h3 id="features">Features</h3>
+          <p><strong>Quiet by default</strong> — background operation with no pop-ups; a small toast is the only
+            signal that anything happened.</p>
+          <p><strong>Rule engine</strong> — build rules from extensions and regex patterns, and route to dynamic
+            destinations such as <code>{year}/{month}</code>.</p>
+          <p><strong>History &amp; undo</strong> — every move is written to a local log. Single-click undo, or
+            <strong>Revert All</strong> from the History tab.</p>
+          <p><strong>7 languages</strong> — the interface follows your system locale automatically.</p>
+          <p><strong>Dark mode</strong> — tracks the OS theme, or pin Light / Dark / System yourself.</p>
+          <p><strong>Autostart</strong> — registers itself at login; switch it off under Settings → General.</p>
+          <p><strong>Manual and paused folders</strong> — let a folder collect files without moving them, or suspend
+            watching altogether.</p>
+          <p><strong>Scheduled cleaning</strong> — trigger Clean Now automatically at up to four fixed times a day.</p>
+          <p><strong>Adjustable grace period</strong> — hold moves anywhere from a few seconds to 48+ hours.</p>
+          <p><strong>Rule export / import</strong> — rules travel as plain JSON.</p>
+
+          <h3 id="configuration">Configuration</h3>
+          <p>Open <strong>Settings</strong> from the tray menu to adjust everything below.</p>
+          <p><strong>Watched folders</strong> — add or drop folders from the watch list. Only Downloads is watched
+            initially.</p>
+          <p><strong>Rules</strong> — match on extensions, regex, or wildcards, then build the destination path from
+            placeholders:</p>
+          <ul>
+            <li><code>{year}</code> — the current year (e.g. 2026)</li>
+            <li><code>{month}</code> — the current month (e.g. 07)</li>
+            <li><code>{filename}</code> — the original name, extension stripped</li>
+          </ul>
+          <p><strong>General</strong> — language, theme, and autostart behavior.</p>
+
+          <h3 id="archive-import">Archive Import</h3>
+          <p>Large data-export archives can be handed straight to the app instead of being unpacked and sorted by
+            hand.</p>
+          <ol>
+            <li>Download your archive (typically <code>.zip</code>, <code>.tgz</code>, or <code>.tar.gz</code>).</li>
+            <li>Open <strong>Settings → Folders</strong>.</li>
+            <li>Choose <strong>Import archive</strong> and pick the file.</li>
+            <li>The archive is unpacked into a temporary staging folder, and your existing rules run across the
+              contents.</li>
+            <li>Files move to their destinations. Staging is kept afterwards so you can review it and delete it
+              yourself.</li>
+          </ol>
+          <p>The archive itself can sit on a network or external drive — only the extraction needs local space. Big
+            archives may take a minute or two.</p>
+
+          <h3 id="ignore-rules">Ignore Rules</h3>
+          <p>Specific files and folders can be skipped through <strong>ignore rules</strong>, set either in
+            Settings → Ignore or by hand in an <code>.appignore</code> file inside any watched folder.</p>
+          <p><strong>How it works.</strong> Before touching a new file, the app reads <code>.appignore</code> in that
+            folder. A name matching any rule is left exactly where it is.</p>
+          <p><strong>Adding rules in the app.</strong> Settings → Ignore, pick a watched folder, type the pattern,
+            press Enter or <strong>Add</strong>, then <strong>Save</strong>. The <code>.appignore</code> file is
+            created or updated for you.</p>
+          <p><strong>Writing rules by hand.</strong> Make a plain text file called <code>.appignore</code> in the
+            folder. One rule per line; lines beginning with <code>#</code> are comments.</p>
+          <p><strong>Rule types:</strong></p>
+          <ul>
+            <li><strong>Exact name</strong> — <code>desktop.ini</code> skips that one file.</li>
+            <li><strong>Wildcard</strong> — <code>*.tmp</code> skips every <code>.tmp</code>; <code>~$*</code> skips
+              Office temp files.</li>
+            <li><strong>Folder</strong> — <code>node_modules/</code> (trailing slash) skips the whole folder.</li>
+          </ul>
+          <p><strong>Typical file:</strong></p>
+          <pre><code># Office temp files
+~$*
+
+# every .tmp
+*.tmp
+
+# whole folder
+node_modules/
+
+# macOS clutter
+.DS_Store
+
+# Windows thumbnails
+Thumbs.db</code></pre>
+          <p><strong>Notes:</strong></p>
+          <ul>
+            <li>Matching is <strong>case-insensitive</strong> on Windows.</li>
+            <li>Every watched folder can carry its own <code>.appignore</code>.</li>
+            <li>Delete the file and everything in that folder becomes sortable again.</li>
+            <li>Common system files are skipped by default — no need to list them.</li>
+          </ul>
+
+          <h3 id="privacy">Privacy &amp; Security</h3>
+          <p>The app is <strong>local-first</strong>, which in practice means:</p>
+          <ul>
+            <li>No cloud connections</li>
+            <li>No telemetry, no analytics</li>
+            <li>Everything in a local SQLite database</li>
+            <li>No account, no registration</li>
+          </ul>
+          <p><strong>Independent scans</strong> — publish your build's scan report here so anyone can verify it.
+            Detections on a brand-new unsigned binary are usually heuristic false positives.</p>
+          <p><strong>SmartScreen</strong> — Windows warns about unsigned installers. "More info" → "Run anyway" gets
+            past it.</p>
+
+          <h3 id="faq">FAQ</h3>
+          <p><strong>How does it work?</strong><br>It watches the folders you choose from the tray. A new file gets a
+            two-second pause to confirm the transfer finished, then moves according to your rules.</p>
+          <p><strong>Does any data leave my machine?</strong><br>No. Everything runs offline.</p>
+          <p><strong>Can I customize the rules?</strong><br>Yes — Settings → Rules for your own sorting logic.</p>
+          <p><strong>What if a file lands in the wrong place?</strong><br>Settings → History, then undo. One click.</p>
+          <p><strong>Does it start with Windows?</strong><br>Yes, and it can be turned off in Settings → General.</p>
+          <p><strong>Is it really free?</strong><br>Yes. MIT License — use it, change it, build your own.</p>
+
+          <h3 id="troubleshooting">Troubleshooting</h3>
+          <p><strong>Nothing is being sorted.</strong><br>Check that the folder is in Watched Folders and that some
+            rule actually matches the extension.</p>
+          <p><strong>Undo is greyed out.</strong><br>The moved file has to still exist. Delete or move it by hand and
+            there is nothing left to restore.</p>
+          <p><strong>SmartScreen blocks the installer.</strong><br>Expected for unsigned apps: "More info" → "Run
+            anyway".</p>
+          <p><strong>CPU or RAM spikes.</strong><br>Look at your watched folders — network drives and folders holding
+            thousands of files are the usual culprits.</p>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="support" class="support">
+    <div class="container">
+      <div class="support-content reveal">
+        <span class="section-label">Support</span>
+        <h2 class="section-title">Keep the project alive.</h2>
+        <p>If this little tool saves you time every week, consider chipping in the price of a coffee — it funds
+          future updates and keeps the project moving.</p>
+        <a href="#" class="btn-primary">☕ Buy me a coffee</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-brand">
+        <img src="/Foldr/assets/logo.svg" alt="" width="22" height="22">
+        <span>Foldr</span>
+      </div>
+      <p class="footer-copy">Open source under MIT License. Built with care by <a href="#">yourname</a>.</p>
+      <div class="footer-links">
+        <a href="#">GitHub</a>
+        <a href="#">Ko-fi</a>
+      </div>
+      <div class="footer-legal">
+        <a href="/Foldr/privacy/">Privacy</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="cookie-banner" id="cookie-banner">
+    <p>We use cookies to analyze traffic. <a href="/Foldr/privacy/">Learn more</a></p>
+    <div class="cb-actions">
+      <button class="cb-accept" onclick="acceptCookies()">Accept</button>
+      <button class="cb-reject" onclick="rejectCookies()">Reject</button>
+    </div>
+  </div>
+
+  <script>
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 50); });
+
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('active');
+      navLinks.classList.toggle('mobile-open');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => { menuToggle.classList.remove('active'); navLinks.classList.remove('mobile-open'); });
+    });
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('revealed'); revealObserver.unobserve(entry.target); } });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href === '#') return;
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    /* Cookie banner — wire your own analytics into loadAnalytics() if you add any. */
+    function loadAnalytics() {
+      /* Add your analytics snippet here once you have one. */
+    }
+    const consent = localStorage.getItem('cookie-consent');
+    if (consent === 'accepted') { loadAnalytics(); }
+    else if (!consent) { document.getElementById('cookie-banner').style.display = 'flex'; }
+    function acceptCookies() { localStorage.setItem('cookie-consent', 'accepted'); loadAnalytics(); document.getElementById('cookie-banner').style.display = 'none'; }
+    function rejectCookies() { localStorage.setItem('cookie-consent', 'rejected'); document.getElementById('cookie-banner').style.display = 'none'; }
+  </script>
+</body>
+
+</html>

@@ -76,6 +76,15 @@
         actions.appendChild(guideLink);
       });
     }
+    if (project.site) {
+      const siteLink = document.createElement("a");
+      siteLink.href = project.site;
+      siteLink.target = "_blank";
+      siteLink.rel = "noopener";
+      siteLink.className = "site-btn";
+      siteLink.textContent = "🌐 " + (window.I18N ? window.I18N.t("card.siteLink") : "Website");
+      actions.appendChild(siteLink);
+    }
     root.appendChild(actions);
 
     if (project.media && project.media.length) {

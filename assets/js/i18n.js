@@ -12,6 +12,7 @@
       "card.repo": "Код на GitHub",
       "card.media": "Скриншоты",
       "card.guideLink": "Гайд",
+      "card.siteLink": "Сайт",
       "project.gallery": "Скриншоты и видео",
       "back.projects": "← Все проекты",
       "back": "← Назад к гайдам"
@@ -26,6 +27,7 @@
       "card.repo": "Code on GitHub",
       "card.media": "Screenshots",
       "card.guideLink": "Guide",
+      "card.siteLink": "Website",
       "project.gallery": "Screenshots & video",
       "back.projects": "← All projects",
       "back": "← Back to guides"
