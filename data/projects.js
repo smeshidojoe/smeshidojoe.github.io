@@ -22,6 +22,25 @@ window.PROJECTS = [
     "media": []
   },
   {
+    "name": "Foldr",
+    "repo": "https://github.com/smeshidojoe/Foldr",
+    "lang": null,
+    "desc_ru": "Тихий органайзер файлов в трее: сам раскладывает загрузки по папкам по твоим правилам.",
+    "desc_en": "A quiet file organizer in the tray: sorts your downloads into folders by your rules.",
+    "tags": [
+      "Windows",
+      "tray",
+      "organizer"
+    ],
+    "cover": "",
+    "banner": "",
+    "guide": "",
+    "site": "/Foldr/",
+    "about_ru": "Foldr — незаметный органайзер файлов, который живёт в системном трее и держит папку «Загрузки» (и любые другие папки) в порядке автоматически. Работает тихо в фоне: следит за выбранными папками и перемещает, переименовывает и сортирует файлы по настраиваемым правилам.\n\nКартинки — в Images, документы — в Documents, архивы — в Archives, установщики — в Installers, а для всего остального — правило-ловушка. Правила можно писать свои: расширения, шаблоны, папки назначения.\n\nСтраница проекта заполняется — подробности скоро.",
+    "about_en": "Foldr is an unobtrusive file organizer that lives in the system tray and keeps your Downloads folder (and any other folders) tidy automatically. It runs quietly in the background, watching selected folders and moving, renaming and sorting files by customizable rules.\n\nImages go to Images, documents to Documents, archives to Archives, installers to Installers, and a catch-all rule handles the rest. You can write your own rules: extensions, patterns, destination folders.\n\nProject page is a work in progress — details soon.",
+    "media": []
+  },
+  {
     "name": "NovaBot",
     "repo": "https://github.com/smeshidojoe/NovaBot",
     "lang": "Python",
@@ -37,6 +56,23 @@ window.PROJECTS = [
     "guide": "",
     "about_ru": "NovaBot — Telegram-бот-конструктор QR-кодов на aiogram 3. Отправь ссылку — получи QR-код картинкой. Для одиночной ссылки бот предлагает стандартный QR или конструктор с живым превью прямо в сообщении: цвет (пресеты или свой #RRGGBB), фон, размер до 3000×3000, уровень коррекции ошибок.\n\nУмеет пакетный режим (до 10 ссылок одним сообщением), инлайн-режим @botname в любом чате, чтение QR с присланной картинки и личные настройки по умолчанию через /settings.",
     "about_en": "NovaBot is a Telegram QR-code constructor bot built on aiogram 3. Send a link — get a QR code back as an image. For a single link it offers a standard QR or a constructor with live preview right in the message: color (presets or custom #RRGGBB), background, size up to 3000×3000, error correction level.\n\nIt also does batch mode (up to 10 links per message), inline mode @botname in any chat, reverse QR reading from an image, and per-user defaults via /settings.",
+    "media": []
+  },
+  {
+    "name": "Gremlin",
+    "repo": "https://github.com/smeshidojoe/Gremlin",
+    "lang": null,
+    "desc_ru": "Telegram-бот для модерации чатов.",
+    "desc_en": "Telegram moderation bot.",
+    "tags": [
+      "Telegram",
+      "bot"
+    ],
+    "banner": "",
+    "cover": "assets/media/gremlin/ChatGPT_Image_8_._2026_._22_04_14.png",
+    "guide": "",
+    "about_ru": "Gremlin — Telegram-бот для модерации чатов: следит за порядком, чтобы админам не приходилось.",
+    "about_en": "Gremlin is a Telegram moderation bot: it keeps chats in order so admins don't have to.",
     "media": []
   },
   {
@@ -75,23 +111,6 @@ window.PROJECTS = [
     "media": []
   },
   {
-    "name": "Gremlin",
-    "repo": "https://github.com/smeshidojoe/Gremlin",
-    "lang": null,
-    "desc_ru": "Telegram-бот для модерации чатов.",
-    "desc_en": "Telegram moderation bot.",
-    "tags": [
-      "Telegram",
-      "bot"
-    ],
-    "banner": "",
-    "cover": "assets/media/gremlin/ChatGPT_Image_8_._2026_._22_04_14.png",
-    "guide": "",
-    "about_ru": "Gremlin — Telegram-бот для модерации чатов: следит за порядком, чтобы админам не приходилось.",
-    "about_en": "Gremlin is a Telegram moderation bot: it keeps chats in order so admins don't have to.",
-    "media": []
-  },
-  {
     "name": "VideoToCircle",
     "repo": "https://github.com/smeshidojoe/VideoToCircle-TelegramBot",
     "lang": "Python",
@@ -124,25 +143,6 @@ window.PROJECTS = [
     "guide": "",
     "about_ru": "CopyPasta — инструмент для быстрой обрезки и склейки видео без перекодирования. Файл не пережимается, поэтому операции занимают секунды, а качество остаётся исходным до последнего бита.",
     "about_en": "CopyPasta is a tool for fast video trimming and merging without re-encoding. The file is never recompressed, so operations take seconds and quality stays bit-perfect.",
-    "media": []
-  },
-  {
-    "name": "Foldr",
-    "repo": "https://github.com/smeshidojoe/Foldr",
-    "lang": null,
-    "desc_ru": "Тихий органайзер файлов в трее: сам раскладывает загрузки по папкам по твоим правилам.",
-    "desc_en": "A quiet file organizer in the tray: sorts your downloads into folders by your rules.",
-    "tags": [
-      "Windows",
-      "tray",
-      "organizer"
-    ],
-    "cover": "",
-    "banner": "",
-    "guide": "",
-    "site": "/Foldr/",
-    "about_ru": "Foldr — незаметный органайзер файлов, который живёт в системном трее и держит папку «Загрузки» (и любые другие папки) в порядке автоматически. Работает тихо в фоне: следит за выбранными папками и перемещает, переименовывает и сортирует файлы по настраиваемым правилам.\n\nКартинки — в Images, документы — в Documents, архивы — в Archives, установщики — в Installers, а для всего остального — правило-ловушка. Правила можно писать свои: расширения, шаблоны, папки назначения.\n\nСтраница проекта заполняется — подробности скоро.",
-    "about_en": "Foldr is an unobtrusive file organizer that lives in the system tray and keeps your Downloads folder (and any other folders) tidy automatically. It runs quietly in the background, watching selected folders and moving, renaming and sorting files by customizable rules.\n\nImages go to Images, documents to Documents, archives to Archives, installers to Installers, and a catch-all rule handles the rest. You can write your own rules: extensions, patterns, destination folders.\n\nProject page is a work in progress — details soon.",
     "media": []
   }
 ];
