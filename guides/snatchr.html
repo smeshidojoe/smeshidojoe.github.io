@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
-<head>
+<html lang="ru"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Гайд: Snatchr — smeshidojoe</title>
@@ -34,8 +33,8 @@
 
         <h2>Шаг 1. Установка</h2>
         <ol>
-          <li>Скачай свежий <code>.exe</code> со страницы <a href="https://github.com/smeshidojoe/Snatchr/releases/latest" target="_blank" rel="noopener">Releases</a>. Нужен Windows 10 или новее.</li>
-          <li>Запусти установщик — папку можно выбрать любую.</li>
+          <li>Скачай свежий <code>.exe</code> со страницы <a href="https://github.com/smeshidojoe/Snatchr/releases/latest" target="_blank" rel="noopener">Releases</a>. Нужна Windows 10 или новее.</li>
+          <li>Запусти установщик — стандартный путь установки D/Programs/Snatchr. (в виду некоторых особенностей установка на диск C может быть затруднительна, это временная мера)</li>
           <li>При первом запуске Snatchr сам скачает свой бэкенд (<code>yt-dlp</code>, <code>ffmpeg</code>). Python и терминал не нужны, дальше программа обновляет и себя, и бэкенд автоматически.</li>
         </ol>
         <p>Настройки, история и служебные файлы живут в <code>C:\Users\&lt;имя&gt;\AppData\Roaming\Snatchr</code>.</p>
@@ -59,7 +58,6 @@
         <ul>
           <li><strong>Копировать</strong> — готовый файл сразу в буфер: вставляй в чат или папку.</li>
           <li><strong>Обрезать</strong> — открывается фильм-лента с ползунками From/To и превью; результат сохраняется рядом с оригиналом или копируется в буфер.</li>
-          <li><strong>Показать в папке / перекачать</strong> в другом качестве.</li>
         </ul>
         <p>Горячую клавишу и поведение закрытия можно поменять в настройках.</p>
 
@@ -74,13 +72,13 @@
         <h2>Шаг 5. Выбор качества и формата</h2>
         <ol>
           <li>Открой главное окно (левый клик по трею) и вставь ссылку.</li>
-          <li>Нажми «анализ» — Snatchr покажет доступные разрешения и кодеки.</li>
-          <li>Выбери разрешение, кодек или «только звук» (MP3) — и качай.</li>
+          <li>Snatchr покажет доступные разрешения и кодеки в специальном селекторе.</li>
+          <li>Выбери разрешение и качай.</li>
         </ol>
         <ul>
           <li><strong>Пачки и плейлисты</strong> — вставь сразу несколько ссылок или плейлист: окно свернётся и заберёт всё в фоне.</li>
           <li><strong>Фрагмент по таймкодам</strong> — задай From/To до загрузки, скачается только нужный кусок.</li>
-          <li><strong>Конверт для монтажа</strong> — опция перегоняет ролики YouTube в чистый, дружелюбный к видеоредакторам MP4 (на GPU, если есть; иначе CPU).</li>
+          <li><strong>Конверт для монтажа</strong> — опция перегоняет ролики YouTube в чистый, дружелюбный к видеоредакторам и соцсетям (Телеграм) MP4.&nbsp;</li>
         </ul>
 
         <h2>Шаг 6. Куки: приватный и возрастной контент</h2>
@@ -95,13 +93,13 @@
           <li>Подойдут и не-хромовские браузеры: <strong>Vivaldi</strong>, Opera.</li>
           <li>Свежие Chrome/Edge/Brave шифруют куки (App-Bound Encryption) — из них чтение обычно не работает.</li>
         </ul>
-        <div class="callout"><strong>Совет: отдельный браузер под куки.</strong> Если ставишь браузер специально для этого (Firefox или Vivaldi) — войди в нём в аккаунты сервисов, с которых собираешься качать, и больше его не открывай. Сессии останутся живыми, куки — валидными, а твой основной браузер это никак не заденет.</div>
+        <div class="callout"><strong>Совет: используй отдельный браузер под куки.</strong>&nbsp;Поставь браузер специально для этого (Firefox или Vivaldi) - войди в нём в аккаунты сервисов, с которых собираешься качать, и больше его не открывай, это обязательное условие для корректной работы программы. Сессии останутся живыми, куки — валидными, а твой основной браузер это никак не заденет.</div>
 
         <h2>Шаг 7. Темы и мелочи</h2>
         <ul>
           <li>В настройках несколько тем: Glass, Dark Glass, Blackout и другие.</li>
           <li>Скролл инерционный, в стиле macOS; интерфейс автоматически масштабируется под 1080p/1440p и выше.</li>
-          <li>Snatchr обновляется сам и никогда не запускается вторым экземпляром.</li>
+          <li>Snatchr обновляется сам (при выходе новой версии вы получите уведомление).</li>
         </ul>
       </div>
 
@@ -156,7 +154,7 @@
           <li>Pick a resolution, codec, or audio-only (MP3) — and download.</li>
         </ol>
         <ul>
-          <li><strong>Batches & playlists</strong> — paste several links or a playlist at once: the window collapses and fetches everything in the background.</li>
+          <li><strong>Batches &amp; playlists</strong> — paste several links or a playlist at once: the window collapses and fetches everything in the background.</li>
           <li><strong>Section by timecode</strong> — set From/To before downloading to grab just the part you need.</li>
           <li><strong>Editor-friendly convert</strong> — optionally re-encodes YouTube videos into a clean, editor-ready MP4 (GPU-accelerated when available, CPU fallback).</li>
         </ul>
@@ -192,7 +190,8 @@
   </footer>
 
   <script src="../assets/js/i18n.js"></script>
-  <script src="../assets/js/admin.js" defer></script>
+  <script src="../assets/js/admin.js" defer=""></script>
   <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
-</body>
-</html>
+
+
+</body></html>
