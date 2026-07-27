@@ -157,7 +157,7 @@ ember.<span class="t-fn">supported_services</span>()                  <span clas
           <tr><td>TikTok</td><td>videos, photo posts, music</td><td>–</td></tr>
           <tr><td>Twitter / X</td><td>videos, GIFs, photos</td><td>NSFW tweets need cookies (<code>auth_token</code> + <code>ct0</code>)</td></tr>
           <tr><td>Instagram</td><td>posts, Reels, carousels, Stories, highlights</td><td>anonymously often preview-only; Stories need cookies</td></tr>
-          <tr><td>Reddit</td><td>videos, GIFs, images, galleries</td><td>may be IP-blocked on VPN / datacenter</td></tr>
+          <tr><td>Reddit</td><td>videos, GIFs, images, galleries</td><td>a proxy helps if requests are refused</td></tr>
           <tr><td>Vimeo</td><td>videos (mp4 / HLS)</td><td>–</td></tr>
           <tr><td>SoundCloud</td><td>tracks, sets</td><td>premium tracks give a 30s preview anonymously</td></tr>
           <tr><td>Pinterest</td><td>video / image pins</td><td>–</td></tr>
@@ -165,7 +165,7 @@ ember.<span class="t-fn">supported_services</span>()                  <span clas
           <tr><td>Bluesky</td><td>video (HLS), images, GIFs</td><td>–</td></tr>
           <tr><td>Newgrounds</td><td>video, audio</td><td>anti-bot on some IPs</td></tr>
           <tr><td>Rutube</td><td>videos (HLS)</td><td>–</td></tr>
-          <tr><td>OK.ru</td><td>videos</td><td>may need a normal (non-datacenter) IP</td></tr>
+          <tr><td>OK.ru</td><td>videos</td><td>a proxy helps if requests are refused</td></tr>
           <tr><td>VK / VK Video</td><td>videos, clips</td><td>closed groups / private videos need cookies</td></tr>
           <tr><td>Facebook</td><td>videos, Reels</td><td>usually needs cookies</td></tr>
           <tr><td>Twitch</td><td>clips only</td><td>not VODs or streams</td></tr>
@@ -428,11 +428,10 @@ logging.<span class="t-fn">getLogger</span>(<span class="t-str">"ember"</span>).
     <!-- ═══ LIMITS ═══ -->
     <h2 id="limits">Limitations</h2>
     <ul>
-      <li><strong>Instagram</strong> – anonymously often preview-only; cookies give full quality.</li>
-      <li><strong>Reddit, Newgrounds, OK.ru</strong> – block anonymous requests from datacenter and VPN
-      addresses; they work from a home IP or through <code>proxies=</code> / <code>--proxy</code>.</li>
-      <li><strong>Facebook</strong> – public video usually still requires cookies.</li>
-      <li><strong>Twitter / X</strong> – NSFW tweets require account cookies (<code>auth_token</code> and <code>ct0</code>).</li>
+      <li><strong>Instagram</strong> – without cookies you often get only a preview; with cookies, full quality.</li>
+      <li><strong>Reddit, Newgrounds, OK.ru</strong> – sometimes refuse requests; <code>proxies=</code> / <code>--proxy</code> helps.</li>
+      <li><strong>Facebook</strong> – public video usually still needs cookies.</li>
+      <li><strong>Twitter / X</strong> – 18+ posts need account cookies (<code>auth_token</code> and <code>ct0</code>).</li>
       <li><strong>Twitch</strong> – clips only, not VODs or live streams.</li>
     </ul>
     <p>Ember is MIT licensed – issues and pull requests are welcome on
@@ -510,19 +509,19 @@ ember.<span class="t-fn">supported_services</span>()                  <span clas
           <thead><tr><th>Сайт</th><th>Что забирает</th><th>Примечания</th></tr></thead>
           <tbody>
             <tr><td>TikTok</td><td>видео, фото-посты, музыка</td><td>–</td></tr>
-            <tr><td>Twitter / X</td><td>видео, гифки, фото</td><td>для постов 18+ нужен логин</td></tr>
-            <tr><td>Instagram</td><td>посты, Reels, карусели, Stories</td><td>без логина часто только превью</td></tr>
-            <tr><td>Reddit</td><td>видео, гифки, картинки, галереи</td><td>блокирует VPN и серверы</td></tr>
+            <tr><td>Twitter / X</td><td>видео, гифки, фото</td><td>для постов 18+ нужны куки</td></tr>
+            <tr><td>Instagram</td><td>посты, Reels, карусели, Stories</td><td>без куки часто только превью</td></tr>
+            <tr><td>Reddit</td><td>видео, гифки, картинки, галереи</td><td>если запросы отклоняются, поможет прокси</td></tr>
             <tr><td>Vimeo</td><td>видео</td><td>–</td></tr>
             <tr><td>SoundCloud</td><td>треки, сборники</td><td>платные треки дают 30 секунд превью</td></tr>
             <tr><td>Pinterest</td><td>видео и картинки</td><td>–</td></tr>
             <tr><td>Tumblr</td><td>видео, аудио, фото</td><td>–</td></tr>
             <tr><td>Bluesky</td><td>видео, картинки, гифки</td><td>–</td></tr>
-            <tr><td>Newgrounds</td><td>видео, аудио</td><td>блокируется в части сетей</td></tr>
+            <tr><td>Newgrounds</td><td>видео, аудио</td><td>если запросы отклоняются, поможет прокси</td></tr>
             <tr><td>Rutube</td><td>видео</td><td>–</td></tr>
-            <tr><td>OK.ru</td><td>видео</td><td>нужен обычный домашний интернет</td></tr>
-            <tr><td>VK / VK Видео</td><td>видео, клипы</td><td>для закрытых групп нужен логин</td></tr>
-            <tr><td>Facebook</td><td>видео, Reels</td><td>обычно нужен логин</td></tr>
+            <tr><td>OK.ru</td><td>видео</td><td>если запросы отклоняются, поможет прокси</td></tr>
+            <tr><td>VK / VK Видео</td><td>видео, клипы</td><td>для закрытых групп нужны куки</td></tr>
+            <tr><td>Facebook</td><td>видео, Reels</td><td>обычно нужны куки</td></tr>
             <tr><td>Twitch</td><td>клипы</td><td>трансляции и записи не поддерживаются</td></tr>
             <tr><td>Pornhub</td><td>видео</td><td>возрастной барьер снимается сам</td></tr>
             <tr><td>XVideos</td><td>видео</td><td>зеркала тоже работают</td></tr>
@@ -757,10 +756,10 @@ logging.<span class="t-fn">getLogger</span>(<span class="t-str">"ember"</span>).
 
       <h2>Ограничения</h2>
       <ul>
-        <li><strong>Instagram</strong> – без логина часто приходит только маленькое превью.</li>
-        <li><strong>Reddit, Newgrounds, OK.ru</strong> – блокируют VPN и серверы. Нужен домашний интернет или прокси.</li>
-        <li><strong>Facebook</strong> – даже публичному видео обычно нужен логин.</li>
-        <li><strong>Twitter / X</strong> – для постов 18+ нужен логин.</li>
+        <li><strong>Instagram</strong> – без куки часто приходит только маленькое превью.</li>
+        <li><strong>Reddit, Newgrounds, OK.ru</strong> – иногда отклоняют запросы; поможет прокси.</li>
+        <li><strong>Facebook</strong> – даже публичному видео обычно нужны куки.</li>
+        <li><strong>Twitter / X</strong> – для постов 18+ нужны куки.</li>
         <li><strong>Twitch</strong> – только клипы, не трансляции.</li>
       </ul>
       <p>Ember бесплатный, с открытым кодом (лицензия MIT). Баги и идеи – в
