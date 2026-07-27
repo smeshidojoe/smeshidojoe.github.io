@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ember — media extraction for Python</title>
-<meta name="description" content="Ember is an embeddable Python library and CLI that extracts direct media URLs and metadata from 18 social platforms — and downloads them itself, HLS included, without yt-dlp.">
-<meta property="og:title" content="Ember — media extraction for Python">
-<meta property="og:description" content="Direct media URLs + metadata from 18 social platforms. One dependency. Python 3.9+.">
+<title>Ember – media extraction for Python</title>
+<meta name="description" content="Ember is a small Python library and command line tool that pulls videos, photos and audio out of 18 social platforms – and saves them for you.">
+<meta property="og:title" content="Ember – media extraction for Python">
+<meta property="og:description" content="Grab media from 18 social platforms. One dependency. Python 3.9+.">
 <meta property="og:type" content="website">
 <link rel="icon" type="image/svg+xml" href="/Ember/assets/logo.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,10 +24,9 @@
     </a>
     <button class="burger" aria-label="Menu">☰</button>
     <div class="nav-links" id="nav-links">
-      <a href="#features">Features</a>
-      <a href="#services">Services</a>
-      <a href="/Ember/docs/">Docs</a>
       <a href="#faq">FAQ</a>
+      <a href="/Ember/docs/">Docs</a>
+      <a href="https://github.com/smeshidojoe/Ember/issues" target="_blank" rel="noopener">Issues</a>
       <a href="/Ember/about/">About</a>
       <a href="https://github.com/smeshidojoe/Ember" target="_blank" rel="noopener" class="nav-cta">GitHub ↗</a>
     </div>
@@ -41,12 +40,13 @@
       <span class="tagline"><i class="spark"></i> Python 3.9+ · one dependency</span>
       <h1>Media extraction that <em>burns clean</em>.</h1>
       <p class="lead">
-        Ember is an embeddable Python library and CLI. Give it a post URL — it returns
-        <strong>direct media URLs and metadata</strong>, and downloads them itself, HLS included.
+        Ember is a small Python library and command line tool. Give it a link to a post –
+        it finds the video, photo or track behind it and hands you a
+        <strong>direct link, the details about it, and the file itself</strong> if you want it.
       </p>
       <p class="sub">
-        A compact alternative to cobalt. No yt-dlp requirement, no browser automation,
-        no service you have to keep running. Just <code>requests</code> and a few hundred KB of code.
+        No heavy toolchain, no browser running in the background, no online service to depend on.
+        Everything happens on your machine, in a few hundred kilobytes of code.
       </p>
       <div class="btn-row">
         <a href="/Ember/docs/" class="btn btn-primary">Read the docs →</a>
@@ -69,11 +69,11 @@
 result = ember.<span class="t-fn">extract</span>(<span class="t-str">"https://vimeo.com/76979871"</span>)
 <span class="t-fn">print</span>(result.title, result.author)
 
-<span class="t-com"># direct URLs, ready to hand anywhere</span>
+<span class="t-com"># direct links, ready to hand anywhere</span>
 <span class="t-kw">for</span> m <span class="t-kw">in</span> result.media:
     <span class="t-fn">print</span>(m.kind, m.quality, m.url)
 
-<span class="t-com"># …or let Ember download it</span>
+<span class="t-com"># …or let Ember save the file</span>
 paths = ember.<span class="t-fn">download</span>(
     result, <span class="t-str">"downloads/"</span>,
     max_height=<span class="t-num">720</span>,
@@ -86,49 +86,49 @@ paths = ember.<span class="t-fn">download</span>(
 <!-- ═══ FEATURES ═══ -->
 <section id="features">
   <div class="wrap">
-    <p class="eyebrow">01 — What you get</p>
-    <h2>Small surface, serious reach</h2>
+    <p class="eyebrow">01 – What you get</p>
+    <h2>Small tool, serious reach</h2>
     <p class="section-sub">
-      Ember calls the same internal APIs the sites use in the browser, parses out real media
-      links, and hands them to you as typed objects.
+      Ember asks a site for media the same way the site's own page does, then gives you
+      the result in a form you can actually use.
     </p>
 
     <div class="features">
       <div class="feature">
         <div class="ico">🔗</div>
-        <h3>Links or files — your call</h3>
-        <p><code>extract()</code> gives you direct URLs and metadata. <code>download()</code> pulls the
-        bytes when you want them. Use one, both, or wire the URLs into your own downloader.</p>
+        <h3>A link or the file – your call</h3>
+        <p>Ember can simply tell you where the media lives, or download it for you.
+        Take the link and do your own thing with it, or let Ember save the file. Both work.</p>
       </div>
       <div class="feature">
         <div class="ico">📺</div>
-        <h3>HLS without ceremony</h3>
-        <p>Built-in manifest parser fetches segments in parallel and assembles the file.
-        Single streams need no ffmpeg at all.</p>
+        <h3>Handles streamed video</h3>
+        <p>A lot of sites serve video in small pieces instead of one file. Ember collects
+        the pieces on its own and puts them back together into something you can play.</p>
       </div>
       <div class="feature">
         <div class="ico">🧩</div>
-        <h3>Embeddable by design</h3>
-        <p>Typed, <code>py.typed</code> shipped, silent logging, one error base class.
-        Drop it into a bot or a service and fall back to yt-dlp when a link isn't supported.</p>
+        <h3>Built to live inside your project</h3>
+        <p>Quiet, predictable and easy to plug into a bot, an app or a script. It stays out
+        of the way and never prints anything you did not ask for.</p>
       </div>
       <div class="feature">
         <div class="ico">🍪</div>
-        <h3>Cookies from your browser</h3>
-        <p>Native reader for Firefox on any OS and Chromium-family on Windows —
-        no extra packages. Unlocks private posts and age-gated content.</p>
+        <h3>Can use your own login</h3>
+        <p>Ember can borrow the session from your browser, so anything you are allowed to
+        see while logged in stays reachable – private posts and age-gated pages included.</p>
       </div>
       <div class="feature">
         <div class="ico">🎚️</div>
-        <h3>Quality you choose</h3>
-        <p><code>available_qualities()</code> lists heights, <code>max_height</code> caps them,
-        <code>probe_size()</code> tells you the byte size before a single frame is fetched.</p>
+        <h3>You pick the quality</h3>
+        <p>See which resolutions a video comes in, cap it at the one you want, and check how
+        many megabytes it will take before anything starts downloading.</p>
       </div>
       <div class="feature">
         <div class="ico">📚</div>
-        <h3>Playlists and timelines</h3>
-        <p>Pull a whole SoundCloud set, or the latest posts from a profile on nine
-        different platforms, and iterate them like any other result.</p>
+        <h3>Whole sets at once</h3>
+        <p>Grab an entire playlist, or the latest posts from someone's profile, and go
+        through them one by one instead of copying links by hand.</p>
       </div>
     </div>
   </div>
@@ -137,11 +137,11 @@ paths = ember.<span class="t-fn">download</span>(
 <!-- ═══ QUICKSTART ═══ -->
 <section id="quickstart" style="padding-top:0">
   <div class="wrap">
-    <p class="eyebrow">02 — Two ways in</p>
+    <p class="eyebrow">02 – Two ways in</p>
     <h2>Library or command line</h2>
     <p class="section-sub">
-      The same engine either way. Install once — <code>import ember</code> and the
-      <code>ember</code> command both become available.
+      The same engine either way. Install once and you can use Ember from your own Python
+      code or straight from a terminal.
     </p>
 
     <div data-tabs>
@@ -179,19 +179,19 @@ ember.<span class="t-fn">download</span>(
             <span class="dot"></span><span class="name">terminal</span>
             <button class="copy">copy</button>
           </div>
-<pre><code><span class="t-com"># show direct links and metadata — nothing is downloaded</span>
+<pre><code><span class="t-com"># show direct links and details – nothing is downloaded</span>
 ember <span class="t-str">"https://x.com/user/status/123456789"</span>
 
 <span class="t-com"># -d turns downloading on</span>
 ember <span class="t-flag">-d</span> <span class="t-str">"https://vimeo.com/76979871"</span>
 
-<span class="t-com"># cap quality, 6 parallel HLS segments, custom folder</span>
+<span class="t-com"># cap quality, 6 pieces at a time, custom folder</span>
 ember <span class="t-flag">-d -p</span> downloads <span class="t-flag">--max-height</span> <span class="t-num">720</span> <span class="t-flag">--concurrency</span> <span class="t-num">6</span> <span class="t-str">"&lt;url&gt;"</span>
 
-<span class="t-com"># audio only, metadata written into the file</span>
+<span class="t-com"># audio only, with the track details written into the file</span>
 ember <span class="t-flag">-d --audio-only --embed-metadata</span> <span class="t-str">"&lt;soundcloud url&gt;"</span>
 
-<span class="t-com"># private / NSFW content via browser cookies</span>
+<span class="t-com"># private content, using the login from your browser</span>
 ember <span class="t-flag">-d --cookies-from-browser</span> firefox <span class="t-str">"&lt;url&gt;"</span></code></pre>
         </div>
       </div>
@@ -202,38 +202,37 @@ ember <span class="t-flag">-d --cookies-from-browser</span> firefox <span class=
 <!-- ═══ SERVICES ═══ -->
 <section id="services" style="padding-top:0">
   <div class="wrap">
-    <p class="eyebrow">03 — Coverage</p>
+    <p class="eyebrow">03 – Coverage</p>
     <h2>18 services, one interface</h2>
     <p class="section-sub">
-      Every extractor is a small standalone module. Adding a service means adding a file,
-      not rewriting the core.
+      Every site is handled by its own small module, so the list keeps growing without the
+      rest of the tool changing.
     </p>
 
     <div class="services">
       <a class="svc" href="/Ember/docs/#services"><i class="d"></i><span>TikTok<small>video, photos, music</small></span></a>
-      <a class="svc warn" href="/Ember/docs/#services"><i class="d"></i><span>Twitter / X<small>NSFW needs cookies</small></span></a>
+      <a class="svc warn" href="/Ember/docs/#services"><i class="d"></i><span>Twitter / X<small>NSFW needs your login</small></span></a>
       <a class="svc warn" href="/Ember/docs/#services"><i class="d"></i><span>Instagram<small>posts, Reels, Stories</small></span></a>
-      <a class="svc warn" href="/Ember/docs/#services"><i class="d"></i><span>Reddit<small>IP-sensitive</small></span></a>
-      <a class="svc" href="/Ember/docs/#services"><i class="d"></i><span>Vimeo<small>mp4 / HLS</small></span></a>
+      <a class="svc warn" href="/Ember/docs/#services"><i class="d"></i><span>Reddit<small>needs a home connection</small></span></a>
+      <a class="svc" href="/Ember/docs/#services"><i class="d"></i><span>Vimeo<small>video</small></span></a>
       <a class="svc" href="/Ember/docs/#services"><i class="d"></i><span>SoundCloud<small>tracks, sets</small></span></a>
-      <a class="svc" href="/Ember/docs/#services"><i class="d"></i><span>Pinterest<small>video & image pins</small></span></a>
+      <a class="svc" href="/Ember/docs/#services"><i class="d"></i><span>Pinterest<small>video &amp; image pins</small></span></a>
       <a class="svc" href="/Ember/docs/#services"><i class="d"></i><span>Tumblr<small>video, audio, photos</small></span></a>
       <a class="svc" href="/Ember/docs/#services"><i class="d"></i><span>Bluesky<small>video, images, GIFs</small></span></a>
-      <a class="svc warn" href="/Ember/docs/#services"><i class="d"></i><span>Newgrounds<small>anti-bot on some IPs</small></span></a>
-      <a class="svc" href="/Ember/docs/#services"><i class="d"></i><span>Rutube<small>HLS</small></span></a>
-      <a class="svc warn" href="/Ember/docs/#services"><i class="d"></i><span>OK.ru<small>IP-sensitive</small></span></a>
+      <a class="svc warn" href="/Ember/docs/#services"><i class="d"></i><span>Newgrounds<small>blocked on some networks</small></span></a>
+      <a class="svc" href="/Ember/docs/#services"><i class="d"></i><span>Rutube<small>video</small></span></a>
+      <a class="svc warn" href="/Ember/docs/#services"><i class="d"></i><span>OK.ru<small>needs a home connection</small></span></a>
       <a class="svc" href="/Ember/docs/#services"><i class="d"></i><span>VK / VK Video<small>video, clips</small></span></a>
-      <a class="svc warn" href="/Ember/docs/#services"><i class="d"></i><span>Facebook<small>usually needs cookies</small></span></a>
-      <a class="svc" href="/Ember/docs/#services"><i class="d"></i><span>Twitch<small>clips only</small></span></a>
+      <a class="svc warn" href="/Ember/docs/#services"><i class="d"></i><span>Facebook<small>usually needs your login</small></span></a>
+      <a class="svc" href="/Ember/docs/#services"><i class="d"></i><span>Twitch<small>clips</small></span></a>
       <a class="svc" href="/Ember/docs/#services"><i class="d"></i><span>Pornhub<small>age wall handled</small></span></a>
-      <a class="svc" href="/Ember/docs/#services"><i class="d"></i><span>XVideos<small>HLS, mirrors</small></span></a>
+      <a class="svc" href="/Ember/docs/#services"><i class="d"></i><span>XVideos<small>video</small></span></a>
       <a class="svc" href="/Ember/docs/#services"><i class="d"></i><span>RedGifs<small>video</small></span></a>
     </div>
 
     <div class="legend">
-      <span><i style="background:var(--ember-hot)"></i> works anonymously</span>
-      <span><i style="background:var(--amber)"></i> may need cookies or a home IP</span>
-      <span>YouTube is out of scope — pair Ember with yt-dlp for it.</span>
+      <span><i style="background:var(--ok)"></i> works right away</span>
+      <span><i style="background:var(--amber)"></i> may need your login or a home connection</span>
     </div>
   </div>
 </section>
@@ -242,11 +241,10 @@ ember <span class="t-flag">-d --cookies-from-browser</span> firefox <span class=
 <section id="install" style="padding-top:0">
   <div class="wrap">
     <div class="install">
-      <p class="eyebrow">04 — Install</p>
+      <p class="eyebrow">04 – Install</p>
       <h2>One line, then you're running</h2>
       <p class="section-sub">
-        The distribution is named <code style="color:var(--amber)">ember-dl</code>;
-        the import name stays <code style="color:var(--amber)">ember</code>.
+        Ember works on Windows, macOS and Linux. Nothing else to set up.
       </p>
 
       <div class="code">
@@ -275,44 +273,46 @@ ember <span class="t-flag">-d --cookies-from-browser</span> firefox <span class=
 <!-- ═══ FAQ ═══ -->
 <section id="faq" style="padding-top:0">
   <div class="wrap">
-    <p class="eyebrow">05 — Questions</p>
+    <p class="eyebrow">05 – Questions</p>
     <h2>Frequently asked</h2>
     <div class="faq">
       <details open>
-        <summary>How is this different from yt-dlp?</summary>
-        <p>Different job. yt-dlp is an enormous, exhaustive downloader. Ember is a small
-        embeddable extractor for social platforms: it hands you direct URLs and metadata as
-        typed Python objects, with one required dependency. Many projects use both —
-        Ember first, yt-dlp as the fallback for anything it can't parse.</p>
+        <summary>What makes Ember worth using?</summary>
+        <p>It is small and it is yours. Ember installs in one line, adds almost nothing to your
+        project, and runs entirely on your own machine – no account, no online service, no
+        waiting in a queue. You get the media links along with the title, author and preview,
+        so you can build your own interface around them instead of parsing someone's output.
+        And when a site changes, only one small piece needs fixing.</p>
       </details>
       <details>
-        <summary>Do I need ffmpeg?</summary>
-        <p>Not usually. Direct mp4 and single-stream HLS assemble without it. You need
-        ffmpeg for muxing separate video+audio tracks (<code>kind="merge"</code>),
-        <code>audio_only</code>, and <code>embed_metadata</code>.</p>
+        <summary>Do I need to install anything else?</summary>
+        <p>Usually not. Most downloads work with Ember alone. A separate helper called ffmpeg
+        is only needed for a few extras: pulling out just the audio, writing the title and
+        author into the file, and joining video with a separate sound track.</p>
       </details>
       <details>
-        <summary>Why does Instagram only give me a preview?</summary>
-        <p>Anonymous requests often return a low-quality preview. Pass cookies —
-        <code>cookies_from_browser="firefox"</code> — and you get full quality. The same applies to
-        NSFW tweets, closed VK groups and most Facebook video.</p>
+        <summary>Why does Instagram only give me a low-quality preview?</summary>
+        <p>Instagram hides the good version from anyone who is not signed in. Using cookies
+        will help you to bypass this and get the full media. The same trick works for adult
+        posts on X, closed groups on VK, and most video on Facebook.</p>
       </details>
       <details>
-        <summary>Some sites return nothing at all.</summary>
-        <p>Reddit, Newgrounds and OK.ru block anonymous requests from datacenter and VPN
-        addresses. They work from a normal home IP, or through <code>proxies=</code> /
-        <code>--proxy</code>.</p>
+        <summary>Some sites give me nothing at all.</summary>
+        <p>A few of them – Reddit, Newgrounds and OK.ru – refuse requests coming from VPNs and
+        data centres. From a normal home connection they work fine, and you can also route
+        Ember through a proxy.</p>
       </details>
       <details>
-        <summary>Which browsers can it read cookies from?</summary>
-        <p>Firefox on any OS works out of the box, as do Chromium-family browsers on Windows
-        such as Vivaldi and Opera. Recent Chrome, Edge and Brave encrypt their cookie store
-        (App-Bound Encryption) and usually cannot be read.</p>
+        <summary>Which browsers can it borrow my login from?</summary>
+        <p>Firefox works everywhere. On Windows, Chromium-based browsers such as Vivaldi and
+        Opera work too. Recent versions of Chrome, Edge and Brave lock their data away, so
+        those usually cannot be read.</p>
       </details>
       <details>
         <summary>Can I use it in my own bot or app?</summary>
-        <p>That's what it's built for. MIT licensed, typed, silent by default. See the
-        <a href="/Ember/docs/#embedding">embedding pattern</a> in the docs.</p>
+        <p>That is exactly what it is built for. Ember is free and open source under the MIT
+        licence, so you can ship it inside anything you make. The
+        <a href="/Ember/docs/#embedding">docs</a> show how to wire it up.</p>
       </details>
     </div>
   </div>
@@ -325,6 +325,7 @@ ember <span class="t-flag">-d --cookies-from-browser</span> firefox <span class=
       <a href="/Ember/docs/">Documentation</a>
       <a href="/Ember/about/">About</a>
       <a href="/Ember/privacy/">Privacy</a>
+      <a href="https://github.com/smeshidojoe/Ember/issues" target="_blank" rel="noopener">Issues</a>
       <a href="https://github.com/smeshidojoe/Ember" target="_blank" rel="noopener">GitHub</a>
       <a href="/">All projects</a>
     </div>

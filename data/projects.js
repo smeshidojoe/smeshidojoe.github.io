@@ -33,7 +33,7 @@ window.PROJECTS = [
       "media"
     ],
     "banner": "",
-    "cover": "assets/media/ember/Ember_Site_Card.png",
+    "cover": "assets/media/ember/ember-cover.svg",
     "guide": "guides/ember.html",
     "site": "/Ember/",
     "about_ru": "Ember — встраиваемая Python-библиотека и консольная утилита для извлечения и скачивания медиа из соцсетей, компактная альтернатива cobalt. Даёшь ссылку на пост — получаешь прямые ссылки на медиа с метаданными, а скачать Ember может и сам, включая HLS-потоки, без yt-dlp.\n\nПоддерживает 18 сервисов: TikTok, Twitter/X, Instagram, Reddit, Vimeo, SoundCloud, Pinterest, Tumblr, Bluesky, Newgrounds, Rutube, OK.ru, VK, Facebook, клипы Twitch и другие.\n\nЕдинственная обязательная зависимость — requests. Работает и как Python API (import ember), и как команда ember в терминале. Умеет подхватывать cookies из браузера для приватного контента.",

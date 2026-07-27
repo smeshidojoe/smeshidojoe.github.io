@@ -34,7 +34,14 @@
     }
   };
 
+  // Язык: ?lang=en в ссылке > сохранённый выбор > русский.
+  // Ссылка вида site/?lang=en открывает сайт сразу на английском (и запоминает выбор).
   function getLang() {
+    const q = new URLSearchParams(location.search).get("lang");
+    if (q === "en" || q === "ru") {
+      localStorage.setItem("site-lang", q);
+      return q;
+    }
     return localStorage.getItem("site-lang") || "ru";
   }
 

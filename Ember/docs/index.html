@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Documentation — Ember</title>
+<title>Documentation – Ember</title>
 <meta name="description" content="Ember documentation: installation, Python API, CLI reference, cookies, data models and limitations.">
 <link rel="icon" type="image/svg+xml" href="/Ember/assets/logo.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,10 +21,9 @@
     </a>
     <button class="burger" aria-label="Menu">☰</button>
     <div class="nav-links" id="nav-links">
-      <a href="/Ember/#features">Features</a>
-      <a href="/Ember/#services">Services</a>
-      <a href="/Ember/docs/" class="active">Docs</a>
       <a href="/Ember/#faq">FAQ</a>
+      <a href="/Ember/docs/" class="active">Docs</a>
+      <a href="https://github.com/smeshidojoe/Ember/issues" target="_blank" rel="noopener">Issues</a>
       <a href="/Ember/about/">About</a>
       <a href="https://github.com/smeshidojoe/Ember" target="_blank" rel="noopener" class="nav-cta">GitHub ↗</a>
     </div>
@@ -60,7 +59,7 @@
   <main class="doc">
     <h1>Documentation</h1>
     <p class="doc-lead">
-      Everything needed to pull media out of 18 social platforms — as a library, as a CLI,
+      Everything needed to pull media out of 18 social platforms – as a library, as a CLI,
       or as a piece of something bigger.
     </p>
 
@@ -89,7 +88,7 @@
 
     <!-- ═══ QUICKSTART ═══ -->
     <h2 id="quickstart">Quick start</h2>
-    <p>Two steps: extract, then optionally download. <code>extract()</code> never fetches media bytes — it only resolves links and metadata.</p>
+    <p>Two steps: extract, then optionally download. <code>extract()</code> never fetches media bytes – it only resolves links and metadata.</p>
     <div class="code">
       <div class="code-bar"><span class="dot"></span><span class="name">quickstart.py</span><button class="copy">copy</button></div>
 <pre><code><span class="t-kw">import</span> ember
@@ -100,7 +99,7 @@ result = ember.<span class="t-fn">extract</span>(<span class="t-str">"https://vi
 <span class="t-kw">for</span> m <span class="t-kw">in</span> result.media:
     <span class="t-fn">print</span>(m.kind, m.quality, m.url)
 
-<span class="t-com"># 2) download with Ember itself (no yt-dlp needed)</span>
+<span class="t-com"># 2) let Ember save the file</span>
 <span class="t-kw">def</span> <span class="t-fn">on_progress</span>(p: ember.DownloadProgress):
     <span class="t-kw">if</span> p.fraction <span class="t-kw">is not</span> <span class="t-num">None</span>:
         <span class="t-fn">print</span>(<span class="t-str">f"{p.fraction*100:.0f}%"</span>)
@@ -131,32 +130,31 @@ ember.<span class="t-fn">supported_services</span>()                  <span clas
       <table>
         <thead><tr><th>Service</th><th>Extracts</th><th>Notes</th></tr></thead>
         <tbody>
-          <tr><td>TikTok</td><td>videos, photo posts, music</td><td>—</td></tr>
+          <tr><td>TikTok</td><td>videos, photo posts, music</td><td>–</td></tr>
           <tr><td>Twitter / X</td><td>videos, GIFs, photos</td><td>NSFW tweets need cookies (<code>auth_token</code> + <code>ct0</code>)</td></tr>
           <tr><td>Instagram</td><td>posts, Reels, carousels, Stories, highlights</td><td>anonymously often preview-only; Stories need cookies</td></tr>
           <tr><td>Reddit</td><td>videos, GIFs, images, galleries</td><td>may be IP-blocked on VPN / datacenter</td></tr>
-          <tr><td>Vimeo</td><td>videos (mp4 / HLS)</td><td>—</td></tr>
+          <tr><td>Vimeo</td><td>videos (mp4 / HLS)</td><td>–</td></tr>
           <tr><td>SoundCloud</td><td>tracks, sets</td><td>premium tracks give a 30s preview anonymously</td></tr>
-          <tr><td>Pinterest</td><td>video / image pins</td><td>—</td></tr>
+          <tr><td>Pinterest</td><td>video / image pins</td><td>–</td></tr>
           <tr><td>Tumblr</td><td>video, audio, photos</td><td>NPF and legacy formats</td></tr>
-          <tr><td>Bluesky</td><td>video (HLS), images, GIFs</td><td>—</td></tr>
+          <tr><td>Bluesky</td><td>video (HLS), images, GIFs</td><td>–</td></tr>
           <tr><td>Newgrounds</td><td>video, audio</td><td>anti-bot on some IPs</td></tr>
-          <tr><td>Rutube</td><td>videos (HLS)</td><td>—</td></tr>
+          <tr><td>Rutube</td><td>videos (HLS)</td><td>–</td></tr>
           <tr><td>OK.ru</td><td>videos</td><td>may need a normal (non-datacenter) IP</td></tr>
           <tr><td>VK / VK Video</td><td>videos, clips</td><td>closed groups / private videos need cookies</td></tr>
           <tr><td>Facebook</td><td>videos, Reels</td><td>usually needs cookies</td></tr>
           <tr><td>Twitch</td><td>clips only</td><td>not VODs or streams</td></tr>
           <tr><td>Pornhub</td><td>videos</td><td>age wall bypassed automatically</td></tr>
           <tr><td>XVideos</td><td>videos (HLS)</td><td>mirror domains supported</td></tr>
-          <tr><td>RedGifs</td><td>videos</td><td>—</td></tr>
+          <tr><td>RedGifs</td><td>videos</td><td>–</td></tr>
         </tbody>
       </table>
     </div>
-    <div class="note"><b>YouTube is deliberately out of scope.</b> Use yt-dlp for it — see the <a href="#embedding">embedding pattern</a> for wiring both together.</div>
 
     <!-- ═══ CLI ═══ -->
     <h2 id="cli">Command line</h2>
-    <p>Quote the URL. Flag order doesn't matter. <strong>Without <code>-d</code> nothing is downloaded</strong> — the command only prints links and metadata.</p>
+    <p>Quote the URL. Flag order doesn't matter. <strong>Without <code>-d</code> nothing is downloaded</strong> – the command only prints links and metadata.</p>
     <div class="code">
       <div class="code-bar"><span class="dot"></span><span class="name">terminal</span><button class="copy">copy</button></div>
 <pre><code><span class="t-com"># show direct links and metadata</span>
@@ -220,15 +218,15 @@ ember <span class="t-flag">--cookies-file</span> cookies.txt <span class="t-str"
     </div>
     <h3>Which browser to use</h3>
     <ul>
-      <li><strong>Firefox</strong> — recommended, reads out of the box on any OS.</li>
+      <li><strong>Firefox</strong> – recommended, reads out of the box on any OS.</li>
       <li><strong>Vivaldi, Opera</strong> and other non-Chrome Chromium browsers on Windows also work.</li>
       <li>Recent <strong>Chrome, Edge, Brave</strong> encrypt their cookie store (App-Bound Encryption) and usually cannot be read.</li>
     </ul>
-    <div class="note warn"><b>Tip — keep a dedicated cookies browser.</b> Install a browser you don't
+    <div class="note warn"><b>Tip – keep a dedicated cookies browser.</b> Install a browser you don't
     otherwise use, sign in to the services you plan to pull from, then leave it closed. The sessions
     stay valid, and your main browser is never touched.</div>
     <p>Pick a profile with <code>browser_profile=</code> / <code>--browser-profile</code>. The reader is
-    native (no extra packages) with yt-dlp and browser_cookie3 as optional fallbacks.</p>
+    native and needs no extra packages.</p>
 
     <!-- ═══ PLAYLISTS ═══ -->
     <h2 id="playlists">Playlists &amp; timelines</h2>
@@ -250,37 +248,37 @@ ember <span class="t-flag">--cookies-file</span> cookies.txt <span class="t-str"
 
     <!-- ═══ EMBEDDING ═══ -->
     <h2 id="embedding">Embedding Ember</h2>
-    <p>The intended pattern: try Ember, fall back to yt-dlp for anything outside its scope.</p>
+    <p>Check whether a link is supported, extract it, and handle the one error type Ember can raise.</p>
     <div class="code">
       <div class="code-bar"><span class="dot"></span><span class="name">embed.py</span><button class="copy">copy</button></div>
 <pre><code><span class="t-kw">import</span> ember
 
 <span class="t-kw">def</span> <span class="t-fn">fetch</span>(url: <span class="t-kw">str</span>, out_dir: <span class="t-kw">str</span>):
     <span class="t-kw">if not</span> ember.<span class="t-fn">can_extract</span>(url):
-        <span class="t-kw">return</span> <span class="t-fn">run_ytdlp</span>(url)              <span class="t-com"># your fallback</span>
+        <span class="t-kw">return</span> <span class="t-num">None</span>                        <span class="t-com"># not a supported link</span>
     <span class="t-kw">try</span>:
         result = ember.<span class="t-fn">extract</span>(url)
     <span class="t-kw">except</span> ember.EmberError:
-        <span class="t-kw">return</span> <span class="t-fn">run_ytdlp</span>(url)
+        <span class="t-kw">return</span> <span class="t-num">None</span>
     <span class="t-kw">return</span> ember.<span class="t-fn">download</span>(result, out_dir, concurrency=<span class="t-num">6</span>)</code></pre>
     </div>
     <div class="note">Media objects carry <code>http_headers</code>. If you hand URLs to your own
-    downloader instead of using <code>download()</code>, pass those headers along — TikTok answers
+    downloader instead of using <code>download()</code>, pass those headers along – TikTok answers
     <code>403</code> without them.</div>
 
     <hr>
 
     <!-- ═══ API: EXTRACTION ═══ -->
-    <h2 id="api-extract">API — extraction</h2>
+    <h2 id="api-extract">API – extraction</h2>
     <h3><code>extract(url, *, timeout=15.0, proxies=None, cookies=None, cookies_from_browser=None, browser_profile=None, session=None) → Result</code></h3>
     <p>Extract direct media links and metadata from a post URL.</p>
     <ul>
-      <li><code>url</code> — post / track / video link.</li>
-      <li><code>timeout</code> — per-request timeout in seconds.</li>
-      <li><code>proxies</code> — requests-style dict, e.g. <code>{"https": "http://host:port"}</code>.</li>
-      <li><code>cookies</code> — <code>{name: value}</code> for private or NSFW content.</li>
-      <li><code>cookies_from_browser</code> — <code>"firefox"</code>, <code>"vivaldi"</code>, <code>"chrome"</code>, …</li>
-      <li><code>session</code> — bring your own <code>requests.Session</code>.</li>
+      <li><code>url</code> – post / track / video link.</li>
+      <li><code>timeout</code> – per-request timeout in seconds.</li>
+      <li><code>proxies</code> – requests-style dict, e.g. <code>{"https": "http://host:port"}</code>.</li>
+      <li><code>cookies</code> – <code>{name: value}</code> for private or NSFW content.</li>
+      <li><code>cookies_from_browser</code> – <code>"firefox"</code>, <code>"vivaldi"</code>, <code>"chrome"</code>, …</li>
+      <li><code>session</code> – bring your own <code>requests.Session</code>.</li>
       <li>raises <code>UnsupportedUrlError</code>, <code>NetworkError</code>, <code>ExtractionError</code>.</li>
     </ul>
     <h3><code>extract_playlist(url, **kwargs) → Playlist</code></h3>
@@ -295,41 +293,41 @@ ember <span class="t-flag">--cookies-file</span> cookies.txt <span class="t-str"
     <p>Names of all available services.</p>
 
     <!-- ═══ API: DOWNLOAD ═══ -->
-    <h2 id="api-download">API — download</h2>
+    <h2 id="api-download">API – download</h2>
     <h3><code>download(result, out_dir=".", *, filename=None, max_height=None, concurrency=1, on_progress=None, audio_only=False, embed_metadata=False, subtitles=False, thumbnail=False, write_info=False) → list[str]</code></h3>
     <p>Download an entire <code>Result</code>. Returns the paths written.</p>
     <ul>
-      <li><code>filename</code> — base name without extension (default: from metadata).</li>
-      <li><code>max_height</code> — cap quality by height, e.g. <code>720</code>.</li>
-      <li><code>concurrency</code> — parallel HLS segments.</li>
-      <li><code>on_progress</code> — callback receiving <code>DownloadProgress</code>.</li>
-      <li><code>audio_only</code>, <code>embed_metadata</code> — need ffmpeg.</li>
-      <li><code>subtitles</code>, <code>thumbnail</code>, <code>write_info</code> — extra sidecar files.</li>
+      <li><code>filename</code> – base name without extension (default: from metadata).</li>
+      <li><code>max_height</code> – cap quality by height, e.g. <code>720</code>.</li>
+      <li><code>concurrency</code> – parallel HLS segments.</li>
+      <li><code>on_progress</code> – callback receiving <code>DownloadProgress</code>.</li>
+      <li><code>audio_only</code>, <code>embed_metadata</code> – need ffmpeg.</li>
+      <li><code>subtitles</code>, <code>thumbnail</code>, <code>write_info</code> – extra sidecar files.</li>
     </ul>
     <h3><code>download_media(media, out_path, *, max_height=None, concurrency=1, on_progress=None, resume=True, audio_only=False, meta=None) → str</code></h3>
-    <p>Download a single <code>Media</code>. Returns the actual path — the extension may become <code>.ts</code> when ffmpeg is missing.</p>
+    <p>Download a single <code>Media</code>. Returns the actual path – the extension may become <code>.ts</code> when ffmpeg is missing.</p>
     <h3><code>available_qualities(media) → list[int]</code> · <code>probe_size(media) → int | None</code> · <code>ffmpeg_available() → bool</code></h3>
     <p>Quality ladder, byte size before downloading, and ffmpeg presence.</p>
     <h3><code>cookies_from_browser(browser, service=None, profile=None) → dict</code></h3>
     <p>Read cookies from a browser, optionally limited to one service's domains.</p>
 
     <!-- ═══ API: MODELS ═══ -->
-    <h2 id="api-models">API — data models</h2>
+    <h2 id="api-models">API – data models</h2>
     <h3><code>Result</code></h3>
     <ul>
       <li><code>service: str</code>, <code>source_url: str</code>.</li>
-      <li><code>kind: str</code> — <code>"single"</code>, <code>"merge"</code> (separate video+audio, needs ffmpeg) or <code>"gallery"</code>.</li>
+      <li><code>kind: str</code> – <code>"single"</code>, <code>"merge"</code> (separate video+audio, needs ffmpeg) or <code>"gallery"</code>.</li>
       <li><code>media: list[Media]</code>, <code>subtitles: list[Subtitle]</code>.</li>
-      <li><code>title</code>, <code>author</code>, <code>thumbnail</code>, <code>filename_hint</code> — all optional.</li>
-      <li><code>duration</code>, <code>timestamp</code>, <code>view_count</code>, <code>like_count</code> — when the service reports them.</li>
+      <li><code>title</code>, <code>author</code>, <code>thumbnail</code>, <code>filename_hint</code> – all optional.</li>
+      <li><code>duration</code>, <code>timestamp</code>, <code>view_count</code>, <code>like_count</code> – when the service reports them.</li>
       <li><code>requires_merge: bool</code> (property), <code>to_dict()</code>.</li>
     </ul>
     <h3><code>Media</code></h3>
     <ul>
-      <li><code>kind</code> — <code>"video"</code>, <code>"audio"</code>, <code>"photo"</code> or <code>"gif"</code>.</li>
+      <li><code>kind</code> – <code>"video"</code>, <code>"audio"</code>, <code>"photo"</code> or <code>"gif"</code>.</li>
       <li><code>url</code>, <code>ext</code>, <code>quality</code>.</li>
-      <li><code>http_headers: dict</code> — pass these to your own downloader.</li>
-      <li><code>variants: list[MediaVariant]</code> — other progressive qualities.</li>
+      <li><code>http_headers: dict</code> – pass these to your own downloader.</li>
+      <li><code>variants: list[MediaVariant]</code> – other progressive qualities.</li>
     </ul>
     <h3><code>Playlist</code> · <code>Subtitle</code> · <code>MediaVariant</code></h3>
     <p><code>Playlist</code> holds <code>entries: list[Result]</code> plus service and title. <code>Subtitle</code> has
@@ -337,7 +335,7 @@ ember <span class="t-flag">--cookies-file</span> cookies.txt <span class="t-str"
     <h3><code>DownloadProgress</code></h3>
     <p>Passed to <code>on_progress</code>: <code>downloaded</code>, <code>total</code>, <code>segments_done</code>,
     <code>segments_total</code>, <code>stage</code> (<code>"download"</code> / <code>"mux"</code> / <code>"metadata"</code>) and the
-    <code>fraction</code> property. Speed and ETA are not fields — time them yourself:</p>
+    <code>fraction</code> property. Speed and ETA are not fields – time them yourself:</p>
     <div class="code">
       <div class="code-bar"><span class="dot"></span><span class="name">speed.py</span><button class="copy">copy</button></div>
 <pre><code><span class="t-kw">import</span> time
@@ -352,16 +350,16 @@ start = time.<span class="t-fn">time</span>()
     </div>
 
     <!-- ═══ ERRORS ═══ -->
-    <h2 id="api-errors">API — errors</h2>
+    <h2 id="api-errors">API – errors</h2>
     <p>Everything inherits from <code>EmberError</code>, so one <code>except</code> covers the library:</p>
     <ul>
-      <li><code>UnsupportedUrlError</code> — hand the link to yt-dlp instead.</li>
-      <li><code>NetworkError</code> — transport failure, timeout, blocked IP.</li>
-      <li><code>ExtractionError</code> — the page loaded but no media could be resolved.</li>
+      <li><code>UnsupportedUrlError</code> – the link is not from a supported service.</li>
+      <li><code>NetworkError</code> – transport failure, timeout, blocked IP.</li>
+      <li><code>ExtractionError</code> – the page loaded but no media could be resolved.</li>
     </ul>
 
     <!-- ═══ LOGGING ═══ -->
-    <h2 id="api-logging">API — logging</h2>
+    <h2 id="api-logging">API – logging</h2>
     <p>Ember logs to the <code>ember</code> logger (children: <code>ember.router</code>, <code>ember.http</code>,
     <code>ember.cookies</code>, <code>ember.download</code>) and is silent by default via <code>NullHandler</code>.</p>
     <div class="code">
@@ -378,7 +376,7 @@ logging.<span class="t-fn">getLogger</span>(<span class="t-str">"ember"</span>).
       <table>
         <thead><tr><th>Flag</th><th>Meaning</th></tr></thead>
         <tbody>
-          <tr><td><code>-d</code>, <code>--download</code></td><td>enable downloading (without it — only print links)</td></tr>
+          <tr><td><code>-d</code>, <code>--download</code></td><td>enable downloading (without it – only print links)</td></tr>
           <tr><td><code>-o</code>, <code>--output NAME</code></td><td>file name without extension, or a template: <code>%(title)s</code>, <code>%(author)s</code>, <code>%(service)s</code>, <code>%(id)s</code>; implies download</td></tr>
           <tr><td><code>-p</code>, <code>--path DIR</code></td><td>target folder (default: current); implies download</td></tr>
           <tr><td><code>-a</code>, <code>--batch-file FILE</code></td><td>read links from a file (one per line, <code>#</code> comments; <code>-</code> = stdin)</td></tr>
@@ -406,18 +404,15 @@ logging.<span class="t-fn">getLogger</span>(<span class="t-str">"ember"</span>).
     <!-- ═══ LIMITS ═══ -->
     <h2 id="limits">Limitations</h2>
     <ul>
-      <li><strong>Instagram</strong> — anonymously often preview-only; cookies give full quality.</li>
-      <li><strong>Reddit, Newgrounds, OK.ru</strong> — block anonymous requests from datacenter and VPN
+      <li><strong>Instagram</strong> – anonymously often preview-only; cookies give full quality.</li>
+      <li><strong>Reddit, Newgrounds, OK.ru</strong> – block anonymous requests from datacenter and VPN
       addresses; they work from a home IP or through <code>proxies=</code> / <code>--proxy</code>.</li>
-      <li><strong>Facebook</strong> — public video usually still requires cookies.</li>
-      <li><strong>Twitter / X</strong> — NSFW tweets require account cookies (<code>auth_token</code> and <code>ct0</code>).</li>
-      <li><strong>Twitch</strong> — clips only, not VODs or live streams.</li>
-      <li><strong>YouTube</strong> — out of scope by design; use yt-dlp.</li>
+      <li><strong>Facebook</strong> – public video usually still requires cookies.</li>
+      <li><strong>Twitter / X</strong> – NSFW tweets require account cookies (<code>auth_token</code> and <code>ct0</code>).</li>
+      <li><strong>Twitch</strong> – clips only, not VODs or live streams.</li>
     </ul>
-    <p>Extraction methods follow the approaches of
-    <a href="https://github.com/imputnet/cobalt" target="_blank" rel="noopener">imputnet/cobalt</a>.
-    Ember is MIT licensed — issues and pull requests are welcome on
-    <a href="https://github.com/smeshidojoe/Ember" target="_blank" rel="noopener">GitHub</a>.</p>
+    <p>Ember is MIT licensed – issues and pull requests are welcome on
+    <a href="https://github.com/smeshidojoe/Ember/issues" target="_blank" rel="noopener">GitHub</a>.</p>
   </main>
 </div>
 
@@ -428,6 +423,7 @@ logging.<span class="t-fn">getLogger</span>(<span class="t-str">"ember"</span>).
       <a href="/Ember/docs/">Documentation</a>
       <a href="/Ember/about/">About</a>
       <a href="/Ember/privacy/">Privacy</a>
+      <a href="https://github.com/smeshidojoe/Ember/issues" target="_blank" rel="noopener">Issues</a>
       <a href="https://github.com/smeshidojoe/Ember" target="_blank" rel="noopener">GitHub</a>
       <a href="/">All projects</a>
     </div>

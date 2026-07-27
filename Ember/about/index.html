@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About — Ember</title>
-<meta name="description" content="Why Ember exists, what it is not, and how it works under the hood.">
+<title>About – Ember</title>
+<meta name="description" content="Why Ember exists, how it works, and how to use it responsibly.">
 <link rel="icon" type="image/svg+xml" href="/Ember/assets/logo.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,10 +21,9 @@
     </a>
     <button class="burger" aria-label="Menu">☰</button>
     <div class="nav-links" id="nav-links">
-      <a href="/Ember/#features">Features</a>
-      <a href="/Ember/#services">Services</a>
-      <a href="/Ember/docs/">Docs</a>
       <a href="/Ember/#faq">FAQ</a>
+      <a href="/Ember/docs/">Docs</a>
+      <a href="https://github.com/smeshidojoe/Ember/issues" target="_blank" rel="noopener">Issues</a>
       <a href="/Ember/about/" class="active">About</a>
       <a href="https://github.com/smeshidojoe/Ember" target="_blank" rel="noopener" class="nav-cta">GitHub ↗</a>
     </div>
@@ -33,61 +32,62 @@
 
 <main class="wrap narrow prose">
   <h1>About Ember</h1>
-  <p class="doc-lead">A small extractor that does one job and stays out of your way.</p>
+  <p class="doc-lead">A small tool that does one job and stays out of your way.</p>
 
   <h2>Why it exists</h2>
   <p>
-    Pulling a video out of a social post usually means one of two extremes: a giant
-    general-purpose downloader you shell out to, or a hosted service you have to trust and keep
-    reachable. Neither fits well inside a bot, a desktop app, or a script that just needs
-    <em>the URL of the file</em>.
+    Getting a video out of a social post usually means one of two extremes: an enormous
+    all-purpose downloader, or an online service you have to trust and hope stays up. Neither
+    sits well inside a bot, an app, or a script that only needs to know
+    <em>where the file actually is</em>.
   </p>
   <p>
-    Ember is the middle path — a compact library that speaks the sites' own internal APIs,
-    hands back typed objects, and leaves the decision of what to do next to you. It is a
-    deliberately smaller cousin of <a href="https://github.com/imputnet/cobalt" target="_blank" rel="noopener">cobalt</a>,
-    whose extraction approaches it follows.
+    Ember is the middle path – a compact library you can drop into your own project, which
+    finds the media and then gets out of the way. Think of it as a smaller, simpler
+    take on <a href="https://github.com/imputnet/cobalt" target="_blank" rel="noopener">cobalt</a>.
   </p>
 
   <h2>How it works</h2>
   <p>
-    Ember calls the same endpoints a site's own frontend calls in the browser, pulls direct
-    media links and metadata out of the response, and packs them into a <code>Result</code>.
-    Each service lives in its own module under <code>ember/services/</code>, so support is added
-    by writing a file rather than by touching the core.
+    When you open a post, the page itself quietly asks the site where the video lives. Ember
+    asks the very same question, reads the answer, and passes it on to you together with the
+    title, author and preview image.
   </p>
   <p>
-    HLS manifests go through a built-in parser: segments are fetched — optionally in parallel —
-    and assembled into a file. With ffmpeg present they are remuxed to <code>.mp4</code>;
-    without it a single stream still lands as a playable file.
+    Every site is handled by its own small piece of code, so adding a new one does not disturb
+    anything else. When a site serves video in many small chunks, Ember collects them – several
+    at a time if you like – and puts them back together into a file you can play.
   </p>
 
-  <h2>What it is not</h2>
+  <h2>What Ember does not do</h2>
   <ul>
-    <li><strong>Not a yt-dlp replacement.</strong> yt-dlp covers thousands of sites and edge cases.
-    Ember covers eighteen social platforms well and embeds cleanly. Many projects run both.</li>
-    <li><strong>Not a YouTube downloader.</strong> Out of scope on purpose.</li>
-    <li><strong>Not a service.</strong> There is no backend, no API key, no telemetry. Requests go
-    from your machine to the platform, and nowhere else.</li>
-    <li><strong>Not a way around paywalls.</strong> Cookies let Ember act as <em>you</em>, with the
-    access your own account already has — nothing more.</li>
+    <li><strong>It is not an online service.</strong> There is no server of ours in the middle,
+    no account and no tracking. Your computer talks to the site directly.</li>
+    <li><strong>It does not unlock anything you cannot already see.</strong> When Ember borrows the
+    login from your browser, it simply acts as you, with exactly the access your own account has.</li>
+    <li><strong>It is not a paywall bypass.</strong> Content you have not paid for stays out of reach.</li>
   </ul>
 
   <h2>Using it responsibly</h2>
   <p>
-    Ember is a tool for getting at media you are allowed to have: your own uploads, content you
-    have rights to, material for archival or offline viewing. Respect the terms of the platforms
-    you pull from and the rights of the people who made what you download. What you do with the
-    files is on you.
+    Ember is meant for media you are allowed to have: your own uploads, content you hold the
+    rights to, or material you are saving for offline viewing and archiving. Please respect the
+    rules of the platforms you use and the people who made what you download.
+  </p>
+  <p>
+    Videos and other media on social platforms may be protected by copyright and subject to
+    DMCA and similar laws. The authors of Ember do not endorse, and are not responsible for, the
+    use of this software in ways that violate those laws. Whatever you download, and whatever
+    you do with it afterwards, is your responsibility.
   </p>
 
-  <h2>Project</h2>
+  <h2>The project</h2>
   <p>
-    MIT licensed, written in Python, maintained by
+    Free and open source under the MIT licence, written in Python and maintained by
     <a href="https://github.com/smeshidojoe" target="_blank" rel="noopener">smeshidojoe</a>.
-    Issues, ideas and pull requests are welcome on
-    <a href="https://github.com/smeshidojoe/Ember" target="_blank" rel="noopener">GitHub</a> —
-    especially new service modules.
+    Ideas, bug reports and pull requests are welcome on
+    <a href="https://github.com/smeshidojoe/Ember/issues" target="_blank" rel="noopener">GitHub</a> –
+    especially support for new sites.
   </p>
   <p>
     Ember also powers <a href="/#p=EmberBot">EmberBot</a>, a Telegram bot built on the same library.
@@ -102,6 +102,7 @@
       <a href="/Ember/docs/">Documentation</a>
       <a href="/Ember/about/">About</a>
       <a href="/Ember/privacy/">Privacy</a>
+      <a href="https://github.com/smeshidojoe/Ember/issues" target="_blank" rel="noopener">Issues</a>
       <a href="https://github.com/smeshidojoe/Ember" target="_blank" rel="noopener">GitHub</a>
       <a href="/">All projects</a>
     </div>

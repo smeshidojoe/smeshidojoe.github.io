@@ -18,6 +18,7 @@
   --ember: #c1121f;
   --ember-hot: #e8590c;
   --amber: #f0a202;
+  --ok: #2f9e57;
   --ember-soft: rgba(193, 18, 31, 0.08);
   --ember-glow: rgba(232, 89, 12, 0.16);
 
@@ -136,6 +137,7 @@ a:hover { text-decoration: underline; }
   color: var(--paper) !important;
   font-weight: 600 !important;
   padding: 8px 16px !important;
+  margin-left: 20px; /* отодвинуть от навигации */
 }
 .nav-cta:hover { background: var(--ember) !important; }
 
@@ -170,7 +172,7 @@ a:hover { text-decoration: underline; }
   }
   .nav-links[hidden] { display: none; }
   .nav-links a { padding: 10px 12px; }
-  .nav-cta { text-align: center; margin-top: 6px; }
+  .nav-cta { text-align: center; margin-top: 6px; margin-left: 0; }
 }
 
 /* ═══ Section furniture ═══ */
@@ -456,7 +458,7 @@ section h2 {
 .svc:hover { border-color: var(--line-2); transform: translateY(-2px); }
 .svc .d {
   width: 7px; height: 7px; border-radius: 50%;
-  background: var(--ember-hot);
+  background: var(--ok);
   flex: none;
 }
 .svc.warn .d { background: var(--amber); }
