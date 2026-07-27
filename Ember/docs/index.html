@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Documentation – Ember</title>
+<title data-en="Documentation – Ember" data-ru="Документация – Ember">Documentation – Ember</title>
 <meta name="description" content="Ember documentation: installation, Python API, CLI reference, cookies, data models and limitations.">
 <link rel="icon" type="image/svg+xml" href="/Ember/assets/logo.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,17 +21,19 @@
     </a>
     <button class="burger" aria-label="Menu">☰</button>
     <div class="nav-links" id="nav-links">
-      <a href="/Ember/#faq">FAQ</a>
-      <a href="/Ember/docs/" class="active">Docs</a>
+      <a href="/Ember/#faq"><span class="only-en">FAQ</span><span class="only-ru">Вопросы</span></a>
+      <a href="/Ember/docs/" class="active"><span class="only-en">Docs</span><span class="only-ru">Документация</span></a>
       <a href="https://github.com/smeshidojoe/Ember/issues" target="_blank" rel="noopener">Issues</a>
-      <a href="/Ember/about/">About</a>
+      <a href="/Ember/about/"><span class="only-en">About</span><span class="only-ru">О проекте</span></a>
       <a href="https://github.com/smeshidojoe/Ember" target="_blank" rel="noopener" class="nav-cta">GitHub ↗</a>
+      <button class="lang-btn" title="Switch language">RU</button>
     </div>
   </div>
 </nav>
 
 <div class="wrap docs">
   <aside class="side">
+    <div class="only-en">
     <h4>Getting started</h4>
     <a href="#install">Installation</a>
     <a href="#quickstart">Quick start</a>
@@ -54,9 +56,31 @@
     <h4>Reference</h4>
     <a href="#flags">CLI flags</a>
     <a href="#limits">Limitations</a>
+  </div>
+    <div class="only-ru">
+      <h4>Начало</h4>
+      <a href="#install">Установка</a>
+      <a href="#quickstart">Быстрый старт</a>
+      <a href="#services">Какие сайты</a>
+      <h4>Как делать</h4>
+      <a href="#cli">Командная строка</a>
+      <a href="#quality">Качество и размер</a>
+      <a href="#cookies">Куки</a>
+      <a href="#playlists">Плейлисты и профили</a>
+      <a href="#embedding">Встроить в свой проект</a>
+      <h4>Справочник</h4>
+      <a href="#api-extract">Поиск медиа</a>
+      <a href="#api-download">Скачивание</a>
+      <a href="#api-models">Что приходит в ответ</a>
+      <a href="#api-errors">Ошибки</a>
+      <a href="#api-logging">Логи</a>
+      <a href="#flags">Флаги команды</a>
+      <a href="#limits">Ограничения</a>
+    </div>
   </aside>
 
   <main class="doc">
+    <div class="only-en">
     <h1>Documentation</h1>
     <p class="doc-lead">
       Everything needed to pull media out of 18 social platforms – as a library, as a CLI,
@@ -413,6 +437,335 @@ logging.<span class="t-fn">getLogger</span>(<span class="t-str">"ember"</span>).
     </ul>
     <p>Ember is MIT licensed – issues and pull requests are welcome on
     <a href="https://github.com/smeshidojoe/Ember/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+  </div>
+
+    <div class="only-ru">
+      <h1>Документация</h1>
+      <p class="doc-lead">
+        Всё, что нужно, чтобы забирать медиа с 18 сайтов – в коде, в терминале или внутри
+        своего проекта.
+      </p>
+
+      <h2>Установка</h2>
+      <p>Нужен Python 3.9 или новее. Пакет называется <code>ember-dl</code>, а в коде пишется <code>ember</code>:</p>
+      <div class="code">
+        <div class="code-bar"><span class="dot"></span><span class="name">pip</span><button class="copy">copy</button></div>
+<pre><code>pip install ember-dl</code></pre>
+      </div>
+      <p>Свежая версия прямо из Git:</p>
+      <div class="code">
+        <div class="code-bar"><span class="dot"></span><span class="name">pip · git</span><button class="copy">copy</button></div>
+<pre><code>pip install git+https://github.com/smeshidojoe/Ember.git</code></pre>
+      </div>
+      <p>После этого Ember доступен и в Python (<code>import ember</code>), и как команда <code>ember</code>. Из зависимостей нужен только <code>requests</code>.</p>
+
+      <h3>Когда нужен ffmpeg</h3>
+      <p>Почти всё работает без него. Положи <code>ffmpeg</code> в <code>PATH</code>, если хочешь:</p>
+      <ul>
+        <li>склеить видео с отдельной звуковой дорожкой;</li>
+        <li>сохранить только звук;</li>
+        <li>записать название и автора внутрь файла.</li>
+      </ul>
+      <p>Проверить из кода: <code>ember.ffmpeg_available()</code>.</p>
+
+      <h2>Быстрый старт</h2>
+      <p>Два шага: найти медиа, потом при желании скачать. Поиск ничего не качает.</p>
+      <div class="code">
+        <div class="code-bar"><span class="dot"></span><span class="name">quickstart.py</span><button class="copy">copy</button></div>
+<pre><code><span class="t-kw">import</span> ember
+
+<span class="t-com"># 1) ссылки и данные о посте</span>
+result = ember.<span class="t-fn">extract</span>(<span class="t-str">"https://vimeo.com/76979871"</span>)
+<span class="t-fn">print</span>(result.title, result.author, result.thumbnail)
+<span class="t-kw">for</span> m <span class="t-kw">in</span> result.media:
+    <span class="t-fn">print</span>(m.kind, m.quality, m.url)
+
+<span class="t-com"># 2) пусть Ember сохранит файл</span>
+<span class="t-kw">def</span> <span class="t-fn">on_progress</span>(p: ember.DownloadProgress):
+    <span class="t-kw">if</span> p.fraction <span class="t-kw">is not</span> <span class="t-num">None</span>:
+        <span class="t-fn">print</span>(<span class="t-str">f"{p.fraction*100:.0f}%"</span>)
+
+paths = ember.<span class="t-fn">download</span>(
+    result, <span class="t-str">"downloads/"</span>,
+    max_height=<span class="t-num">720</span>,          <span class="t-com"># размер поменьше</span>
+    concurrency=<span class="t-num">6</span>,           <span class="t-com"># по 6 частей сразу</span>
+    on_progress=on_progress,
+    embed_metadata=<span class="t-num">True</span>,     <span class="t-com"># название и автор (нужен ffmpeg)</span>
+)</code></pre>
+      </div>
+      <p>Полезные проверки перед загрузкой:</p>
+      <div class="code">
+        <div class="code-bar"><span class="dot"></span><span class="name">checks.py</span><button class="copy">copy</button></div>
+<pre><code>ember.<span class="t-fn">can_extract</span>(url)                       <span class="t-com"># поддерживается ли ссылка</span>
+ember.<span class="t-fn">available_qualities</span>(result.media[<span class="t-num">0</span>])   <span class="t-com"># [1080, 720, 480]</span>
+ember.<span class="t-fn">probe_size</span>(result.media[<span class="t-num">0</span>])            <span class="t-com"># размер в байтах</span>
+ember.<span class="t-fn">ffmpeg_available</span>()                    <span class="t-com"># установлен ли ffmpeg</span>
+ember.<span class="t-fn">supported_services</span>()                  <span class="t-com"># список сайтов</span></code></pre>
+      </div>
+
+      <h2>Какие сайты</h2>
+      <p>За каждый сайт отвечает свой маленький кусочек кода. Некоторые сайты отдают видео частями – Ember соберёт его сам.</p>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Сайт</th><th>Что забирает</th><th>Примечания</th></tr></thead>
+          <tbody>
+            <tr><td>TikTok</td><td>видео, фото-посты, музыка</td><td>–</td></tr>
+            <tr><td>Twitter / X</td><td>видео, гифки, фото</td><td>для постов 18+ нужен логин</td></tr>
+            <tr><td>Instagram</td><td>посты, Reels, карусели, Stories</td><td>без логина часто только превью</td></tr>
+            <tr><td>Reddit</td><td>видео, гифки, картинки, галереи</td><td>блокирует VPN и серверы</td></tr>
+            <tr><td>Vimeo</td><td>видео</td><td>–</td></tr>
+            <tr><td>SoundCloud</td><td>треки, сборники</td><td>платные треки дают 30 секунд превью</td></tr>
+            <tr><td>Pinterest</td><td>видео и картинки</td><td>–</td></tr>
+            <tr><td>Tumblr</td><td>видео, аудио, фото</td><td>–</td></tr>
+            <tr><td>Bluesky</td><td>видео, картинки, гифки</td><td>–</td></tr>
+            <tr><td>Newgrounds</td><td>видео, аудио</td><td>блокируется в части сетей</td></tr>
+            <tr><td>Rutube</td><td>видео</td><td>–</td></tr>
+            <tr><td>OK.ru</td><td>видео</td><td>нужен обычный домашний интернет</td></tr>
+            <tr><td>VK / VK Видео</td><td>видео, клипы</td><td>для закрытых групп нужен логин</td></tr>
+            <tr><td>Facebook</td><td>видео, Reels</td><td>обычно нужен логин</td></tr>
+            <tr><td>Twitch</td><td>клипы</td><td>трансляции и записи не поддерживаются</td></tr>
+            <tr><td>Pornhub</td><td>видео</td><td>возрастной барьер снимается сам</td></tr>
+            <tr><td>XVideos</td><td>видео</td><td>зеркала тоже работают</td></tr>
+            <tr><td>RedGifs</td><td>видео</td><td>–</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Командная строка</h2>
+      <p>Ссылку бери в кавычки. Порядок флагов не важен. <strong>Без <code>-d</code> ничего не скачивается</strong> – ты просто видишь ссылки и данные.</p>
+      <div class="code">
+        <div class="code-bar"><span class="dot"></span><span class="name">terminal</span><button class="copy">copy</button></div>
+<pre><code><span class="t-com"># показать ссылки и данные</span>
+ember <span class="t-str">"https://x.com/user/status/123456789"</span>
+
+<span class="t-com"># то же самое в JSON</span>
+ember <span class="t-str">"https://www.tiktok.com/@user/video/7123456789"</span> <span class="t-flag">--json</span>
+
+<span class="t-com"># СКАЧАТЬ: включает -d</span>
+ember <span class="t-flag">-d</span> <span class="t-str">"https://vimeo.com/76979871"</span>
+
+<span class="t-com"># своё имя файла (-o) и папка (-p)</span>
+ember <span class="t-flag">-d -o</span> myclip <span class="t-flag">-p</span> downloads <span class="t-str">"https://vimeo.com/76979871"</span>
+
+<span class="t-com"># размер поменьше, по 6 частей сразу</span>
+ember <span class="t-flag">-d -p</span> downloads <span class="t-flag">--max-height</span> <span class="t-num">720</span> <span class="t-flag">--concurrency</span> <span class="t-num">6</span> <span class="t-str">"&lt;url&gt;"</span>
+
+<span class="t-com"># только звук, с названием внутри файла (нужен ffmpeg)</span>
+ember <span class="t-flag">-d --audio-only --embed-metadata</span> <span class="t-str">"&lt;soundcloud url&gt;"</span>
+
+<span class="t-com"># целый плейлист</span>
+ember <span class="t-flag">-d --playlist</span> <span class="t-str">"https://soundcloud.com/user/sets/name"</span>
+
+<span class="t-com"># много ссылок из файла, по одной в строке</span>
+ember <span class="t-flag">-d -a</span> links.txt</code></pre>
+      </div>
+      <p>Посмотреть доступные размеры и остановиться: <code>ember -F "&lt;url&gt;"</code>. Вся справка: <code>ember --help</code>.</p>
+
+      <h2>Качество и размер</h2>
+      <p>В одном посте может быть несколько файлов. Видео обычно есть в нескольких размерах, и ты выбираешь нужный.</p>
+      <div class="code">
+        <div class="code-bar"><span class="dot"></span><span class="name">quality.py</span><button class="copy">copy</button></div>
+<pre><code>heights = ember.<span class="t-fn">available_qualities</span>(result.media[<span class="t-num">0</span>])   <span class="t-com"># [1080, 720, 480]</span>
+
+<span class="t-com"># ограничить всю загрузку</span>
+ember.<span class="t-fn">download</span>(result, <span class="t-str">"out/"</span>, max_height=<span class="t-num">720</span>)
+
+<span class="t-com"># или один файл, со своим именем</span>
+path = ember.<span class="t-fn">download_media</span>(result.media[<span class="t-num">0</span>], <span class="t-str">"out/clip.mp4"</span>,
+                            max_height=<span class="t-num">720</span>, concurrency=<span class="t-num">6</span>)</code></pre>
+      </div>
+      <div class="note">Делаешь выбор качества в своём интерфейсе? <code>probe_size()</code> спрашивает сайт так же, как настоящая загрузка, поэтому показанный размер совпадёт с реальным.</div>
+
+      <h2>Куки</h2>
+      <p>Часть контента видят только те, кто вошёл в аккаунт: посты 18+ в X, полное качество в Instagram, закрытые группы во ВКонтакте, почти все видео в Facebook. Ember умеет брать логин из браузера.</p>
+      <div class="code">
+        <div class="code-bar"><span class="dot"></span><span class="name">cookies</span><button class="copy">copy</button></div>
+<pre><code><span class="t-com"># Python</span>
+result = ember.<span class="t-fn">extract</span>(url, cookies_from_browser=<span class="t-str">"firefox"</span>)
+result = ember.<span class="t-fn">extract</span>(url, cookies={<span class="t-str">"auth_token"</span>: <span class="t-str">"…"</span>, <span class="t-str">"ct0"</span>: <span class="t-str">"…"</span>})
+
+<span class="t-com"># командная строка</span>
+ember <span class="t-flag">--cookies-from-browser</span> firefox <span class="t-str">"&lt;url&gt;"</span>
+ember <span class="t-flag">--cookies</span> <span class="t-str">"auth_token=…; ct0=…"</span> <span class="t-str">"&lt;url&gt;"</span>
+ember <span class="t-flag">--cookies-file</span> cookies.txt <span class="t-str">"&lt;url&gt;"</span></code></pre>
+      </div>
+      <h3>Какой браузер выбрать</h3>
+      <ul>
+        <li><strong>Firefox</strong> – работает на любой системе, это самый простой вариант.</li>
+        <li><strong>Vivaldi, Opera</strong> и другие браузеры на Chromium под Windows тоже подойдут.</li>
+        <li>Новые <strong>Chrome, Edge, Brave</strong> закрывают свои данные, поэтому обычно не работают.</li>
+      </ul>
+      <div class="note warn"><b>Совет: держи для этого отдельный браузер.</b> Поставь браузер, которым больше нигде не пользуешься, войди в аккаунты нужных сайтов и просто не открывай его. Логины останутся живыми, а основной браузер это не заденет.</div>
+      <p>Выбрать профиль можно через <code>browser_profile=</code> или <code>--browser-profile</code>.</p>
+
+      <h2>Плейлисты и профили</h2>
+      <p>Плейлист – это набор треков. Профиль даёт свежие посты одного автора.</p>
+      <div class="code">
+        <div class="code-bar"><span class="dot"></span><span class="name">bulk.py</span><button class="copy">copy</button></div>
+<pre><code><span class="t-kw">if</span> ember.<span class="t-fn">supports_playlist</span>(url):
+    <span class="t-kw">for</span> entry <span class="t-kw">in</span> ember.<span class="t-fn">extract_playlist</span>(url).entries:
+        ember.<span class="t-fn">download</span>(entry, <span class="t-str">"downloads/"</span>)
+
+<span class="t-com"># свежие посты, например "https://x.com/nasa"</span>
+<span class="t-kw">if</span> ember.<span class="t-fn">supports_timeline</span>(url):
+    <span class="t-kw">for</span> entry <span class="t-kw">in</span> ember.<span class="t-fn">extract_timeline</span>(url, limit=<span class="t-num">30</span>).entries:
+        ember.<span class="t-fn">download</span>(entry, <span class="t-str">"downloads/"</span>)</code></pre>
+      </div>
+      <p>Профили работают для SoundCloud, VK, Twitch, Tumblr, Rutube, Vimeo, Pinterest, Twitter/X и Instagram. Последним двум может понадобиться логин.</p>
+
+      <h2>Встроить в свой проект</h2>
+      <p>Проверь, поддерживается ли ссылка, забери медиа и поймай единственный тип ошибки.</p>
+      <div class="code">
+        <div class="code-bar"><span class="dot"></span><span class="name">embed.py</span><button class="copy">copy</button></div>
+<pre><code><span class="t-kw">import</span> ember
+
+<span class="t-kw">def</span> <span class="t-fn">fetch</span>(url: <span class="t-kw">str</span>, out_dir: <span class="t-kw">str</span>):
+    <span class="t-kw">if not</span> ember.<span class="t-fn">can_extract</span>(url):
+        <span class="t-kw">return</span> <span class="t-num">None</span>                        <span class="t-com"># ссылка не поддерживается</span>
+    <span class="t-kw">try</span>:
+        result = ember.<span class="t-fn">extract</span>(url)
+    <span class="t-kw">except</span> ember.EmberError:
+        <span class="t-kw">return</span> <span class="t-num">None</span>
+    <span class="t-kw">return</span> ember.<span class="t-fn">download</span>(result, out_dir, concurrency=<span class="t-num">6</span>)</code></pre>
+      </div>
+      <div class="note">У каждого медиа есть <code>http_headers</code>. Если качаешь файл сам, а не через <code>download()</code>, передавай эти заголовки – без них TikTok ответит ошибкой.</div>
+
+      <hr>
+
+      <h2>Поиск медиа</h2>
+      <h3><code>extract(url, *, timeout=15.0, proxies=None, cookies=None, cookies_from_browser=None, browser_profile=None, session=None) → Result</code></h3>
+      <p>Забирает ссылки и данные из поста.</p>
+      <ul>
+        <li><code>url</code> – ссылка на пост, трек или видео.</li>
+        <li><code>timeout</code> – сколько секунд ждать один запрос.</li>
+        <li><code>proxies</code> – настройки прокси, например <code>{"https": "http://host:port"}</code>.</li>
+        <li><code>cookies</code> – <code>{имя: значение}</code> для закрытого контента.</li>
+        <li><code>cookies_from_browser</code> – <code>"firefox"</code>, <code>"vivaldi"</code>, <code>"chrome"</code> и так далее.</li>
+        <li><code>session</code> – своя <code>requests.Session</code>.</li>
+        <li>может выбросить <code>UnsupportedUrlError</code>, <code>NetworkError</code>, <code>ExtractionError</code>.</li>
+      </ul>
+      <h3><code>extract_playlist(url, **kwargs) → Playlist</code></h3>
+      <p>Забирает весь набор. Одиночная ссылка даст плейлист из одного элемента.</p>
+      <h3><code>extract_timeline(url, *, limit=30, **kwargs) → Playlist</code></h3>
+      <p>Забирает свежие посты автора, не больше <code>limit</code>.</p>
+      <h3><code>can_extract(url) → bool</code></h3>
+      <p>True, если ссылка с поддерживаемого сайта.</p>
+      <h3><code>supports_playlist(url) → bool</code> · <code>supports_timeline(url) → bool</code></h3>
+      <p>Говорит, можно ли забрать по ссылке плейлист или профиль.</p>
+      <h3><code>supported_services() → list[str]</code></h3>
+      <p>Названия всех поддерживаемых сайтов.</p>
+
+      <h2>Скачивание</h2>
+      <h3><code>download(result, out_dir=".", *, filename=None, max_height=None, concurrency=1, on_progress=None, audio_only=False, embed_metadata=False, subtitles=False, thumbnail=False, write_info=False) → list[str]</code></h3>
+      <p>Скачивает всё из результата и возвращает пути сохранённых файлов.</p>
+      <ul>
+        <li><code>filename</code> – имя без расширения (по умолчанию берётся из поста).</li>
+        <li><code>max_height</code> – ограничить размер, например <code>720</code>.</li>
+        <li><code>concurrency</code> – сколько частей качать одновременно.</li>
+        <li><code>on_progress</code> – твоя функция, её вызывают по ходу загрузки.</li>
+        <li><code>audio_only</code>, <code>embed_metadata</code> – нужен ffmpeg.</li>
+        <li><code>subtitles</code>, <code>thumbnail</code>, <code>write_info</code> – дополнительные файлы рядом с основным.</li>
+      </ul>
+      <h3><code>download_media(media, out_path, *, max_height=None, concurrency=1, on_progress=None, resume=True, audio_only=False, meta=None) → str</code></h3>
+      <p>Скачивает один файл и возвращает реальный путь. Без ffmpeg расширение может стать <code>.ts</code>.</p>
+      <h3><code>available_qualities(media) → list[int]</code> · <code>probe_size(media) → int | None</code> · <code>ffmpeg_available() → bool</code></h3>
+      <p>Доступные размеры, размер файла до загрузки и наличие ffmpeg.</p>
+      <h3><code>cookies_from_browser(browser, service=None, profile=None) → dict</code></h3>
+      <p>Читает куки из браузера. Можно ограничить одним сайтом.</p>
+
+      <h2>Что приходит в ответ</h2>
+      <h3><code>Result</code></h3>
+      <ul>
+        <li><code>service</code>, <code>source_url</code> – сайт и исходная ссылка.</li>
+        <li><code>kind</code> – <code>"single"</code>, <code>"merge"</code> (видео и звук отдельно, нужен ffmpeg) или <code>"gallery"</code>.</li>
+        <li><code>media</code> – список файлов. <code>subtitles</code> – дорожки субтитров.</li>
+        <li><code>title</code>, <code>author</code>, <code>thumbnail</code>, <code>filename_hint</code> – могут быть пустыми.</li>
+        <li><code>duration</code>, <code>timestamp</code>, <code>view_count</code>, <code>like_count</code> – если сайт их отдаёт.</li>
+        <li><code>requires_merge</code>, <code>to_dict()</code>.</li>
+      </ul>
+      <h3><code>Media</code></h3>
+      <ul>
+        <li><code>kind</code> – <code>"video"</code>, <code>"audio"</code>, <code>"photo"</code> или <code>"gif"</code>.</li>
+        <li><code>url</code>, <code>ext</code>, <code>quality</code>.</li>
+        <li><code>http_headers</code> – передавай их, если качаешь файл сам.</li>
+        <li><code>variants</code> – тот же файл в других размерах.</li>
+      </ul>
+      <h3><code>Playlist</code> · <code>Subtitle</code> · <code>MediaVariant</code></h3>
+      <p>В <code>Playlist</code> лежит <code>entries</code> – список результатов. У <code>Subtitle</code> есть <code>lang</code>, <code>url</code>, <code>ext</code>. У <code>MediaVariant</code> – <code>url</code>, <code>height</code>, <code>quality</code>, <code>ext</code>.</p>
+      <h3><code>DownloadProgress</code></h3>
+      <p>Приходит в <code>on_progress</code>: <code>downloaded</code>, <code>total</code>, <code>segments_done</code>, <code>segments_total</code>, <code>stage</code> и <code>fraction</code>. Скорости и оставшегося времени тут нет – посчитай сам:</p>
+      <div class="code">
+        <div class="code-bar"><span class="dot"></span><span class="name">speed.py</span><button class="copy">copy</button></div>
+<pre><code><span class="t-kw">import</span> time
+start = time.<span class="t-fn">time</span>()
+
+<span class="t-kw">def</span> <span class="t-fn">on_progress</span>(p: ember.DownloadProgress):
+    <span class="t-kw">if not</span> p.total:                  <span class="t-com"># размер ещё не известен</span>
+        <span class="t-kw">return</span>
+    speed = p.downloaded / (time.<span class="t-fn">time</span>() - start)
+    eta = (p.total - p.downloaded) / speed <span class="t-kw">if</span> speed <span class="t-kw">else</span> <span class="t-num">0</span>
+    <span class="t-fn">print</span>(<span class="t-str">f"{p.fraction*100:5.1f}%  {speed/1048576:.2f} MiB/s  ETA {int(eta)}s"</span>)</code></pre>
+      </div>
+
+      <h2>Ошибки</h2>
+      <p>Все ошибки наследуются от <code>EmberError</code>, так что хватит одного <code>except</code>:</p>
+      <ul>
+        <li><code>UnsupportedUrlError</code> – ссылка не с поддерживаемого сайта.</li>
+        <li><code>NetworkError</code> – нет связи, таймаут или сайт заблокировал.</li>
+        <li><code>ExtractionError</code> – страница открылась, но медиа не нашлось.</li>
+      </ul>
+
+      <h2>Логи</h2>
+      <p>По умолчанию Ember молчит. Включи сообщения, когда они нужны:</p>
+      <div class="code">
+        <div class="code-bar"><span class="dot"></span><span class="name">logging.py</span><button class="copy">copy</button></div>
+<pre><code><span class="t-kw">import</span> logging
+logging.<span class="t-fn">basicConfig</span>()
+logging.<span class="t-fn">getLogger</span>(<span class="t-str">"ember"</span>).<span class="t-fn">setLevel</span>(logging.INFO)   <span class="t-com"># или DEBUG</span></code></pre>
+      </div>
+      <p>В терминале используй <code>-v</code>, а <code>-vv</code> – для подробностей.</p>
+
+      <h2>Флаги команды</h2>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Флаг</th><th>Что делает</th></tr></thead>
+          <tbody>
+            <tr><td><code>-d</code>, <code>--download</code></td><td>включить скачивание (без него видны только ссылки)</td></tr>
+            <tr><td><code>-o</code>, <code>--output NAME</code></td><td>имя файла или шаблон: <code>%(title)s</code>, <code>%(author)s</code>, <code>%(service)s</code>, <code>%(id)s</code></td></tr>
+            <tr><td><code>-p</code>, <code>--path DIR</code></td><td>папка для сохранения</td></tr>
+            <tr><td><code>-a</code>, <code>--batch-file FILE</code></td><td>взять ссылки из файла, по одной в строке</td></tr>
+            <tr><td><code>-F</code>, <code>--list-formats</code></td><td>показать доступные размеры и остановиться</td></tr>
+            <tr><td><code>-v</code>, <code>--verbose</code></td><td>показывать сообщения; <code>-vv</code> – подробнее</td></tr>
+            <tr><td><code>--json</code></td><td>вывести данные в JSON</td></tr>
+            <tr><td><code>--max-height N</code></td><td>ограничить размер видео</td></tr>
+            <tr><td><code>--audio-only</code></td><td>оставить только звук (нужен ffmpeg)</td></tr>
+            <tr><td><code>--subs</code></td><td>скачать ещё и субтитры</td></tr>
+            <tr><td><code>--concurrency N</code></td><td>сколько частей качать сразу (по умолчанию <code>1</code>)</td></tr>
+            <tr><td><code>--embed-metadata</code></td><td>записать название и автора в файл (нужен ffmpeg)</td></tr>
+            <tr><td><code>--playlist</code></td><td>считать ссылку плейлистом</td></tr>
+            <tr><td><code>--timeline</code></td><td>считать ссылку профилем и взять свежие посты</td></tr>
+            <tr><td><code>--limit N</code></td><td>сколько постов взять (по умолчанию <code>30</code>)</td></tr>
+            <tr><td><code>--proxy URL</code></td><td>использовать прокси, например <code>http://host:port</code></td></tr>
+            <tr><td><code>--timeout SEC</code></td><td>сколько ждать один запрос (по умолчанию <code>15</code>)</td></tr>
+            <tr><td><code>--cookies "a=1; b=2"</code></td><td>куки текстом</td></tr>
+            <tr><td><code>--cookies-file FILE</code></td><td>куки из файла <code>cookies.txt</code></td></tr>
+            <tr><td><code>--cookies-from-browser B</code></td><td>brave / chrome / chromium / edge / firefox / opera / safari / vivaldi / whale</td></tr>
+            <tr><td><code>--browser-profile P</code></td><td>какой профиль браузера читать</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Ограничения</h2>
+      <ul>
+        <li><strong>Instagram</strong> – без логина часто приходит только маленькое превью.</li>
+        <li><strong>Reddit, Newgrounds, OK.ru</strong> – блокируют VPN и серверы. Нужен домашний интернет или прокси.</li>
+        <li><strong>Facebook</strong> – даже публичному видео обычно нужен логин.</li>
+        <li><strong>Twitter / X</strong> – для постов 18+ нужен логин.</li>
+        <li><strong>Twitch</strong> – только клипы, не трансляции.</li>
+      </ul>
+      <p>Ember бесплатный, с открытым кодом (лицензия MIT). Баги и идеи – в
+      <a href="https://github.com/smeshidojoe/Ember/issues" target="_blank" rel="noopener">issues на GitHub</a>.</p>
+    </div>
   </main>
 </div>
 
@@ -420,12 +773,13 @@ logging.<span class="t-fn">getLogger</span>(<span class="t-str">"ember"</span>).
   <div class="wrap foot-in">
     <a href="/Ember/" class="brand"><img src="/Ember/assets/logo.svg" alt=""> Ember</a>
     <div class="foot-links">
-      <a href="/Ember/docs/">Documentation</a>
-      <a href="/Ember/about/">About</a>
-      <a href="/Ember/privacy/">Privacy</a>
+      <a href="/Ember/docs/"><span class="only-en">Documentation</span><span class="only-ru">Документация</span></a>
+      <a href="/Ember/about/"><span class="only-en">About</span><span class="only-ru">О проекте</span></a>
+      <a href="/Ember/privacy/"><span class="only-en">Privacy</span><span class="only-ru">Приватность</span></a>
+      <a href="https://pypi.org/project/ember-dl/" target="_blank" rel="noopener">PyPI</a>
       <a href="https://github.com/smeshidojoe/Ember/issues" target="_blank" rel="noopener">Issues</a>
       <a href="https://github.com/smeshidojoe/Ember" target="_blank" rel="noopener">GitHub</a>
-      <a href="/">All projects</a>
+      <a href="/"><span class="only-en">All projects</span><span class="only-ru">Все проекты</span></a>
     </div>
     <small>MIT © <span id="y"></span> smeshidojoe</small>
   </div>

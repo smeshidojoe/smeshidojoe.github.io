@@ -141,6 +141,26 @@ a:hover { text-decoration: underline; }
 }
 .nav-cta:hover { background: var(--ember) !important; }
 
+/* язык: английский основной, русский дополнительный */
+html[lang="en"] .only-ru { display: none !important; }
+html[lang="ru"] .only-en { display: none !important; }
+
+.lang-btn {
+  background: var(--card);
+  color: var(--ink-2);
+  border: 1px solid var(--line-2);
+  border-radius: 8px;
+  padding: 6px 12px;
+  margin-left: 8px;
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+.lang-btn:hover { border-color: var(--ember); color: var(--ember); }
+
 .burger {
   display: none;
   background: none;
@@ -173,6 +193,7 @@ a:hover { text-decoration: underline; }
   .nav-links[hidden] { display: none; }
   .nav-links a { padding: 10px 12px; }
   .nav-cta { text-align: center; margin-top: 6px; margin-left: 0; }
+  .lang-btn { margin: 8px 0 0; width: 100%; }
 }
 
 /* ═══ Section furniture ═══ */
@@ -453,6 +474,7 @@ section h2 {
   padding: 12px 14px;
   font-size: 0.9rem;
   font-weight: 500;
+  color: var(--ink);
   transition: border-color 0.2s, transform 0.2s;
 }
 .svc:hover { border-color: var(--line-2); transform: translateY(-2px); }

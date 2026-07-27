@@ -16,10 +16,12 @@
     const lang = window.I18N ? window.I18N.getLang() : "ru";
     root.innerHTML = "";
 
-    if (project.banner) {
+    // шапка карточки: сначала обложка, если её нет — баннер
+    const heroImg = project.cover || project.banner;
+    if (heroImg) {
       const banner = document.createElement("img");
       banner.className = "project-banner";
-      banner.src = project.banner;
+      banner.src = heroImg;
       banner.alt = project.name;
       root.appendChild(banner);
     }

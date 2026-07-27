@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ember – media extraction for Python</title>
-<meta name="description" content="Ember is a small Python library and command line tool that pulls videos, photos and audio out of 18 social platforms – and saves them for you.">
-<meta property="og:title" content="Ember – media extraction for Python">
-<meta property="og:description" content="Grab media from 18 social platforms. One dependency. Python 3.9+.">
+<title data-en="Ember – get the file behind any link" data-ru="Ember – файл, который прячется за ссылкой">Ember – get the file behind any link</title>
+<meta name="description" content="Ember is a small Python tool. Give it a link to a post and it finds the video, photo or music inside – and saves it for you.">
+<meta property="og:title" content="Ember – get the file behind any link">
+<meta property="og:description" content="Media from 18 social sites. One line to install. Works on your own computer.">
 <meta property="og:type" content="website">
 <link rel="icon" type="image/svg+xml" href="/Ember/assets/logo.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,11 +24,12 @@
     </a>
     <button class="burger" aria-label="Menu">☰</button>
     <div class="nav-links" id="nav-links">
-      <a href="#faq">FAQ</a>
-      <a href="/Ember/docs/">Docs</a>
+      <a href="#faq"><span class="only-en">FAQ</span><span class="only-ru">Вопросы</span></a>
+      <a href="/Ember/docs/"><span class="only-en">Docs</span><span class="only-ru">Документация</span></a>
       <a href="https://github.com/smeshidojoe/Ember/issues" target="_blank" rel="noopener">Issues</a>
-      <a href="/Ember/about/">About</a>
+      <a href="/Ember/about/"><span class="only-en">About</span><span class="only-ru">О проекте</span></a>
       <a href="https://github.com/smeshidojoe/Ember" target="_blank" rel="noopener" class="nav-cta">GitHub ↗</a>
+      <button class="lang-btn" title="Switch language">RU</button>
     </div>
   </div>
 </nav>
@@ -37,25 +38,41 @@
 <header class="hero">
   <div class="wrap hero-grid">
     <div>
-      <span class="tagline"><i class="spark"></i> Python 3.9+ · one dependency</span>
-      <h1>Media extraction that <em>burns clean</em>.</h1>
-      <p class="lead">
-        Ember is a small Python library and command line tool. Give it a link to a post –
-        it finds the video, photo or track behind it and hands you a
-        <strong>direct link, the details about it, and the file itself</strong> if you want it.
-      </p>
-      <p class="sub">
-        No heavy toolchain, no browser running in the background, no online service to depend on.
-        Everything happens on your machine, in a few hundred kilobytes of code.
-      </p>
-      <div class="btn-row">
-        <a href="/Ember/docs/" class="btn btn-primary">Read the docs →</a>
-        <a href="https://github.com/smeshidojoe/Ember" target="_blank" rel="noopener" class="btn btn-ghost">★ Star on GitHub</a>
+      <span class="tagline"><i class="spark"></i> Python 3.9+ · <span class="only-en">one dependency</span><span class="only-ru">одна зависимость</span></span>
+
+      <div class="only-en">
+        <h1>Get the file behind <em>any link</em>.</h1>
+        <p class="lead">
+          Ember is a small Python tool. You give it a link to a post. It finds the video, photo
+          or music inside and gives you a <strong>direct link to the file</strong> – or saves
+          the file for you.
+        </p>
+        <p class="sub">
+          Everything runs on your own computer. No account, no online service, nothing heavy to set up.
+        </p>
       </div>
+      <div class="only-ru">
+        <h1>Забери файл, который прячется <em>за ссылкой</em>.</h1>
+        <p class="lead">
+          Ember – маленький инструмент на Python. Даёшь ему ссылку на пост. Он находит внутри
+          видео, фото или музыку и даёт <strong>прямую ссылку на файл</strong> – или сам
+          сохраняет файл.
+        </p>
+        <p class="sub">
+          Всё работает на твоём компьютере. Ни аккаунта, ни онлайн-сервиса, ничего тяжёлого ставить не надо.
+        </p>
+      </div>
+
+      <div class="btn-row">
+        <a href="/Ember/docs/" class="btn btn-primary"><span class="only-en">Read the docs →</span><span class="only-ru">Документация →</span></a>
+        <a href="https://pypi.org/project/ember-dl/" target="_blank" rel="noopener" class="btn btn-ghost">PyPI</a>
+        <a href="https://github.com/smeshidojoe/Ember" target="_blank" rel="noopener" class="btn btn-ghost">★ <span class="only-en">Star on GitHub</span><span class="only-ru">Звезда на GitHub</span></a>
+      </div>
+
       <div class="hero-meta">
-        <span><b>18</b> services</span>
-        <span><b>1</b> required dependency</span>
-        <span><b>MIT</b> licensed</span>
+        <span><b>18</b> <span class="only-en">services</span><span class="only-ru">сервисов</span></span>
+        <span><b>1</b> <span class="only-en">required dependency</span><span class="only-ru">зависимость</span></span>
+        <span><b>MIT</b> <span class="only-en">licensed</span><span class="only-ru">лицензия</span></span>
       </div>
     </div>
 
@@ -69,7 +86,7 @@
 result = ember.<span class="t-fn">extract</span>(<span class="t-str">"https://vimeo.com/76979871"</span>)
 <span class="t-fn">print</span>(result.title, result.author)
 
-<span class="t-com"># direct links, ready to hand anywhere</span>
+<span class="t-com"># direct links, ready to use anywhere</span>
 <span class="t-kw">for</span> m <span class="t-kw">in</span> result.media:
     <span class="t-fn">print</span>(m.kind, m.quality, m.url)
 
@@ -86,49 +103,85 @@ paths = ember.<span class="t-fn">download</span>(
 <!-- ═══ FEATURES ═══ -->
 <section id="features">
   <div class="wrap">
-    <p class="eyebrow">01 – What you get</p>
-    <h2>Small tool, serious reach</h2>
-    <p class="section-sub">
-      Ember asks a site for media the same way the site's own page does, then gives you
-      the result in a form you can actually use.
-    </p>
+    <div class="only-en">
+      <p class="eyebrow">01 – What you get</p>
+      <h2>Small tool, big reach</h2>
+      <p class="section-sub">
+        Ember asks a site for media the same way the site's own page does. Then it gives you
+        the answer in a form you can use.
+      </p>
+      <div class="features">
+        <div class="feature">
+          <div class="ico">🔗</div>
+          <h3>A link or the file – you choose</h3>
+          <p>Ember can just tell you where the video is. Or it can download it for you. Both work.</p>
+        </div>
+        <div class="feature">
+          <div class="ico">📺</div>
+          <h3>Works with streamed video</h3>
+          <p>Many sites send video in small parts. Ember collects all the parts and makes one file you can play.</p>
+        </div>
+        <div class="feature">
+          <div class="ico">🧩</div>
+          <h3>Fits inside your project</h3>
+          <p>Easy to add to a bot, an app or a small script. It is quiet and never prints things you did not ask for.</p>
+        </div>
+        <div class="feature">
+          <div class="ico">🍪</div>
+          <h3>Can use your login</h3>
+          <p>Ember can take the login from your browser. Then it sees what you see when you are signed in: private posts and age-gated pages.</p>
+        </div>
+        <div class="feature">
+          <div class="ico">🎚️</div>
+          <h3>You choose the quality</h3>
+          <p>See what sizes a video comes in, pick the one you want, and check how many megabytes it will take before you start.</p>
+        </div>
+        <div class="feature">
+          <div class="ico">📚</div>
+          <h3>Whole playlists at once</h3>
+          <p>Take a full playlist, or the newest posts from a profile, instead of copying links one by one.</p>
+        </div>
+      </div>
+    </div>
 
-    <div class="features">
-      <div class="feature">
-        <div class="ico">🔗</div>
-        <h3>A link or the file – your call</h3>
-        <p>Ember can simply tell you where the media lives, or download it for you.
-        Take the link and do your own thing with it, or let Ember save the file. Both work.</p>
-      </div>
-      <div class="feature">
-        <div class="ico">📺</div>
-        <h3>Handles streamed video</h3>
-        <p>A lot of sites serve video in small pieces instead of one file. Ember collects
-        the pieces on its own and puts them back together into something you can play.</p>
-      </div>
-      <div class="feature">
-        <div class="ico">🧩</div>
-        <h3>Built to live inside your project</h3>
-        <p>Quiet, predictable and easy to plug into a bot, an app or a script. It stays out
-        of the way and never prints anything you did not ask for.</p>
-      </div>
-      <div class="feature">
-        <div class="ico">🍪</div>
-        <h3>Can use your own login</h3>
-        <p>Ember can borrow the session from your browser, so anything you are allowed to
-        see while logged in stays reachable – private posts and age-gated pages included.</p>
-      </div>
-      <div class="feature">
-        <div class="ico">🎚️</div>
-        <h3>You pick the quality</h3>
-        <p>See which resolutions a video comes in, cap it at the one you want, and check how
-        many megabytes it will take before anything starts downloading.</p>
-      </div>
-      <div class="feature">
-        <div class="ico">📚</div>
-        <h3>Whole sets at once</h3>
-        <p>Grab an entire playlist, or the latest posts from someone's profile, and go
-        through them one by one instead of copying links by hand.</p>
+    <div class="only-ru">
+      <p class="eyebrow">01 – Что ты получишь</p>
+      <h2>Маленький инструмент, много умеет</h2>
+      <p class="section-sub">
+        Ember спрашивает у сайта, где лежит медиа, – так же, как это делает сама страница сайта.
+        А потом отдаёт ответ тебе в удобном виде.
+      </p>
+      <div class="features">
+        <div class="feature">
+          <div class="ico">🔗</div>
+          <h3>Ссылка или файл – как хочешь</h3>
+          <p>Ember может просто сказать, где лежит видео. А может скачать его сам. Работает и так, и так.</p>
+        </div>
+        <div class="feature">
+          <div class="ico">📺</div>
+          <h3>Понимает видео по кусочкам</h3>
+          <p>Многие сайты отдают видео маленькими частями. Ember собирает все части и делает один файл, который можно смотреть.</p>
+        </div>
+        <div class="feature">
+          <div class="ico">🧩</div>
+          <h3>Легко встроить в свой проект</h3>
+          <p>Подходит для бота, приложения или простого скрипта. Работает тихо и не пишет лишнего в консоль.</p>
+        </div>
+        <div class="feature">
+          <div class="ico">🍪</div>
+          <h3>Может использовать твой логин</h3>
+          <p>Ember умеет брать логин из браузера. Тогда он видит то же, что видишь ты после входа: закрытые посты и страницы «18+».</p>
+        </div>
+        <div class="feature">
+          <div class="ico">🎚️</div>
+          <h3>Качество выбираешь ты</h3>
+          <p>Посмотри, в каких размерах есть видео, выбери нужный и узнай, сколько мегабайт займёт файл, ещё до начала загрузки.</p>
+        </div>
+        <div class="feature">
+          <div class="ico">📚</div>
+          <h3>Целые плейлисты сразу</h3>
+          <p>Забери весь плейлист или свежие посты автора, вместо того чтобы копировать ссылки по одной.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -137,12 +190,20 @@ paths = ember.<span class="t-fn">download</span>(
 <!-- ═══ QUICKSTART ═══ -->
 <section id="quickstart" style="padding-top:0">
   <div class="wrap">
-    <p class="eyebrow">02 – Two ways in</p>
-    <h2>Library or command line</h2>
-    <p class="section-sub">
-      The same engine either way. Install once and you can use Ember from your own Python
-      code or straight from a terminal.
-    </p>
+    <div class="only-en">
+      <p class="eyebrow">02 – Two ways to use it</p>
+      <h2>In your code or in the terminal</h2>
+      <p class="section-sub">
+        It is the same tool both ways. Install it once and use it wherever you like.
+      </p>
+    </div>
+    <div class="only-ru">
+      <p class="eyebrow">02 – Два способа</p>
+      <h2>В коде или в терминале</h2>
+      <p class="section-sub">
+        Это один и тот же инструмент. Поставь один раз и пользуйся там, где удобно.
+      </p>
+    </div>
 
     <div data-tabs>
       <div class="tabs">
@@ -179,19 +240,19 @@ ember.<span class="t-fn">download</span>(
             <span class="dot"></span><span class="name">terminal</span>
             <button class="copy">copy</button>
           </div>
-<pre><code><span class="t-com"># show direct links and details – nothing is downloaded</span>
+<pre><code><span class="t-com"># show the links – nothing is downloaded</span>
 ember <span class="t-str">"https://x.com/user/status/123456789"</span>
 
 <span class="t-com"># -d turns downloading on</span>
 ember <span class="t-flag">-d</span> <span class="t-str">"https://vimeo.com/76979871"</span>
 
-<span class="t-com"># cap quality, 6 pieces at a time, custom folder</span>
+<span class="t-com"># smaller size, 6 parts at a time, your own folder</span>
 ember <span class="t-flag">-d -p</span> downloads <span class="t-flag">--max-height</span> <span class="t-num">720</span> <span class="t-flag">--concurrency</span> <span class="t-num">6</span> <span class="t-str">"&lt;url&gt;"</span>
 
-<span class="t-com"># audio only, with the track details written into the file</span>
+<span class="t-com"># sound only, with the title written into the file</span>
 ember <span class="t-flag">-d --audio-only --embed-metadata</span> <span class="t-str">"&lt;soundcloud url&gt;"</span>
 
-<span class="t-com"># private content, using the login from your browser</span>
+<span class="t-com"># private posts, using the login from your browser</span>
 ember <span class="t-flag">-d --cookies-from-browser</span> firefox <span class="t-str">"&lt;url&gt;"</span></code></pre>
         </div>
       </div>
@@ -202,37 +263,45 @@ ember <span class="t-flag">-d --cookies-from-browser</span> firefox <span class=
 <!-- ═══ SERVICES ═══ -->
 <section id="services" style="padding-top:0">
   <div class="wrap">
-    <p class="eyebrow">03 – Coverage</p>
-    <h2>18 services, one interface</h2>
-    <p class="section-sub">
-      Every site is handled by its own small module, so the list keeps growing without the
-      rest of the tool changing.
-    </p>
+    <div class="only-en">
+      <p class="eyebrow">03 – Where it works</p>
+      <h2>18 sites, one tool</h2>
+      <p class="section-sub">
+        Every site has its own small piece of code inside Ember, so the list keeps growing.
+      </p>
+    </div>
+    <div class="only-ru">
+      <p class="eyebrow">03 – Где работает</p>
+      <h2>18 сайтов, один инструмент</h2>
+      <p class="section-sub">
+        Для каждого сайта внутри Ember свой маленький кусочек кода, поэтому список растёт.
+      </p>
+    </div>
 
     <div class="services">
-      <a class="svc" href="/Ember/docs/#services"><i class="d"></i><span>TikTok<small>video, photos, music</small></span></a>
-      <a class="svc warn" href="/Ember/docs/#services"><i class="d"></i><span>Twitter / X<small>NSFW needs your login</small></span></a>
-      <a class="svc warn" href="/Ember/docs/#services"><i class="d"></i><span>Instagram<small>posts, Reels, Stories</small></span></a>
-      <a class="svc warn" href="/Ember/docs/#services"><i class="d"></i><span>Reddit<small>needs a home connection</small></span></a>
-      <a class="svc" href="/Ember/docs/#services"><i class="d"></i><span>Vimeo<small>video</small></span></a>
-      <a class="svc" href="/Ember/docs/#services"><i class="d"></i><span>SoundCloud<small>tracks, sets</small></span></a>
-      <a class="svc" href="/Ember/docs/#services"><i class="d"></i><span>Pinterest<small>video &amp; image pins</small></span></a>
-      <a class="svc" href="/Ember/docs/#services"><i class="d"></i><span>Tumblr<small>video, audio, photos</small></span></a>
-      <a class="svc" href="/Ember/docs/#services"><i class="d"></i><span>Bluesky<small>video, images, GIFs</small></span></a>
-      <a class="svc warn" href="/Ember/docs/#services"><i class="d"></i><span>Newgrounds<small>blocked on some networks</small></span></a>
-      <a class="svc" href="/Ember/docs/#services"><i class="d"></i><span>Rutube<small>video</small></span></a>
-      <a class="svc warn" href="/Ember/docs/#services"><i class="d"></i><span>OK.ru<small>needs a home connection</small></span></a>
-      <a class="svc" href="/Ember/docs/#services"><i class="d"></i><span>VK / VK Video<small>video, clips</small></span></a>
-      <a class="svc warn" href="/Ember/docs/#services"><i class="d"></i><span>Facebook<small>usually needs your login</small></span></a>
-      <a class="svc" href="/Ember/docs/#services"><i class="d"></i><span>Twitch<small>clips</small></span></a>
-      <a class="svc" href="/Ember/docs/#services"><i class="d"></i><span>Pornhub<small>age wall handled</small></span></a>
-      <a class="svc" href="/Ember/docs/#services"><i class="d"></i><span>XVideos<small>video</small></span></a>
-      <a class="svc" href="/Ember/docs/#services"><i class="d"></i><span>RedGifs<small>video</small></span></a>
+      <div class="svc"><i class="d"></i><span>TikTok<small><span class="only-en">video, photos, music</span><span class="only-ru">видео, фото, музыка</span></small></span></div>
+      <div class="svc warn"><i class="d"></i><span>Twitter / X<small><span class="only-en">18+ needs your login</span><span class="only-ru">18+ нужен логин</span></small></span></div>
+      <div class="svc warn"><i class="d"></i><span>Instagram<small><span class="only-en">posts, Reels, Stories</span><span class="only-ru">посты, Reels, Stories</span></small></span></div>
+      <div class="svc warn"><i class="d"></i><span>Reddit<small><span class="only-en">needs home internet</span><span class="only-ru">нужен домашний интернет</span></small></span></div>
+      <div class="svc"><i class="d"></i><span>Vimeo<small><span class="only-en">video</span><span class="only-ru">видео</span></small></span></div>
+      <div class="svc"><i class="d"></i><span>SoundCloud<small><span class="only-en">tracks, sets</span><span class="only-ru">треки, сборники</span></small></span></div>
+      <div class="svc"><i class="d"></i><span>Pinterest<small><span class="only-en">video &amp; image pins</span><span class="only-ru">видео и картинки</span></small></span></div>
+      <div class="svc"><i class="d"></i><span>Tumblr<small><span class="only-en">video, audio, photos</span><span class="only-ru">видео, аудио, фото</span></small></span></div>
+      <div class="svc"><i class="d"></i><span>Bluesky<small><span class="only-en">video, images, GIFs</span><span class="only-ru">видео, картинки, GIF</span></small></span></div>
+      <div class="svc warn"><i class="d"></i><span>Newgrounds<small><span class="only-en">blocked on some networks</span><span class="only-ru">блок на части сетей</span></small></span></div>
+      <div class="svc"><i class="d"></i><span>Rutube<small><span class="only-en">video</span><span class="only-ru">видео</span></small></span></div>
+      <div class="svc warn"><i class="d"></i><span>OK.ru<small><span class="only-en">needs home internet</span><span class="only-ru">нужен домашний интернет</span></small></span></div>
+      <div class="svc"><i class="d"></i><span>VK / VK Video<small><span class="only-en">video, clips</span><span class="only-ru">видео, клипы</span></small></span></div>
+      <div class="svc warn"><i class="d"></i><span>Facebook<small><span class="only-en">usually needs your login</span><span class="only-ru">обычно нужен логин</span></small></span></div>
+      <div class="svc"><i class="d"></i><span>Twitch<small><span class="only-en">clips</span><span class="only-ru">клипы</span></small></span></div>
+      <div class="svc"><i class="d"></i><span>Pornhub<small><span class="only-en">age wall handled</span><span class="only-ru">возрастной барьер снят</span></small></span></div>
+      <div class="svc"><i class="d"></i><span>XVideos<small><span class="only-en">video</span><span class="only-ru">видео</span></small></span></div>
+      <div class="svc"><i class="d"></i><span>RedGifs<small><span class="only-en">video</span><span class="only-ru">видео</span></small></span></div>
     </div>
 
     <div class="legend">
-      <span><i style="background:var(--ok)"></i> works right away</span>
-      <span><i style="background:var(--amber)"></i> may need your login or a home connection</span>
+      <span><i style="background:var(--ok)"></i> <span class="only-en">works right away</span><span class="only-ru">работает сразу</span></span>
+      <span><i style="background:var(--amber)"></i> <span class="only-en">may need your login or home internet</span><span class="only-ru">может понадобиться логин или домашний интернет</span></span>
     </div>
   </div>
 </section>
@@ -241,11 +310,16 @@ ember <span class="t-flag">-d --cookies-from-browser</span> firefox <span class=
 <section id="install" style="padding-top:0">
   <div class="wrap">
     <div class="install">
-      <p class="eyebrow">04 – Install</p>
-      <h2>One line, then you're running</h2>
-      <p class="section-sub">
-        Ember works on Windows, macOS and Linux. Nothing else to set up.
-      </p>
+      <div class="only-en">
+        <p class="eyebrow">04 – Install</p>
+        <h2>One line and you are ready</h2>
+        <p class="section-sub">Ember works on Windows, macOS and Linux. There is nothing else to set up.</p>
+      </div>
+      <div class="only-ru">
+        <p class="eyebrow">04 – Установка</p>
+        <h2>Одна строка – и готово</h2>
+        <p class="section-sub">Ember работает на Windows, macOS и Linux. Больше ничего настраивать не нужно.</p>
+      </div>
 
       <div class="code">
         <div class="code-bar">
@@ -257,14 +331,15 @@ ember <span class="t-flag">-d --cookies-from-browser</span> firefox <span class=
 
       <div class="req">
         <span>Python 3.9+</span>
-        <span>requires: requests</span>
-        <span>optional: ffmpeg</span>
+        <span class="only-en">needs: requests</span><span class="only-ru">нужен: requests</span>
+        <span class="only-en">optional: ffmpeg</span><span class="only-ru">по желанию: ffmpeg</span>
         <span>Windows · macOS · Linux</span>
       </div>
 
       <div class="btn-row" style="margin-top:26px">
-        <a href="/Ember/docs/" class="btn btn-primary">Full documentation →</a>
-        <a href="https://github.com/smeshidojoe/Ember/releases/latest" target="_blank" rel="noopener" class="btn btn-ghost">Releases</a>
+        <a href="/Ember/docs/" class="btn btn-primary"><span class="only-en">Full documentation →</span><span class="only-ru">Вся документация →</span></a>
+        <a href="https://pypi.org/project/ember-dl/" target="_blank" rel="noopener" class="btn btn-ghost">PyPI</a>
+        <a href="https://github.com/smeshidojoe/Ember/releases/latest" target="_blank" rel="noopener" class="btn btn-ghost"><span class="only-en">Releases</span><span class="only-ru">Релизы</span></a>
       </div>
     </div>
   </div>
@@ -273,47 +348,81 @@ ember <span class="t-flag">-d --cookies-from-browser</span> firefox <span class=
 <!-- ═══ FAQ ═══ -->
 <section id="faq" style="padding-top:0">
   <div class="wrap">
-    <p class="eyebrow">05 – Questions</p>
-    <h2>Frequently asked</h2>
-    <div class="faq">
-      <details open>
-        <summary>What makes Ember worth using?</summary>
-        <p>It is small and it is yours. Ember installs in one line, adds almost nothing to your
-        project, and runs entirely on your own machine – no account, no online service, no
-        waiting in a queue. You get the media links along with the title, author and preview,
-        so you can build your own interface around them instead of parsing someone's output.
-        And when a site changes, only one small piece needs fixing.</p>
-      </details>
-      <details>
-        <summary>Do I need to install anything else?</summary>
-        <p>Usually not. Most downloads work with Ember alone. A separate helper called ffmpeg
-        is only needed for a few extras: pulling out just the audio, writing the title and
-        author into the file, and joining video with a separate sound track.</p>
-      </details>
-      <details>
-        <summary>Why does Instagram only give me a low-quality preview?</summary>
-        <p>Instagram hides the good version from anyone who is not signed in. Using cookies
-        will help you to bypass this and get the full media. The same trick works for adult
-        posts on X, closed groups on VK, and most video on Facebook.</p>
-      </details>
-      <details>
-        <summary>Some sites give me nothing at all.</summary>
-        <p>A few of them – Reddit, Newgrounds and OK.ru – refuse requests coming from VPNs and
-        data centres. From a normal home connection they work fine, and you can also route
-        Ember through a proxy.</p>
-      </details>
-      <details>
-        <summary>Which browsers can it borrow my login from?</summary>
-        <p>Firefox works everywhere. On Windows, Chromium-based browsers such as Vivaldi and
-        Opera work too. Recent versions of Chrome, Edge and Brave lock their data away, so
-        those usually cannot be read.</p>
-      </details>
-      <details>
-        <summary>Can I use it in my own bot or app?</summary>
-        <p>That is exactly what it is built for. Ember is free and open source under the MIT
-        licence, so you can ship it inside anything you make. The
-        <a href="/Ember/docs/#embedding">docs</a> show how to wire it up.</p>
-      </details>
+    <div class="only-en">
+      <p class="eyebrow">05 – Questions</p>
+      <h2>Questions people ask</h2>
+      <div class="faq">
+        <details open>
+          <summary>Why use Ember?</summary>
+          <p>It is small, free and it runs on your computer. You install it with one line.
+          There is no account and no online service. You get the link to the media, plus the
+          title, the author and the cover picture. So you can build your own thing on top of it.</p>
+        </details>
+        <details>
+          <summary>Do I need to install anything else?</summary>
+          <p>Usually no. For a few extra things you need a helper called ffmpeg: to save only
+          the sound, to write the title into the file, and to join video with a separate sound track.</p>
+        </details>
+        <details>
+          <summary>Why does Instagram give me a small blurry video?</summary>
+          <p>Instagram hides the good version from people who are not signed in. Using cookies
+          will help you to bypass this and get the full media. The same works for 18+ posts on
+          X, closed groups on VK and most video on Facebook.</p>
+        </details>
+        <details>
+          <summary>Some sites give me nothing.</summary>
+          <p>Reddit, Newgrounds and OK.ru block VPNs and servers. Use normal home internet, or a proxy.</p>
+        </details>
+        <details>
+          <summary>Which browsers work?</summary>
+          <p>Firefox works everywhere. On Windows, Vivaldi and Opera work too. New versions of
+          Chrome, Edge and Brave lock their data, so they usually do not work.</p>
+        </details>
+        <details>
+          <summary>Can I use it in my own bot or app?</summary>
+          <p>Yes. Ember is free and open source (MIT licence), so you can put it inside anything
+          you make. The <a href="/Ember/docs/#embedding">docs</a> show how.</p>
+        </details>
+      </div>
+    </div>
+
+    <div class="only-ru">
+      <p class="eyebrow">05 – Вопросы</p>
+      <h2>Частые вопросы</h2>
+      <div class="faq">
+        <details open>
+          <summary>Зачем нужен Ember?</summary>
+          <p>Он маленький, бесплатный и работает на твоём компьютере. Ставится одной строкой.
+          Ни аккаунта, ни онлайн-сервиса. Ты получаешь ссылку на медиа, а вместе с ней название,
+          автора и картинку-обложку. И можешь построить на этом что-то своё.</p>
+        </details>
+        <details>
+          <summary>Нужно ставить что-то ещё?</summary>
+          <p>Обычно нет. Для пары вещей нужен помощник ffmpeg: сохранить только звук, записать
+          название внутрь файла и склеить видео с отдельной звуковой дорожкой.</p>
+        </details>
+        <details>
+          <summary>Почему Instagram отдаёт мутное маленькое видео?</summary>
+          <p>Instagram прячет хорошую версию от тех, кто не вошёл в аккаунт. Куки помогут обойти
+          это и получить полное медиа. Так же работает для постов 18+ в X, закрытых групп во
+          ВКонтакте и почти всех видео в Facebook.</p>
+        </details>
+        <details>
+          <summary>Некоторые сайты не дают ничего.</summary>
+          <p>Reddit, Newgrounds и OK.ru блокируют VPN и серверы. Нужен обычный домашний интернет
+          или прокси.</p>
+        </details>
+        <details>
+          <summary>Какие браузеры подходят?</summary>
+          <p>Firefox работает везде. На Windows подойдут ещё Vivaldi и Opera. Новые версии Chrome,
+          Edge и Brave закрывают свои данные, поэтому обычно не работают.</p>
+        </details>
+        <details>
+          <summary>Можно вставить Ember в свой бот или программу?</summary>
+          <p>Да. Ember бесплатный и с открытым кодом (лицензия MIT), его можно встроить во что
+          угодно. Как это сделать – в <a href="/Ember/docs/#embedding">документации</a>.</p>
+        </details>
+      </div>
     </div>
   </div>
 </section>
@@ -322,12 +431,13 @@ ember <span class="t-flag">-d --cookies-from-browser</span> firefox <span class=
   <div class="wrap foot-in">
     <a href="/Ember/" class="brand"><img src="/Ember/assets/logo.svg" alt=""> Ember</a>
     <div class="foot-links">
-      <a href="/Ember/docs/">Documentation</a>
-      <a href="/Ember/about/">About</a>
-      <a href="/Ember/privacy/">Privacy</a>
+      <a href="/Ember/docs/"><span class="only-en">Documentation</span><span class="only-ru">Документация</span></a>
+      <a href="/Ember/about/"><span class="only-en">About</span><span class="only-ru">О проекте</span></a>
+      <a href="/Ember/privacy/"><span class="only-en">Privacy</span><span class="only-ru">Приватность</span></a>
+      <a href="https://pypi.org/project/ember-dl/" target="_blank" rel="noopener">PyPI</a>
       <a href="https://github.com/smeshidojoe/Ember/issues" target="_blank" rel="noopener">Issues</a>
       <a href="https://github.com/smeshidojoe/Ember" target="_blank" rel="noopener">GitHub</a>
-      <a href="/">All projects</a>
+      <a href="/"><span class="only-en">All projects</span><span class="only-ru">Все проекты</span></a>
     </div>
     <small>MIT © <span id="y"></span> smeshidojoe</small>
   </div>

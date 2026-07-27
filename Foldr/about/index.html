@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About Foldr - Keep Your Downloads Folder Tidy</title>
   <meta name="description" content="Where Foldr came from, what it stands for, and how to use it.">
-  <meta property="og:title" content="About Foldr — a tidy desktop, on autopilot.">
+  <meta property="og:title" content="About Foldr – a tidy desktop, on autopilot.">
   <meta property="og:description" content="Where Foldr came from, what it stands for, and how to use it.">
   <meta property="og:type" content="website">
   <link rel="icon" type="image/svg+xml" href="/Foldr/assets/logo.svg">
@@ -689,7 +689,7 @@
       <div class="about-grid">
         <div class="about-block reveal">
           <h3>Origin Story</h3>
-          <p>This project started with a folder that had quietly turned into a landfill — installers from two years
+          <p>This project started with a folder that had quietly turned into a landfill – installers from two years
             ago, screenshots nobody named, and the one invoice that always went missing exactly when it was needed.</p>
           <p>Everything on the market was either heavy, rented by the month, or eager to upload file names somewhere.
             The wish list was short: something that <strong>works in the background</strong>, never phones home, and
@@ -712,7 +712,7 @@
           <p><strong>Local and private.</strong> Nothing is transmitted off the machine. Rules, history, and settings
             live in a local SQLite file. System entries such as <code>desktop.ini</code>, <code>Thumbs.db</code>, and
             <code>.DS_Store</code> are left untouched.</p>
-          <p><strong>Open source (MIT).</strong> The source is public — read it, fork it, ship your own build. There
+          <p><strong>Open source (MIT).</strong> The source is public – read it, fork it, ship your own build. There
             is nothing in there worth hiding.</p>
           <p><strong>No interruptions.</strong> It waits in the tray and speaks only through a small toast once
             something has been filed.</p>
@@ -721,10 +721,10 @@
           <h3>Under the Hood</h3>
           <p>The stack is deliberately unexciting and dependable:</p>
           <ul>
-            <li><strong>Rust</strong> core — folder watcher, SQLite, rule engine</li>
-            <li><strong>Tauri 2.x</strong> — small native shell around it</li>
-            <li><strong>React 19 + TypeScript</strong> — quick, type-safe interface</li>
-            <li><strong>Tailwind CSS</strong> — tidy, low-maintenance styling</li>
+            <li><strong>Rust</strong> core – folder watcher, SQLite, rule engine</li>
+            <li><strong>Tauri 2.x</strong> – small native shell around it</li>
+            <li><strong>React 19 + TypeScript</strong> – quick, type-safe interface</li>
+            <li><strong>Tailwind CSS</strong> – tidy, low-maintenance styling</li>
           </ul>
           <p>The whole thing lands around 3 MB and idles on a rounding error of RAM.</p>
         </div>
@@ -769,7 +769,7 @@
           <p><strong>Linux:</strong> grab the AppImage, <code>.deb</code>, or <code>.rpm</code> from the
             <a href="/Foldr/#download" style="color:var(--primary)">homepage</a>, then follow the Linux notes below.</p>
           <p><strong>1. Start the app.</strong> Out of the box it watches your Downloads folder and nothing else.</p>
-          <p><strong>2. Left-click</strong> the tray icon for the popup — recent moves, weekly stats, and a manual
+          <p><strong>2. Left-click</strong> the tray icon for the popup – recent moves, weekly stats, and a manual
             clean button.</p>
           <p><strong>3. Right-click</strong> the tray icon for the menu: <strong>Clean Now</strong>,
             <strong>Settings</strong>, <strong>Quit</strong>.
@@ -778,7 +778,7 @@
             seconds later.</p>
 
           <h3 id="linux-installation">Linux Installation</h3>
-          <p>Most current distributions work out of the box. Two libraries need to be present — on a normal desktop
+          <p>Most current distributions work out of the box. Two libraries need to be present – on a normal desktop
             install they already are:</p>
           <ul>
             <li><code>libwebkit2gtk-4.1</code></li>
@@ -800,33 +800,33 @@ sudo apt-get install -f</code></pre>
             watched and files moved.</p>
 
           <h3 id="features">Features</h3>
-          <p><strong>Quiet by default</strong> — background operation with no pop-ups; a small toast is the only
+          <p><strong>Quiet by default</strong> – background operation with no pop-ups; a small toast is the only
             signal that anything happened.</p>
-          <p><strong>Rule engine</strong> — build rules from extensions and regex patterns, and route to dynamic
+          <p><strong>Rule engine</strong> – build rules from extensions and regex patterns, and route to dynamic
             destinations such as <code>{year}/{month}</code>.</p>
-          <p><strong>History &amp; undo</strong> — every move is written to a local log. Single-click undo, or
+          <p><strong>History &amp; undo</strong> – every move is written to a local log. Single-click undo, or
             <strong>Revert All</strong> from the History tab.</p>
-          <p><strong>7 languages</strong> — the interface follows your system locale automatically.</p>
-          <p><strong>Dark mode</strong> — tracks the OS theme, or pin Light / Dark / System yourself.</p>
-          <p><strong>Autostart</strong> — registers itself at login; switch it off under Settings → General.</p>
-          <p><strong>Manual and paused folders</strong> — let a folder collect files without moving them, or suspend
+          <p><strong>7 languages</strong> – the interface follows your system locale automatically.</p>
+          <p><strong>Dark mode</strong> – tracks the OS theme, or pin Light / Dark / System yourself.</p>
+          <p><strong>Autostart</strong> – registers itself at login; switch it off under Settings → General.</p>
+          <p><strong>Manual and paused folders</strong> – let a folder collect files without moving them, or suspend
             watching altogether.</p>
-          <p><strong>Scheduled cleaning</strong> — trigger Clean Now automatically at up to four fixed times a day.</p>
-          <p><strong>Adjustable grace period</strong> — hold moves anywhere from a few seconds to 48+ hours.</p>
-          <p><strong>Rule export / import</strong> — rules travel as plain JSON.</p>
+          <p><strong>Scheduled cleaning</strong> – trigger Clean Now automatically at up to four fixed times a day.</p>
+          <p><strong>Adjustable grace period</strong> – hold moves anywhere from a few seconds to 48+ hours.</p>
+          <p><strong>Rule export / import</strong> – rules travel as plain JSON.</p>
 
           <h3 id="configuration">Configuration</h3>
           <p>Open <strong>Settings</strong> from the tray menu to adjust everything below.</p>
-          <p><strong>Watched folders</strong> — add or drop folders from the watch list. Only Downloads is watched
+          <p><strong>Watched folders</strong> – add or drop folders from the watch list. Only Downloads is watched
             initially.</p>
-          <p><strong>Rules</strong> — match on extensions, regex, or wildcards, then build the destination path from
+          <p><strong>Rules</strong> – match on extensions, regex, or wildcards, then build the destination path from
             placeholders:</p>
           <ul>
-            <li><code>{year}</code> — the current year (e.g. 2026)</li>
-            <li><code>{month}</code> — the current month (e.g. 07)</li>
-            <li><code>{filename}</code> — the original name, extension stripped</li>
+            <li><code>{year}</code> – the current year (e.g. 2026)</li>
+            <li><code>{month}</code> – the current month (e.g. 07)</li>
+            <li><code>{filename}</code> – the original name, extension stripped</li>
           </ul>
-          <p><strong>General</strong> — language, theme, and autostart behavior.</p>
+          <p><strong>General</strong> – language, theme, and autostart behavior.</p>
 
           <h3 id="archive-import">Archive Import</h3>
           <p>Large data-export archives can be handed straight to the app instead of being unpacked and sorted by
@@ -840,7 +840,7 @@ sudo apt-get install -f</code></pre>
             <li>Files move to their destinations. Staging is kept afterwards so you can review it and delete it
               yourself.</li>
           </ol>
-          <p>The archive itself can sit on a network or external drive — only the extraction needs local space. Big
+          <p>The archive itself can sit on a network or external drive – only the extraction needs local space. Big
             archives may take a minute or two.</p>
 
           <h3 id="ignore-rules">Ignore Rules</h3>
@@ -855,10 +855,10 @@ sudo apt-get install -f</code></pre>
             folder. One rule per line; lines beginning with <code>#</code> are comments.</p>
           <p><strong>Rule types:</strong></p>
           <ul>
-            <li><strong>Exact name</strong> — <code>desktop.ini</code> skips that one file.</li>
-            <li><strong>Wildcard</strong> — <code>*.tmp</code> skips every <code>.tmp</code>; <code>~$*</code> skips
+            <li><strong>Exact name</strong> – <code>desktop.ini</code> skips that one file.</li>
+            <li><strong>Wildcard</strong> – <code>*.tmp</code> skips every <code>.tmp</code>; <code>~$*</code> skips
               Office temp files.</li>
-            <li><strong>Folder</strong> — <code>node_modules/</code> (trailing slash) skips the whole folder.</li>
+            <li><strong>Folder</strong> – <code>node_modules/</code> (trailing slash) skips the whole folder.</li>
           </ul>
           <p><strong>Typical file:</strong></p>
           <pre><code># Office temp files
@@ -880,7 +880,7 @@ Thumbs.db</code></pre>
             <li>Matching is <strong>case-insensitive</strong> on Windows.</li>
             <li>Every watched folder can carry its own <code>.appignore</code>.</li>
             <li>Delete the file and everything in that folder becomes sortable again.</li>
-            <li>Common system files are skipped by default — no need to list them.</li>
+            <li>Common system files are skipped by default – no need to list them.</li>
           </ul>
 
           <h3 id="privacy">Privacy &amp; Security</h3>
@@ -891,19 +891,19 @@ Thumbs.db</code></pre>
             <li>Everything in a local SQLite database</li>
             <li>No account, no registration</li>
           </ul>
-          <p><strong>Independent scans</strong> — publish your build's scan report here so anyone can verify it.
+          <p><strong>Independent scans</strong> – publish your build's scan report here so anyone can verify it.
             Detections on a brand-new unsigned binary are usually heuristic false positives.</p>
-          <p><strong>SmartScreen</strong> — Windows warns about unsigned installers. "More info" → "Run anyway" gets
+          <p><strong>SmartScreen</strong> – Windows warns about unsigned installers. "More info" → "Run anyway" gets
             past it.</p>
 
           <h3 id="faq">FAQ</h3>
           <p><strong>How does it work?</strong><br>It watches the folders you choose from the tray. A new file gets a
             two-second pause to confirm the transfer finished, then moves according to your rules.</p>
           <p><strong>Does any data leave my machine?</strong><br>No. Everything runs offline.</p>
-          <p><strong>Can I customize the rules?</strong><br>Yes — Settings → Rules for your own sorting logic.</p>
+          <p><strong>Can I customize the rules?</strong><br>Yes – Settings → Rules for your own sorting logic.</p>
           <p><strong>What if a file lands in the wrong place?</strong><br>Settings → History, then undo. One click.</p>
           <p><strong>Does it start with Windows?</strong><br>Yes, and it can be turned off in Settings → General.</p>
-          <p><strong>Is it really free?</strong><br>Yes. MIT License — use it, change it, build your own.</p>
+          <p><strong>Is it really free?</strong><br>Yes. MIT License – use it, change it, build your own.</p>
 
           <h3 id="troubleshooting">Troubleshooting</h3>
           <p><strong>Nothing is being sorted.</strong><br>Check that the folder is in Watched Folders and that some
@@ -912,7 +912,7 @@ Thumbs.db</code></pre>
             there is nothing left to restore.</p>
           <p><strong>SmartScreen blocks the installer.</strong><br>Expected for unsigned apps: "More info" → "Run
             anyway".</p>
-          <p><strong>CPU or RAM spikes.</strong><br>Look at your watched folders — network drives and folders holding
+          <p><strong>CPU or RAM spikes.</strong><br>Look at your watched folders – network drives and folders holding
             thousands of files are the usual culprits.</p>
 
         </div>
@@ -925,7 +925,7 @@ Thumbs.db</code></pre>
       <div class="support-content reveal">
         <span class="section-label">Support</span>
         <h2 class="section-title">Keep the project alive.</h2>
-        <p>If this little tool saves you time every week, consider chipping in the price of a coffee — it funds
+        <p>If this little tool saves you time every week, consider chipping in the price of a coffee – it funds
           future updates and keeps the project moving.</p>
         <a href="#" class="btn-primary">☕ Buy me a coffee</a>
       </div>
@@ -986,7 +986,7 @@ Thumbs.db</code></pre>
       });
     });
 
-    /* Cookie banner — wire your own analytics into loadAnalytics() if you add any. */
+    /* Cookie banner – wire your own analytics into loadAnalytics() if you add any. */
     function loadAnalytics() {
       /* Add your analytics snippet here once you have one. */
     }

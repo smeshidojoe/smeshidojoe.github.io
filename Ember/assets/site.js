@@ -1,5 +1,27 @@
-// Ember site: mobile nav, copy buttons, quickstart tabs, docs scrollspy.
+// Ember site: language switch, mobile nav, copy buttons, quickstart tabs, docs scrollspy.
 (function () {
+  /* ── language: English by default, ?lang=ru opens in Russian ── */
+  const LS = "ember-lang";
+  function getLang() {
+    const q = new URLSearchParams(location.search).get("lang");
+    if (q === "ru" || q === "en") { localStorage.setItem(LS, q); return q; }
+    return localStorage.getItem(LS) || "en";
+  }
+  function applyLang(l) {
+    document.documentElement.lang = l;
+    document.querySelectorAll(".lang-btn").forEach(b => { b.textContent = l === "en" ? "RU" : "EN"; });
+    const t = document.querySelector("title[data-" + l + "]");
+    if (t) document.title = t.getAttribute("data-" + l);
+  }
+  applyLang(getLang());
+  document.addEventListener("click", (e) => {
+    const b = e.target.closest(".lang-btn");
+    if (!b) return;
+    const next = getLang() === "en" ? "ru" : "en";
+    localStorage.setItem(LS, next);
+    applyLang(next);
+  });
+
   /* ── mobile nav ── */
   const burger = document.querySelector(".burger");
   const links = document.getElementById("nav-links");
