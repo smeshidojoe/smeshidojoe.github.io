@@ -38,4 +38,29 @@
 
   const y = document.getElementById("y");
   if (y) y.textContent = new Date().getFullYear();
+
+  /* ── download button: point straight at the latest .exe ──
+     The asset name carries the version, so it is resolved at runtime.
+     If GitHub cannot be reached, the button keeps its fallback link
+     to the releases page. */
+  const dlBtns = document.querySelectorAll("[data-download]");
+  if (dlBtns.length) {
+    fetch("https://api.github.com/repos/smeshidojoe/Snatchr/releases/latest")
+      .then(r => (r.ok ? r.json() : null))
+      .then(d => {
+        if (!d) return;
+        const exe = (d.assets || []).find(a => /\.exe$/i.test(a.name));
+        if (!exe) return;
+        dlBtns.forEach(a => {
+          a.href = exe.browser_download_url;
+          a.removeAttribute("target");
+        });
+        const mb = (exe.size / 1048576).toFixed(0);
+        document.querySelectorAll("[data-release-info]").forEach(el => {
+          el.textContent = (d.tag_name || "") + " · " + mb + " MB";
+          el.hidden = false;
+        });
+      })
+      .catch(() => { /* offline or rate-limited: keep the fallback link */ });
+  }
 })();

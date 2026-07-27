@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ru"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Гайд: Snatchr — smeshidojoe</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>">
+  <script src="../data/config.js"></script>
+  <script src="../assets/js/theme.js"></script>
+</head>
+<body>
+  <div class="bg-orbs" aria-hidden="true"><i></i><i></i><i></i></div>
+  <header class="site-header">
+    <nav class="nav container">
+      <a href="../index.html" class="logo">smeshido<span>joe</span></a>
+      <div class="nav-links">
+        <a href="../index.html" data-i18n="nav.projects">Проекты</a>
+        <a href="index.html" class="active" data-i18n="nav.guides">Гайды</a>
+        <a href="https://github.com/smeshidojoe" target="_blank" rel="noopener">GitHub ↗</a>
+        <button id="lang-toggle" class="lang-toggle" title="Switch language">EN</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <article class="guide-article">
+      <p><a href="index.html" data-i18n="back">← Назад к гайдам</a></p>
+
+      <!-- ═══════════ РУССКАЯ ВЕРСИЯ ═══════════ -->
+      <div class="only-ru">
+        <h1>Snatchr: пошаговое руководство</h1>
+        <p class="guide-meta">Обновлено: июль 2026 · <a href="https://github.com/smeshidojoe/Snatchr" target="_blank" rel="noopener">Репозиторий</a> · <a href="https://github.com/smeshidojoe/Snatchr/releases/latest" target="_blank" rel="noopener">Скачать</a></p>
+
+        <h2>Шаг 1. Установка</h2>
+        <ol>
+          <li>Скачай свежий <code>.exe</code> со страницы <a href="https://github.com/smeshidojoe/Snatchr/releases/latest" target="_blank" rel="noopener">Releases</a>. Нужна Windows 10 или новее.</li>
+          <li>Запусти установщик — стандартный путь установки D/Programs/Snatchr. (в виду некоторых особенностей установка на диск C может быть затруднительна, это временная мера)</li>
+          <li>При первом запуске Snatchr сам скачает свой бэкенд (<code>yt-dlp</code>, <code>ffmpeg</code>). Python и терминал не нужны, дальше программа обновляет и себя, и бэкенд автоматически.</li>
+        </ol>
+        <p>Настройки, история и служебные файлы живут в <code>C:\Users\&lt;имя&gt;\AppData\Roaming\Snatchr</code>.</p>
+
+        <h2>Шаг 2. Где искать программу</h2>
+        <p>Snatchr не висит на панели задач — он сидит в системном трее (стрелка возле часов):</p>
+        <ul>
+          <li><strong>Левый клик</strong> по иконке — открыть главное окно.</li>
+          <li><strong>Правый клик</strong> — быстрые действия: вставить ссылку из буфера, открыть, выйти.</li>
+          <li>Пока идёт загрузка, иконка крутится; закончилась — выскочит зелёная галочка.</li>
+        </ul>
+
+        <h2>Шаг 3. Spotlight — основной способ качать</h2>
+        <ol>
+          <li>Нажми <strong><code>Ctrl + E</code></strong> в любой программе — поверх всего появится строка в стиле macOS Spotlight.</li>
+          <li>Вставь ссылку (<code>Ctrl + V</code>) — загрузка начнётся сразу, в лучшем качестве, без вопросов.</li>
+          <li>Каждая загрузка — своя строка с прогресс-баром и превью; можно кидать несколько ссылок подряд.</li>
+          <li>Ниже — история всего скачанного (из окна, трея и Spotlight), с источником и разрешением, свежие сверху.</li>
+        </ol>
+        <p>Из строки истории доступны действия:</p>
+        <ul>
+          <li><strong>Копировать</strong> — готовый файл сразу в буфер: вставляй в чат или папку.</li>
+          <li><strong>Обрезать</strong> — открывается фильм-лента с ползунками From/To и превью; результат сохраняется рядом с оригиналом или копируется в буфер.</li>
+        </ul>
+        <p>Горячую клавишу и поведение закрытия можно поменять в настройках.</p>
+
+        <h2>Шаг 4. Тост из буфера обмена</h2>
+        <ol>
+          <li>Включи в настройках <strong>слежение за буфером</strong>.</li>
+          <li>Теперь при копировании поддерживаемой ссылки в углу появится маленький тост «скачать?».</li>
+          <li><strong>Левый клик</strong> по тосту — качает в фоне; <strong>правый</strong> — закрыть.</li>
+          <li>Когда файл готов, тост об успехе по клику открывает его в папке.</li>
+        </ol>
+
+        <h2>Шаг 5. Выбор качества и формата</h2>
+        <ol>
+          <li>Открой главное окно (левый клик по трею) и вставь ссылку.</li>
+          <li>Snatchr покажет доступные разрешения и кодеки в специальном селекторе.</li>
+          <li>Выбери разрешение и качай.</li>
+        </ol>
+        <ul>
+          <li><strong>Пачки и плейлисты</strong> — вставь сразу несколько ссылок или плейлист: окно свернётся и заберёт всё в фоне.</li>
+          <li><strong>Фрагмент по таймкодам</strong> — задай From/To до загрузки, скачается только нужный кусок.</li>
+          <li><strong>Конверт для монтажа</strong> — опция перегоняет ролики YouTube в чистый, дружелюбный к видеоредакторам и соцсетям (Телеграм) MP4.&nbsp;</li>
+        </ul>
+
+        <h2>Шаг 6. Куки: приватный и возрастной контент</h2>
+        <p>Часть контента сайты отдают только залогиненным (возрастные ограничения, приватные посты, подписки). Snatchr умеет использовать логин твоего браузера:</p>
+        <ol>
+          <li>Открой <strong>Настройки → Cookies</strong>.</li>
+          <li>Выбери браузер, из которого читать куки.</li>
+          <li>Качай ссылку как обычно — авторизация подтянется сама.</li>
+        </ol>
+        <ul>
+          <li><strong>Рекомендуется Firefox</strong> — его куки читаются надёжнее всего.</li>
+          <li>Подойдут и не-хромовские браузеры: <strong>Vivaldi</strong>, Opera.</li>
+          <li>Свежие Chrome/Edge/Brave шифруют куки (App-Bound Encryption) — из них чтение обычно не работает.</li>
+        </ul>
+        <div class="callout"><strong>Совет: используй отдельный браузер под куки.</strong>&nbsp;Поставь браузер специально для этого (Firefox или Vivaldi) - войди в нём в аккаунты сервисов, с которых собираешься качать, и больше его не открывай, это обязательное условие для корректной работы программы. Сессии останутся живыми, куки — валидными, а твой основной браузер это никак не заденет.</div>
+
+        <h2>Шаг 7. Темы и мелочи</h2>
+        <ul>
+          <li>В настройках несколько тем: Glass, Dark Glass, Blackout и другие.</li>
+          <li>Скролл инерционный, в стиле macOS; интерфейс автоматически масштабируется под 1080p/1440p и выше.</li>
+          <li>Snatchr обновляется сам (при выходе новой версии вы получите уведомление).</li>
+        </ul>
+      </div>
+
+      <!-- ═══════════ ENGLISH VERSION ═══════════ -->
+      <div class="only-en">
+        <h1>Snatchr: step-by-step guide</h1>
+        <p class="guide-meta">Updated: July 2026 · <a href="https://github.com/smeshidojoe/Snatchr" target="_blank" rel="noopener">Repository</a> · <a href="https://github.com/smeshidojoe/Snatchr/releases/latest" target="_blank" rel="noopener">Download</a></p>
+
+        <h2>Step 1. Installation</h2>
+        <ol>
+          <li>Download the latest <code>.exe</code> from the <a href="https://github.com/smeshidojoe/Snatchr/releases/latest" target="_blank" rel="noopener">Releases</a> page. Requires Windows 10 or newer.</li>
+          <li>Run the installer — the default install path is D/Programs/Snatchr. (due to a few quirks, installing onto drive C may be troublesome; this is a temporary measure)</li>
+          <li>On first launch Snatchr downloads its own backend (<code>yt-dlp</code>, <code>ffmpeg</code>). No Python, no terminal; the app keeps both itself and the backend updated automatically.</li>
+        </ol>
+        <p>Settings, history and backend tools live in <code>C:\Users\&lt;username&gt;\AppData\Roaming\Snatchr</code>.</p>
+
+        <h2>Step 2. Where the app lives</h2>
+        <p>Snatchr doesn't sit on the taskbar — it lives in the system tray (the arrow near the clock):</p>
+        <ul>
+          <li><strong>Left-click</strong> the icon — open the main window.</li>
+          <li><strong>Right-click</strong> — quick actions: paste a link from clipboard, open, exit.</li>
+          <li>While downloading the icon spins; a green check pops when done.</li>
+        </ul>
+
+        <h2>Step 3. Spotlight — the main way to download</h2>
+        <ol>
+          <li>Press <strong><code>Ctrl + E</code></strong> in any app — a macOS Spotlight-style bar appears on top of everything.</li>
+          <li>Paste a link (<code>Ctrl + V</code>) — the download starts immediately, best quality, no dialogs.</li>
+          <li>Each download is its own row with a progress bar and thumbnail; drop several links in a row if you like.</li>
+          <li>Below is the history of everything downloaded (window, tray and Spotlight), with source and resolution, newest first.</li>
+        </ol>
+        <p>Actions available on a history row:</p>
+        <ul>
+          <li><strong>Copy</strong> — the finished file goes straight to the clipboard: paste into a chat or folder.</li>
+          <li><strong>Trim</strong> — a filmstrip opens with From/To sliders and a preview; the result saves next to the original or copies to clipboard.</li>
+        </ul>
+        <p>The hotkey and dismiss behaviour are customizable in Settings.</p>
+
+        <h2>Step 4. Clipboard toast</h2>
+        <ol>
+          <li>Enable <strong>clipboard watching</strong> in Settings.</li>
+          <li>Now copying a supported link pops a small "download this?" toast in the corner.</li>
+          <li><strong>Left-click</strong> the toast — downloads in the background; <strong>right-click</strong> — dismiss.</li>
+          <li>When the file is ready, clicking the success toast reveals it in its folder.</li>
+        </ol>
+
+        <h2>Step 5. Picking quality and format</h2>
+        <ol>
+          <li>Open the main window (left-click the tray icon) and paste a link.</li>
+          <li>Snatchr shows the available resolutions and codecs in a dedicated selector.</li>
+          <li>Pick a resolution and download.</li>
+        </ol>
+        <ul>
+          <li><strong>Batches &amp; playlists</strong> — paste several links or a playlist at once: the window collapses and fetches everything in the background.</li>
+          <li><strong>Section by timecode</strong> — set From/To before downloading to grab just the part you need.</li>
+          <li><strong>Editor-friendly convert</strong> — an option that re-encodes YouTube videos into a clean MP4 that plays nicely with video editors and social apps (Telegram).</li>
+        </ul>
+
+        <h2>Step 6. Cookies: private and age-restricted content</h2>
+        <p>Some content is only served to logged-in users (age restrictions, private posts, subscriptions). Snatchr can use your browser's login:</p>
+        <ol>
+          <li>Open <strong>Settings → Cookies</strong>.</li>
+          <li>Pick the browser to read cookies from.</li>
+          <li>Download as usual — authorization is picked up automatically.</li>
+        </ol>
+        <ul>
+          <li><strong>Firefox is recommended</strong> — its cookies read most reliably.</li>
+          <li>Non-Chrome browsers work too: <strong>Vivaldi</strong>, Opera.</li>
+          <li>Recent Chrome/Edge/Brave encrypt cookies (App-Bound Encryption) — reading from them usually fails.</li>
+        </ul>
+        <div class="callout"><strong>Tip: use a dedicated cookies browser.</strong> Install a browser just for this (Firefox or Vivaldi) — log into the services you plan to download from, then never open it again; this is a requirement for the app to work correctly. Sessions stay alive, cookies stay valid, and your main browser is completely unaffected.</div>
+
+        <h2>Step 7. Themes and extras</h2>
+        <ul>
+          <li>Several themes in Settings: Glass, Dark Glass, Blackout and more.</li>
+          <li>Inertial macOS-style scrolling; the UI auto-scales crisply on 1080p/1440p and beyond.</li>
+          <li>Snatchr updates itself (you'll get a notification when a new version is out).</li>
+        </ul>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> smeshidojoe · <a href="https://github.com/smeshidojoe" target="_blank" rel="noopener">GitHub</a></p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/i18n.js"></script>
+  <script src="../assets/js/admin.js" defer=""></script>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+
+
+</body></html>

@@ -83,6 +83,8 @@
         if (!ok) return;
         const guideLink = document.createElement("a");
         guideLink.href = project.guide;
+        guideLink.target = "_blank";
+        guideLink.rel = "noopener";
         guideLink.className = "guide-btn";
         guideLink.textContent = "📖 " + (window.I18N ? window.I18N.t("card.guideLink") : "Guide");
         // гайд всегда перед «Сайт», даже если приехал позже
