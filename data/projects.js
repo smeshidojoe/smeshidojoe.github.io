@@ -61,23 +61,6 @@ window.PROJECTS = [
     "media": []
   },
   {
-    "name": "CopyPasta",
-    "repo": "https://github.com/smeshidojoe/CopyPasta",
-    "lang": null,
-    "desc_ru": "Быстрая обрезка и склейка видео без перекодирования и потери качества.",
-    "desc_en": "Fast, lossless video trimming and merging. No re-encoding, no quality loss.",
-    "tags": [
-      "video",
-      "tool"
-    ],
-    "cover": "",
-    "banner": "",
-    "guide": "",
-    "about_ru": "CopyPasta — инструмент для быстрой обрезки и склейки видео без перекодирования. Файл не пережимается, поэтому операции занимают секунды, а качество остаётся исходным до последнего бита.",
-    "about_en": "CopyPasta is a tool for fast video trimming and merging without re-encoding. The file is never recompressed, so operations take seconds and quality stays bit-perfect.",
-    "media": []
-  },
-  {
     "name": "NovaBot",
     "repo": "https://github.com/smeshidojoe/NovaBot",
     "lang": "Python",
@@ -127,6 +110,23 @@ window.PROJECTS = [
     "guide": "",
     "about_ru": "EmberBot — Telegram-бот для скачивания медиа, построенный на библиотеке Ember. Кидаешь боту ссылку на пост из соцсети — получаешь медиа прямо в чат.\n\nПоддерживает те же 15 сервисов, что и Ember: TikTok, Twitter/X, Instagram, Reddit, VK, SoundCloud и другие.",
     "about_en": "EmberBot is a Telegram media downloader bot built on the Ember library. Send it a social media post link — get the media right in the chat.\n\nSupports the same 15 services as Ember: TikTok, Twitter/X, Instagram, Reddit, VK, SoundCloud and more.",
+    "media": []
+  },
+  {
+    "name": "CopyPasta",
+    "repo": "https://github.com/smeshidojoe/CopyPasta",
+    "lang": null,
+    "desc_ru": "Быстрая обрезка и склейка видео без перекодирования и потери качества.",
+    "desc_en": "Fast, lossless video trimming and merging. No re-encoding, no quality loss.",
+    "tags": [
+      "video",
+      "tool"
+    ],
+    "cover": "",
+    "banner": "",
+    "guide": "",
+    "about_ru": "CopyPasta — инструмент для быстрой обрезки и склейки видео без перекодирования. Файл не пережимается, поэтому операции занимают секунды, а качество остаётся исходным до последнего бита.",
+    "about_en": "CopyPasta is a tool for fast video trimming and merging without re-encoding. The file is never recompressed, so operations take seconds and quality stays bit-perfect.",
     "media": []
   }
 ];
