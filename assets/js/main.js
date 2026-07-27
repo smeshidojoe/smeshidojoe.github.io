@@ -201,6 +201,16 @@
       repoLink.rel = "noopener";
       repoLink.textContent = (window.I18N ? window.I18N.t("card.repo") : "GitHub") + " ↗";
       links.appendChild(repoLink);
+      let siteLink = null;
+      if (p.site) {
+        siteLink = document.createElement("a");
+        siteLink.href = p.site;
+        siteLink.target = "_blank";
+        siteLink.rel = "noopener";
+        siteLink.className = "site-btn";
+        siteLink.textContent = "🌐 " + (window.I18N ? window.I18N.t("card.siteLink") : "Website");
+        links.appendChild(siteLink);
+      }
       if (p.guide && window.ProjectRender) {
         window.ProjectRender.guideExists(p.guide).then(ok => {
           if (!ok) return;
@@ -208,17 +218,9 @@
           guideLink.href = p.guide;
           guideLink.className = "guide-btn";
           guideLink.textContent = "📖 " + (window.I18N ? window.I18N.t("card.guideLink") : "Guide");
-          links.appendChild(guideLink);
+          // гайд всегда перед «Сайт», даже если приехал позже
+          links.insertBefore(guideLink, siteLink);
         });
-      }
-      if (p.site) {
-        const siteLink = document.createElement("a");
-        siteLink.href = p.site;
-        siteLink.target = "_blank";
-        siteLink.rel = "noopener";
-        siteLink.className = "site-btn";
-        siteLink.textContent = "🌐 " + (window.I18N ? window.I18N.t("card.siteLink") : "Website");
-        links.appendChild(siteLink);
       }
       body.appendChild(links);
       card.appendChild(body);

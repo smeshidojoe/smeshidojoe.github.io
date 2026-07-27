@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy — Ember</title>
+<meta name="description" content="What Ember and this website do and do not collect. Short version: nothing.">
+<link rel="icon" type="image/svg+xml" href="/Ember/assets/logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/Ember/assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a href="/Ember/" class="brand">
+      <img src="/Ember/assets/logo.svg" alt="">
+      Ember <span class="ver">0.9.0</span>
+    </a>
+    <button class="burger" aria-label="Menu">☰</button>
+    <div class="nav-links" id="nav-links">
+      <a href="/Ember/#features">Features</a>
+      <a href="/Ember/#services">Services</a>
+      <a href="/Ember/docs/">Docs</a>
+      <a href="/Ember/#faq">FAQ</a>
+      <a href="/Ember/about/">About</a>
+      <a href="https://github.com/smeshidojoe/Ember" target="_blank" rel="noopener" class="nav-cta">GitHub ↗</a>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap narrow prose">
+  <h1>Privacy</h1>
+  <p class="doc-lead">Short version: the library has no backend, and this page has no analytics.</p>
+
+  <h2>The library</h2>
+  <ul>
+    <li><strong>No telemetry.</strong> Ember never reports usage, URLs, or errors anywhere.</li>
+    <li><strong>No accounts, no API keys.</strong> Nothing to sign up for.</li>
+    <li><strong>Direct requests only.</strong> Traffic goes from your machine to the platform you
+    asked about. There is no intermediary server operated by this project.</li>
+    <li><strong>Local files only.</strong> Downloads, sidecar files and any cache live on your disk.</li>
+  </ul>
+
+  <h2>Cookies read from your browser</h2>
+  <p>
+    When you pass <code>cookies_from_browser</code> or <code>--cookies-from-browser</code>, Ember reads
+    the relevant cookies from the browser profile on your machine and attaches them to requests
+    aimed at that service — so the platform sees your own logged-in session.
+  </p>
+  <ul>
+    <li>Cookies are held in memory for the run and are not written to a log or a file by Ember.</li>
+    <li>They are only sent to the platform the request targets.</li>
+    <li>Nothing is transmitted to the author of this project or to any third party.</li>
+  </ul>
+  <p>
+    Cookies are credentials. If you export them with <code>--cookies-file</code>, treat that file the
+    way you would treat a password.
+  </p>
+
+  <h2>This website</h2>
+  <ul>
+    <li>Static pages hosted on GitHub Pages. No analytics, no tracking pixels, no advertising.</li>
+    <li>No cookies are set by this site, and no personal data is collected or stored.</li>
+    <li>Fonts are loaded from Google Fonts, so that request reaches Google's servers with your IP
+    address and user agent, as with any site using a font CDN.</li>
+    <li>GitHub, as the host, may keep standard server logs. See the
+    <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">GitHub Privacy Statement</a>.</li>
+    <li>Links to GitHub, PyPI and other external sites are governed by their own policies.</li>
+  </ul>
+
+  <h2>Questions</h2>
+  <p>
+    Anything unclear or something you would like changed? Open an issue on
+    <a href="https://github.com/smeshidojoe/Ember/issues" target="_blank" rel="noopener">GitHub</a>.
+  </p>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <a href="/Ember/" class="brand"><img src="/Ember/assets/logo.svg" alt=""> Ember</a>
+    <div class="foot-links">
+      <a href="/Ember/docs/">Documentation</a>
+      <a href="/Ember/about/">About</a>
+      <a href="/Ember/privacy/">Privacy</a>
+      <a href="https://github.com/smeshidojoe/Ember" target="_blank" rel="noopener">GitHub</a>
+      <a href="/">All projects</a>
+    </div>
+    <small>MIT © <span id="y"></span> smeshidojoe</small>
+  </div>
+</footer>
+
+<script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+<script src="/Ember/assets/site.js"></script>
+</body>
+</html>

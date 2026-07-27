@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ember — media extraction for Python</title>
+<meta name="description" content="Ember is an embeddable Python library and CLI that extracts direct media URLs and metadata from 18 social platforms — and downloads them itself, HLS included, without yt-dlp.">
+<meta property="og:title" content="Ember — media extraction for Python">
+<meta property="og:description" content="Direct media URLs + metadata from 18 social platforms. One dependency. Python 3.9+.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="/Ember/assets/logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/Ember/assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a href="/Ember/" class="brand">
+      <img src="/Ember/assets/logo.svg" alt="">
+      Ember <span class="ver">0.9.0</span>
+    </a>
+    <button class="burger" aria-label="Menu">☰</button>
+    <div class="nav-links" id="nav-links">
+      <a href="#features">Features</a>
+      <a href="#services">Services</a>
+      <a href="/Ember/docs/">Docs</a>
+      <a href="#faq">FAQ</a>
+      <a href="/Ember/about/">About</a>
+      <a href="https://github.com/smeshidojoe/Ember" target="_blank" rel="noopener" class="nav-cta">GitHub ↗</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="tagline"><i class="spark"></i> Python 3.9+ · one dependency</span>
+      <h1>Media extraction that <em>burns clean</em>.</h1>
+      <p class="lead">
+        Ember is an embeddable Python library and CLI. Give it a post URL — it returns
+        <strong>direct media URLs and metadata</strong>, and downloads them itself, HLS included.
+      </p>
+      <p class="sub">
+        A compact alternative to cobalt. No yt-dlp requirement, no browser automation,
+        no service you have to keep running. Just <code>requests</code> and a few hundred KB of code.
+      </p>
+      <div class="btn-row">
+        <a href="/Ember/docs/" class="btn btn-primary">Read the docs →</a>
+        <a href="https://github.com/smeshidojoe/Ember" target="_blank" rel="noopener" class="btn btn-ghost">★ Star on GitHub</a>
+      </div>
+      <div class="hero-meta">
+        <span><b>18</b> services</span>
+        <span><b>1</b> required dependency</span>
+        <span><b>MIT</b> licensed</span>
+      </div>
+    </div>
+
+    <div class="code">
+      <div class="code-bar">
+        <span class="dot"></span><span class="name">quickstart.py</span>
+        <button class="copy">copy</button>
+      </div>
+<pre><code><span class="t-kw">import</span> ember
+
+result = ember.<span class="t-fn">extract</span>(<span class="t-str">"https://vimeo.com/76979871"</span>)
+<span class="t-fn">print</span>(result.title, result.author)
+
+<span class="t-com"># direct URLs, ready to hand anywhere</span>
+<span class="t-kw">for</span> m <span class="t-kw">in</span> result.media:
+    <span class="t-fn">print</span>(m.kind, m.quality, m.url)
+
+<span class="t-com"># …or let Ember download it</span>
+paths = ember.<span class="t-fn">download</span>(
+    result, <span class="t-str">"downloads/"</span>,
+    max_height=<span class="t-num">720</span>,
+    concurrency=<span class="t-num">6</span>,
+)</code></pre>
+    </div>
+  </div>
+</header>
+
+<!-- ═══ FEATURES ═══ -->
+<section id="features">
+  <div class="wrap">
+    <p class="eyebrow">01 — What you get</p>
+    <h2>Small surface, serious reach</h2>
+    <p class="section-sub">
+      Ember calls the same internal APIs the sites use in the browser, parses out real media
+      links, and hands them to you as typed objects.
+    </p>
+
+    <div class="features">
+      <div class="feature">
+        <div class="ico">🔗</div>
+        <h3>Links or files — your call</h3>
+        <p><code>extract()</code> gives you direct URLs and metadata. <code>download()</code> pulls the
+        bytes when you want them. Use one, both, or wire the URLs into your own downloader.</p>
+      </div>
+      <div class="feature">
+        <div class="ico">📺</div>
+        <h3>HLS without ceremony</h3>
+        <p>Built-in manifest parser fetches segments in parallel and assembles the file.
+        Single streams need no ffmpeg at all.</p>
+      </div>
+      <div class="feature">
+        <div class="ico">🧩</div>
+        <h3>Embeddable by design</h3>
+        <p>Typed, <code>py.typed</code> shipped, silent logging, one error base class.
+        Drop it into a bot or a service and fall back to yt-dlp when a link isn't supported.</p>
+      </div>
+      <div class="feature">
+        <div class="ico">🍪</div>
+        <h3>Cookies from your browser</h3>
+        <p>Native reader for Firefox on any OS and Chromium-family on Windows —
+        no extra packages. Unlocks private posts and age-gated content.</p>
+      </div>
+      <div class="feature">
+        <div class="ico">🎚️</div>
+        <h3>Quality you choose</h3>
+        <p><code>available_qualities()</code> lists heights, <code>max_height</code> caps them,
+        <code>probe_size()</code> tells you the byte size before a single frame is fetched.</p>
+      </div>
+      <div class="feature">
+        <div class="ico">📚</div>
+        <h3>Playlists and timelines</h3>
+        <p>Pull a whole SoundCloud set, or the latest posts from a profile on nine
+        different platforms, and iterate them like any other result.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ QUICKSTART ═══ -->
+<section id="quickstart" style="padding-top:0">
+  <div class="wrap">
+    <p class="eyebrow">02 — Two ways in</p>
+    <h2>Library or command line</h2>
+    <p class="section-sub">
+      The same engine either way. Install once — <code>import ember</code> and the
+      <code>ember</code> command both become available.
+    </p>
+
+    <div data-tabs>
+      <div class="tabs">
+        <button class="tab active">Python</button>
+        <button class="tab">CLI</button>
+      </div>
+
+      <div class="tab-panel">
+        <div class="code">
+          <div class="code-bar">
+            <span class="dot"></span><span class="name">progress.py</span>
+            <button class="copy">copy</button>
+          </div>
+<pre><code><span class="t-kw">import</span> ember
+
+<span class="t-kw">def</span> <span class="t-fn">on_progress</span>(p: ember.DownloadProgress):
+    <span class="t-kw">if</span> p.fraction <span class="t-kw">is not</span> <span class="t-num">None</span>:
+        <span class="t-fn">print</span>(<span class="t-str">f"{p.fraction*100:.0f}%"</span>)
+
+result = ember.<span class="t-fn">extract</span>(url, cookies_from_browser=<span class="t-str">"firefox"</span>)
+
+ember.<span class="t-fn">download</span>(
+    result, <span class="t-str">"downloads/"</span>,
+    concurrency=<span class="t-num">6</span>,
+    on_progress=on_progress,
+    embed_metadata=<span class="t-num">True</span>,
+)</code></pre>
+        </div>
+      </div>
+
+      <div class="tab-panel" hidden>
+        <div class="code">
+          <div class="code-bar">
+            <span class="dot"></span><span class="name">terminal</span>
+            <button class="copy">copy</button>
+          </div>
+<pre><code><span class="t-com"># show direct links and metadata — nothing is downloaded</span>
+ember <span class="t-str">"https://x.com/user/status/123456789"</span>
+
+<span class="t-com"># -d turns downloading on</span>
+ember <span class="t-flag">-d</span> <span class="t-str">"https://vimeo.com/76979871"</span>
+
+<span class="t-com"># cap quality, 6 parallel HLS segments, custom folder</span>
+ember <span class="t-flag">-d -p</span> downloads <span class="t-flag">--max-height</span> <span class="t-num">720</span> <span class="t-flag">--concurrency</span> <span class="t-num">6</span> <span class="t-str">"&lt;url&gt;"</span>
+
+<span class="t-com"># audio only, metadata written into the file</span>
+ember <span class="t-flag">-d --audio-only --embed-metadata</span> <span class="t-str">"&lt;soundcloud url&gt;"</span>
+
+<span class="t-com"># private / NSFW content via browser cookies</span>
+ember <span class="t-flag">-d --cookies-from-browser</span> firefox <span class="t-str">"&lt;url&gt;"</span></code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SERVICES ═══ -->
+<section id="services" style="padding-top:0">
+  <div class="wrap">
+    <p class="eyebrow">03 — Coverage</p>
+    <h2>18 services, one interface</h2>
+    <p class="section-sub">
+      Every extractor is a small standalone module. Adding a service means adding a file,
+      not rewriting the core.
+    </p>
+
+    <div class="services">
+      <a class="svc" href="/Ember/docs/#services"><i class="d"></i><span>TikTok<small>video, photos, music</small></span></a>
+      <a class="svc warn" href="/Ember/docs/#services"><i class="d"></i><span>Twitter / X<small>NSFW needs cookies</small></span></a>
+      <a class="svc warn" href="/Ember/docs/#services"><i class="d"></i><span>Instagram<small>posts, Reels, Stories</small></span></a>
+      <a class="svc warn" href="/Ember/docs/#services"><i class="d"></i><span>Reddit<small>IP-sensitive</small></span></a>
+      <a class="svc" href="/Ember/docs/#services"><i class="d"></i><span>Vimeo<small>mp4 / HLS</small></span></a>
+      <a class="svc" href="/Ember/docs/#services"><i class="d"></i><span>SoundCloud<small>tracks, sets</small></span></a>
+      <a class="svc" href="/Ember/docs/#services"><i class="d"></i><span>Pinterest<small>video & image pins</small></span></a>
+      <a class="svc" href="/Ember/docs/#services"><i class="d"></i><span>Tumblr<small>video, audio, photos</small></span></a>
+      <a class="svc" href="/Ember/docs/#services"><i class="d"></i><span>Bluesky<small>video, images, GIFs</small></span></a>
+      <a class="svc warn" href="/Ember/docs/#services"><i class="d"></i><span>Newgrounds<small>anti-bot on some IPs</small></span></a>
+      <a class="svc" href="/Ember/docs/#services"><i class="d"></i><span>Rutube<small>HLS</small></span></a>
+      <a class="svc warn" href="/Ember/docs/#services"><i class="d"></i><span>OK.ru<small>IP-sensitive</small></span></a>
+      <a class="svc" href="/Ember/docs/#services"><i class="d"></i><span>VK / VK Video<small>video, clips</small></span></a>
+      <a class="svc warn" href="/Ember/docs/#services"><i class="d"></i><span>Facebook<small>usually needs cookies</small></span></a>
+      <a class="svc" href="/Ember/docs/#services"><i class="d"></i><span>Twitch<small>clips only</small></span></a>
+      <a class="svc" href="/Ember/docs/#services"><i class="d"></i><span>Pornhub<small>age wall handled</small></span></a>
+      <a class="svc" href="/Ember/docs/#services"><i class="d"></i><span>XVideos<small>HLS, mirrors</small></span></a>
+      <a class="svc" href="/Ember/docs/#services"><i class="d"></i><span>RedGifs<small>video</small></span></a>
+    </div>
+
+    <div class="legend">
+      <span><i style="background:var(--ember-hot)"></i> works anonymously</span>
+      <span><i style="background:var(--amber)"></i> may need cookies or a home IP</span>
+      <span>YouTube is out of scope — pair Ember with yt-dlp for it.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ INSTALL ═══ -->
+<section id="install" style="padding-top:0">
+  <div class="wrap">
+    <div class="install">
+      <p class="eyebrow">04 — Install</p>
+      <h2>One line, then you're running</h2>
+      <p class="section-sub">
+        The distribution is named <code style="color:var(--amber)">ember-dl</code>;
+        the import name stays <code style="color:var(--amber)">ember</code>.
+      </p>
+
+      <div class="code">
+        <div class="code-bar">
+          <span class="dot"></span><span class="name">install</span>
+          <button class="copy">copy</button>
+        </div>
+<pre><code>pip install ember-dl</code></pre>
+      </div>
+
+      <div class="req">
+        <span>Python 3.9+</span>
+        <span>requires: requests</span>
+        <span>optional: ffmpeg</span>
+        <span>Windows · macOS · Linux</span>
+      </div>
+
+      <div class="btn-row" style="margin-top:26px">
+        <a href="/Ember/docs/" class="btn btn-primary">Full documentation →</a>
+        <a href="https://github.com/smeshidojoe/Ember/releases/latest" target="_blank" rel="noopener" class="btn btn-ghost">Releases</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FAQ ═══ -->
+<section id="faq" style="padding-top:0">
+  <div class="wrap">
+    <p class="eyebrow">05 — Questions</p>
+    <h2>Frequently asked</h2>
+    <div class="faq">
+      <details open>
+        <summary>How is this different from yt-dlp?</summary>
+        <p>Different job. yt-dlp is an enormous, exhaustive downloader. Ember is a small
+        embeddable extractor for social platforms: it hands you direct URLs and metadata as
+        typed Python objects, with one required dependency. Many projects use both —
+        Ember first, yt-dlp as the fallback for anything it can't parse.</p>
+      </details>
+      <details>
+        <summary>Do I need ffmpeg?</summary>
+        <p>Not usually. Direct mp4 and single-stream HLS assemble without it. You need
+        ffmpeg for muxing separate video+audio tracks (<code>kind="merge"</code>),
+        <code>audio_only</code>, and <code>embed_metadata</code>.</p>
+      </details>
+      <details>
+        <summary>Why does Instagram only give me a preview?</summary>
+        <p>Anonymous requests often return a low-quality preview. Pass cookies —
+        <code>cookies_from_browser="firefox"</code> — and you get full quality. The same applies to
+        NSFW tweets, closed VK groups and most Facebook video.</p>
+      </details>
+      <details>
+        <summary>Some sites return nothing at all.</summary>
+        <p>Reddit, Newgrounds and OK.ru block anonymous requests from datacenter and VPN
+        addresses. They work from a normal home IP, or through <code>proxies=</code> /
+        <code>--proxy</code>.</p>
+      </details>
+      <details>
+        <summary>Which browsers can it read cookies from?</summary>
+        <p>Firefox on any OS works out of the box, as do Chromium-family browsers on Windows
+        such as Vivaldi and Opera. Recent Chrome, Edge and Brave encrypt their cookie store
+        (App-Bound Encryption) and usually cannot be read.</p>
+      </details>
+      <details>
+        <summary>Can I use it in my own bot or app?</summary>
+        <p>That's what it's built for. MIT licensed, typed, silent by default. See the
+        <a href="/Ember/docs/#embedding">embedding pattern</a> in the docs.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <a href="/Ember/" class="brand"><img src="/Ember/assets/logo.svg" alt=""> Ember</a>
+    <div class="foot-links">
+      <a href="/Ember/docs/">Documentation</a>
+      <a href="/Ember/about/">About</a>
+      <a href="/Ember/privacy/">Privacy</a>
+      <a href="https://github.com/smeshidojoe/Ember" target="_blank" rel="noopener">GitHub</a>
+      <a href="/">All projects</a>
+    </div>
+    <small>MIT © <span id="y"></span> smeshidojoe</small>
+  </div>
+</footer>
+
+<script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+<script src="/Ember/assets/site.js"></script>
+</body>
+</html>

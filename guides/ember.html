@@ -38,8 +38,10 @@
         <h2>Шаг 1. Установка</h2>
         <ol>
           <li>Нужен Python 3.9+.</li>
-          <li>Пакета на PyPI нет — ставь из Git:</li>
+          <li>Ставь из PyPI (пакет называется <code>ember-dl</code>, имя импорта остаётся <code>ember</code>):</li>
         </ol>
+        <pre><code>pip install ember-dl</code></pre>
+        <p>Свежая версия прямо из Git:</p>
         <pre><code>pip install git+https://github.com/smeshidojoe/Ember.git</code></pre>
         <p>После установки доступны и Python API (<code>import ember</code>), и команда <code>ember</code> в терминале. Единственная обязательная зависимость — <code>requests</code>.</p>
         <div class="callout">ffmpeg нужен не всегда: прямые mp4 и простые HLS качаются без него. Он требуется для склейки раздельных видео+аудио дорожек, режима «только звук» и вшивания метаданных. Достаточно положить <code>ffmpeg</code> в PATH.</div>
@@ -134,8 +136,10 @@ ember.download(result, out_dir)</code></pre>
         <h2>Step 1. Installation</h2>
         <ol>
           <li>Python 3.9+ required.</li>
-          <li>Not on PyPI — install from Git:</li>
+          <li>Install from PyPI (the distribution is <code>ember-dl</code>, the import name stays <code>ember</code>):</li>
         </ol>
+        <pre><code>pip install ember-dl</code></pre>
+        <p>Latest version straight from Git:</p>
         <pre><code>pip install git+https://github.com/smeshidojoe/Ember.git</code></pre>
         <p>Both the Python API (<code>import ember</code>) and the <code>ember</code> command become available. The only required dependency is <code>requests</code>.</p>
         <div class="callout">ffmpeg is not always needed: direct mp4 and plain HLS download without it. It's required for muxing separate video+audio tracks, audio-only mode and embedding metadata. Just put <code>ffmpeg</code> on PATH.</div>
