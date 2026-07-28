@@ -17,7 +17,7 @@
   <div class="wrap nav-in">
     <a href="/Ember/" class="brand">
       <img src="/Ember/assets/logo.svg" alt="">
-      Ember <span class="ver">0.9.0</span>
+      Ember <span class="ver">0.10.0</span>
     </a>
     <button class="burger" aria-label="Menu">☰</button>
     <div class="nav-links" id="nav-links">
@@ -83,7 +83,7 @@
     <div class="only-en">
     <h1>Documentation</h1>
     <p class="doc-lead">
-      Everything needed to pull media out of 18 social platforms – as a library, as a CLI,
+      Everything needed to pull media out of 19 social platforms – as a library, as a CLI,
       or as a piece of something bigger.
     </p>
 
@@ -159,7 +159,7 @@ ember.<span class="t-fn">supported_services</span>()                  <span clas
           <tr><td>Instagram</td><td>posts, Reels, carousels, Stories, highlights</td><td>anonymously often preview-only; Stories need cookies</td></tr>
           <tr><td>Reddit</td><td>videos, GIFs, images, galleries</td><td>a proxy helps if requests are refused</td></tr>
           <tr><td>Vimeo</td><td>videos (mp4 / HLS)</td><td>–</td></tr>
-          <tr><td>SoundCloud</td><td>tracks, sets</td><td>premium tracks give a 30s preview anonymously</td></tr>
+          <tr><td>SoundCloud</td><td>tracks, sets</td><td>Go+ tracks give a 30s snippet anonymously, marked with <code>is_preview</code></td></tr>
           <tr><td>Pinterest</td><td>video / image pins</td><td>–</td></tr>
           <tr><td>Tumblr</td><td>video, audio, photos</td><td>NPF and legacy formats</td></tr>
           <tr><td>Bluesky</td><td>video (HLS), images, GIFs</td><td>–</td></tr>
@@ -168,10 +168,11 @@ ember.<span class="t-fn">supported_services</span>()                  <span clas
           <tr><td>OK.ru</td><td>videos</td><td>a proxy helps if requests are refused</td></tr>
           <tr><td>VK / VK Video</td><td>videos, clips</td><td>closed groups / private videos need cookies</td></tr>
           <tr><td>Facebook</td><td>videos, Reels</td><td>usually needs cookies</td></tr>
-          <tr><td>Twitch</td><td>clips only</td><td>not VODs or streams</td></tr>
+          <tr><td>Twitch</td><td>clips and VODs</td><td>live streams are not supported</td></tr>
           <tr><td>Pornhub</td><td>videos</td><td>age wall bypassed automatically</td></tr>
           <tr><td>XVideos</td><td>videos (HLS)</td><td>mirror domains supported</td></tr>
           <tr><td>RedGifs</td><td>videos</td><td>–</td></tr>
+          <tr><td>Imgur</td><td>images, GIFs, videos, albums</td><td>–</td></tr>
         </tbody>
       </table>
     </div>
@@ -202,8 +203,14 @@ ember <span class="t-flag">-d --audio-only --embed-metadata</span> <span class="
 <span class="t-com"># a whole playlist / set</span>
 ember <span class="t-flag">-d --playlist</span> <span class="t-str">"https://soundcloud.com/user/sets/name"</span>
 
-<span class="t-com"># links from a file, one per line (# = comment)</span>
-ember <span class="t-flag">-d -a</span> links.txt</code></pre>
+<span class="t-com"># links from a file, one per line (# = comment); fetched in parallel</span>
+ember <span class="t-flag">-d -a</span> links.txt
+
+<span class="t-com"># Instagram story highlights of a profile (needs cookies)</span>
+ember <span class="t-flag">-d --highlights --cookies-from-browser</span> firefox <span class="t-str">"https://www.instagram.com/USER/"</span>
+
+<span class="t-com"># resume a batch politely: keep finished files, cap the speed</span>
+ember <span class="t-flag">-d -a</span> links.txt <span class="t-flag">--skip-existing --rate-limit</span> <span class="t-num">1000000</span></code></pre>
     </div>
     <p>List available qualities and exit without downloading: <code>ember -F "&lt;url&gt;"</code>. Full help: <code>ember --help</code>.</p>
 
@@ -267,8 +274,10 @@ ember <span class="t-flag">--cookies-file</span> cookies.txt <span class="t-str"
     <span class="t-kw">for</span> entry <span class="t-kw">in</span> ember.<span class="t-fn">extract_timeline</span>(url, limit=<span class="t-num">30</span>).entries:
         ember.<span class="t-fn">download</span>(entry, <span class="t-str">"downloads/"</span>)</code></pre>
     </div>
-    <p>Timelines are supported for SoundCloud, VK, Twitch, Tumblr, Rutube, Vimeo, Pinterest,
-    Twitter/X and Instagram. The last two may need cookies or a non-blocked IP.</p>
+    <p>Timelines are supported for Twitter/X, Instagram, Vimeo, SoundCloud, Pinterest, Tumblr,
+    Rutube, VK and Twitch. The first two may need cookies.</p>
+    <p>Instagram profiles also expose their story highlights through
+    <code>extract_highlights()</code> – see the <a href="#api-extract">reference</a>.</p>
 
     <!-- ═══ EMBEDDING ═══ -->
     <h2 id="embedding">Embedding Ember</h2>
@@ -305,35 +314,90 @@ ember <span class="t-flag">--cookies-file</span> cookies.txt <span class="t-str"
       <li><code>session</code> – bring your own <code>requests.Session</code>.</li>
       <li>raises <code>UnsupportedUrlError</code>, <code>NetworkError</code>, <code>ExtractionError</code>.</li>
     </ul>
+    <h3><code>extract_many(urls, *, workers=6, **kwargs) → list[tuple]</code></h3>
+    <p>Extract many links at once, in parallel. Returns <code>[(url, result, error), …]</code> in the
+    same order as the input: on success <code>error</code> is <code>None</code>, on failure
+    <code>result</code> is <code>None</code>. One dead link never stops the batch, and on a mixed
+    batch this is roughly two to three times faster than a loop.</p>
+    <div class="code">
+      <div class="code-bar"><span class="dot"></span><span class="name">batch.py</span><button class="copy">copy</button></div>
+<pre><code><span class="t-kw">for</span> url, res, err <span class="t-kw">in</span> ember.<span class="t-fn">extract_many</span>(links):
+    <span class="t-kw">if</span> err:
+        <span class="t-fn">print</span>(<span class="t-str">"skip"</span>, url, err.reason)
+    <span class="t-kw">else</span>:
+        ember.<span class="t-fn">download</span>(res, <span class="t-str">"downloads/"</span>)</code></pre>
+    </div>
+    <p>Keep <code>workers</code> modest – services rate-limit. The command line uses this
+    automatically for a batch file of plain links.</p>
     <h3><code>extract_playlist(url, **kwargs) → Playlist</code></h3>
     <p>Extract a set or playlist. A single link yields a <code>Playlist</code> with one entry.</p>
     <h3><code>extract_timeline(url, *, limit=30, **kwargs) → Playlist</code></h3>
     <p>List an author's latest posts by profile or channel URL, up to <code>limit</code>.</p>
+    <h3><code>extract_highlights(url, *, limit=30, **kwargs) → Playlist</code></h3>
+    <p>List a profile's story highlights – the pinned covers above the posts – from a profile URL.
+    One entry per highlight, each a <code>"gallery"</code> result holding that collection's stories,
+    with <code>title</code> set to the highlight's name. Instagram only, and it needs account cookies.</p>
+    <div class="code">
+      <div class="code-bar"><span class="dot"></span><span class="name">highlights.py</span><button class="copy">copy</button></div>
+<pre><code>pl = ember.<span class="t-fn">extract_highlights</span>(<span class="t-str">"https://www.instagram.com/USER/"</span>, limit=<span class="t-num">5</span>,
+                              cookies_from_browser=<span class="t-str">"firefox"</span>)
+<span class="t-kw">for</span> entry <span class="t-kw">in</span> pl.entries:
+    <span class="t-fn">print</span>(entry.title, <span class="t-fn">len</span>(entry.media))
+    ember.<span class="t-fn">download</span>(entry, <span class="t-str">"downloads/"</span>)</code></pre>
+    </div>
     <h3><code>can_extract(url) → bool</code></h3>
     <p>True when the URL matches a supported service.</p>
-    <h3><code>supports_playlist(url) → bool</code> · <code>supports_timeline(url) → bool</code></h3>
-    <p>Whether playlist or timeline extraction is available for that URL.</p>
+    <h3><code>supports_playlist(url) → bool</code> · <code>supports_timeline(url) → bool</code> · <code>supports_highlights(url) → bool</code></h3>
+    <p>Whether playlist, timeline or highlight extraction is available for that URL.</p>
     <h3><code>supported_services() → list[str]</code></h3>
     <p>Names of all available services.</p>
 
     <!-- ═══ API: DOWNLOAD ═══ -->
     <h2 id="api-download">API – download</h2>
-    <h3><code>download(result, out_dir=".", *, filename=None, max_height=None, concurrency=1, on_progress=None, audio_only=False, embed_metadata=False, subtitles=False, thumbnail=False, write_info=False) → list[str]</code></h3>
+    <h3><code>download(result, out_dir=".", *, filename=None, max_height=None, concurrency=1, on_progress=None, audio_only=False, embed_metadata=False, subtitles=False, thumbnail=False, write_info=False, skip_existing=False, rate_limit=None) → list[str]</code></h3>
     <p>Download an entire <code>Result</code>. Returns the paths written.</p>
     <ul>
       <li><code>filename</code> – base name without extension (default: from metadata).</li>
       <li><code>max_height</code> – cap quality by height, e.g. <code>720</code>.</li>
-      <li><code>concurrency</code> – parallel HLS segments.</li>
+      <li><code>concurrency</code> – parallel workers: HLS segments for one file, or the items of a
+      gallery. Output order and names stay the same whatever you pass.</li>
       <li><code>on_progress</code> – callback receiving <code>DownloadProgress</code>.</li>
-      <li><code>audio_only</code>, <code>embed_metadata</code> – need ffmpeg.</li>
+      <li><code>audio_only</code>, <code>embed_metadata</code> – need ffmpeg. Metadata is written to
+      video and audio only; photos are left untouched.</li>
       <li><code>subtitles</code>, <code>thumbnail</code>, <code>write_info</code> – extra sidecar files.</li>
+      <li><code>skip_existing</code> – keep a file that is already there and skip the download; its
+      path is still returned, so the result list stays complete.</li>
+      <li><code>rate_limit</code> – cap the total speed in bytes per second, e.g.
+      <code>1_000_000</code> for about 1 MB/s. One budget is shared by every worker, so raising
+      <code>concurrency</code> does not multiply it.</li>
     </ul>
-    <h3><code>download_media(media, out_path, *, max_height=None, concurrency=1, on_progress=None, resume=True, audio_only=False, meta=None) → str</code></h3>
+    <p>A failing item inside a gallery is logged and skipped; a single-media failure raises.</p>
+    <h3><code>download_media(media, out_path, *, max_height=None, concurrency=1, on_progress=None, resume=True, audio_only=False, skip_existing=False, limiter=None, meta=None) → str</code></h3>
     <p>Download a single <code>Media</code>. Returns the actual path – the extension may become <code>.ts</code> when ffmpeg is missing.</p>
-    <h3><code>available_qualities(media) → list[int]</code> · <code>probe_size(media) → int | None</code> · <code>ffmpeg_available() → bool</code></h3>
-    <p>Quality ladder, byte size before downloading, and ffmpeg presence.</p>
-    <h3><code>cookies_from_browser(browser, service=None, profile=None) → dict</code></h3>
-    <p>Read cookies from a browser, optionally limited to one service's domains.</p>
+    <h3><code>RateLimiter(rate)</code></h3>
+    <p>Caps total bytes per second and is safe to share between threads. <code>download()</code>
+    builds one for you from <code>rate_limit</code>; make your own only to hold several
+    <code>download_media()</code> calls to one shared budget.</p>
+    <div class="code">
+      <div class="code-bar"><span class="dot"></span><span class="name">limit.py</span><button class="copy">copy</button></div>
+<pre><code>limiter = ember.<span class="t-fn">RateLimiter</span>(<span class="t-num">500_000</span>)          <span class="t-com"># 500 KB/s for both files</span>
+ember.<span class="t-fn">download_media</span>(a, <span class="t-str">"a.mp4"</span>, limiter=limiter)
+ember.<span class="t-fn">download_media</span>(b, <span class="t-str">"b.mp4"</span>, limiter=limiter)</code></pre>
+    </div>
+    <h3><code>available_qualities(media, *, exclude=(), ascending=False) → list[int]</code></h3>
+    <p>Available heights, highest first. <code>exclude</code> drops the ones your interface hides
+    (heights the media does not have are ignored); <code>ascending</code> flips the order. Any value
+    from the list goes straight back into <code>max_height</code>.</p>
+    <h3><code>probe_size(media) → int | None</code> · <code>ffmpeg_available() → bool</code></h3>
+    <p>Byte size before downloading, and whether ffmpeg is on <code>PATH</code>.</p>
+    <h3><code>cookies_from_browser(browser, service=None, profile=None, domains=None) → dict</code></h3>
+    <p>Read cookies from a browser. <code>service</code> limits them to that service's domains and
+    raises on an unknown name; <code>domains</code> takes explicit domain substrings such as
+    <code>["youtube.com"]</code> and works for sites Ember does not support. It also raises when the
+    browser is running and holding its cookie database open.</p>
+    <h3><code>cookies_from_file(path) → dict</code></h3>
+    <p>Read a Netscape <code>cookies.txt</code> file. <code>extract()</code> takes the path directly
+    too: <code>ember.extract(url, cookies="cookies.txt")</code>.</p>
 
     <!-- ═══ API: MODELS ═══ -->
     <h2 id="api-models">API – data models</h2>
@@ -344,6 +408,9 @@ ember <span class="t-flag">--cookies-file</span> cookies.txt <span class="t-str"
       <li><code>media: list[Media]</code>, <code>subtitles: list[Subtitle]</code>.</li>
       <li><code>title</code>, <code>author</code>, <code>thumbnail</code>, <code>filename_hint</code> – all optional.</li>
       <li><code>duration</code>, <code>timestamp</code>, <code>view_count</code>, <code>like_count</code> – when the service reports them.</li>
+      <li><code>is_preview: bool</code> – true when the site only handed over a shortened version
+      (a SoundCloud Go+ track gives a 30 second snippet). <code>duration</code> then describes the
+      snippet, and <code>full_duration</code> holds the length of the whole thing when it is known.</li>
       <li><code>requires_merge: bool</code> (property), <code>to_dict()</code>.</li>
     </ul>
     <h3><code>Media</code></h3>
@@ -382,6 +449,25 @@ start = time.<span class="t-fn">time</span>()
       <li><code>ExtractionError</code> – the page loaded but no media could be resolved.</li>
     </ul>
 
+    <h3><code>ExtractionError.reason</code></h3>
+    <p>Why it failed, in a form your code can branch on instead of reading the English message.
+    The values live on <code>ember.Reason</code>:</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Reason</th><th>Meaning</th><th>What to do</th></tr></thead>
+        <tbody>
+          <tr><td><code>NEEDS_AUTH</code></td><td>cookies or a login are required</td><td>offer to sign in, pass cookies</td></tr>
+          <tr><td><code>RESTRICTED</code></td><td>age wall, members-only or paid tier</td><td>tell the user access is missing</td></tr>
+          <tr><td><code>DELETED</code></td><td>removed, private, or never existed</td><td>drop the link</td></tr>
+          <tr><td><code>GEOBLOCKED</code></td><td>blocked in this region</td><td>retry through a proxy</td></tr>
+          <tr><td><code>RATE_LIMITED</code></td><td>too many requests</td><td>wait and try again later</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3><code>__version__</code></h3>
+    <p>The installed version as a string – the same value <code>ember --version</code> prints.</p>
+
     <!-- ═══ LOGGING ═══ -->
     <h2 id="api-logging">API – logging</h2>
     <p>Ember logs to the <code>ember</code> logger (children: <code>ember.router</code>, <code>ember.http</code>,
@@ -412,15 +498,21 @@ logging.<span class="t-fn">getLogger</span>(<span class="t-str">"ember"</span>).
           <tr><td><code>--subs</code></td><td>also download subtitle tracks; implies download</td></tr>
           <tr><td><code>--concurrency N</code></td><td>parallel HLS segments (default <code>1</code>)</td></tr>
           <tr><td><code>--embed-metadata</code></td><td>write title/author into the file (needs ffmpeg)</td></tr>
+          <tr><td><code>--skip-existing</code></td><td>keep files that are already on disk instead of downloading them again</td></tr>
+          <tr><td><code>--rate-limit N</code></td><td>cap the total speed in bytes per second, e.g. <code>1000000</code> for about 1 MB/s</td></tr>
+          <tr><td><code>--size</code></td><td>show the file size before downloading (one extra request)</td></tr>
           <tr><td><code>--playlist</code></td><td>treat the URL as a set</td></tr>
           <tr><td><code>--timeline</code></td><td>treat the URL as a profile/channel, list latest posts</td></tr>
-          <tr><td><code>--limit N</code></td><td>max items for <code>--timeline</code> (default <code>30</code>)</td></tr>
+          <tr><td><code>--highlights</code></td><td>treat the URL as a profile and list its story highlights (Instagram, needs cookies)</td></tr>
+          <tr><td><code>--limit N</code></td><td>max items for <code>--timeline</code> / <code>--highlights</code> (default <code>30</code>)</td></tr>
           <tr><td><code>--proxy URL</code></td><td>proxy for all requests, e.g. <code>http://host:port</code></td></tr>
           <tr><td><code>--timeout SEC</code></td><td>per-request timeout (default <code>15</code>)</td></tr>
           <tr><td><code>--cookies "a=1; b=2"</code></td><td>cookies as a string</td></tr>
           <tr><td><code>--cookies-file FILE</code></td><td><code>cookies.txt</code> in Netscape format</td></tr>
           <tr><td><code>--cookies-from-browser B</code></td><td>brave / chrome / chromium / edge / firefox / opera / safari / vivaldi / whale</td></tr>
           <tr><td><code>--browser-profile P</code></td><td>browser profile for the flag above</td></tr>
+          <tr><td><code>--list-services</code></td><td>print the supported services and exit</td></tr>
+          <tr><td><code>--version</code></td><td>print the version and exit</td></tr>
         </tbody>
       </table>
     </div>
@@ -441,7 +533,7 @@ logging.<span class="t-fn">getLogger</span>(<span class="t-str">"ember"</span>).
     <div class="only-ru">
       <h1>Документация</h1>
       <p class="doc-lead">
-        Всё, что нужно, чтобы забирать медиа с 18 сайтов – в коде, в терминале или внутри
+        Всё, что нужно, чтобы забирать медиа с 19 сайтов – в коде, в терминале или внутри
         своего проекта.
       </p>
 
@@ -513,7 +605,7 @@ ember.<span class="t-fn">supported_services</span>()                  <span clas
             <tr><td>Instagram</td><td>посты, Reels, карусели, Stories</td><td>без куки часто только превью</td></tr>
             <tr><td>Reddit</td><td>видео, гифки, картинки, галереи</td><td>если запросы отклоняются, поможет прокси</td></tr>
             <tr><td>Vimeo</td><td>видео</td><td>–</td></tr>
-            <tr><td>SoundCloud</td><td>треки, сборники</td><td>платные треки дают 30 секунд превью</td></tr>
+            <tr><td>SoundCloud</td><td>треки, сборники</td><td>треки Go+ анонимно дают 30 секунд, помечаются <code>is_preview</code></td></tr>
             <tr><td>Pinterest</td><td>видео и картинки</td><td>–</td></tr>
             <tr><td>Tumblr</td><td>видео, аудио, фото</td><td>–</td></tr>
             <tr><td>Bluesky</td><td>видео, картинки, гифки</td><td>–</td></tr>
@@ -522,10 +614,11 @@ ember.<span class="t-fn">supported_services</span>()                  <span clas
             <tr><td>OK.ru</td><td>видео</td><td>если запросы отклоняются, поможет прокси</td></tr>
             <tr><td>VK / VK Видео</td><td>видео, клипы</td><td>для закрытых групп нужны куки</td></tr>
             <tr><td>Facebook</td><td>видео, Reels</td><td>обычно нужны куки</td></tr>
-            <tr><td>Twitch</td><td>клипы</td><td>трансляции и записи не поддерживаются</td></tr>
+            <tr><td>Twitch</td><td>клипы и записи</td><td>прямые трансляции не поддерживаются</td></tr>
             <tr><td>Pornhub</td><td>видео</td><td>возрастной барьер снимается сам</td></tr>
             <tr><td>XVideos</td><td>видео</td><td>зеркала тоже работают</td></tr>
             <tr><td>RedGifs</td><td>видео</td><td>–</td></tr>
+            <tr><td>Imgur</td><td>картинки, GIF, видео, альбомы</td><td>–</td></tr>
           </tbody>
         </table>
       </div>
@@ -555,8 +648,14 @@ ember <span class="t-flag">-d --audio-only --embed-metadata</span> <span class="
 <span class="t-com"># целый плейлист</span>
 ember <span class="t-flag">-d --playlist</span> <span class="t-str">"https://soundcloud.com/user/sets/name"</span>
 
-<span class="t-com"># много ссылок из файла, по одной в строке</span>
-ember <span class="t-flag">-d -a</span> links.txt</code></pre>
+<span class="t-com"># много ссылок из файла, по одной в строке; забираются параллельно</span>
+ember <span class="t-flag">-d -a</span> links.txt
+
+<span class="t-com"># актуальное из профиля Instagram (нужны куки)</span>
+ember <span class="t-flag">-d --highlights --cookies-from-browser</span> firefox <span class="t-str">"https://www.instagram.com/USER/"</span>
+
+<span class="t-com"># продолжить пачку аккуратно: не трогать готовое, ограничить скорость</span>
+ember <span class="t-flag">-d -a</span> links.txt <span class="t-flag">--skip-existing --rate-limit</span> <span class="t-num">1000000</span></code></pre>
       </div>
       <p>Посмотреть доступные размеры и остановиться: <code>ember -F "&lt;url&gt;"</code>. Вся справка: <code>ember --help</code>.</p>
 
@@ -610,7 +709,10 @@ ember <span class="t-flag">--cookies-file</span> cookies.txt <span class="t-str"
     <span class="t-kw">for</span> entry <span class="t-kw">in</span> ember.<span class="t-fn">extract_timeline</span>(url, limit=<span class="t-num">30</span>).entries:
         ember.<span class="t-fn">download</span>(entry, <span class="t-str">"downloads/"</span>)</code></pre>
       </div>
-      <p>Профили работают для SoundCloud, VK, Twitch, Tumblr, Rutube, Vimeo, Pinterest, Twitter/X и Instagram. Последним двум может понадобиться логин.</p>
+      <p>Профили работают для Twitter/X, Instagram, Vimeo, SoundCloud, Pinterest, Tumblr, Rutube,
+      VK и Twitch. Первым двум могут понадобиться куки.</p>
+      <p>У профилей Instagram можно забрать ещё и актуальное – через
+      <code>extract_highlights()</code>, см. <a href="#api-extract">справочник</a>.</p>
 
       <h2>Встроить в свой проект</h2>
       <p>Проверь, поддерживается ли ссылка, забери медиа и поймай единственный тип ошибки.</p>
@@ -643,34 +745,89 @@ ember <span class="t-flag">--cookies-file</span> cookies.txt <span class="t-str"
         <li><code>session</code> – своя <code>requests.Session</code>.</li>
         <li>может выбросить <code>UnsupportedUrlError</code>, <code>NetworkError</code>, <code>ExtractionError</code>.</li>
       </ul>
+      <h3><code>extract_many(urls, *, workers=6, **kwargs) → list[tuple]</code></h3>
+      <p>Забирает сразу много ссылок, параллельно. Возвращает <code>[(url, result, error), …]</code>
+      в том же порядке, что и на входе: при успехе <code>error</code> – <code>None</code>, при ошибке
+      <code>None</code> будет в <code>result</code>. Одна битая ссылка не рушит всю пачку, а на смешанном
+      наборе это в два-три раза быстрее обычного цикла.</p>
+      <div class="code">
+        <div class="code-bar"><span class="dot"></span><span class="name">batch.py</span><button class="copy">copy</button></div>
+<pre><code><span class="t-kw">for</span> url, res, err <span class="t-kw">in</span> ember.<span class="t-fn">extract_many</span>(links):
+    <span class="t-kw">if</span> err:
+        <span class="t-fn">print</span>(<span class="t-str">"пропуск"</span>, url, err.reason)
+    <span class="t-kw">else</span>:
+        ember.<span class="t-fn">download</span>(res, <span class="t-str">"downloads/"</span>)</code></pre>
+      </div>
+      <p>Не задирай <code>workers</code> – сайты ограничивают частоту запросов. В командной строке это
+      включается само для файла со списком обычных ссылок.</p>
       <h3><code>extract_playlist(url, **kwargs) → Playlist</code></h3>
       <p>Забирает весь набор. Одиночная ссылка даст плейлист из одного элемента.</p>
       <h3><code>extract_timeline(url, *, limit=30, **kwargs) → Playlist</code></h3>
       <p>Забирает свежие посты автора, не больше <code>limit</code>.</p>
+      <h3><code>extract_highlights(url, *, limit=30, **kwargs) → Playlist</code></h3>
+      <p>Забирает актуальное из профиля – те самые кружки над постами. Один элемент на каждую
+      подборку, каждый – результат вида <code>"gallery"</code> с историями внутри, а в
+      <code>title</code> лежит название подборки. Только Instagram, и нужны куки аккаунта.</p>
+      <div class="code">
+        <div class="code-bar"><span class="dot"></span><span class="name">highlights.py</span><button class="copy">copy</button></div>
+<pre><code>pl = ember.<span class="t-fn">extract_highlights</span>(<span class="t-str">"https://www.instagram.com/USER/"</span>, limit=<span class="t-num">5</span>,
+                              cookies_from_browser=<span class="t-str">"firefox"</span>)
+<span class="t-kw">for</span> entry <span class="t-kw">in</span> pl.entries:
+    <span class="t-fn">print</span>(entry.title, <span class="t-fn">len</span>(entry.media))
+    ember.<span class="t-fn">download</span>(entry, <span class="t-str">"downloads/"</span>)</code></pre>
+      </div>
       <h3><code>can_extract(url) → bool</code></h3>
       <p>True, если ссылка с поддерживаемого сайта.</p>
-      <h3><code>supports_playlist(url) → bool</code> · <code>supports_timeline(url) → bool</code></h3>
-      <p>Говорит, можно ли забрать по ссылке плейлист или профиль.</p>
+      <h3><code>supports_playlist(url) → bool</code> · <code>supports_timeline(url) → bool</code> · <code>supports_highlights(url) → bool</code></h3>
+      <p>Говорит, можно ли забрать по ссылке плейлист, профиль или актуальное.</p>
       <h3><code>supported_services() → list[str]</code></h3>
       <p>Названия всех поддерживаемых сайтов.</p>
 
       <h2>Скачивание</h2>
-      <h3><code>download(result, out_dir=".", *, filename=None, max_height=None, concurrency=1, on_progress=None, audio_only=False, embed_metadata=False, subtitles=False, thumbnail=False, write_info=False) → list[str]</code></h3>
+      <h3><code>download(result, out_dir=".", *, filename=None, max_height=None, concurrency=1, on_progress=None, audio_only=False, embed_metadata=False, subtitles=False, thumbnail=False, write_info=False, skip_existing=False, rate_limit=None) → list[str]</code></h3>
       <p>Скачивает всё из результата и возвращает пути сохранённых файлов.</p>
       <ul>
         <li><code>filename</code> – имя без расширения (по умолчанию берётся из поста).</li>
         <li><code>max_height</code> – ограничить размер, например <code>720</code>.</li>
-        <li><code>concurrency</code> – сколько частей качать одновременно.</li>
+        <li><code>concurrency</code> – сколько потоков: части одного файла или элементы галереи.
+        Порядок и имена файлов не меняются, какое бы число ты ни поставил.</li>
         <li><code>on_progress</code> – твоя функция, её вызывают по ходу загрузки.</li>
-        <li><code>audio_only</code>, <code>embed_metadata</code> – нужен ffmpeg.</li>
+        <li><code>audio_only</code>, <code>embed_metadata</code> – нужен ffmpeg. Данные пишутся только
+        в видео и аудио, фотографии остаются нетронутыми.</li>
         <li><code>subtitles</code>, <code>thumbnail</code>, <code>write_info</code> – дополнительные файлы рядом с основным.</li>
+        <li><code>skip_existing</code> – если файл уже есть, оставить его и не качать заново; путь всё
+        равно вернётся, так что список результатов остаётся полным.</li>
+        <li><code>rate_limit</code> – ограничить общую скорость в байтах в секунду, например
+        <code>1_000_000</code> – это примерно 1 МБ/с. Лимит один на всю загрузку, поэтому
+        <code>concurrency</code> его не умножает.</li>
       </ul>
-      <h3><code>download_media(media, out_path, *, max_height=None, concurrency=1, on_progress=None, resume=True, audio_only=False, meta=None) → str</code></h3>
+      <p>Сломанный элемент внутри галереи пропускается с записью в лог; ошибка одиночного файла выбрасывается.</p>
+      <h3><code>download_media(media, out_path, *, max_height=None, concurrency=1, on_progress=None, resume=True, audio_only=False, skip_existing=False, limiter=None, meta=None) → str</code></h3>
       <p>Скачивает один файл и возвращает реальный путь. Без ffmpeg расширение может стать <code>.ts</code>.</p>
-      <h3><code>available_qualities(media) → list[int]</code> · <code>probe_size(media) → int | None</code> · <code>ffmpeg_available() → bool</code></h3>
-      <p>Доступные размеры, размер файла до загрузки и наличие ffmpeg.</p>
-      <h3><code>cookies_from_browser(browser, service=None, profile=None) → dict</code></h3>
-      <p>Читает куки из браузера. Можно ограничить одним сайтом.</p>
+      <h3><code>RateLimiter(rate)</code></h3>
+      <p>Ограничивает общую скорость в байтах в секунду, им можно пользоваться из нескольких потоков.
+      <code>download()</code> создаёт его сам из <code>rate_limit</code>; свой нужен только чтобы
+      посадить несколько вызовов <code>download_media()</code> на один общий лимит.</p>
+      <div class="code">
+        <div class="code-bar"><span class="dot"></span><span class="name">limit.py</span><button class="copy">copy</button></div>
+<pre><code>limiter = ember.<span class="t-fn">RateLimiter</span>(<span class="t-num">500_000</span>)          <span class="t-com"># 500 КБ/с на оба файла</span>
+ember.<span class="t-fn">download_media</span>(a, <span class="t-str">"a.mp4"</span>, limiter=limiter)
+ember.<span class="t-fn">download_media</span>(b, <span class="t-str">"b.mp4"</span>, limiter=limiter)</code></pre>
+      </div>
+      <h3><code>available_qualities(media, *, exclude=(), ascending=False) → list[int]</code></h3>
+      <p>Доступные размеры, от большего к меньшему. <code>exclude</code> убирает те, которые ты
+      прячешь в своём интерфейсе (размеры, которых нет, просто игнорируются), <code>ascending</code>
+      переворачивает порядок. Любое значение из списка можно сразу отдать в <code>max_height</code>.</p>
+      <h3><code>probe_size(media) → int | None</code> · <code>ffmpeg_available() → bool</code></h3>
+      <p>Размер файла до загрузки и наличие ffmpeg в <code>PATH</code>.</p>
+      <h3><code>cookies_from_browser(browser, service=None, profile=None, domains=None) → dict</code></h3>
+      <p>Читает куки из браузера. <code>service</code> ограничивает их доменами этого сайта и падает с
+      ошибкой на незнакомом имени; <code>domains</code> принимает домены явно, например
+      <code>["youtube.com"]</code>, и работает даже для сайтов, которые Ember не поддерживает. Ошибка
+      будет и если браузер запущен и держит базу куки занятой.</p>
+      <h3><code>cookies_from_file(path) → dict</code></h3>
+      <p>Читает файл <code>cookies.txt</code> в формате Netscape. Путь можно отдать и прямо в
+      <code>extract()</code>: <code>ember.extract(url, cookies="cookies.txt")</code>.</p>
 
       <h2>Что приходит в ответ</h2>
       <h3><code>Result</code></h3>
@@ -680,6 +837,9 @@ ember <span class="t-flag">--cookies-file</span> cookies.txt <span class="t-str"
         <li><code>media</code> – список файлов. <code>subtitles</code> – дорожки субтитров.</li>
         <li><code>title</code>, <code>author</code>, <code>thumbnail</code>, <code>filename_hint</code> – могут быть пустыми.</li>
         <li><code>duration</code>, <code>timestamp</code>, <code>view_count</code>, <code>like_count</code> – если сайт их отдаёт.</li>
+        <li><code>is_preview</code> – правда, когда сайт отдал только укороченную версию (трек
+        SoundCloud Go+ даёт 30 секунд). Тогда <code>duration</code> – длина отрывка, а в
+        <code>full_duration</code> лежит длина целого, если она известна.</li>
         <li><code>requires_merge</code>, <code>to_dict()</code>.</li>
       </ul>
       <h3><code>Media</code></h3>
@@ -714,6 +874,25 @@ start = time.<span class="t-fn">time</span>()
         <li><code>ExtractionError</code> – страница открылась, но медиа не нашлось.</li>
       </ul>
 
+      <h3><code>ExtractionError.reason</code></h3>
+      <p>Причина в виде значения, по которому можно ветвиться в коде, вместо разбора английского
+      текста. Значения лежат в <code>ember.Reason</code>:</p>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Причина</th><th>Что значит</th><th>Что делать</th></tr></thead>
+          <tbody>
+            <tr><td><code>NEEDS_AUTH</code></td><td>нужны куки или вход в аккаунт</td><td>предложить войти, передать куки</td></tr>
+            <tr><td><code>RESTRICTED</code></td><td>18+, только для подписчиков или платное</td><td>сказать пользователю, что доступа нет</td></tr>
+            <tr><td><code>DELETED</code></td><td>удалено, закрыто или не существовало</td><td>выбросить ссылку</td></tr>
+            <tr><td><code>GEOBLOCKED</code></td><td>заблокировано в этом регионе</td><td>попробовать через прокси</td></tr>
+            <tr><td><code>RATE_LIMITED</code></td><td>слишком много запросов</td><td>подождать и повторить позже</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3><code>__version__</code></h3>
+      <p>Установленная версия строкой – то же самое, что печатает <code>ember --version</code>.</p>
+
       <h2>Логи</h2>
       <p>По умолчанию Ember молчит. Включи сообщения, когда они нужны:</p>
       <div class="code">
@@ -741,15 +920,21 @@ logging.<span class="t-fn">getLogger</span>(<span class="t-str">"ember"</span>).
             <tr><td><code>--subs</code></td><td>скачать ещё и субтитры</td></tr>
             <tr><td><code>--concurrency N</code></td><td>сколько частей качать сразу (по умолчанию <code>1</code>)</td></tr>
             <tr><td><code>--embed-metadata</code></td><td>записать название и автора в файл (нужен ffmpeg)</td></tr>
+            <tr><td><code>--skip-existing</code></td><td>оставить файлы, которые уже есть на диске, и не качать их заново</td></tr>
+            <tr><td><code>--rate-limit N</code></td><td>ограничить общую скорость в байтах в секунду, например <code>1000000</code> – это примерно 1 МБ/с</td></tr>
+            <tr><td><code>--size</code></td><td>показать размер файла до загрузки (один лишний запрос)</td></tr>
             <tr><td><code>--playlist</code></td><td>считать ссылку плейлистом</td></tr>
             <tr><td><code>--timeline</code></td><td>считать ссылку профилем и взять свежие посты</td></tr>
-            <tr><td><code>--limit N</code></td><td>сколько постов взять (по умолчанию <code>30</code>)</td></tr>
+            <tr><td><code>--highlights</code></td><td>считать ссылку профилем и взять актуальное (Instagram, нужны куки)</td></tr>
+            <tr><td><code>--limit N</code></td><td>сколько элементов взять для <code>--timeline</code> и <code>--highlights</code> (по умолчанию <code>30</code>)</td></tr>
             <tr><td><code>--proxy URL</code></td><td>использовать прокси, например <code>http://host:port</code></td></tr>
             <tr><td><code>--timeout SEC</code></td><td>сколько ждать один запрос (по умолчанию <code>15</code>)</td></tr>
             <tr><td><code>--cookies "a=1; b=2"</code></td><td>куки текстом</td></tr>
             <tr><td><code>--cookies-file FILE</code></td><td>куки из файла <code>cookies.txt</code></td></tr>
             <tr><td><code>--cookies-from-browser B</code></td><td>brave / chrome / chromium / edge / firefox / opera / safari / vivaldi / whale</td></tr>
             <tr><td><code>--browser-profile P</code></td><td>какой профиль браузера читать</td></tr>
+            <tr><td><code>--list-services</code></td><td>напечатать список поддерживаемых сайтов и выйти</td></tr>
+            <tr><td><code>--version</code></td><td>напечатать версию и выйти</td></tr>
           </tbody>
         </table>
       </div>

@@ -22,6 +22,19 @@
     applyLang(next);
   });
 
+  /* ── version badge: read the current release from PyPI ──
+     The number in the HTML is the fallback if PyPI is unreachable. */
+  const verEls = document.querySelectorAll(".ver");
+  if (verEls.length) {
+    fetch("https://pypi.org/pypi/ember-dl/json")
+      .then(r => (r.ok ? r.json() : null))
+      .then(d => {
+        const v = d && d.info && d.info.version;
+        if (v) verEls.forEach(el => { el.textContent = v; });
+      })
+      .catch(() => { /* offline: keep the fallback number */ });
+  }
+
   /* ── mobile nav ── */
   const burger = document.querySelector(".burger");
   const links = document.getElementById("nav-links");
