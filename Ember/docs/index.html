@@ -17,7 +17,7 @@
   <div class="wrap nav-in">
     <a href="/Ember/" class="brand">
       <img src="/Ember/assets/logo.svg" alt="">
-      Ember <span class="ver">0.10.0</span>
+      Ember <span class="ver">0.10.2</span>
     </a>
     <button class="burger" aria-label="Menu">☰</button>
     <div class="nav-links" id="nav-links">
@@ -253,11 +253,21 @@ ember <span class="t-flag">--cookies-file</span> cookies.txt <span class="t-str"
       <li><strong>Vivaldi, Opera</strong> and other non-Chrome Chromium browsers on Windows also work.</li>
       <li>Recent <strong>Chrome, Edge, Brave</strong> encrypt their cookie store (App-Bound Encryption) and usually cannot be read.</li>
     </ul>
-    <div class="note warn"><b>Tip – keep a dedicated cookies browser.</b> Install a browser you don't
-    otherwise use, sign in to the services you plan to pull from, then leave it closed. The sessions
-    stay valid, and your main browser is never touched.</div>
-    <p>Pick a profile with <code>browser_profile=</code> / <code>--browser-profile</code>. The reader is
-    native and needs no extra packages.</p>
+    <div class="note warn"><b>Use a throwaway account, not your main one.</b> Sites count requests
+    per account, and pulling media in bulk looks like automation. Instagram is the strictest: past a
+    certain number of requests it starts refusing everything for that account, and Ember can then only
+    return the post's cover image. The limit follows the account, not your computer, so a second login
+    keeps working while the first one recovers – usually within a day. An account throttled again and
+    again can be restricted for good, so keep a separate one for this.</div>
+    <div class="note"><b>Keep it in its own browser or profile.</b> Install a browser you don't
+    otherwise use – or make a second profile – sign the throwaway account in there, then leave it
+    closed. Your own login is never touched, and you can point Ember straight at that profile:</div>
+    <div class="code">
+      <div class="code-bar"><span class="dot"></span><span class="name">profile.py</span><button class="copy">copy</button></div>
+<pre><code>ember.<span class="t-fn">extract</span>(url, cookies_from_browser=<span class="t-str">"firefox"</span>, browser_profile=<span class="t-str">"scraper"</span>)</code></pre>
+    </div>
+    <p>On the command line the same thing is <code>--browser-profile</code>. The reader is native and
+    needs no extra packages.</p>
 
     <!-- ═══ PLAYLISTS ═══ -->
     <h2 id="playlists">Playlists &amp; timelines</h2>
@@ -520,6 +530,8 @@ logging.<span class="t-fn">getLogger</span>(<span class="t-str">"ember"</span>).
     <!-- ═══ LIMITS ═══ -->
     <h2 id="limits">Limitations</h2>
     <ul>
+      <li><strong>Cookies belong to a throwaway account.</strong> Limits and bans are counted per
+      account, and Instagram is the strictest about it – see the <a href="#cookies">cookies</a> section.</li>
       <li><strong>Instagram</strong> – without cookies you often get only a preview; with cookies, full quality.</li>
       <li><strong>Reddit, Newgrounds, OK.ru</strong> – sometimes refuse requests; <code>proxies=</code> / <code>--proxy</code> helps.</li>
       <li><strong>Facebook</strong> – public video usually still needs cookies.</li>
@@ -693,8 +705,21 @@ ember <span class="t-flag">--cookies-file</span> cookies.txt <span class="t-str"
         <li><strong>Vivaldi, Opera</strong> и другие браузеры на Chromium под Windows тоже подойдут.</li>
         <li>Новые <strong>Chrome, Edge, Brave</strong> закрывают свои данные, поэтому обычно не работают.</li>
       </ul>
-      <div class="note warn"><b>Совет: держи для этого отдельный браузер.</b> Поставь браузер, которым больше нигде не пользуешься, войди в аккаунты нужных сайтов и просто не открывай его. Логины останутся живыми, а основной браузер это не заденет.</div>
-      <p>Выбрать профиль можно через <code>browser_profile=</code> или <code>--browser-profile</code>.</p>
+      <div class="note warn"><b>Заведи отдельный аккаунт, не используй основной.</b> Сайты считают
+      запросы по аккаунту, а массовая выгрузка медиа выглядит как работа робота. Строже всех Instagram:
+      после некоторого числа запросов он начинает отказывать этому аккаунту во всём, и Ember сможет
+      вернуть только картинку-обложку поста. Ограничение привязано к аккаунту, а не к компьютеру,
+      поэтому второй логин продолжит работать, пока первый отходит – обычно за сутки. Аккаунт, который
+      ограничивают снова и снова, могут закрыть навсегда, так что держи для этого отдельный.</div>
+      <div class="note"><b>Держи его в отдельном браузере или профиле.</b> Поставь браузер, которым
+      больше нигде не пользуешься, или заведи второй профиль, войди там в этот аккаунт и просто не
+      открывай его. Твой собственный логин остаётся нетронутым, а Ember можно направить прямо на этот
+      профиль:</div>
+      <div class="code">
+        <div class="code-bar"><span class="dot"></span><span class="name">profile.py</span><button class="copy">copy</button></div>
+<pre><code>ember.<span class="t-fn">extract</span>(url, cookies_from_browser=<span class="t-str">"firefox"</span>, browser_profile=<span class="t-str">"scraper"</span>)</code></pre>
+      </div>
+      <p>В командной строке это <code>--browser-profile</code>.</p>
 
       <h2>Плейлисты и профили</h2>
       <p>Плейлист – это набор треков. Профиль даёт свежие посты одного автора.</p>
@@ -941,6 +966,8 @@ logging.<span class="t-fn">getLogger</span>(<span class="t-str">"ember"</span>).
 
       <h2>Ограничения</h2>
       <ul>
+        <li><strong>Куки должны быть от отдельного аккаунта.</strong> Лимиты и баны считаются по
+        аккаунту, и строже всех тут Instagram – подробности в разделе про <a href="#cookies">куки</a>.</li>
         <li><strong>Instagram</strong> – без куки часто приходит только маленькое превью.</li>
         <li><strong>Reddit, Newgrounds, OK.ru</strong> – иногда отклоняют запросы; поможет прокси.</li>
         <li><strong>Facebook</strong> – даже публичному видео обычно нужны куки.</li>
