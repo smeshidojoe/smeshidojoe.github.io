@@ -52,7 +52,10 @@ body {
   font-size: 16px;
   line-height: 1.65;
   min-height: 100vh;
+  /* clip, а не hidden: hidden делает body контейнером прокрутки, и Firefox
+     из-за этого может считать анимацию в основном потоке вместо GPU. */
   overflow-x: hidden;
+  overflow-x: clip;
   background-image:
     radial-gradient(70% 44% at 50% -6%, rgba(56, 189, 248, 0.22), transparent 70%),
     radial-gradient(46% 32% at 92% 6%, rgba(37, 99, 235, 0.14), transparent 72%);
