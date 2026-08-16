@@ -42,25 +42,6 @@ window.PROJECTS = [
     "media": []
   },
   {
-    "name": "Foldr",
-    "repo": "https://github.com/smeshidojoe/Foldr",
-    "lang": null,
-    "desc_ru": "Тихий органайзер файлов в трее: сам раскладывает загрузки по папкам по твоим правилам.",
-    "desc_en": "A quiet file organizer in the tray: sorts your downloads into folders by your rules.",
-    "tags": [
-      "Windows",
-      "tray",
-      "organizer"
-    ],
-    "cover": "",
-    "banner": "",
-    "guide": "",
-    "site": "/Foldr/",
-    "about_ru": "Foldr — незаметный органайзер файлов, который живёт в системном трее и держит папку «Загрузки» (и любые другие папки) в порядке автоматически. Работает тихо в фоне: следит за выбранными папками и перемещает, переименовывает и сортирует файлы по настраиваемым правилам.\n\nКартинки — в Images, документы — в Documents, архивы — в Archives, установщики — в Installers, а для всего остального — правило-ловушка. Правила можно писать свои: расширения, шаблоны, папки назначения.\n\nСтраница проекта заполняется — подробности скоро.",
-    "about_en": "Foldr is an unobtrusive file organizer that lives in the system tray and keeps your Downloads folder (and any other folders) tidy automatically. It runs quietly in the background, watching selected folders and moving, renaming and sorting files by customizable rules.\n\nImages go to Images, documents to Documents, archives to Archives, installers to Installers, and a catch-all rule handles the rest. You can write your own rules: extensions, patterns, destination folders.\n\nProject page is a work in progress — details soon.",
-    "media": []
-  },
-  {
     "name": "NovaBot",
     "repo": "https://github.com/smeshidojoe/NovaBot",
     "lang": "Python",
