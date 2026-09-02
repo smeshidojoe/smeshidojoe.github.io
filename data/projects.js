@@ -111,5 +111,25 @@ window.PROJECTS = [
     "about_ru": "CopyPasta — инструмент для быстрой обрезки и склейки видео без перекодирования. Файл не пережимается, поэтому операции занимают секунды, а качество остаётся исходным до последнего бита.",
     "about_en": "CopyPasta is a tool for fast video trimming and merging without re-encoding. The file is never recompressed, so operations take seconds and quality stays bit-perfect.",
     "media": []
+  },
+  {
+    "name": "Knack",
+    "repo": "https://github.com/smeshidojoe/Knack",
+    "lang": null,
+    "desc_ru": "Приложение, которое облегчает ваши повседневные задачи",
+    "desc_en": "An app that makes your daily tasks easier",
+    "tags": [
+      "Windows",
+      "tray",
+      "organizer",
+      "media"
+    ],
+    "banner": "",
+    "cover": "assets/media/knack/cover.png",
+    "guide": "",
+    "site": "",
+    "about_ru": "",
+    "about_en": "",
+    "media": []
   }
 ];
