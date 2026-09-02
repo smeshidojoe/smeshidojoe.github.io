@@ -96,23 +96,6 @@ window.PROJECTS = [
     "media": []
   },
   {
-    "name": "EmberBot",
-    "repo": "https://github.com/smeshidojoe/EmberBot",
-    "lang": "Python",
-    "desc_ru": "Telegram-бот для скачивания медиа на базе библиотеки Ember.",
-    "desc_en": "Telegram media downloader bot based on the Ember library.",
-    "tags": [
-      "Telegram",
-      "bot"
-    ],
-    "cover": "",
-    "banner": "",
-    "guide": "",
-    "about_ru": "EmberBot — Telegram-бот для скачивания медиа, построенный на библиотеке Ember. Кидаешь боту ссылку на пост из соцсети — получаешь медиа прямо в чат.\n\nПоддерживает те же 15 сервисов, что и Ember: TikTok, Twitter/X, Instagram, Reddit, VK, SoundCloud и другие.",
-    "about_en": "EmberBot is a Telegram media downloader bot built on the Ember library. Send it a social media post link — get the media right in the chat.\n\nSupports the same 15 services as Ember: TikTok, Twitter/X, Instagram, Reddit, VK, SoundCloud and more.",
-    "media": []
-  },
-  {
     "name": "CopyPasta",
     "repo": "https://github.com/smeshidojoe/CopyPasta",
     "lang": null,
