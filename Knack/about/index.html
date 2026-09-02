@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-en="About – Knack" data-ru="О программе – Knack">About – Knack</title>
+<meta name="description" content="What Knack is, where the idea came from, and how it behaves on your machine.">
+<link rel="icon" type="image/svg+xml" href="/Knack/assets/logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/Knack/assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a href="/Knack/" class="brand">
+      <img src="/Knack/assets/logo.svg" alt="">
+      Knack
+    </a>
+    <button class="burger" aria-label="Menu">☰</button>
+    <div class="nav-links" id="nav-links">
+      <a href="/Knack/#tabs"><span class="only-en">Tabs</span><span class="only-ru">Вкладки</span></a>
+      <a href="/Knack/#faq"><span class="only-en">FAQ</span><span class="only-ru">Вопросы</span></a>
+      <a href="/Knack/guide/"><span class="only-en">Guide</span><span class="only-ru">Гайд</span></a>
+      <a href="https://github.com/smeshidojoe/Knack/issues" target="_blank" rel="noopener">Issues</a>
+      <a href="/Knack/about/" class="active"><span class="only-en">About</span><span class="only-ru">О программе</span></a>
+      <a href="/Knack/#download" class="nav-cta"><span class="only-en">Download</span><span class="only-ru">Скачать</span></a>
+      <button class="lang-btn" title="Switch language">RU</button>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap narrow prose">
+  <div class="only-en">
+    <h1>About Knack</h1>
+    <p class="lead-p">A strip of small things that live at the edge of the screen instead of in your way.</p>
+
+    <h2>Why it exists</h2>
+    <p>
+      Half the things you touch during a day are tiny: pause the music, find that address you copied
+      ten minutes ago, drop a screenshot into a chat, jot down a thought, translate a line. Each one
+      is a window to open, a program to find, a train of thought to lose.
+    </p>
+    <p>
+      Knack puts all of them in one strip at the edge of the screen. It is there when you reach for
+      it and gone when you do not — no window on the taskbar, no icon in your way.
+    </p>
+    <p>
+      The idea and the layout are inspired by
+      <a href="https://github.com/akalikbergenov/cyclop" target="_blank" rel="noopener">cyclop</a>,
+      where the panel hides in the MacBook notch. Here it slides out of whichever screen edge is free.
+    </p>
+
+    <h2>How it behaves</h2>
+    <ul>
+      <li><b>It does not interrupt.</b> The panel never takes focus from the program you are working
+      in, so it cannot swallow a keystroke. Focus moves only on tabs with a field you clicked into.</li>
+      <li><b>It costs nothing when closed.</b> While the panel is hidden, not a single timer is
+      running. The clipboard is watched through a system event rather than by polling it.</li>
+      <li><b>It follows your screen.</b> Animations run at the refresh rate of your monitor rather
+      than a fixed 60 frames, and the layout is scaled from the screen height, so it looks right on
+      1080p and on 4K alike.</li>
+    </ul>
+
+    <h2>What Knack does not do</h2>
+    <ul>
+      <li><b>It is not a service.</b> No account, no sign-up, no server of ours anywhere.</li>
+      <li><b>It does not collect anything.</b> Your clipboard, notes, tasks and files stay on your
+      own disk and are never sent anywhere.</li>
+      <li><b>It does not touch windows running as administrator.</b> Neither the layout fix nor
+      always-on-top reaches them — that is a Windows restriction every tool of this kind shares.</li>
+    </ul>
+
+    <h2>Where your data lives</h2>
+    <p>
+      Everything sits in one folder inside your user profile: settings, clipboard history, the shelf
+      and its files, snippets, notes, tasks, translator models and the log. Delete the folder and
+      Knack starts fresh; back it up and you carry everything to another machine.
+    </p>
+    <p>
+      Knack reaches the network in four cases only: checking GitHub for an update, downloading a
+      translator model, fetching ffmpeg for video previews, and DeepL if you entered a key yourself.
+    </p>
+
+    <h2>The project</h2>
+    <p>
+      Free and open source under the MIT licence, made by
+      <a href="https://github.com/smeshidojoe" target="_blank" rel="noopener">smeshidojoe</a>.
+      Bugs and ideas are welcome on
+      <a href="https://github.com/smeshidojoe/Knack/issues" target="_blank" rel="noopener">GitHub</a>.
+    </p>
+    <p>Other projects live on the <a href="/">main site</a>.</p>
+  </div>
+
+  <div class="only-ru">
+    <h1>О программе</h1>
+    <p class="lead-p">Полоса мелких вещей, которая живёт у края экрана, а не под руками.</p>
+
+    <h2>Зачем она нужна</h2>
+    <p>
+      Половина того, к чему тянешься за день, — мелочи: поставить музыку на паузу, найти адрес,
+      скопированный десять минут назад, кинуть скриншот в чат, записать мысль, перевести строчку.
+      И каждый раз это окно, которое надо открыть, программа, которую надо найти, и потерянная мысль.
+    </p>
+    <p>
+      Knack собирает всё это в одну полосу у края экрана. Она есть, когда за ней тянешься, и её нет,
+      когда не тянешься: ни окна на панели задач, ни иконки под руками.
+    </p>
+    <p>
+      Идея и раскладка навеяны
+      <a href="https://github.com/akalikbergenov/cyclop" target="_blank" rel="noopener">cyclop</a>,
+      где панель прячется в вырезе MacBook. Здесь она выезжает с того края экрана, который свободен.
+    </p>
+
+    <h2>Как она себя ведёт</h2>
+    <ul>
+      <li><b>Не перебивает.</b> Панель не забирает фокус у программы, в которой работаешь, поэтому не
+      может проглотить нажатие. Фокус переходит только на вкладках, где сам кликнул в поле.</li>
+      <li><b>Ничего не стоит, пока закрыта.</b> Пока панель спрятана, не работает ни один таймер.
+      За буфером обмена она следит через системное событие, а не опросом.</li>
+      <li><b>Подстраивается под экран.</b> Анимации идут с частотой твоего монитора, а не
+      фиксированными 60 кадрами, а раскладка масштабируется от высоты экрана — и на 1080p, и на 4K
+      выглядит как надо.</li>
+    </ul>
+
+    <h2>Чего Knack не делает</h2>
+    <ul>
+      <li><b>Это не сервис.</b> Ни аккаунта, ни регистрации, ни нашего сервера где-либо.</li>
+      <li><b>Он ничего не собирает.</b> Буфер, заметки, задачи и файлы остаются на твоём диске и
+      никуда не отправляются.</li>
+      <li><b>Он не трогает окна, запущенные от администратора.</b> Ни исправление раскладки, ни режим
+      поверх всех окон до них не дотягиваются — это ограничение Windows, общее для всех таких
+      программ.</li>
+    </ul>
+
+    <h2>Где лежат данные</h2>
+    <p>
+      Всё в одной папке внутри твоего профиля: настройки, история буфера, полка и её файлы,
+      заготовки, заметки, задачи, модели переводчика и лог. Удалишь папку — Knack начнёт с чистого
+      листа; сохранишь — перенесёшь всё на другой компьютер.
+    </p>
+    <p>
+      В сеть Knack выходит только в четырёх случаях: проверить обновление на GitHub, скачать модель
+      переводчика, забрать ffmpeg для превью видео и DeepL, если ты сам ввёл ключ.
+    </p>
+
+    <h2>Об авторе</h2>
+    <p>
+      Бесплатно, с открытым кодом по лицензии MIT. Автор —
+      <a href="https://github.com/smeshidojoe" target="_blank" rel="noopener">smeshidojoe</a>.
+      Баги и идеи — в
+      <a href="https://github.com/smeshidojoe/Knack/issues" target="_blank" rel="noopener">issues на GitHub</a>.
+    </p>
+    <p>Другие проекты — на <a href="/">главном сайте</a>.</p>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <a href="/Knack/" class="brand"><img src="/Knack/assets/logo.svg" alt=""> Knack</a>
+    <div class="foot-links">
+      <a href="/Knack/guide/"><span class="only-en">Guide</span><span class="only-ru">Гайд</span></a>
+      <a href="/Knack/about/"><span class="only-en">About</span><span class="only-ru">О программе</span></a>
+      <a href="/Knack/privacy/"><span class="only-en">Privacy</span><span class="only-ru">Приватность</span></a>
+      <a href="https://github.com/smeshidojoe/Knack/issues" target="_blank" rel="noopener">Issues</a>
+      <a href="https://github.com/smeshidojoe/Knack" target="_blank" rel="noopener">GitHub</a>
+      <a href="/"><span class="only-en">All projects</span><span class="only-ru">Все проекты</span></a>
+    </div>
+    <small>MIT © <span id="y"></span> smeshidojoe</small>
+  </div>
+</footer>
+
+<script src="/Knack/assets/site.js"></script>
+</body>
+</html>

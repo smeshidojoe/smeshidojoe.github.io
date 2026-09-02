@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-en="Knack – everything you reach for, at the edge of the screen" data-ru="Knack – всё, за чем тянешься, у края экрана">Knack – everything you reach for, at the edge of the screen</title>
+<meta name="description" content="A sliding panel for Windows. Move the pointer to the edge of the screen and a strip slides out with music, a shelf, clipboard history, snippets, notes, a todo list and a translator.">
+<meta property="og:title" content="Knack – everything you reach for, at the edge of the screen">
+<meta property="og:description" content="A sliding panel for Windows: music, shelf, clipboard, snippets, notes, todo and a translator.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="/Knack/assets/logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/Knack/assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a href="/Knack/" class="brand">
+      <img src="/Knack/assets/logo.svg" alt="">
+      Knack
+    </a>
+    <button class="burger" aria-label="Menu">☰</button>
+    <div class="nav-links" id="nav-links">
+      <a href="#tabs"><span class="only-en">Tabs</span><span class="only-ru">Вкладки</span></a>
+      <a href="#faq"><span class="only-en">FAQ</span><span class="only-ru">Вопросы</span></a>
+      <a href="/Knack/guide/"><span class="only-en">Guide</span><span class="only-ru">Гайд</span></a>
+      <a href="https://github.com/smeshidojoe/Knack/issues" target="_blank" rel="noopener">Issues</a>
+      <a href="/Knack/about/"><span class="only-en">About</span><span class="only-ru">О программе</span></a>
+      <a href="#download" class="nav-cta"><span class="only-en">Download</span><span class="only-ru">Скачать</span></a>
+      <button class="lang-btn" title="Switch language">RU</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<header class="hero">
+  <div class="wrap">
+    <img src="/Knack/assets/logo.svg" alt="Knack" class="hero-logo" width="84" height="84">
+
+    <div class="only-en">
+      <h1>Knack</h1>
+      <p class="lead">
+        Everything you reach for, at the edge of the screen. Push the pointer into the edge and a
+        panel slides out with your music, a shelf, clipboard history, snippets, notes, a todo list
+        and a translator. Move away and it slides back.
+      </p>
+    </div>
+    <div class="only-ru">
+      <h1>Knack</h1>
+      <p class="lead">
+        Всё, за чем тянешься, — у края экрана. Подводишь курсор к краю, и оттуда выезжает панель:
+        музыка, полка, история буфера, заготовки, заметки, список дел и переводчик. Отвёл курсор —
+        уехала обратно.
+      </p>
+    </div>
+
+    <div class="btn-row">
+      <a href="https://github.com/smeshidojoe/Knack/releases/latest" target="_blank" rel="noopener" data-download class="btn btn-primary">⬇ <span class="only-en">Download for Windows</span><span class="only-ru">Скачать для Windows</span></a>
+      <a href="/Knack/guide/" class="btn btn-ghost"><span class="only-en">How it works</span><span class="only-ru">Как это работает</span></a>
+      <a href="https://github.com/smeshidojoe/Knack" target="_blank" rel="noopener" class="btn btn-ghost">★ GitHub</a>
+    </div>
+
+    <div class="hero-meta">
+      <span><b>7</b> <span class="only-en">tabs</span><span class="only-ru">вкладок</span></span>
+      <span><b>Windows 10 / 11</b></span>
+      <span><b><span class="only-en">Free and open source</span><span class="only-ru">Бесплатно, открытый код</span></b></span>
+    </div>
+
+    <div class="shot">
+      <img src="https://raw.githubusercontent.com/smeshidojoe/Knack/main/img/media.png" alt="Knack music tab" decoding="async">
+    </div>
+  </div>
+</header>
+
+<!-- ═══ TABS ═══ -->
+<section id="tabs">
+  <div class="wrap">
+    <div class="only-en">
+      <p class="eyebrow">01 — What is inside</p>
+      <h2>Seven tabs, one strip</h2>
+      <p class="section-sub">
+        The panel opens on the edge opposite the taskbar, on the monitor your pointer is on, and
+        never steals focus from what you were typing in.
+      </p>
+    </div>
+    <div class="only-ru">
+      <p class="eyebrow">01 — Что внутри</p>
+      <h2>Семь вкладок в одной полосе</h2>
+      <p class="section-sub">
+        Панель выезжает с края, противоположного панели задач, на том мониторе, где курсор, и не
+        забирает фокус у окна, в котором ты печатал.
+      </p>
+    </div>
+
+    <div class="tabs-grid">
+      <div class="tab-card">
+        <span class="ico">♪</span>
+        <div class="only-en">
+          <h3>Music</h3>
+          <p>Cover art, title, transport buttons, seek bar and volume — for anything that plays sound: browsers, Spotify, players. Several sources at once switch by a click.</p>
+        </div>
+        <div class="only-ru">
+          <h3>Музыка</h3>
+          <p>Обложка, название, кнопки, перемотка и громкость — для всего, что играет: браузеры, Spotify, плееры. Если источников несколько, переключаются кликом.</p>
+        </div>
+      </div>
+
+      <div class="tab-card">
+        <span class="ico">▤</span>
+        <div class="only-en">
+          <h3>Shelf</h3>
+          <p>Screenshots you copy land here by themselves, files can be dropped in with the mouse, and a card can be dragged straight back out into a folder or a chat.</p>
+        </div>
+        <div class="only-ru">
+          <h3>Полка</h3>
+          <p>Скриншоты попадают сюда сами, файлы можно бросить мышкой, а карточку — вытащить обратно в папку или в чат.</p>
+        </div>
+      </div>
+
+      <div class="tab-card">
+        <span class="ico">⧉</span>
+        <div class="only-en">
+          <h3>Clipboard</h3>
+          <p>History of copied text, newest first. A click puts a line back on the clipboard. A hundred entries are kept by default.</p>
+        </div>
+        <div class="only-ru">
+          <h3>Буфер обмена</h3>
+          <p>История скопированного текста, свежее сверху. Клик возвращает строку в буфер. По умолчанию хранится сотня записей.</p>
+        </div>
+      </div>
+
+      <div class="tab-card">
+        <span class="ico">✎</span>
+        <div class="only-en">
+          <h3>Snippets</h3>
+          <p>Email, phone, links — whatever you are tired of typing. A click copies the value, and search matches both the name and the content.</p>
+        </div>
+        <div class="only-ru">
+          <h3>Заготовки</h3>
+          <p>Почта, телефон, ссылки — всё, что надоело набирать. Клик копирует, поиск ищет и по названию, и по содержимому.</p>
+        </div>
+      </div>
+
+      <div class="tab-card">
+        <span class="ico">▭</span>
+        <div class="only-en">
+          <h3>Notes</h3>
+          <p>List on the left, text on the right. The first line becomes the title, and empty notes clean themselves up when you leave the tab.</p>
+        </div>
+        <div class="only-ru">
+          <h3>Заметки</h3>
+          <p>Список слева, текст справа. Первая строка становится заголовком, а пустые заметки убираются сами, когда уходишь со вкладки.</p>
+        </div>
+      </div>
+
+      <div class="tab-card">
+        <span class="ico">☑</span>
+        <div class="only-en">
+          <h3>TODO</h3>
+          <p>A plain checklist, one line per task. Done tasks stay where they are — a row jumping out from under the pointer is worse than sorting is useful.</p>
+        </div>
+        <div class="only-ru">
+          <h3>Дела</h3>
+          <p>Обычный список, одна строка — одна задача. Сделанные остаются на месте: строка, убегающая из-под курсора, хуже, чем польза от сортировки.</p>
+        </div>
+      </div>
+
+      <div class="tab-card">
+        <span class="ico">文</span>
+        <div class="only-en">
+          <h3>Translator</h3>
+          <p>Two panes that swap themselves when you start typing in the other language. Works offline with bundled models, or through DeepL with a key.</p>
+        </div>
+        <div class="only-ru">
+          <h3>Переводчик</h3>
+          <p>Две панели, которые меняются местами сами, если начать печатать на другом языке. Работает офлайн на встроенных моделях или через DeepL по ключу.</p>
+        </div>
+      </div>
+
+      <div class="tab-card">
+        <span class="ico">⚙</span>
+        <div class="only-en">
+          <h3>Settings</h3>
+          <p>Panel size and speed, what opens it, shortcuts, monitor, history length, translation engine. Everything applies at once — there is no Save button.</p>
+        </div>
+        <div class="only-ru">
+          <h3>Настройки</h3>
+          <p>Размер и скорость панели, чем она открывается, горячие клавиши, монитор, длина истории, движок перевода. Всё применяется сразу, кнопки «Сохранить» нет.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ EXTRAS ═══ -->
+<section id="extras" style="padding-top:0">
+  <div class="wrap">
+    <div class="only-en">
+      <p class="eyebrow">02 — Two more tricks</p>
+      <h2>Not only the panel</h2>
+      <p class="section-sub">Two shortcuts that work anywhere in Windows, panel open or not.</p>
+    </div>
+    <div class="only-ru">
+      <p class="eyebrow">02 — Ещё две вещи</p>
+      <h2>Не только панель</h2>
+      <p class="section-sub">Два сочетания, которые работают в любом окне Windows, открыта панель или нет.</p>
+    </div>
+
+    <div class="keys">
+      <div class="key-row">
+        <span class="only-en">Rewrite selected text as if the keyboard layout had been right</span>
+        <span class="only-ru">Переписать выделенный текст так, будто раскладка была правильной</span>
+        <kbd>Ctrl + Alt + L</kbd>
+      </div>
+      <div class="key-row">
+        <span class="only-en">Keep the active window above all others</span>
+        <span class="only-ru">Держать активное окно поверх остальных</span>
+        <kbd>Ctrl + Alt + P</kbd>
+      </div>
+      <div class="key-row">
+        <span class="only-en">Show or hide the panel</span>
+        <span class="only-ru">Показать или спрятать панель</span>
+        <kbd>Ctrl + Alt + K</kbd>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ DOWNLOAD ═══ -->
+<section id="download" style="padding-top:0">
+  <div class="wrap">
+    <div class="download">
+      <div class="only-en">
+        <p class="eyebrow">03 — Download</p>
+        <h2>Get Knack</h2>
+        <p class="section-sub">
+          Run the installer and Knack appears in the tray. It installs for the current user, without
+          administrator rights, and asks whether you want it started with Windows.
+        </p>
+      </div>
+      <div class="only-ru">
+        <p class="eyebrow">03 — Загрузка</p>
+        <h2>Забрать Knack</h2>
+        <p class="section-sub">
+          Запусти установщик — и Knack появится в трее. Ставится для текущего пользователя, без прав
+          администратора, и спрашивает, запускать ли его вместе с Windows.
+        </p>
+      </div>
+
+      <div class="btn-row">
+        <a href="https://github.com/smeshidojoe/Knack/releases/latest" target="_blank" rel="noopener" data-download class="btn btn-primary">⬇ <span class="only-en">Download the installer</span><span class="only-ru">Скачать установщик</span></a>
+        <a href="/Knack/guide/" class="btn btn-ghost"><span class="only-en">Read the guide</span><span class="only-ru">Читать гайд</span></a>
+      </div>
+
+      <p class="note-line" data-release-info hidden></p>
+
+      <div class="req">
+        <span>Windows 10 / 11</span>
+        <span class="only-en">no admin rights</span><span class="only-ru">без прав администратора</span>
+        <span class="only-en">updates itself</span><span class="only-ru">обновляется сам</span>
+        <span class="only-en">free</span><span class="only-ru">бесплатно</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FAQ ═══ -->
+<section id="faq" style="padding-top:0">
+  <div class="wrap">
+    <div class="only-en">
+      <p class="eyebrow">04 — Questions</p>
+      <h2>Questions people ask</h2>
+      <div class="faq">
+        <details open>
+          <summary>Will it get in the way while I work?</summary>
+          <p>No. The panel never takes focus from the window you are in, so it cannot interrupt
+          typing — focus only moves when you click into a field inside it. While the panel is
+          closed, not a single timer is running.</p>
+        </details>
+        <details>
+          <summary>Which edge does it open on?</summary>
+          <p>The one opposite your taskbar: taskbar at the bottom means the panel comes from the
+          top, and the other way round. It appears on whichever monitor the pointer is on.</p>
+        </details>
+        <details>
+          <summary>How do I open it?</summary>
+          <p>Three ways: hold the pointer at the edge for a moment, press <kbd>Ctrl + Alt + K</kbd>,
+          or click the tray icon. The delay and the shortcut are both adjustable.</p>
+        </details>
+        <details>
+          <summary>Does the music tab work with my player?</summary>
+          <p>It works with anything Windows itself knows is playing — browsers, Spotify, media
+          players. If a player does not report itself properly, the tab still shows which app is
+          making sound and what it is playing, just without the buttons.</p>
+        </details>
+        <details>
+          <summary>Does the translator need the internet?</summary>
+          <p>Not for the offline engine, which ships with the app; it downloads a language model
+          the first time you use a pair. There is also DeepL if you paste in a key.</p>
+        </details>
+        <details>
+          <summary>Does it send anything anywhere?</summary>
+          <p>Knack reaches the network in four cases only: checking GitHub for an update,
+          downloading a translator model, fetching ffmpeg for video previews, and DeepL if you
+          entered a key yourself. Nothing else leaves your computer.</p>
+        </details>
+      </div>
+    </div>
+
+    <div class="only-ru">
+      <p class="eyebrow">04 — Вопросы</p>
+      <h2>Частые вопросы</h2>
+      <div class="faq">
+        <details open>
+          <summary>Он не будет мешать в работе?</summary>
+          <p>Нет. Панель не забирает фокус у окна, в котором ты находишься, поэтому не может
+          прервать набор текста — фокус переходит, только когда сам кликаешь в поле внутри неё.
+          Пока панель закрыта, не работает ни один таймер.</p>
+        </details>
+        <details>
+          <summary>С какого края открывается?</summary>
+          <p>С того, что напротив панели задач: панель задач снизу — Knack выезжает сверху, и
+          наоборот. Появляется на том мониторе, где сейчас курсор.</p>
+        </details>
+        <details>
+          <summary>Как её открыть?</summary>
+          <p>Тремя способами: подержать курсор у края, нажать <kbd>Ctrl + Alt + K</kbd> или кликнуть
+          по иконке в трее. Задержку и сочетание можно поменять.</p>
+        </details>
+        <details>
+          <summary>Музыка работает с моим плеером?</summary>
+          <p>Работает со всем, о чём знает сама Windows: браузеры, Spotify, плееры. Если плеер не
+          сообщает о себе как надо, вкладка всё равно покажет, какая программа шумит и что именно
+          играет, только без кнопок управления.</p>
+        </details>
+        <details>
+          <summary>Переводчику нужен интернет?</summary>
+          <p>Офлайн-движку — нет, он идёт вместе с программой; модель языка скачивается один раз при
+          первом использовании пары. Есть ещё DeepL, если вставить ключ.</p>
+        </details>
+        <details>
+          <summary>Он что-нибудь куда-нибудь отправляет?</summary>
+          <p>Knack выходит в сеть только в четырёх случаях: проверить обновление на GitHub, скачать
+          модель переводчика, забрать ffmpeg для превью видео и DeepL, если ты сам ввёл ключ.
+          Больше с компьютера ничего не уходит.</p>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <a href="/Knack/" class="brand"><img src="/Knack/assets/logo.svg" alt=""> Knack</a>
+    <div class="foot-links">
+      <a href="/Knack/guide/"><span class="only-en">Guide</span><span class="only-ru">Гайд</span></a>
+      <a href="/Knack/about/"><span class="only-en">About</span><span class="only-ru">О программе</span></a>
+      <a href="/Knack/privacy/"><span class="only-en">Privacy</span><span class="only-ru">Приватность</span></a>
+      <a href="https://github.com/smeshidojoe/Knack/issues" target="_blank" rel="noopener">Issues</a>
+      <a href="https://github.com/smeshidojoe/Knack" target="_blank" rel="noopener">GitHub</a>
+      <a href="/"><span class="only-en">All projects</span><span class="only-ru">Все проекты</span></a>
+    </div>
+    <small>MIT © <span id="y"></span> smeshidojoe</small>
+  </div>
+</footer>
+
+<script src="/Knack/assets/site.js"></script>
+</body>
+</html>

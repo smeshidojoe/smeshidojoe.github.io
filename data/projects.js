@@ -44,8 +44,8 @@ window.PROJECTS = [
   {
     "name": "Shotly",
     "repo": "https://github.com/smeshidojoe/Shotly",
-    "lang": null,
-    "desc_ru": "Скриншоты как в Lightshot - выделить область, порисовать поверх, скопировать или сохранить. Без выгрузки на сервер: всё остаётся на вашем компьютере.\n\n",
+    "lang": "Python",
+    "desc_ru": "Скриншоты как в Lightshot - выделить область, порисовать поверх, скопировать или сохранить. Без выгрузки на сервер: всё остаётся на вашем компьютере.",
     "desc_en": "Screenshots like in Lightshot - highlight the area, draw over, copy or save. No upload to the server: everything stays on your computer.",
     "tags": [
       "Windows",
@@ -54,10 +54,10 @@ window.PROJECTS = [
     ],
     "banner": "",
     "cover": "assets/media/shotly/cover.png",
-    "guide": "",
-    "site": "",
-    "about_ru": "",
-    "about_en": "",
+    "guide": "/Shotly/guide/",
+    "site": "/Shotly/",
+    "about_ru": "Shotly — скриншотилка для Windows в духе Lightshot: выделить область, порисовать поверх, скопировать или сохранить. Ничего не выгружается на сервер, каждый снимок остаётся на твоём компьютере.\n\nОверлей затемняет сразу все мониторы, рамку можно двигать и тянуть за восемь ручек, а размер виден в подписи. Поверх снимка рисуют карандашом, линией, стрелкой, прямоугольником, маркером и текстом — любым цветом и любой из четырёх толщин.\n\nГотовое уходит в буфер или в файл (PNG, JPG, BMP) по кнопке, горячей клавише или двойному клику. Есть съёмка всего экрана отдельным сочетанием и печать через системный диалог.\n\nИмена файлов идут по порядку и занимают первый свободный номер в папке, поэтому удалённые снимки не оставляют дыр в нумерации. Программа живёт в трее и сама по себе оверлей не открывает.",
+    "about_en": "Shotly is a screenshot tool for Windows in the Lightshot spirit: select an area, draw on top, copy or save. Nothing is uploaded to a server — every shot stays on your computer.\n\nThe overlay dims all your monitors at once; the frame can be moved and pulled by eight handles, with its size shown in a label. On top of the shot you draw with a pencil, line, arrow, rectangle, marker or text, in any colour and any of four thicknesses.\n\nThe result goes to the clipboard or into a file (PNG, JPG, BMP) by a button, a hotkey or a double click. A separate shortcut grabs the whole screen, and printing goes through the system dialog.\n\nFile names run in order and take the first free number in the folder, so deleted shots leave no gaps in the numbering. The app lives in the tray and never opens the overlay by itself.",
     "media": []
   },
   {
@@ -115,9 +115,9 @@ window.PROJECTS = [
   {
     "name": "Knack",
     "repo": "https://github.com/smeshidojoe/Knack",
-    "lang": null,
-    "desc_ru": "Приложение, которое облегчает ваши повседневные задачи",
-    "desc_en": "An app that makes your daily tasks easier",
+    "lang": "Python",
+    "desc_ru": "Панель у края экрана: музыка, полка, буфер, заготовки, заметки, дела и переводчик.",
+    "desc_en": "A panel at the edge of the screen: music, shelf, clipboard, snippets, notes, todo and a translator.",
     "tags": [
       "Windows",
       "tray",
@@ -126,10 +126,10 @@ window.PROJECTS = [
     ],
     "banner": "",
     "cover": "assets/media/knack/cover.png",
-    "guide": "",
-    "site": "",
-    "about_ru": "",
-    "about_en": "",
+    "guide": "/Knack/guide/",
+    "site": "/Knack/",
+    "about_ru": "Knack — выезжающая панель для Windows. Подводишь курсор к свободному краю экрана, и оттуда выезжает полоса: музыка, полка со скриншотами, история буфера обмена, заготовки, заметки, список дел и переводчик. Отвёл курсор — уехала обратно.\n\nПанель появляется с края, противоположного панели задач, на том мониторе, где сейчас курсор, и никогда не забирает фокус у окна, в котором ты печатаешь. Пока она закрыта, не работает ни один таймер.\n\nМузыка берётся из самой Windows, поэтому работает со всем, что играет: браузеры, Spotify, плееры. На полку скриншоты попадают сами, файлы можно бросить мышкой и вытащить обратно в чат. Переводчик работает офлайн на встроенных моделях или через DeepL по ключу.\n\nКроме панели есть два глобальных сочетания: исправить раскладку в выделенном тексте и закрепить активное окно поверх остальных.",
+    "about_en": "Knack is a sliding panel for Windows. Move the pointer to a free screen edge and a strip slides out: music, a shelf of screenshots, clipboard history, snippets, notes, a todo list and a translator. Move away and it slides back.\n\nThe panel appears on the edge opposite the taskbar, on the monitor your pointer is on, and never takes focus from the window you are typing in. While it is closed, not a single timer is running.\n\nMusic comes from Windows itself, so it works with anything that plays sound: browsers, Spotify, media players. Screenshots land on the shelf by themselves, files can be dropped in with the mouse and dragged back out into a chat. The translator runs offline on bundled models, or through DeepL with a key.\n\nBeyond the panel there are two global shortcuts: fix the keyboard layout of selected text, and keep the active window above all others.",
     "media": []
   }
 ];

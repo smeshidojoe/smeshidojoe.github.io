@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-en="Guide – Shotly" data-ru="Гайд – Shotly">Guide – Shotly</title>
+<meta name="description" content="Step by step: install Shotly, take a shot, draw on it, save or copy, set the hotkeys and the file name pattern.">
+<link rel="icon" type="image/png" href="/Shotly/assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/Shotly/assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a href="/Shotly/" class="brand">
+      <img src="/Shotly/assets/logo.png" alt="">
+      Shotly
+    </a>
+    <button class="burger" aria-label="Menu">☰</button>
+    <div class="nav-links" id="nav-links">
+      <a href="/Shotly/#features"><span class="only-en">Features</span><span class="only-ru">Возможности</span></a>
+      <a href="/Shotly/#faq"><span class="only-en">FAQ</span><span class="only-ru">Вопросы</span></a>
+      <a href="/Shotly/guide/" class="active"><span class="only-en">Guide</span><span class="only-ru">Гайд</span></a>
+      <a href="https://github.com/smeshidojoe/Shotly/issues" target="_blank" rel="noopener">Issues</a>
+      <a href="/Shotly/about/"><span class="only-en">About</span><span class="only-ru">О программе</span></a>
+      <a href="/Shotly/#download" class="nav-cta"><span class="only-en">Download</span><span class="only-ru">Скачать</span></a>
+      <button class="lang-btn" title="Switch language">RU</button>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap narrow prose">
+  <!-- ═════════ ENGLISH ═════════ -->
+  <div class="only-en">
+    <h1>Shotly: step-by-step guide</h1>
+    <p class="lead-p">
+      <a href="https://github.com/smeshidojoe/Shotly" target="_blank" rel="noopener">Repository</a> ·
+      <a href="https://github.com/smeshidojoe/Shotly/releases/latest" target="_blank" rel="noopener">Download</a>
+    </p>
+
+    <h2>Step 1. Installation</h2>
+    <ol>
+      <li>Download the installer from the <a href="https://github.com/smeshidojoe/Shotly/releases/latest" target="_blank" rel="noopener">Releases</a> page. Requires Windows 10 or 11.</li>
+      <li>Run it — Shotly settles into the tray. Everything it needs is inside the app; nothing is downloaded afterwards.</li>
+      <li>Autostart is offered in settings. Starting with Windows only puts Shotly in the tray — it never opens the overlay on its own.</li>
+    </ol>
+
+    <h2>Step 2. Taking a shot</h2>
+    <ol>
+      <li>Press <kbd>Prnt Scrn</kbd>, or left-click the tray icon. The screen dims — all your monitors at once.</li>
+      <li>Drag a frame around what you need. The size shows in a label next to it.</li>
+      <li>Adjust it: move the frame by dragging inside it, resize by the eight handles around the edge.</li>
+      <li>Double-click the selection to copy it, or use the buttons that appear beside the frame.</li>
+    </ol>
+    <p><kbd>Ctrl + A</kbd> selects the whole screen at once. The right mouse button clears the selection, and a second press closes the overlay.</p>
+
+    <h2>Step 3. Drawing on it</h2>
+    <p>Pick a tool from the strip: pencil, line, arrow, rectangle, marker or text. Any colour from the palette — or your own through the system colour picker — and any of four thicknesses.</p>
+    <ul>
+      <li>You can draw anywhere on the screen, not only inside the frame. Only the selected area goes into the file or the clipboard; the rest is cropped away.</li>
+      <li>Hold <kbd>Shift</kbd> while drawing for a straight line or a perfect square.</li>
+      <li><kbd>Ctrl + Z</kbd> undoes the last shape.</li>
+    </ul>
+    <div class="callout"><b>While a tool is active, clicking outside the frame draws instead of starting a new selection.</b> To select a different area, switch the tool off — click its button again, or press <kbd>Esc</kbd>.</div>
+    <p><kbd>Esc</kbd> walks back one step at a time: text, then palette, then tool, then out of the overlay.</p>
+
+    <h2>Step 4. Saving the result</h2>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Action</th><th>How</th></tr></thead>
+        <tbody>
+          <tr><td>Copy</td><td><kbd>Ctrl + C</kbd>, a double click on the selection, or the button</td></tr>
+          <tr><td>Save to a file</td><td><kbd>Ctrl + S</kbd> or the button — PNG, JPG or BMP</td></tr>
+          <tr><td>Print</td><td><kbd>Ctrl + P</kbd>, through the system dialog</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Shots go to your pictures folder by default; you can point Shotly at any other one in settings, or have it ask for the path every time.</p>
+
+    <h2>Step 5. The whole screen at once</h2>
+    <p>Two more global shortcuts grab everything without the overlay — straight to a file with <kbd>Shift + Prnt Scrn</kbd>, or to the clipboard with <kbd>Ctrl + Prnt Scrn</kbd>. Both are off by default; switch them on in settings, where all three shortcuts can also be reassigned.</p>
+
+    <h2>Step 6. File names</h2>
+    <p>The pattern is set on the <b>Formats</b> tab, with a live example right under the field. The default is a plain <code>Screenshot_</code> plus a number.</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Code</th><th>What it becomes</th></tr></thead>
+        <tbody>
+          <tr><td><code>%n</code></td><td>the smallest free number in the folder: 1, 2, 3 …</td></tr>
+          <tr><td><code>%03n</code></td><td>the same with leading zeros: 001, 002</td></tr>
+          <tr><td><code>%Y</code> <code>%m</code> <code>%d</code></td><td>year, month, day</td></tr>
+          <tr><td><code>%H</code> <code>%M</code> <code>%S</code></td><td>hours, minutes, seconds</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout"><b>Numbering starts from one, not from the last shot plus one.</b> With <code>Screenshot_133</code> and <code>Screenshot_135</code> already in the folder, the next one becomes <code>Screenshot_134</code> and the gap closes. A number counts as taken in any of the supported formats.</div>
+
+    <h2>Step 7. Settings</h2>
+    <p>Open them from the tray menu — four tabs:</p>
+    <ul>
+      <li><b>General</b> — autostart, notifications, remembering the last frame, including the cursor in the shot, save folder, interface language, reset.</li>
+      <li><b>Hotkeys</b> — the three global shortcuts.</li>
+      <li><b>Formats</b> — PNG, JPG or BMP, JPEG quality, the file name pattern, and whether to ask for the path on every save.</li>
+      <li><b>Updates</b> — notifications about new versions, checking and installing.</li>
+    </ul>
+  </div>
+
+  <!-- ═════════ РУССКИЙ ═════════ -->
+  <div class="only-ru">
+    <h1>Shotly: пошаговое руководство</h1>
+    <p class="lead-p">
+      <a href="https://github.com/smeshidojoe/Shotly" target="_blank" rel="noopener">Репозиторий</a> ·
+      <a href="https://github.com/smeshidojoe/Shotly/releases/latest" target="_blank" rel="noopener">Скачать</a>
+    </p>
+
+    <h2>Шаг 1. Установка</h2>
+    <ol>
+      <li>Скачай установщик со страницы <a href="https://github.com/smeshidojoe/Shotly/releases/latest" target="_blank" rel="noopener">Releases</a>. Нужна Windows 10 или 11.</li>
+      <li>Запусти — Shotly поселится в трее. Всё нужное лежит внутри программы, ничего потом не докачивается.</li>
+      <li>Автозапуск включается в настройках. Старт вместе с Windows только кладёт Shotly в трей — оверлей сам по себе не открывается.</li>
+    </ol>
+
+    <h2>Шаг 2. Как сделать снимок</h2>
+    <ol>
+      <li>Нажми <kbd>Prnt Scrn</kbd> или кликни левой кнопкой по иконке в трее. Экран затемнится — сразу на всех мониторах.</li>
+      <li>Растяни рамку вокруг нужного. Размер виден в подписи рядом.</li>
+      <li>Поправь её: двигай, потянув изнутри, меняй размер за восемь ручек по краям.</li>
+      <li>Двойной клик по выделению копирует его, либо жми кнопки, которые появляются рядом с рамкой.</li>
+    </ol>
+    <p><kbd>Ctrl + A</kbd> выделяет сразу весь экран. Правая кнопка мыши сбрасывает выделение, повторное нажатие закрывает оверлей.</p>
+
+    <h2>Шаг 3. Рисование поверх</h2>
+    <p>Выбери инструмент на панели: карандаш, линия, стрелка, прямоугольник, маркер или текст. Любой цвет из палитры — или свой через системный выбор цвета — и любая из четырёх толщин.</p>
+    <ul>
+      <li>Рисовать можно по всему экрану, не только внутри рамки. В файл и буфер уходит выделенная область, остальное обрезается.</li>
+      <li>Зажми <kbd>Shift</kbd> при рисовании — получится ровная линия или квадрат.</li>
+      <li><kbd>Ctrl + Z</kbd> отменяет последнюю фигуру.</li>
+    </ul>
+    <div class="callout"><b>Пока выбран инструмент, клик за рамкой рисует, а не начинает новое выделение.</b> Чтобы выделить другую область, отключи инструмент — повторным кликом по его кнопке или клавишей <kbd>Esc</kbd>.</div>
+    <p><kbd>Esc</kbd> отступает по шагу: текст, потом палитра, потом инструмент, потом выход из оверлея.</p>
+
+    <h2>Шаг 4. Что делать с результатом</h2>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Действие</th><th>Как</th></tr></thead>
+        <tbody>
+          <tr><td>Скопировать</td><td><kbd>Ctrl + C</kbd>, двойной клик по выделению или кнопка</td></tr>
+          <tr><td>Сохранить в файл</td><td><kbd>Ctrl + S</kbd> или кнопка — PNG, JPG или BMP</td></tr>
+          <tr><td>Напечатать</td><td><kbd>Ctrl + P</kbd>, через системный диалог</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>По умолчанию снимки складываются в папку с изображениями; в настройках можно указать любую другую или попросить спрашивать путь при каждом сохранении.</p>
+
+    <h2>Шаг 5. Весь экран сразу</h2>
+    <p>Ещё два глобальных сочетания снимают всё без оверлея — сразу в файл по <kbd>Shift + Prnt Scrn</kbd> или в буфер по <kbd>Ctrl + Prnt Scrn</kbd>. Оба по умолчанию выключены; включаются в настройках, там же все три сочетания можно переназначить.</p>
+
+    <h2>Шаг 6. Имена файлов</h2>
+    <p>Шаблон задаётся на вкладке <b>Форматы</b>, под полем сразу виден пример. По умолчанию это <code>Screenshot_</code> и номер.</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Код</th><th>Что подставляется</th></tr></thead>
+        <tbody>
+          <tr><td><code>%n</code></td><td>наименьший свободный номер в папке: 1, 2, 3 …</td></tr>
+          <tr><td><code>%03n</code></td><td>он же с ведущими нулями: 001, 002</td></tr>
+          <tr><td><code>%Y</code> <code>%m</code> <code>%d</code></td><td>год, месяц, день</td></tr>
+          <tr><td><code>%H</code> <code>%M</code> <code>%S</code></td><td>часы, минуты, секунды</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout"><b>Номер ищется с единицы, а не «последний плюс один».</b> Если в папке уже есть <code>Screenshot_133</code> и <code>Screenshot_135</code>, следующий снимок станет <code>Screenshot_134</code> и дыра закроется. Занятым номер считается в любом из поддерживаемых форматов.</div>
+
+    <h2>Шаг 7. Настройки</h2>
+    <p>Открываются из меню трея, четыре вкладки:</p>
+    <ul>
+      <li><b>Основные</b> — автозапуск, уведомления, память о рамке выделения, курсор в кадре, папка сохранения, язык интерфейса, сброс настроек.</li>
+      <li><b>Горячие клавиши</b> — три назначаемых сочетания.</li>
+      <li><b>Форматы</b> — PNG, JPG или BMP, качество JPEG, шаблон имени файла и нужно ли спрашивать путь при каждом сохранении.</li>
+      <li><b>Обновления</b> — уведомления о новых версиях, проверка и установка.</li>
+    </ul>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <a href="/Shotly/" class="brand"><img src="/Shotly/assets/logo.png" alt=""> Shotly</a>
+    <div class="foot-links">
+      <a href="/Shotly/guide/"><span class="only-en">Guide</span><span class="only-ru">Гайд</span></a>
+      <a href="/Shotly/about/"><span class="only-en">About</span><span class="only-ru">О программе</span></a>
+      <a href="/Shotly/privacy/"><span class="only-en">Privacy</span><span class="only-ru">Приватность</span></a>
+      <a href="https://github.com/smeshidojoe/Shotly/issues" target="_blank" rel="noopener">Issues</a>
+      <a href="https://github.com/smeshidojoe/Shotly" target="_blank" rel="noopener">GitHub</a>
+      <a href="/"><span class="only-en">All projects</span><span class="only-ru">Все проекты</span></a>
+    </div>
+    <small>MIT © <span id="y"></span> smeshidojoe</small>
+  </div>
+</footer>
+
+<script src="/Shotly/assets/site.js"></script>
+</body>
+</html>

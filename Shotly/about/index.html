@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-en="About – Shotly" data-ru="О программе – Shotly">About – Shotly</title>
+<meta name="description" content="What Shotly is, why it exists, and how it behaves on your machine.">
+<link rel="icon" type="image/png" href="/Shotly/assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/Shotly/assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a href="/Shotly/" class="brand">
+      <img src="/Shotly/assets/logo.png" alt="">
+      Shotly
+    </a>
+    <button class="burger" aria-label="Menu">☰</button>
+    <div class="nav-links" id="nav-links">
+      <a href="/Shotly/#features"><span class="only-en">Features</span><span class="only-ru">Возможности</span></a>
+      <a href="/Shotly/#faq"><span class="only-en">FAQ</span><span class="only-ru">Вопросы</span></a>
+      <a href="/Shotly/guide/"><span class="only-en">Guide</span><span class="only-ru">Гайд</span></a>
+      <a href="https://github.com/smeshidojoe/Shotly/issues" target="_blank" rel="noopener">Issues</a>
+      <a href="/Shotly/about/" class="active"><span class="only-en">About</span><span class="only-ru">О программе</span></a>
+      <a href="/Shotly/#download" class="nav-cta"><span class="only-en">Download</span><span class="only-ru">Скачать</span></a>
+      <button class="lang-btn" title="Switch language">RU</button>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap narrow prose">
+  <div class="only-en">
+    <h1>About Shotly</h1>
+    <p class="lead-p">A screenshot tool that takes the shot and gets out of the way.</p>
+
+    <h2>Why it exists</h2>
+    <p>
+      Taking a screenshot should be three seconds of work: hit a key, drag a frame, circle the thing
+      you meant, paste it into a chat. Instead it usually turns into a trip through an editor, or a
+      tool that quietly uploads your screen to somebody's server and hands you a link.
+    </p>
+    <p>
+      Shotly keeps the good half of that — the Lightshot way of selecting and drawing right on the
+      dimmed screen — and drops the rest. Nothing is uploaded anywhere; every shot stays on your
+      computer.
+    </p>
+
+    <h2>How it behaves</h2>
+    <ul>
+      <li><b>It waits to be asked.</b> Launching the app, including with Windows, only puts it in
+      the tray. The overlay opens by hotkey or from the tray, never by itself.</li>
+      <li><b>It covers every monitor.</b> The dimmed overlay spans all of them at once, so a
+      selection can cross the boundary between two screens.</li>
+      <li><b>It numbers files sensibly.</b> The next shot takes the smallest free number in the
+      folder, so deleting an old one leaves no hole in the sequence.</li>
+      <li><b>It carries everything it needs.</b> Nothing is downloaded after installation — the
+      whole app is one executable.</li>
+    </ul>
+
+    <h2>What Shotly does not do</h2>
+    <ul>
+      <li><b>It is not a service.</b> No account, no link, no server of ours anywhere.</li>
+      <li><b>It does not collect anything.</b> Your shots and settings stay on your own disk.</li>
+      <li><b>It does not run in the background doing work.</b> Between shots it just sits in the
+      tray waiting for a key.</li>
+    </ul>
+
+    <h2>Using it fairly</h2>
+    <p>
+      A screenshot captures whatever is on your screen, which can include other people's work and
+      other people's private information. What you capture, and where you send it afterwards, is
+      your responsibility — respect the rights and the privacy of whatever ends up in the frame.
+    </p>
+
+    <h2>The project</h2>
+    <p>
+      Free and open source under the MIT licence, made by
+      <a href="https://github.com/smeshidojoe" target="_blank" rel="noopener">smeshidojoe</a>.
+      Bugs and ideas are welcome on
+      <a href="https://github.com/smeshidojoe/Shotly/issues" target="_blank" rel="noopener">GitHub</a>.
+    </p>
+    <p>Other projects live on the <a href="/">main site</a>.</p>
+  </div>
+
+  <div class="only-ru">
+    <h1>О программе</h1>
+    <p class="lead-p">Скриншотилка, которая делает снимок и уходит с дороги.</p>
+
+    <h2>Зачем она нужна</h2>
+    <p>
+      Сделать скриншот — это три секунды: нажал клавишу, растянул рамку, обвёл нужное, вставил в чат.
+      Вместо этого обычно получается поход в редактор или программа, которая тихо выгружает твой
+      экран на чей-то сервер и выдаёт ссылку.
+    </p>
+    <p>
+      Shotly оставляет хорошую половину — привычный по Lightshot способ выделять и рисовать прямо на
+      затемнённом экране — и выбрасывает остальное. Ничего никуда не выгружается: каждый снимок
+      остаётся на твоём компьютере.
+    </p>
+
+    <h2>Как она себя ведёт</h2>
+    <ul>
+      <li><b>Ждёт, пока попросят.</b> Запуск программы, в том числе вместе с Windows, только кладёт
+      её в трей. Оверлей открывается по горячей клавише или из трея, сам по себе — никогда.</li>
+      <li><b>Накрывает все мониторы.</b> Затемнение ложится сразу на все, поэтому выделение можно
+      протянуть через границу между экранами.</li>
+      <li><b>Разумно нумерует файлы.</b> Следующий снимок занимает наименьший свободный номер в
+      папке, поэтому удалённый старый не оставляет дыры в нумерации.</li>
+      <li><b>Всё носит с собой.</b> После установки ничего не докачивается — вся программа лежит в
+      одном файле.</li>
+    </ul>
+
+    <h2>Чего Shotly не делает</h2>
+    <ul>
+      <li><b>Это не сервис.</b> Ни аккаунта, ни ссылки, ни нашего сервера где-либо.</li>
+      <li><b>Она ничего не собирает.</b> Снимки и настройки остаются на твоём диске.</li>
+      <li><b>Она не работает в фоне.</b> Между снимками просто сидит в трее и ждёт нажатия.</li>
+    </ul>
+
+    <h2>Пользуйся честно</h2>
+    <p>
+      Снимок захватывает всё, что есть на экране, — а это могут быть чужие работы и чужие личные
+      данные. Что ты снимаешь и куда потом отправляешь — твоя ответственность: уважай права и
+      приватность того, что попало в кадр.
+    </p>
+
+    <h2>Об авторе</h2>
+    <p>
+      Бесплатно, с открытым кодом по лицензии MIT. Автор —
+      <a href="https://github.com/smeshidojoe" target="_blank" rel="noopener">smeshidojoe</a>.
+      Баги и идеи — в
+      <a href="https://github.com/smeshidojoe/Shotly/issues" target="_blank" rel="noopener">issues на GitHub</a>.
+    </p>
+    <p>Другие проекты — на <a href="/">главном сайте</a>.</p>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <a href="/Shotly/" class="brand"><img src="/Shotly/assets/logo.png" alt=""> Shotly</a>
+    <div class="foot-links">
+      <a href="/Shotly/guide/"><span class="only-en">Guide</span><span class="only-ru">Гайд</span></a>
+      <a href="/Shotly/about/"><span class="only-en">About</span><span class="only-ru">О программе</span></a>
+      <a href="/Shotly/privacy/"><span class="only-en">Privacy</span><span class="only-ru">Приватность</span></a>
+      <a href="https://github.com/smeshidojoe/Shotly/issues" target="_blank" rel="noopener">Issues</a>
+      <a href="https://github.com/smeshidojoe/Shotly" target="_blank" rel="noopener">GitHub</a>
+      <a href="/"><span class="only-en">All projects</span><span class="only-ru">Все проекты</span></a>
+    </div>
+    <small>MIT © <span id="y"></span> smeshidojoe</small>
+  </div>
+</footer>
+
+<script src="/Shotly/assets/site.js"></script>
+</body>
+</html>

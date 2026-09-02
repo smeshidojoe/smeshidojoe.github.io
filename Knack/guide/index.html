@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-en="Guide – Knack" data-ru="Гайд – Knack">Guide – Knack</title>
+<meta name="description" content="Step by step: install Knack, open the panel, use every tab, and set up the layout switch and always-on-top shortcuts.">
+<link rel="icon" type="image/svg+xml" href="/Knack/assets/logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/Knack/assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a href="/Knack/" class="brand">
+      <img src="/Knack/assets/logo.svg" alt="">
+      Knack
+    </a>
+    <button class="burger" aria-label="Menu">☰</button>
+    <div class="nav-links" id="nav-links">
+      <a href="/Knack/#tabs"><span class="only-en">Tabs</span><span class="only-ru">Вкладки</span></a>
+      <a href="/Knack/#faq"><span class="only-en">FAQ</span><span class="only-ru">Вопросы</span></a>
+      <a href="/Knack/guide/" class="active"><span class="only-en">Guide</span><span class="only-ru">Гайд</span></a>
+      <a href="https://github.com/smeshidojoe/Knack/issues" target="_blank" rel="noopener">Issues</a>
+      <a href="/Knack/about/"><span class="only-en">About</span><span class="only-ru">О программе</span></a>
+      <a href="/Knack/#download" class="nav-cta"><span class="only-en">Download</span><span class="only-ru">Скачать</span></a>
+      <button class="lang-btn" title="Switch language">RU</button>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap narrow prose">
+  <!-- ═════════ ENGLISH ═════════ -->
+  <div class="only-en">
+    <h1>Knack: step-by-step guide</h1>
+    <p class="lead-p">
+      <a href="https://github.com/smeshidojoe/Knack" target="_blank" rel="noopener">Repository</a> ·
+      <a href="https://github.com/smeshidojoe/Knack/releases/latest" target="_blank" rel="noopener">Download</a>
+    </p>
+
+    <h2>Step 1. Installation</h2>
+    <ol>
+      <li>Download the installer from the <a href="https://github.com/smeshidojoe/Knack/releases/latest" target="_blank" rel="noopener">Releases</a> page. Requires Windows 10 or 11.</li>
+      <li>Run it — Knack installs into your own user folder, so no administrator rights are needed. It offers a desktop shortcut and asks whether to start with Windows.</li>
+      <li>Knack appears in the tray. Its icon follows the Windows theme: light on a dark taskbar, dark on a light one.</li>
+    </ol>
+    <p>Whatever you picked for autostart in the installer is what Knack keeps — on the first run it reads that from the system instead of imposing its own choice.</p>
+
+    <h2>Step 2. Opening the panel</h2>
+    <p>Three ways, all doing the same thing:</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Way</th><th>How</th></tr></thead>
+        <tbody>
+          <tr><td>Hover</td><td>Hold the pointer at the free screen edge for a moment</td></tr>
+          <tr><td>Hotkey</td><td><kbd>Ctrl + Alt + K</kbd></td></tr>
+          <tr><td>Tray</td><td>Click the icon</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>The panel slides out of the edge opposite the taskbar — taskbar at the bottom, panel at the top, and the other way round. It appears on the monitor your pointer is on.</p>
+    <div class="callout"><b>It never steals focus.</b> You can open the panel in the middle of a sentence and keep typing into the window behind it. Focus moves only when you click into a field inside the panel.</div>
+
+    <h2>Step 3. Music</h2>
+    <p>Cover art, title, artist, transport buttons, a seek bar and the volume. The data comes from Windows itself, so the tab works with anything that makes sound: browsers, Spotify, media players. With several sources playing, click the source name in the top right to switch between them.</p>
+    <ul>
+      <li>Not every source allows seeking — those that do not get a plain progress indicator that ignores clicks.</li>
+      <li>Some players (ads, short clips, certain Chromium builds) do not report themselves at all. Then the tab shows which app is making the sound and its window title, with the buttons dimmed.</li>
+      <li>The volume bar is the same level as the system tray slider: click or drag it, roll the wheel for 5% steps, click the speaker to mute.</li>
+    </ul>
+
+    <h2>Step 4. Shelf</h2>
+    <p>Screenshots you copy land here on their own, and files can be dropped in with the mouse — drag one over the panel from any tab and the shelf opens by itself.</p>
+    <ul>
+      <li>A click puts the picture on the clipboard, the cross removes the card, <b>Clear</b> in the top right empties the shelf.</li>
+      <li>A card can be dragged back out — into a folder, a chat, any window that takes files.</li>
+      <li>For music and video the clipboard gets the file path, which is what chats paste with <kbd>Ctrl + V</kbd>.</li>
+      <li>Video cards show a frame and music cards show the embedded cover art. That needs ffmpeg, downloaded once when such a file first reaches the shelf — you can switch it off in settings.</li>
+    </ul>
+    <p>Files survive restarts. Delete one outside the app and its card disappears by itself.</p>
+
+    <h2>Step 5. Clipboard, snippets, notes and tasks</h2>
+    <ul>
+      <li><b>Clipboard</b> — history of copied text, newest first. A click puts a line back on the clipboard, the cross drops one entry, <b>Clear</b> drops all of them. A hundred entries are kept by default. Files copied in Explorer are not stored: they are not text.</li>
+      <li><b>Snippets</b> — email, phone, links, anything you are tired of typing. A click copies the value; search matches both the name and the content. The plus on the right turns the bar into an add row: name on the left, value on the right, <kbd>Enter</kbd> saves.</li>
+      <li><b>Notes</b> — list on the left, text on the right. The first line becomes the title, and empty notes are cleaned up when you leave the tab.</li>
+      <li><b>TODO</b> — one line per task. The box marks it done, a click on the text opens it for editing right in the row, the cross removes it. Done tasks stay where they are.</li>
+    </ul>
+
+    <h2>Step 6. Translator</h2>
+    <p>Two panes, each with its own language — click the label to pick one. The button between them swaps the panes together with the text already translated. The direction follows what you type: type Cyrillic into a pane set to English and the panes swap themselves.</p>
+    <p>The engine is chosen in settings:</p>
+    <ul>
+      <li><b>Offline</b> — ships with the app and works without a connection. Language models are downloaded the first time you use a pair, around 200 MB; you can pick the folder for them.</li>
+      <li><b>DeepL</b> — with an API key, pasted in settings.</li>
+    </ul>
+    <p>The engine starts loading as soon as you open the tab, so it is ready by the time you finish typing.</p>
+
+    <h2>Step 7. Two shortcuts outside the panel</h2>
+    <h3>Fix the keyboard layout</h3>
+    <p>Typed something in the wrong layout? Select the text and press <kbd>Ctrl + Alt + L</kbd> — the characters are rewritten as if the layout had been right, and the direction is worked out from the text itself. The table is built from the layouts installed in your system, so it works with whatever pair you have.</p>
+    <h3>Always on top</h3>
+    <p><kbd>Ctrl + Alt + P</kbd> keeps the active window above all others; press it again on that window to release it. A small badge rides in the top right corner of the window next to the caption buttons — click it to pin or release, and it can be switched off in settings. By default every pinned window is released when Knack exits.</p>
+    <div class="callout"><b>Both skip windows running as administrator.</b> Synthetic input from an ordinary program does not reach them — the same limitation Punto Switcher and PowerToys have.</div>
+
+    <h2>Step 8. Settings</h2>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Section</th><th>What it covers</th></tr></thead>
+        <tbody>
+          <tr><td>Appearance</td><td>Interface language, panel size, animation rate</td></tr>
+          <tr><td>Panel</td><td>What opens and hides it, delays, shortcut, monitor, edge gap</td></tr>
+          <tr><td>Shelf</td><td>Previews for video and music</td></tr>
+          <tr><td>Clipboard</td><td>History length</td></tr>
+          <tr><td>Translator</td><td>Engine, DeepL key, models folder, language detection</td></tr>
+          <tr><td>Layout fix</td><td>On or off, shortcut, clipboard restore</td></tr>
+          <tr><td>Always on top</td><td>On or off, shortcut, corner badge, release windows on exit</td></tr>
+          <tr><td>System</td><td>Start with Windows</td></tr>
+          <tr><td>Tools</td><td>Automatic update checks, update now, ffmpeg install</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Everything applies immediately; there is no Save button.</p>
+
+    <h2>Step 9. Updates</h2>
+    <p>Knack asks GitHub for a newer release shortly after it starts and every couple of hours after that. When one turns up, a small card appears in the corner of the screen and stays there until you touch it — Windows swallows system notifications often enough that the one message about a new version would go missing.</p>
+    <p>Click the card and the panel slides out with the update ready to install. <b>Check for updates</b> in the tray menu does the same on demand. While it installs, the panel locks itself and refuses to close: the app is about to swap its own executable and restart.</p>
+  </div>
+
+  <!-- ═════════ РУССКИЙ ═════════ -->
+  <div class="only-ru">
+    <h1>Knack: пошаговое руководство</h1>
+    <p class="lead-p">
+      <a href="https://github.com/smeshidojoe/Knack" target="_blank" rel="noopener">Репозиторий</a> ·
+      <a href="https://github.com/smeshidojoe/Knack/releases/latest" target="_blank" rel="noopener">Скачать</a>
+    </p>
+
+    <h2>Шаг 1. Установка</h2>
+    <ol>
+      <li>Скачай установщик со страницы <a href="https://github.com/smeshidojoe/Knack/releases/latest" target="_blank" rel="noopener">Releases</a>. Нужна Windows 10 или 11.</li>
+      <li>Запусти — Knack ставится в папку твоего пользователя, права администратора не нужны. Предложит ярлык на рабочем столе и спросит про автозапуск.</li>
+      <li>Knack появится в трее. Иконка подстраивается под тему Windows: светлая на тёмной панели задач, тёмная на светлой.</li>
+    </ol>
+    <p>Что выбрал для автозапуска в установщике, то Knack и сохранит — при первом запуске он читает это из системы, а не навязывает своё.</p>
+
+    <h2>Шаг 2. Как открыть панель</h2>
+    <p>Три способа, все делают одно и то же:</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Способ</th><th>Как</th></tr></thead>
+        <tbody>
+          <tr><td>Курсором</td><td>Задержать курсор у свободного края экрана</td></tr>
+          <tr><td>Горячей клавишей</td><td><kbd>Ctrl + Alt + K</kbd></td></tr>
+          <tr><td>Из трея</td><td>Клик по иконке</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Панель выезжает с края, противоположного панели задач: панель задач снизу — Knack сверху, и наоборот. Появляется на том мониторе, где курсор.</p>
+    <div class="callout"><b>Она не забирает фокус.</b> Панель можно открыть посреди предложения и продолжать печатать в окне за ней. Фокус переходит, только когда сам кликаешь в поле внутри панели.</div>
+
+    <h2>Шаг 3. Музыка</h2>
+    <p>Обложка, название, исполнитель, кнопки, перемотка и громкость. Данные берутся из самой Windows, поэтому вкладка работает со всем, что издаёт звук: браузеры, Spotify, плееры. Если играет несколько источников, кликни по названию источника справа сверху, чтобы переключиться.</p>
+    <ul>
+      <li>Не всякий источник разрешает перемотку — у таких полоса становится простым индикатором и не реагирует на клики.</li>
+      <li>Некоторые плееры (реклама, короткие ролики, отдельные сборки Chromium) вообще о себе не сообщают. Тогда вкладка показывает, какая программа шумит и что у неё в заголовке окна, а кнопки гаснут.</li>
+      <li>Полоса громкости — тот же уровень, что в системном регуляторе: клик или перетаскивание, колесо мыши шагает по 5%, клик по динамику выключает звук.</li>
+    </ul>
+
+    <h2>Шаг 4. Полка</h2>
+    <p>Скриншоты, которые ты копируешь, попадают сюда сами, а файлы можно бросить мышкой — тащи файл на панель с любой вкладки, и полка откроется сама.</p>
+    <ul>
+      <li>Клик кладёт картинку в буфер, крестик убирает карточку, <b>Очистить</b> справа сверху опустошает полку.</li>
+      <li>Карточку можно вытащить обратно — в папку, в чат, в любое окно, которое принимает файлы.</li>
+      <li>Для музыки и видео в буфер уходит путь к файлу — именно его чаты вставляют по <kbd>Ctrl + V</kbd>.</li>
+      <li>На карточках видео виден кадр, у музыки — вшитая обложка. Для этого нужен ffmpeg, он скачивается один раз, когда такой файл впервые попадает на полку; в настройках это можно выключить.</li>
+    </ul>
+    <p>Файлы переживают перезапуск. Удалишь файл мимо программы — карточка исчезнет сама.</p>
+
+    <h2>Шаг 5. Буфер, заготовки, заметки и дела</h2>
+    <ul>
+      <li><b>Буфер обмена</b> — история скопированного текста, свежее сверху. Клик возвращает строку в буфер, крестик убирает одну запись, <b>Очистить</b> — все. По умолчанию хранится сотня. Файлы, скопированные в проводнике, сюда не попадают: это не текст.</li>
+      <li><b>Заготовки</b> — почта, телефон, ссылки, всё что надоело набирать. Клик копирует значение, поиск ищет и по названию, и по содержимому. Плюс справа превращает строку в форму добавления: слева название, справа значение, <kbd>Enter</kbd> сохраняет.</li>
+      <li><b>Заметки</b> — список слева, текст справа. Первая строка становится заголовком, пустые заметки убираются, когда уходишь со вкладки.</li>
+      <li><b>Дела</b> — одна строка на задачу. Квадратик отмечает выполненное, клик по тексту открывает правку прямо в строке, крестик удаляет. Сделанные остаются на своих местах.</li>
+    </ul>
+
+    <h2>Шаг 6. Переводчик</h2>
+    <p>Две панели, у каждой свой язык — кликни по подписи, чтобы выбрать. Кнопка между ними меняет панели местами вместе с уже переведённым текстом. Направление подстраивается под то, что печатаешь: наберёшь кириллицу в панели с английским — панели поменяются сами.</p>
+    <p>Движок выбирается в настройках:</p>
+    <ul>
+      <li><b>Офлайн</b> — идёт вместе с программой и работает без интернета. Модели языков скачиваются при первом использовании пары, около 200 МБ; папку для них можно выбрать.</li>
+      <li><b>DeepL</b> — по ключу API, вставляется в настройках.</li>
+    </ul>
+    <p>Движок начинает загружаться, как только открываешь вкладку, поэтому к концу набора он уже готов.</p>
+
+    <h2>Шаг 7. Два сочетания вне панели</h2>
+    <h3>Исправить раскладку</h3>
+    <p>Набрал не в той раскладке? Выдели текст и нажми <kbd>Ctrl + Alt + L</kbd> — символы перепишутся так, будто раскладка была правильной, а направление определится по самому тексту. Таблица строится из раскладок, установленных в системе, поэтому работает с любой твоей парой.</p>
+    <h3>Поверх всех окон</h3>
+    <p><kbd>Ctrl + Alt + P</kbd> держит активное окно поверх остальных; нажми ещё раз на том же окне, чтобы отпустить. В правом верхнем углу окна, рядом с кнопками управления, появляется значок-кнопка — клик закрепляет и открепляет, в настройках его можно убрать. По умолчанию все закреплённые окна отпускаются, когда Knack закрывается.</p>
+    <div class="callout"><b>Оба не работают с окнами, запущенными от администратора.</b> Ввод от обычной программы до них не доходит — то же ограничение есть у Punto Switcher и PowerToys.</div>
+
+    <h2>Шаг 8. Настройки</h2>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Раздел</th><th>Что внутри</th></tr></thead>
+        <tbody>
+          <tr><td>Внешний вид</td><td>Язык интерфейса, размер панели, частота анимации</td></tr>
+          <tr><td>Панель</td><td>Чем открывается и прячется, задержки, сочетание, монитор, отступ от края</td></tr>
+          <tr><td>Полка</td><td>Превью для видео и музыки</td></tr>
+          <tr><td>Буфер обмена</td><td>Длина истории</td></tr>
+          <tr><td>Переводчик</td><td>Движок, ключ DeepL, папка моделей, определение языка</td></tr>
+          <tr><td>Раскладка</td><td>Вкл/выкл, сочетание, восстановление буфера</td></tr>
+          <tr><td>Поверх всех окон</td><td>Вкл/выкл, сочетание, значок в углу, отпускать окна при выходе</td></tr>
+          <tr><td>Система</td><td>Запуск вместе с Windows</td></tr>
+          <tr><td>Инструменты</td><td>Автопроверка обновлений, обновить сейчас, установка ffmpeg</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Всё применяется сразу, кнопки «Сохранить» нет.</p>
+
+    <h2>Шаг 9. Обновления</h2>
+    <p>Knack спрашивает у GitHub про новую версию вскоре после запуска и потом раз в пару часов. Когда она находится, в углу экрана появляется небольшая карточка и висит там, пока её не тронешь: Windows проглатывает системные уведомления достаточно часто, чтобы единственное сообщение о новой версии потерялось.</p>
+    <p>Клик по карточке выдвигает панель с готовым к установке обновлением. <b>Проверить обновления</b> в меню трея делает то же самое по требованию. Пока идёт установка, панель блокируется и отказывается закрываться: программа вот-вот подменит свой собственный файл и перезапустится.</p>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <a href="/Knack/" class="brand"><img src="/Knack/assets/logo.svg" alt=""> Knack</a>
+    <div class="foot-links">
+      <a href="/Knack/guide/"><span class="only-en">Guide</span><span class="only-ru">Гайд</span></a>
+      <a href="/Knack/about/"><span class="only-en">About</span><span class="only-ru">О программе</span></a>
+      <a href="/Knack/privacy/"><span class="only-en">Privacy</span><span class="only-ru">Приватность</span></a>
+      <a href="https://github.com/smeshidojoe/Knack/issues" target="_blank" rel="noopener">Issues</a>
+      <a href="https://github.com/smeshidojoe/Knack" target="_blank" rel="noopener">GitHub</a>
+      <a href="/"><span class="only-en">All projects</span><span class="only-ru">Все проекты</span></a>
+    </div>
+    <small>MIT © <span id="y"></span> smeshidojoe</small>
+  </div>
+</footer>
+
+<script src="/Knack/assets/site.js"></script>
+</body>
+</html>
