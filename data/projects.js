@@ -42,6 +42,25 @@ window.PROJECTS = [
     "media": []
   },
   {
+    "name": "Shotly",
+    "repo": "https://github.com/smeshidojoe/Shotly",
+    "lang": null,
+    "desc_ru": "Скриншоты как в Lightshot - выделить область, порисовать поверх, скопировать или сохранить. Без выгрузки на сервер: всё остаётся на вашем компьютере.\n\n",
+    "desc_en": "Screenshots like in Lightshot - highlight the area, draw over, copy or save. No upload to the server: everything stays on your computer.",
+    "tags": [
+      "Windows",
+      "tray",
+      "screenshot"
+    ],
+    "banner": "",
+    "cover": "assets/media/shotly/cover.png",
+    "guide": "",
+    "site": "",
+    "about_ru": "",
+    "about_en": "",
+    "media": []
+  },
+  {
     "name": "NovaBot",
     "repo": "https://github.com/smeshidojoe/NovaBot",
     "lang": "Python",
@@ -108,25 +127,6 @@ window.PROJECTS = [
     "guide": "",
     "about_ru": "CopyPasta — инструмент для быстрой обрезки и склейки видео без перекодирования. Файл не пережимается, поэтому операции занимают секунды, а качество остаётся исходным до последнего бита.",
     "about_en": "CopyPasta is a tool for fast video trimming and merging without re-encoding. The file is never recompressed, so operations take seconds and quality stays bit-perfect.",
-    "media": []
-  },
-  {
-    "name": "Shotly",
-    "repo": "https://github.com/smeshidojoe/Shotly",
-    "lang": null,
-    "desc_ru": "Скриншоты как в Lightshot - выделить область, порисовать поверх, скопировать или сохранить. Без выгрузки на сервер: всё остаётся на вашем компьютере.\n\n",
-    "desc_en": "Screenshots like in Lightshot - highlight the area, draw over, copy or save. No upload to the server: everything stays on your computer.",
-    "tags": [
-      "Windows",
-      "tray",
-      "screenshot"
-    ],
-    "banner": "",
-    "cover": "assets/media/shotly/cover.png",
-    "guide": "",
-    "site": "",
-    "about_ru": "",
-    "about_en": "",
     "media": []
   }
 ];
