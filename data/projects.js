@@ -23,22 +23,23 @@ window.PROJECTS = [
     "media": []
   },
   {
-    "name": "Ember",
-    "repo": "https://github.com/smeshidojoe/Ember",
+    "name": "Knack",
+    "repo": "https://github.com/smeshidojoe/Knack",
     "lang": "Python",
-    "desc_ru": "Python-библиотека и CLI для извлечения и скачивания медиа из соцсетей.",
-    "desc_en": "A Python library and CLI for extracting and downloading media from social platforms.",
+    "desc_ru": "Панель у края экрана: музыка, полка, буфер, заготовки, заметки, дела и переводчик.",
+    "desc_en": "A panel at the edge of the screen: music, shelf, clipboard, snippets, notes, todo and a translator.",
     "tags": [
-      "library",
-      "CLI",
+      "Windows",
+      "tray",
+      "organizer",
       "media"
     ],
     "banner": "",
-    "cover": "assets/media/ember/ember-cover.svg",
-    "guide": "/Ember/docs/",
-    "site": "/Ember/",
-    "about_ru": "Ember — встраиваемая Python-библиотека и консольная утилита для извлечения и скачивания медиа из соцсетей, компактная альтернатива cobalt. Даёшь ссылку на пост — получаешь прямые ссылки на медиа с метаданными, а скачать Ember может и сам, включая HLS-потоки, без yt-dlp.\n\nПоддерживает 19 сервисов: TikTok, Twitter/X, Instagram, Reddit, Vimeo, SoundCloud, Pinterest, Tumblr, Bluesky, Newgrounds, Rutube, OK.ru, VK, Facebook, клипы Twitch и другие.\n\nЕдинственная обязательная зависимость — requests. Работает и как Python API (import ember), и как команда ember в терминале. Умеет подхватывать cookies из браузера для приватного контента.",
-    "about_en": "Ember is an embeddable Python library and CLI for extracting and downloading media from social platforms — a compact alternative to cobalt. Give it a post URL and it returns direct media URLs with metadata, and it can download by itself too, including HLS streams, without yt-dlp.\n\nSupports 19 services: TikTok, Twitter/X, Instagram, Reddit, Vimeo, SoundCloud, Pinterest, Tumblr, Bluesky, Newgrounds, Rutube, OK.ru, VK, Facebook, Twitch clips and more.\n\nThe only required dependency is requests. Works both as a Python API (import ember) and as the ember terminal command. Can pick up browser cookies for private content.",
+    "cover": "assets/media/knack/cover.png",
+    "guide": "/Knack/guide/",
+    "site": "/Knack/",
+    "about_ru": "Knack — выезжающая панель для Windows. Подводишь курсор к свободному краю экрана, и оттуда выезжает полоса: музыка, полка со скриншотами, история буфера обмена, заготовки, заметки, список дел и переводчик. Отвёл курсор — уехала обратно.\n\nПанель появляется с края, противоположного панели задач, на том мониторе, где сейчас курсор, и никогда не забирает фокус у окна, в котором ты печатаешь. Пока она закрыта, не работает ни один таймер.\n\nМузыка берётся из самой Windows, поэтому работает со всем, что играет: браузеры, Spotify, плееры. На полку скриншоты попадают сами, файлы можно бросить мышкой и вытащить обратно в чат. Переводчик работает офлайн на встроенных моделях или через DeepL по ключу.\n\nКроме панели есть два глобальных сочетания: исправить раскладку в выделенном тексте и закрепить активное окно поверх остальных.",
+    "about_en": "Knack is a sliding panel for Windows. Move the pointer to a free screen edge and a strip slides out: music, a shelf of screenshots, clipboard history, snippets, notes, a todo list and a translator. Move away and it slides back.\n\nThe panel appears on the edge opposite the taskbar, on the monitor your pointer is on, and never takes focus from the window you are typing in. While it is closed, not a single timer is running.\n\nMusic comes from Windows itself, so it works with anything that plays sound: browsers, Spotify, media players. Screenshots land on the shelf by themselves, files can be dropped in with the mouse and dragged back out into a chat. The translator runs offline on bundled models, or through DeepL with a key.\n\nBeyond the panel there are two global shortcuts: fix the keyboard layout of selected text, and keep the active window above all others.",
     "media": []
   },
   {
@@ -58,6 +59,25 @@ window.PROJECTS = [
     "site": "/Shotly/",
     "about_ru": "Shotly — скриншотилка для Windows в духе Lightshot: выделить область, порисовать поверх, скопировать или сохранить. Ничего не выгружается на сервер, каждый снимок остаётся на твоём компьютере.\n\nОверлей затемняет сразу все мониторы, рамку можно двигать и тянуть за восемь ручек, а размер виден в подписи. Поверх снимка рисуют карандашом, линией, стрелкой, прямоугольником, маркером и текстом — любым цветом и любой из четырёх толщин.\n\nГотовое уходит в буфер или в файл (PNG, JPG, BMP) по кнопке, горячей клавише или двойному клику. Есть съёмка всего экрана отдельным сочетанием и печать через системный диалог.\n\nИмена файлов идут по порядку и занимают первый свободный номер в папке, поэтому удалённые снимки не оставляют дыр в нумерации. Программа живёт в трее и сама по себе оверлей не открывает.",
     "about_en": "Shotly is a screenshot tool for Windows in the Lightshot spirit: select an area, draw on top, copy or save. Nothing is uploaded to a server — every shot stays on your computer.\n\nThe overlay dims all your monitors at once; the frame can be moved and pulled by eight handles, with its size shown in a label. On top of the shot you draw with a pencil, line, arrow, rectangle, marker or text, in any colour and any of four thicknesses.\n\nThe result goes to the clipboard or into a file (PNG, JPG, BMP) by a button, a hotkey or a double click. A separate shortcut grabs the whole screen, and printing goes through the system dialog.\n\nFile names run in order and take the first free number in the folder, so deleted shots leave no gaps in the numbering. The app lives in the tray and never opens the overlay by itself.",
+    "media": []
+  },
+  {
+    "name": "Ember",
+    "repo": "https://github.com/smeshidojoe/Ember",
+    "lang": "Python",
+    "desc_ru": "Python-библиотека и CLI для извлечения и скачивания медиа из соцсетей.",
+    "desc_en": "A Python library and CLI for extracting and downloading media from social platforms.",
+    "tags": [
+      "library",
+      "CLI",
+      "media"
+    ],
+    "banner": "",
+    "cover": "assets/media/ember/ember-cover.svg",
+    "guide": "/Ember/docs/",
+    "site": "/Ember/",
+    "about_ru": "Ember — встраиваемая Python-библиотека и консольная утилита для извлечения и скачивания медиа из соцсетей, компактная альтернатива cobalt. Даёшь ссылку на пост — получаешь прямые ссылки на медиа с метаданными, а скачать Ember может и сам, включая HLS-потоки, без yt-dlp.\n\nПоддерживает 19 сервисов: TikTok, Twitter/X, Instagram, Reddit, Vimeo, SoundCloud, Pinterest, Tumblr, Bluesky, Newgrounds, Rutube, OK.ru, VK, Facebook, клипы Twitch и другие.\n\nЕдинственная обязательная зависимость — requests. Работает и как Python API (import ember), и как команда ember в терминале. Умеет подхватывать cookies из браузера для приватного контента.",
+    "about_en": "Ember is an embeddable Python library and CLI for extracting and downloading media from social platforms — a compact alternative to cobalt. Give it a post URL and it returns direct media URLs with metadata, and it can download by itself too, including HLS streams, without yt-dlp.\n\nSupports 19 services: TikTok, Twitter/X, Instagram, Reddit, Vimeo, SoundCloud, Pinterest, Tumblr, Bluesky, Newgrounds, Rutube, OK.ru, VK, Facebook, Twitch clips and more.\n\nThe only required dependency is requests. Works both as a Python API (import ember) and as the ember terminal command. Can pick up browser cookies for private content.",
     "media": []
   },
   {
@@ -110,26 +130,6 @@ window.PROJECTS = [
     "guide": "",
     "about_ru": "CopyPasta — инструмент для быстрой обрезки и склейки видео без перекодирования. Файл не пережимается, поэтому операции занимают секунды, а качество остаётся исходным до последнего бита.",
     "about_en": "CopyPasta is a tool for fast video trimming and merging without re-encoding. The file is never recompressed, so operations take seconds and quality stays bit-perfect.",
-    "media": []
-  },
-  {
-    "name": "Knack",
-    "repo": "https://github.com/smeshidojoe/Knack",
-    "lang": "Python",
-    "desc_ru": "Панель у края экрана: музыка, полка, буфер, заготовки, заметки, дела и переводчик.",
-    "desc_en": "A panel at the edge of the screen: music, shelf, clipboard, snippets, notes, todo and a translator.",
-    "tags": [
-      "Windows",
-      "tray",
-      "organizer",
-      "media"
-    ],
-    "banner": "",
-    "cover": "assets/media/knack/cover.png",
-    "guide": "/Knack/guide/",
-    "site": "/Knack/",
-    "about_ru": "Knack — выезжающая панель для Windows. Подводишь курсор к свободному краю экрана, и оттуда выезжает полоса: музыка, полка со скриншотами, история буфера обмена, заготовки, заметки, список дел и переводчик. Отвёл курсор — уехала обратно.\n\nПанель появляется с края, противоположного панели задач, на том мониторе, где сейчас курсор, и никогда не забирает фокус у окна, в котором ты печатаешь. Пока она закрыта, не работает ни один таймер.\n\nМузыка берётся из самой Windows, поэтому работает со всем, что играет: браузеры, Spotify, плееры. На полку скриншоты попадают сами, файлы можно бросить мышкой и вытащить обратно в чат. Переводчик работает офлайн на встроенных моделях или через DeepL по ключу.\n\nКроме панели есть два глобальных сочетания: исправить раскладку в выделенном тексте и закрепить активное окно поверх остальных.",
-    "about_en": "Knack is a sliding panel for Windows. Move the pointer to a free screen edge and a strip slides out: music, a shelf of screenshots, clipboard history, snippets, notes, a todo list and a translator. Move away and it slides back.\n\nThe panel appears on the edge opposite the taskbar, on the monitor your pointer is on, and never takes focus from the window you are typing in. While it is closed, not a single timer is running.\n\nMusic comes from Windows itself, so it works with anything that plays sound: browsers, Spotify, media players. Screenshots land on the shelf by themselves, files can be dropped in with the mouse and dragged back out into a chat. The translator runs offline on bundled models, or through DeepL with a key.\n\nBeyond the panel there are two global shortcuts: fix the keyboard layout of selected text, and keep the active window above all others.",
     "media": []
   }
 ];
