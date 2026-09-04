@@ -99,23 +99,6 @@ window.PROJECTS = [
     "media": []
   },
   {
-    "name": "Gremlin",
-    "repo": "https://github.com/smeshidojoe/Gremlin",
-    "lang": null,
-    "desc_ru": "Telegram-бот для модерации чатов.",
-    "desc_en": "Telegram moderation bot.",
-    "tags": [
-      "Telegram",
-      "bot"
-    ],
-    "banner": "",
-    "cover": "assets/media/gremlin/ChatGPT_Image_8_._2026_._22_04_14.png",
-    "guide": "",
-    "about_ru": "Gremlin — Telegram-бот для модерации чатов: следит за порядком, чтобы админам не приходилось.",
-    "about_en": "Gremlin is a Telegram moderation bot: it keeps chats in order so admins don't have to.",
-    "media": []
-  },
-  {
     "name": "CopyPasta",
     "repo": "https://github.com/smeshidojoe/CopyPasta",
     "lang": null,
