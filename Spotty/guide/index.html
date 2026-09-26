@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-en="Guide – Spotty" data-ru="Гайд – Spotty">Guide – Spotty</title>
+<meta name="description" content="How to install Spotty and everything it can do: apps, files, the calculator, commands, the web, keys, settings and updates.">
+<link rel="icon" type="image/png" href="/Spotty/assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/Spotty/assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a href="/Spotty/" class="brand">
+      <img src="/Spotty/assets/logo.png" alt="">
+      Spotty
+    </a>
+    <button class="burger" aria-label="Menu">☰</button>
+    <div class="nav-links" id="nav-links">
+      <a href="/Spotty/#find"><span class="only-en">What it finds</span><span class="only-ru">Что находит</span></a>
+      <a href="/Spotty/#keys"><span class="only-en">Keys</span><span class="only-ru">Клавиши</span></a>
+      <a href="/Spotty/#faq"><span class="only-en">FAQ</span><span class="only-ru">Вопросы</span></a>
+      <a href="/Spotty/guide/" class="active"><span class="only-en">Guide</span><span class="only-ru">Гайд</span></a>
+      <a href="https://github.com/smeshidojoe/Spotty" target="_blank" rel="noopener">GitHub</a>
+      <a href="/Spotty/#download" class="nav-cta"><span class="only-en">Download</span><span class="only-ru">Скачать</span></a>
+      <button class="lang-btn" title="Switch language">RU</button>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap narrow prose">
+
+<!-- ═══════════ ENGLISH ═══════════ -->
+<div class="only-en">
+  <h1>Spotty guide</h1>
+  <p class="lead-p">
+    Everything the bar can do, from installing it to the last setting. Ten minutes end
+    to end, and you can stop after the first two sections.
+  </p>
+
+  <h2 id="install">Installing</h2>
+  <ol class="steps">
+    <li>
+      <b>Download the installer</b>
+      Take <code>Spotty-Setup-….exe</code> from the
+      <a href="https://github.com/smeshidojoe/Spotty/releases/latest" target="_blank" rel="noopener">releases page</a>,
+      or use the button on the <a href="/Spotty/#download">front page</a>.
+    </li>
+    <li>
+      <b>Run it</b>
+      No administrator rights are needed. Windows may show a blue <b>“Windows protected
+      your PC”</b> window — click <b>More info → Run anyway</b>. Every app without a paid
+      signing certificate gets that screen.
+    </li>
+    <li>
+      <b>Press Ctrl + E</b>
+      The bar opens by itself right after install. From then on it lives in the tray,
+      next to the clock, and <kbd>Ctrl</kbd> <kbd>E</kbd> brings it up from any app.
+    </li>
+  </ol>
+
+  <h2 id="basics">The bar</h2>
+  <p>
+    Press <kbd>Ctrl</kbd> <kbd>E</kbd>, type, pick with the arrow keys, open with
+    <kbd>Enter</kbd>. Close it with <kbd>Esc</kbd> or by clicking anywhere else — the bar
+    never takes over your screen and never asks to be dealt with.
+  </p>
+  <p>
+    You do not have to finish a word. Spotty matches the letters you typed against every
+    name it knows, so <code>tele</code>, <code>tlg</code> and <code>eleg</code> all find
+    Telegram.
+  </p>
+  <div class="callout">
+    <b>Nothing to set up first.</b> The list of apps is built on the first run and kept
+    up to date in the background. You can start using the bar immediately.
+  </div>
+
+  <h2 id="finds">What you can find</h2>
+
+  <h3>Apps</h3>
+  <p>
+    Everything in the Start menu, including Calculator, Settings and other Microsoft
+    Store apps. On top of that, once a day Spotty looks through all your drives and finds
+    portable apps and games that were never installed into Start. Those show up with the
+    folder they live in, so two copies of the same program are easy to tell apart.
+  </p>
+
+  <h3>Files and folders</h3>
+  <p>
+    From your Desktop, Documents and Downloads by default. Add or remove folders in
+    Settings. Hidden files and service folders such as <code>node_modules</code> and
+    <code>.git</code> are skipped on purpose — they would bury everything else.
+  </p>
+
+  <h3>Calculator</h3>
+  <p>
+    Type an expression and the answer appears as you write it: <code>12*(3+4)^2</code>,
+    <code>1920/16*9</code>, <code>sqrt(2)</code>. <kbd>Enter</kbd> copies the answer.
+  </p>
+  <p>
+    It understands <code>+ - * / // % ^ **</code>, brackets, a comma as the decimal
+    point, <code>×</code> and <code>÷</code>, the constants <code>pi</code>,
+    <code>e</code>, <code>tau</code>, and the functions <code>sqrt</code>,
+    <code>sin</code>, <code>cos</code>, <code>tan</code>, <code>asin</code>,
+    <code>acos</code>, <code>atan</code>, <code>ln</code>, <code>log</code>,
+    <code>log2</code>, <code>log10</code>, <code>exp</code>, <code>abs</code>,
+    <code>round</code>, <code>floor</code>, <code>ceil</code> and <code>fact</code>.
+  </p>
+
+  <h3>Commands</h3>
+  <p>
+    Start the query with <code>&gt;</code> and the rest is a shell command:
+    <code>&gt; ipconfig /all</code>. It opens in a new Command Prompt window, so you can
+    read the output instead of watching it flash by.
+  </p>
+
+  <h3>The web</h3>
+  <p>
+    Every search ends with “Search Google for …”, so a query never dead-ends. Start with
+    <code>?</code> to skip straight to the web: <code>? weather tomorrow</code>. Type
+    something that looks like an address — <code>github.com</code> — and Spotty offers to
+    open the site instead of searching for it. The engine is yours to pick in Settings:
+    Google, Yandex, DuckDuckGo or Bing.
+  </p>
+
+  <h2 id="keys">Picking and opening</h2>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Shortcut</th><th>What it does</th></tr></thead>
+      <tbody>
+        <tr><td><kbd>Ctrl</kbd> <kbd>E</kbd></td><td>open or close the bar (can be changed in Settings)</td></tr>
+        <tr><td><kbd>↑</kbd> <kbd>↓</kbd></td><td>pick an item</td></tr>
+        <tr><td><kbd>Enter</kbd></td><td>open</td></tr>
+        <tr><td><kbd>Ctrl</kbd> <kbd>Enter</kbd></td><td>second action: run as administrator, or show a file in its folder</td></tr>
+        <tr><td><kbd>Ctrl</kbd> <kbd>K</kbd></td><td>all actions for the item</td></tr>
+        <tr><td><kbd>Ctrl</kbd> <kbd>Shift</kbd> <kbd>C</kbd></td><td>copy the path, the command or the calculator answer</td></tr>
+        <tr><td><kbd>Ctrl</kbd> <kbd>,</kbd></td><td>settings</td></tr>
+        <tr><td><kbd>Esc</kbd></td><td>clear the search, press again to close</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>
+    <kbd>Ctrl</kbd> <kbd>K</kbd> is worth learning. It lists everything that can be done
+    with the selected item — show in folder, copy the path, copy the name, open a
+    terminal there, run as administrator, forget how often you have used it, hide it from
+    results — and each action shows its own shortcut next to it.
+  </p>
+  <div class="callout">
+    <b>Hiding is reversible.</b> An item hidden with <kbd>Ctrl</kbd> <kbd>K</kbd> comes
+    back from Settings → Hidden from Results. A hidden folder hides everything inside it,
+    which is the quickest way to clean up a noisy results list.
+  </div>
+
+  <h2 id="habits">Three things it does quietly</h2>
+  <ul>
+    <li>
+      <b>What you open often moves up.</b> If you always open Telegram after typing “t”,
+      next time it is already first. “Forget” in the actions menu resets that for one
+      item.
+    </li>
+    <li>
+      <b>The wrong keyboard layout still works.</b> <code>еудупкфь</code> finds Telegram —
+      the keys are in the same places, so the query is translated back before matching.
+    </li>
+    <li>
+      <b>Abbreviations count.</b> <code>vsc</code> is Visual Studio Code,
+      <code>ntpd</code> is Notepad.
+    </li>
+  </ul>
+
+  <h2 id="settings">Settings</h2>
+  <p>
+    The button in the bottom-left corner of the bar, <kbd>Ctrl</kbd> <kbd>,</kbd>, or a
+    right-click on the tray icon.
+  </p>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Setting</th><th>What it changes</th></tr></thead>
+      <tbody>
+        <tr><td>Shortcut</td><td>the combination that opens the bar; <kbd>Alt</kbd> <kbd>Space</kbd> is a good alternative</td></tr>
+        <tr><td>Start with Windows</td><td>whether Spotty launches when you sign in</td></tr>
+        <tr><td>Language</td><td>English or Russian</td></tr>
+        <tr><td>Search engine</td><td>Google, Yandex, DuckDuckGo or Bing</td></tr>
+        <tr><td>Apps on All Drives</td><td>the once-a-day sweep for portable apps; also shows how many were found</td></tr>
+        <tr><td>Glass Background</td><td>turn the glass off and the bar becomes plain dark</td></tr>
+        <tr><td>Folders</td><td>which folders are searched for files</td></tr>
+        <tr><td>Hidden from Results</td><td>bring back anything you hid</td></tr>
+        <tr><td>Updates</td><td>check now, and what happens when a new version is out</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="updates">Updates</h2>
+  <p>Two ways to be told about a new version, both set in Settings:</p>
+  <ul>
+    <li>
+      <b>Notify Me</b> — a notice pops up in the corner of the screen. Click it and the
+      update downloads right in the bar, with a progress strip, then Spotty restarts.
+    </li>
+    <li>
+      <b>Download in Background</b> — the update downloads while you keep working. When it
+      is ready, a <b>Restart and Update</b> button appears in the bar and waits there
+      until you press it.
+    </li>
+  </ul>
+  <p>“Check for Updates” in the tray menu always downloads in the background.</p>
+
+  <h2 id="files">Where things live</h2>
+  <ul>
+    <li>Settings — <code>%APPDATA%\Spotty</code></li>
+    <li>Icon and app-list cache — <code>%LOCALAPPDATA%\Spotty</code>; safe to delete, it is rebuilt</li>
+    <li>A downloaded update — the <code>_update</code> folder next to <code>Spotty.exe</code></li>
+  </ul>
+
+  <h2 id="uninstall">Uninstalling</h2>
+  <p>
+    Settings → Apps → Spotty → Uninstall. The uninstaller asks whether to keep your
+    settings, so reinstalling later picks up where you left off.
+  </p>
+
+  <h2 id="trouble">If something is off</h2>
+  <p>
+    <b>The shortcut is taken.</b> Another app holds it, often another launcher. Close that
+    app or pick a different combination.
+  </p>
+  <p>
+    <b>The bar opens slowly.</b> Turn off Glass Background. The glass captures the screen
+    underneath and blurs it on the graphics card; on older hardware plain dark is faster.
+  </p>
+  <p>
+    <b>Something is missing from the results.</b> For files, add the folder in Settings.
+    For apps on a drive, remember that the sweep skips Windows and ProgramData, Downloads,
+    git repositories and service programs — installers, updaters and console tools. If
+    the app is in the Start menu, search for its Start menu name.
+  </p>
+  <p>
+    Anything else, or an idea for the next version:
+    <a href="https://github.com/smeshidojoe/Spotty/issues" target="_blank" rel="noopener">open an issue</a>.
+  </p>
+</div>
+
+<!-- ═══════════ РУССКИЙ ═══════════ -->
+<div class="only-ru">
+  <h1>Гайд по Spotty</h1>
+  <p class="lead-p">
+    Всё, что умеет строка, — от установки до последней настройки. Читается за десять
+    минут, но можно остановиться после второго раздела.
+  </p>
+
+  <h2 id="install-ru">Установка</h2>
+  <ol class="steps">
+    <li>
+      <b>Скачайте установщик</b>
+      Файл <code>Spotty-Setup-….exe</code> лежит на
+      <a href="https://github.com/smeshidojoe/Spotty/releases/latest" target="_blank" rel="noopener">странице релизов</a>,
+      либо возьмите его кнопкой на <a href="/Spotty/#download">главной</a>.
+    </li>
+    <li>
+      <b>Запустите</b>
+      Права администратора не нужны. Windows может показать синее окно <b>«Система
+      Windows защитила ваш компьютер»</b> — нажмите <b>Подробнее → Выполнить в любом
+      случае</b>. Так бывает со всеми программами без платной цифровой подписи.
+    </li>
+    <li>
+      <b>Нажмите Ctrl + E</b>
+      Сразу после установки строка откроется сама. Дальше она живёт в трее, рядом с
+      часами, и вызывается сочетанием <kbd>Ctrl</kbd> <kbd>E</kbd> из любой программы.
+    </li>
+  </ol>
+
+  <h2 id="basics-ru">Как устроена строка</h2>
+  <p>
+    Нажали <kbd>Ctrl</kbd> <kbd>E</kbd>, напечатали, выбрали стрелками, открыли
+    <kbd>Enter</kbd>. Закрыть — <kbd>Esc</kbd> или клик мимо. Строка не занимает экран и
+    не требует, чтобы с ней что-то сделали.
+  </p>
+  <p>
+    Дописывать слово до конца не нужно. Spotty сверяет напечатанные буквы со всеми
+    известными названиями, поэтому <code>tele</code>, <code>tlg</code> и <code>eleg</code>
+    одинаково находят Telegram.
+  </p>
+  <div class="callout">
+    <b>Настраивать ничего не надо.</b> Список программ собирается при первом запуске и
+    обновляется в фоне. Пользоваться строкой можно сразу.
+  </div>
+
+  <h2 id="finds-ru">Что можно найти</h2>
+
+  <h3>Программы</h3>
+  <p>
+    Всё, что есть в меню «Пуск», включая Калькулятор, Параметры и другие приложения из
+    Магазина. Кроме того, раз в день Spotty просматривает все диски и находит портативные
+    программы и игры, которых в «Пуске» нет. Рядом с ними написана папка — так две копии
+    одной программы легко различить.
+  </p>
+
+  <h3>Файлы и папки</h3>
+  <p>
+    По умолчанию — с рабочего стола, из Документов и Загрузок. Список папок меняется в
+    настройках. Скрытые файлы и служебные папки вроде <code>node_modules</code> и
+    <code>.git</code> не ищутся специально: они завалили бы собой всё остальное.
+  </p>
+
+  <h3>Калькулятор</h3>
+  <p>
+    Наберите выражение — ответ появляется прямо по ходу: <code>12*(3+4)^2</code>,
+    <code>1920/16*9</code>, <code>sqrt(2)</code>. <kbd>Enter</kbd> копирует ответ.
+  </p>
+  <p>
+    Понимает <code>+ - * / // % ^ **</code>, скобки, запятую как десятичный знак,
+    <code>×</code> и <code>÷</code>, константы <code>pi</code>, <code>e</code>,
+    <code>tau</code> и функции <code>sqrt</code>, <code>sin</code>, <code>cos</code>,
+    <code>tan</code>, <code>asin</code>, <code>acos</code>, <code>atan</code>,
+    <code>ln</code>, <code>log</code>, <code>log2</code>, <code>log10</code>,
+    <code>exp</code>, <code>abs</code>, <code>round</code>, <code>floor</code>,
+    <code>ceil</code>, <code>fact</code>.
+  </p>
+
+  <h3>Команды</h3>
+  <p>
+    Начните запрос с <code>&gt;</code>, и остальное станет командой:
+    <code>&gt; ipconfig /all</code>. Она откроется в новом окне командной строки, так что
+    вывод можно спокойно прочитать, а не ловить взглядом.
+  </p>
+
+  <h3>Интернет</h3>
+  <p>
+    В конце любой выдачи есть «Искать в Google …», поэтому запрос никогда не упирается в
+    пустоту. Начните с <code>?</code>, чтобы сразу искать в интернете:
+    <code>? погода на завтра</code>. Наберите что-то похожее на адрес —
+    <code>github.com</code> — и Spotty предложит открыть сайт, а не искать его. Поисковик
+    выбирается в настройках: Google, Яндекс, DuckDuckGo или Bing.
+  </p>
+
+  <h2 id="keys-ru">Выбор и запуск</h2>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Сочетание</th><th>Что делает</th></tr></thead>
+      <tbody>
+        <tr><td><kbd>Ctrl</kbd> <kbd>E</kbd></td><td>открыть или закрыть строку (меняется в настройках)</td></tr>
+        <tr><td><kbd>↑</kbd> <kbd>↓</kbd></td><td>выбрать пункт</td></tr>
+        <tr><td><kbd>Enter</kbd></td><td>открыть</td></tr>
+        <tr><td><kbd>Ctrl</kbd> <kbd>Enter</kbd></td><td>второе действие: запуск от администратора, для файла — показать в папке</td></tr>
+        <tr><td><kbd>Ctrl</kbd> <kbd>K</kbd></td><td>все действия с пунктом</td></tr>
+        <tr><td><kbd>Ctrl</kbd> <kbd>Shift</kbd> <kbd>C</kbd></td><td>скопировать путь, команду или ответ калькулятора</td></tr>
+        <tr><td><kbd>Ctrl</kbd> <kbd>,</kbd></td><td>настройки</td></tr>
+        <tr><td><kbd>Esc</kbd></td><td>очистить строку, второй раз — закрыть</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>
+    <kbd>Ctrl</kbd> <kbd>K</kbd> стоит запомнить. Там собрано всё, что можно сделать с
+    выбранным пунктом: показать в папке, скопировать путь, скопировать имя, открыть там
+    терминал, запустить от администратора, забыть частоту запусков, скрыть из выдачи — и у
+    каждого действия рядом написано его сочетание.
+  </p>
+  <div class="callout">
+    <b>Скрытие обратимо.</b> Пункт, скрытый через <kbd>Ctrl</kbd> <kbd>K</kbd>,
+    возвращается в «Настройки → Скрытые из результатов». Скрытая папка прячет всё, что в
+    ней лежит, — быстрый способ разобрать шумную выдачу.
+  </div>
+
+  <h2 id="habits-ru">Три вещи, которые происходят сами</h2>
+  <ul>
+    <li>
+      <b>Частое поднимается выше.</b> Если на «t» вы всегда открываете Telegram, в
+      следующий раз он будет первым. «Забыть» в меню действий сбрасывает это для одного
+      пункта.
+    </li>
+    <li>
+      <b>Неверная раскладка не мешает.</b> <code>еудупкфь</code> найдёт Telegram: клавиши
+      на тех же местах, поэтому запрос переводится обратно перед поиском.
+    </li>
+    <li>
+      <b>Сокращения работают.</b> <code>vsc</code> — Visual Studio Code,
+      <code>ntpd</code> — Notepad.
+    </li>
+  </ul>
+
+  <h2 id="settings-ru">Настройки</h2>
+  <p>
+    Кнопка в левом нижнем углу строки, <kbd>Ctrl</kbd> <kbd>,</kbd> или правый клик по
+    значку в трее.
+  </p>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Настройка</th><th>Что меняет</th></tr></thead>
+      <tbody>
+        <tr><td>Сочетание</td><td>чем вызывается строка; хорошая замена — <kbd>Alt</kbd> <kbd>Space</kbd></td></tr>
+        <tr><td>Запуск с Windows</td><td>стартовать ли вместе с системой</td></tr>
+        <tr><td>Язык</td><td>английский или русский</td></tr>
+        <tr><td>Поисковик</td><td>Google, Яндекс, DuckDuckGo или Bing</td></tr>
+        <tr><td>Программы на всех дисках</td><td>ежедневный обход дисков; там же видно, сколько программ нашлось</td></tr>
+        <tr><td>Стеклянный фон</td><td>выключите — строка станет просто тёмной</td></tr>
+        <tr><td>Папки</td><td>где искать файлы</td></tr>
+        <tr><td>Скрытые из результатов</td><td>вернуть всё, что вы скрыли</td></tr>
+        <tr><td>Обновления</td><td>проверить сейчас и что делать, когда вышла новая версия</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="updates-ru">Обновления</h2>
+  <p>Два способа узнать о новой версии, оба выбираются в настройках:</p>
+  <ul>
+    <li>
+      <b>Сообщать</b> — в углу экрана появится уведомление. Нажмите на него, и обновление
+      скачается прямо в строке, с полосой прогресса, после чего Spotty перезапустится.
+    </li>
+    <li>
+      <b>Скачивать в фоне</b> — обновление качается, пока вы работаете. Когда оно готово,
+      в строке появляется кнопка <b>«Перезапустить и обновить»</b> и ждёт, пока вы её не
+      нажмёте.
+    </li>
+  </ul>
+  <p>«Проверить обновления» в меню трея всегда качает в фоне.</p>
+
+  <h2 id="files-ru">Где что лежит</h2>
+  <ul>
+    <li>Настройки — <code>%APPDATA%\Spotty</code></li>
+    <li>Кэш иконок и списка программ — <code>%LOCALAPPDATA%\Spotty</code>; можно удалить, соберётся заново</li>
+    <li>Скачанное обновление — папка <code>_update</code> рядом со <code>Spotty.exe</code></li>
+  </ul>
+
+  <h2 id="uninstall-ru">Удаление</h2>
+  <p>
+    «Параметры → Приложения → Spotty → Удалить». Установщик спросит, оставить ли
+    настройки, — тогда при повторной установке всё окажется на своих местах.
+  </p>
+
+  <h2 id="trouble-ru">Если что-то не так</h2>
+  <p>
+    <b>Сочетание занято.</b> Его держит другая программа, часто другой лаунчер. Закройте
+    её или выберите другое сочетание.
+  </p>
+  <p>
+    <b>Строка открывается медленно.</b> Выключите стеклянный фон. Стекло снимает экран под
+    строкой и размывает его на видеокарте; на старом железе простой тёмный фон быстрее.
+  </p>
+  <p>
+    <b>Чего-то нет в выдаче.</b> Для файлов — добавьте папку в настройках. Для программ на
+    диске помните, что обход пропускает Windows и ProgramData, Загрузки, git-репозитории и
+    служебные программы: установщики, обновлялки, консольные утилиты. Если программа есть
+    в «Пуске», ищите её под названием оттуда.
+  </p>
+  <p>
+    Остальное и пожелания к следующей версии —
+    <a href="https://github.com/smeshidojoe/Spotty/issues" target="_blank" rel="noopener">в issues</a>.
+  </p>
+</div>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <a href="/Spotty/" class="brand"><img src="/Spotty/assets/logo.png" alt=""> Spotty</a>
+    <div class="foot-links">
+      <a href="/Spotty/guide/"><span class="only-en">Guide</span><span class="only-ru">Гайд</span></a>
+      <a href="/Spotty/about/"><span class="only-en">About</span><span class="only-ru">О программе</span></a>
+      <a href="/Spotty/privacy/"><span class="only-en">Privacy</span><span class="only-ru">Приватность</span></a>
+      <a href="https://github.com/smeshidojoe/Spotty/issues" target="_blank" rel="noopener">Issues</a>
+      <a href="https://github.com/smeshidojoe/Spotty" target="_blank" rel="noopener">GitHub</a>
+      <a href="/"><span class="only-en">All projects</span><span class="only-ru">Все проекты</span></a>
+    </div>
+    <small>MIT © <span id="y"></span> smeshidojoe</small>
+  </div>
+</footer>
+
+<script src="/Spotty/assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720" font-family="Inter, 'Segoe UI', system-ui, sans-serif">
+  <defs>
+    <linearGradient id="spectrum" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#8ea2ff"/>
+      <stop offset=".52" stop-color="#c58bff"/>
+      <stop offset="1" stop-color="#ff9ecb"/>
+    </linearGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset=".5" stop-color="#ffffff" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="aura" cx="50%" cy="4%" r="62%">
+      <stop offset="0" stop-color="#8ea2ff" stop-opacity=".22"/>
+      <stop offset="1" stop-color="#8ea2ff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="aura2" cx="88%" cy="10%" r="44%">
+      <stop offset="0" stop-color="#c58bff" stop-opacity=".16"/>
+      <stop offset="1" stop-color="#c58bff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="aura3" cx="8%" cy="86%" r="46%">
+      <stop offset="0" stop-color="#ff9ecb" stop-opacity=".1"/>
+      <stop offset="1" stop-color="#ff9ecb" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="page"><rect width="1280" height="720"/></clipPath>
+  </defs>
+
+  <g clip-path="url(#page)">
+    <!-- near-black canvas, same as the site -->
+    <rect width="1280" height="720" fill="#08080b"/>
+
+    <!-- light raking across the desk -->
+    <g opacity=".5">
+      <rect x="-320" y="-200" width="70" height="1200" fill="#ffffff" opacity=".045" transform="rotate(22 -285 400)"/>
+      <rect x="-120" y="-200" width="34" height="1200" fill="#ffffff" opacity=".035" transform="rotate(22 -103 400)"/>
+      <rect x="420" y="-200" width="96" height="1200" fill="#ffffff" opacity=".05" transform="rotate(22 468 400)"/>
+      <rect x="640" y="-200" width="26" height="1200" fill="#ffffff" opacity=".03" transform="rotate(22 653 400)"/>
+      <rect x="1000" y="-200" width="78" height="1200" fill="#ffffff" opacity=".042" transform="rotate(22 1039 400)"/>
+      <rect x="1210" y="-200" width="30" height="1200" fill="#ffffff" opacity=".03" transform="rotate(22 1225 400)"/>
+    </g>
+
+    <rect width="1280" height="720" fill="url(#aura)"/>
+    <rect width="1280" height="720" fill="url(#aura2)"/>
+    <rect width="1280" height="720" fill="url(#aura3)"/>
+
+    <!-- app icon -->
+    <g transform="translate(592 78)">
+      <rect width="96" height="96" rx="26" fill="#ffffff"/>
+      <g transform="translate(48 48)" stroke="#08080b" stroke-width="7" fill="none" stroke-linecap="round">
+        <circle cx="-4" cy="-4" r="17"/>
+        <path d="M9 9l13 13"/>
+      </g>
+    </g>
+
+    <!-- wordmark -->
+    <text x="640" y="268" text-anchor="middle" font-size="104" font-weight="800"
+          letter-spacing="-5" fill="#f5f5f7">Spotty</text>
+    <text x="640" y="318" text-anchor="middle" font-size="27" font-weight="500"
+          letter-spacing="-0.3" fill="#9a9aa6">A quick launcher for Windows</text>
+
+    <!-- the bar itself -->
+    <g transform="translate(250 388)">
+      <rect width="780" height="248" rx="28" fill="#1a1a21" fill-opacity=".82"
+            stroke="#ffffff" stroke-opacity=".14"/>
+      <!-- light catching the top edge of the glass -->
+      <rect x="94" y="0" width="592" height="1.6" fill="url(#edge)"/>
+
+      <!-- query line -->
+      <g transform="translate(34 32)" stroke="#8e8e99" stroke-width="2.6" fill="none" stroke-linecap="round">
+        <circle cx="11" cy="11" r="8.4"/>
+        <path d="M17.2 17.2L22 22"/>
+      </g>
+      <text x="76" y="52" font-size="25" font-weight="500" fill="#f5f5f7" letter-spacing="-0.4">tele</text>
+      <rect x="127" y="28" width="2" height="26" fill="#8ea2ff"/>
+      <rect x="668" y="28" width="78" height="26" rx="7" fill="#ffffff" fill-opacity=".05"
+            stroke="#ffffff" stroke-opacity=".14"/>
+      <text x="707" y="46" text-anchor="middle" font-size="13"
+            font-family="ui-monospace, Consolas, monospace" fill="#6b6b77">Ctrl + E</text>
+      <rect x="0" y="76" width="780" height="1" fill="#ffffff" fill-opacity=".075"/>
+
+      <!-- group -->
+      <text x="34" y="106" font-size="12" font-weight="600" letter-spacing="2"
+            font-family="ui-monospace, Consolas, monospace" fill="#6b6b77">APPLICATIONS</text>
+
+      <!-- selected row -->
+      <rect x="12" y="118" width="756" height="44" rx="12" fill="#ffffff" fill-opacity=".09"
+            stroke="#ffffff" stroke-opacity=".07"/>
+      <rect x="28" y="127" width="26" height="26" rx="7" fill="#ffffff" fill-opacity=".08"
+            stroke="#ffffff" stroke-opacity=".07"/>
+      <text x="41" y="146" text-anchor="middle" font-size="13" fill="#cfcfd8">✈</text>
+      <text x="68" y="146" font-size="17" letter-spacing="-0.2">
+        <tspan fill="#8ea2ff" font-weight="650">Tele</tspan><tspan fill="#f5f5f7">gram</tspan>
+      </text>
+      <text x="752" y="145" text-anchor="end" font-size="13"
+            font-family="ui-monospace, Consolas, monospace" fill="#6b6b77">AppData\Roaming\Telegram Desktop</text>
+
+      <!-- second row -->
+      <rect x="28" y="175" width="26" height="26" rx="7" fill="#ffffff" fill-opacity=".08"
+            stroke="#ffffff" stroke-opacity=".07"/>
+      <text x="41" y="194" text-anchor="middle" font-size="13" fill="#cfcfd8">⌕</text>
+      <text x="68" y="194" font-size="17" fill="#cfcfd8" letter-spacing="-0.2">Search Google for “tele”</text>
+      <text x="752" y="193" text-anchor="end" font-size="13"
+            font-family="ui-monospace, Consolas, monospace" fill="#6b6b77">Google</text>
+    </g>
+
+    <!-- what the bar answers -->
+    <g font-size="15" font-weight="500" fill="#9a9aa6" text-anchor="middle">
+      <rect x="326" y="662" width="116" height="34" rx="17" fill="#ffffff" fill-opacity=".05" stroke="#ffffff" stroke-opacity=".08"/>
+      <text x="384" y="684">Apps</text>
+      <rect x="454" y="662" width="130" height="34" rx="17" fill="#ffffff" fill-opacity=".05" stroke="#ffffff" stroke-opacity=".08"/>
+      <text x="519" y="684">Files</text>
+      <rect x="596" y="662" width="150" height="34" rx="17" fill="#ffffff" fill-opacity=".05" stroke="#ffffff" stroke-opacity=".08"/>
+      <text x="671" y="684">Calculator</text>
+      <rect x="758" y="662" width="146" height="34" rx="17" fill="#ffffff" fill-opacity=".05" stroke="#ffffff" stroke-opacity=".08"/>
+      <text x="831" y="684">Commands</text>
+      <rect x="916" y="662" width="38" height="34" rx="17" fill="url(#spectrum)" fill-opacity=".9"/>
+      <text x="935" y="684" fill="#0a0a0d" font-weight="700">?</text>
+    </g>
+  </g>
+</svg>

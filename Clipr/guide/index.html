@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-en="Guide – Clipr" data-ru="Гайд – Clipr">Guide – Clipr</title>
+<meta name="description" content="How to record, trim, crop and export a GIF with Clipr, plus every shortcut and setting.">
+<link rel="icon" type="image/png" href="/Clipr/assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/Clipr/assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a href="/Clipr/" class="brand">
+      <img src="/Clipr/assets/logo.png" alt="">
+      Clipr
+    </a>
+    <button class="burger" aria-label="Menu">☰</button>
+    <div class="nav-links" id="nav-links">
+      <a href="/Clipr/#features"><span class="only-en">Features</span><span class="only-ru">Возможности</span></a>
+      <a href="/Clipr/#how"><span class="only-en">How it works</span><span class="only-ru">Как это работает</span></a>
+      <a href="/Clipr/#faq"><span class="only-en">FAQ</span><span class="only-ru">Вопросы</span></a>
+      <a href="/Clipr/guide/" class="active"><span class="only-en">Guide</span><span class="only-ru">Гайд</span></a>
+      <a href="https://github.com/smeshidojoe/Clipr" target="_blank" rel="noopener">GitHub</a>
+      <a href="/Clipr/#download" class="nav-cta"><span class="only-en">Download</span><span class="only-ru">Скачать</span></a>
+      <button class="lang-btn" title="Switch language">RU</button>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap narrow prose">
+
+<!-- ═══════════ ENGLISH ═══════════ -->
+<div class="only-en">
+  <h1>Clipr guide</h1>
+  <p class="lead-p">
+    From installing it to a finished GIF, plus every shortcut and setting along the way.
+  </p>
+
+  <h2 id="install">Installing</h2>
+  <ol class="steps">
+    <li>
+      <b>Run the installer</b>
+      Take it from the <a href="/Clipr/#download">download section</a>. Windows may show
+      a blue <b>“Windows protected your PC”</b> window — click <b>More info → Run
+      anyway</b>. Every app without a paid signing certificate gets that screen.
+    </li>
+    <li>
+      <b>Get the two helper programs</b>
+      Open settings and press the two install buttons. <b>FFmpeg</b> does the recording
+      and the converting, <b>gifsicle</b> squeezes the finished GIF. They download into
+      <code>%APPDATA%/Clipr/tools</code> and survive updates of Clipr itself. If either is
+      already on your <code>PATH</code>, Clipr uses that copy instead.
+    </li>
+    <li>
+      <b>Pick an area and record</b>
+      <kbd>Ctrl</kbd> <kbd>Alt</kbd> <kbd>A</kbd> picks the area,
+      <kbd>Ctrl</kbd> <kbd>Alt</kbd> <kbd>R</kbd> starts and stops.
+    </li>
+  </ol>
+  <div class="callout">
+    <b>gifsicle is optional.</b> Without it everything still works — the GIF is written by
+    FFmpeg alone and is usually a little larger.
+  </div>
+
+  <h2 id="record">Recording</h2>
+  <p>
+    Clipr lives in the tray. Clicking the tray icon shows or hides the floating panel;
+    the panel can be dragged anywhere with the mouse.
+  </p>
+  <p>
+    The <kbd>⬚</kbd> button picks an area: drag a frame, or click once to take the whole
+    monitor under the cursor. The chosen area stays outlined on screen so you can see what
+    is in the shot, and the outline turns red while recording.
+  </p>
+  <p>
+    Press pause to switch windows or wait for something. Each pause closes a segment and
+    continuing opens a new one — the frozen seconds in between never reach the file.
+    Stopping joins the segments without re-encoding, so it takes no time at all.
+  </p>
+  <div class="callout">
+    <b>Neither the panel nor the outline is recorded.</b> Both are excluded from capture at
+    the system level, so you can leave them sitting over the area you are recording.
+  </div>
+
+  <h2 id="edit">Trimming and cropping</h2>
+  <p>
+    Stopping opens the editor. There you have the recording itself, a timeline with two
+    markers, and a crop frame over the picture.
+  </p>
+  <ul>
+    <li><b>Trim</b> — drag the markers on the timeline to cut the ends.</li>
+    <li><b>Crop</b> — drag a frame over the picture. Clicking an empty spot resets it.</li>
+    <li><b>Aim precisely</b> — <kbd>←</kbd> and <kbd>→</kbd> step one frame at a time.</li>
+  </ul>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Key</th><th>What it does</th></tr></thead>
+      <tbody>
+        <tr><td><kbd>Space</kbd></td><td>play / pause</td></tr>
+        <tr><td><kbd>←</kbd> <kbd>→</kbd></td><td>step one frame</td></tr>
+        <tr><td><kbd>Enter</kbd></td><td>export the GIF</td></tr>
+        <tr><td><kbd>R</kbd></td><td>reset the crop</td></tr>
+        <tr><td><kbd>Esc</kbd></td><td>close the editor</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>
+    The size and the length of the finished GIF are shown next to the export button,
+    before you press it. If the number is too big, the answer is almost always one of
+    three: a shorter cut, a tighter crop, or a smaller width.
+  </p>
+
+  <h2 id="export">Export</h2>
+  <p>
+    <b>Export GIF</b> converts what you kept. The palette is built from your own footage
+    in two passes and aimed at the parts of the frame that change, which is where a
+    screencast keeps most of its weight. Then gifsicle has a go at the result — and its
+    version is used only if it really is smaller.
+  </p>
+  <p>
+    This is also why Clipr records video first and builds the GIF last: the expensive
+    palette pass happens once, over the final picture, instead of over material you were
+    about to throw away.
+  </p>
+
+  <h2 id="keys">Shortcuts</h2>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Shortcut</th><th>What it does</th></tr></thead>
+      <tbody>
+        <tr><td>Click the tray icon</td><td>show / hide the panel</td></tr>
+        <tr><td><kbd>Ctrl</kbd> <kbd>Alt</kbd> <kbd>R</kbd></td><td>start / stop</td></tr>
+        <tr><td><kbd>Ctrl</kbd> <kbd>Alt</kbd> <kbd>P</kbd></td><td>pause / continue</td></tr>
+        <tr><td><kbd>Ctrl</kbd> <kbd>Alt</kbd> <kbd>A</kbd></td><td>pick an area</td></tr>
+        <tr><td><kbd>Ctrl</kbd> <kbd>Alt</kbd> <kbd>X</kbd></td><td>show / hide the panel</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>All four are global and can be reassigned in settings.</p>
+
+  <h2 id="folders">Where files go</h2>
+  <ul>
+    <li>Finished GIFs — a <code>Clipr</code> folder inside <b>Videos</b> (changeable)</li>
+    <li>Temporary recordings — <code>%TEMP%/Clipr</code> (changeable), with abandoned
+    recordings older than a day cleaned up automatically</li>
+    <li>Settings, crash logs and the downloaded helper programs — <code>%APPDATA%/Clipr</code></li>
+  </ul>
+
+  <h2 id="motion">Less animation</h2>
+  <p>
+    Clipr has a <b>Less animation</b> option in settings, and it also turns itself on if
+    animation is switched off in the Windows accessibility settings. It does not remove
+    feedback, it shortens it: springs become a short fade, movement becomes a change of
+    opacity.
+  </p>
+  <p>
+    There is deliberately no animation on keyboard actions at all. The panel called by
+    <kbd>Ctrl</kbd> <kbd>Alt</kbd> <kbd>X</kbd> appears instantly — a transition would turn
+    an instant command into a wait. Clicking the tray icon does fade it in, because a
+    click is not a hurry.
+  </p>
+
+  <h2 id="trouble">If something is off</h2>
+  <p>
+    <b>Nothing records.</b> Check in settings that FFmpeg is installed — the button there
+    says so plainly.
+  </p>
+  <p>
+    <b>The GIF is huge.</b> Cut it shorter, crop it tighter, drop the width or the frame
+    rate. A video playing inside your recording will always cost more than windows that
+    mostly sit still.
+  </p>
+  <p>
+    <b>A shortcut does nothing.</b> Another app holds it. Reassign it in settings.
+  </p>
+  <p>
+    Anything else:
+    <a href="https://github.com/smeshidojoe/Clipr/issues" target="_blank" rel="noopener">open an issue</a>.
+  </p>
+</div>
+
+<!-- ═══════════ РУССКИЙ ═══════════ -->
+<div class="only-ru">
+  <h1>Гайд по Clipr</h1>
+  <p class="lead-p">
+    От установки до готового GIF, а по дороге — все сочетания и настройки.
+  </p>
+
+  <h2 id="install-ru">Установка</h2>
+  <ol class="steps">
+    <li>
+      <b>Запустите установщик</b>
+      Он лежит в <a href="/Clipr/#download">разделе загрузки</a>. Windows может показать
+      синее окно <b>«Система Windows защитила ваш компьютер»</b> — нажмите <b>Подробнее →
+      Выполнить в любом случае</b>. Так бывает со всеми программами без платной цифровой
+      подписи.
+    </li>
+    <li>
+      <b>Поставьте две вспомогательные программы</b>
+      Откройте настройки и нажмите две кнопки установки. <b>FFmpeg</b> записывает и
+      конвертирует, <b>gifsicle</b> дожимает готовый GIF. Они скачиваются в
+      <code>%APPDATA%/Clipr/tools</code> и переживают обновление самого Clipr. Если
+      что-то из этого уже есть в <code>PATH</code>, Clipr возьмёт оттуда.
+    </li>
+    <li>
+      <b>Выберите область и записывайте</b>
+      <kbd>Ctrl</kbd> <kbd>Alt</kbd> <kbd>A</kbd> выбирает область,
+      <kbd>Ctrl</kbd> <kbd>Alt</kbd> <kbd>R</kbd> запускает и останавливает запись.
+    </li>
+  </ol>
+  <div class="callout">
+    <b>gifsicle не обязателен.</b> Без него всё работает — GIF пишет один FFmpeg, просто
+    файл обычно получается чуть крупнее.
+  </div>
+
+  <h2 id="record-ru">Запись</h2>
+  <p>
+    Clipr живёт в трее. Клик по значку показывает или прячет плавающую панель; панель
+    таскается мышью куда угодно.
+  </p>
+  <p>
+    Кнопка <kbd>⬚</kbd> выбирает область: протяните рамку или кликните один раз, чтобы
+    взять монитор под курсором целиком. Выбранная область остаётся обведённой на экране,
+    так что видно, что попадает в кадр, а во время записи рамка краснеет.
+  </p>
+  <p>
+    Пауза нужна, чтобы переключить окно или чего-то дождаться. Каждая пауза закрывает
+    сегмент, продолжение открывает новый — застывшие секунды в файл не попадают. Стоп
+    склеивает сегменты без перекодирования, поэтому происходит мгновенно.
+  </p>
+  <div class="callout">
+    <b>Ни панель, ни рамка не записываются.</b> Обе исключены из захвата на уровне системы,
+    так что их можно спокойно оставить над записываемой областью.
+  </div>
+
+  <h2 id="edit-ru">Обрезка и кадрирование</h2>
+  <p>
+    После остановки открывается редактор. В нём сама запись, таймлайн с двумя маркерами и
+    рамка кадрирования поверх картинки.
+  </p>
+  <ul>
+    <li><b>Обрезка</b> — двигайте маркеры на таймлайне, чтобы отрезать края.</li>
+    <li><b>Кадрирование</b> — протяните рамку поверх картинки. Клик по пустому месту сбрасывает её.</li>
+    <li><b>Точное попадание</b> — <kbd>←</kbd> и <kbd>→</kbd> шагают по одному кадру.</li>
+  </ul>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Клавиша</th><th>Что делает</th></tr></thead>
+      <tbody>
+        <tr><td><kbd>Пробел</kbd></td><td>плей / пауза</td></tr>
+        <tr><td><kbd>←</kbd> <kbd>→</kbd></td><td>шаг в один кадр</td></tr>
+        <tr><td><kbd>Enter</kbd></td><td>экспорт GIF</td></tr>
+        <tr><td><kbd>R</kbd></td><td>сбросить кадрирование</td></tr>
+        <tr><td><kbd>Esc</kbd></td><td>закрыть редактор</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>
+    Размер и длительность готового GIF показаны рядом с кнопкой экспорта — до нажатия.
+    Если число великовато, лекарство почти всегда одно из трёх: короче обрезать, плотнее
+    кадрировать, уменьшить ширину.
+  </p>
+
+  <h2 id="export-ru">Экспорт</h2>
+  <p>
+    <b>Экспорт GIF</b> конвертирует то, что вы оставили. Палитра строится по вашей же
+    записи в два прохода и нацеливается на меняющиеся части кадра — именно там у
+    скринкаста лежит основной вес. Затем за результат берётся gifsicle, и его вариант
+    используется только если он действительно меньше.
+  </p>
+  <p>
+    Ровно поэтому Clipr сначала пишет видео и только потом собирает GIF: дорогой проход
+    палитры выполняется один раз, по финальной картинке, а не по материалу, который
+    вот-вот выбросят.
+  </p>
+
+  <h2 id="keys-ru">Сочетания</h2>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Сочетание</th><th>Что делает</th></tr></thead>
+      <tbody>
+        <tr><td>Клик по значку в трее</td><td>показать / скрыть панель</td></tr>
+        <tr><td><kbd>Ctrl</kbd> <kbd>Alt</kbd> <kbd>R</kbd></td><td>старт / стоп</td></tr>
+        <tr><td><kbd>Ctrl</kbd> <kbd>Alt</kbd> <kbd>P</kbd></td><td>пауза / продолжить</td></tr>
+        <tr><td><kbd>Ctrl</kbd> <kbd>Alt</kbd> <kbd>A</kbd></td><td>выбрать область</td></tr>
+        <tr><td><kbd>Ctrl</kbd> <kbd>Alt</kbd> <kbd>X</kbd></td><td>показать / скрыть панель</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Все четыре глобальные и переназначаются в настройках.</p>
+
+  <h2 id="folders-ru">Куда попадают файлы</h2>
+  <ul>
+    <li>Готовые GIF — папка <code>Clipr</code> внутри <b>«Видео»</b> (меняется)</li>
+    <li>Временные записи — <code>%TEMP%/Clipr</code> (тоже меняется), брошенные записи
+    старше суток убираются автоматически</li>
+    <li>Настройки, логи падений и скачанные вспомогательные программы — <code>%APPDATA%/Clipr</code></li>
+  </ul>
+
+  <h2 id="motion-ru">Меньше анимации</h2>
+  <p>
+    В настройках есть режим <b>«Меньше анимации»</b>, и он включается сам, если анимация
+    отключена в параметрах доступности Windows. Он не убирает обратную связь, а укорачивает
+    её: пружины заменяются коротким затуханием, движение — сменой прозрачности.
+  </p>
+  <p>
+    Анимации на действиях с клавиатуры нет вообще, и это намеренно. Панель по
+    <kbd>Ctrl</kbd> <kbd>Alt</kbd> <kbd>X</kbd> появляется мгновенно — переход превратил бы
+    мгновенную команду в ожидание. По клику в трее она всё же проявляется: клик никуда не
+    торопится.
+  </p>
+
+  <h2 id="trouble-ru">Если что-то не так</h2>
+  <p>
+    <b>Ничего не записывается.</b> Проверьте в настройках, установлен ли FFmpeg — кнопка
+    там честно об этом пишет.
+  </p>
+  <p>
+    <b>GIF огромный.</b> Обрежьте короче, кадрируйте плотнее, уменьшите ширину или частоту
+    кадров. Видео, играющее внутри записи, всегда обойдётся дороже, чем окна, которые
+    стоят на месте.
+  </p>
+  <p>
+    <b>Сочетание не срабатывает.</b> Его держит другая программа. Переназначьте в
+    настройках.
+  </p>
+  <p>
+    Остальное —
+    <a href="https://github.com/smeshidojoe/Clipr/issues" target="_blank" rel="noopener">в issues</a>.
+  </p>
+</div>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <a href="/Clipr/" class="brand"><img src="/Clipr/assets/logo.png" alt=""> Clipr</a>
+    <div class="foot-links">
+      <a href="/Clipr/guide/"><span class="only-en">Guide</span><span class="only-ru">Гайд</span></a>
+      <a href="/Clipr/about/"><span class="only-en">About</span><span class="only-ru">О программе</span></a>
+      <a href="/Clipr/privacy/"><span class="only-en">Privacy</span><span class="only-ru">Приватность</span></a>
+      <a href="https://github.com/smeshidojoe/Clipr/issues" target="_blank" rel="noopener">Issues</a>
+      <a href="https://github.com/smeshidojoe/Clipr" target="_blank" rel="noopener">GitHub</a>
+      <a href="/"><span class="only-en">All projects</span><span class="only-ru">Все проекты</span></a>
+    </div>
+    <small>MIT © <span id="y"></span> smeshidojoe</small>
+  </div>
+</footer>
+
+<script src="/Clipr/assets/site.js"></script>
+</body>
+</html>

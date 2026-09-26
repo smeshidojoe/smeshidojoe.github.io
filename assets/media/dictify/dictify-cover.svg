@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720" font-family="Inter, 'Segoe UI', system-ui, sans-serif">
+  <defs>
+    <linearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#5588f9"/>
+      <stop offset="1" stop-color="#8560f6"/>
+    </linearGradient>
+    <linearGradient id="gradH" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#5588f9"/>
+      <stop offset="1" stop-color="#8560f6"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="2%" r="60%">
+      <stop offset="0" stop-color="#5588f9" stop-opacity=".2"/>
+      <stop offset="1" stop-color="#5588f9" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="90%" cy="12%" r="44%">
+      <stop offset="0" stop-color="#8560f6" stop-opacity=".18"/>
+      <stop offset="1" stop-color="#8560f6" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="page"><rect width="1280" height="720"/></clipPath>
+  </defs>
+
+  <g clip-path="url(#page)">
+    <!-- light canvas, like the app's default theme -->
+    <rect width="1280" height="720" fill="#fbfbfe"/>
+    <rect width="1280" height="720" fill="url(#glow)"/>
+    <rect width="1280" height="720" fill="url(#glow2)"/>
+
+    <!-- app icon -->
+    <g transform="translate(588 82)">
+      <rect width="104" height="104" rx="28" fill="url(#grad)"/>
+      <g fill="#ffffff">
+        <rect x="26" y="45" width="6" height="14" rx="3"/>
+        <rect x="38" y="38" width="6" height="28" rx="3"/>
+        <rect x="50" y="28" width="6" height="48" rx="3"/>
+        <rect x="62" y="36" width="6" height="32" rx="3"/>
+        <rect x="74" y="24" width="6" height="56" rx="3"/>
+      </g>
+    </g>
+
+    <!-- wordmark -->
+    <text x="640" y="296" text-anchor="middle" font-size="104" font-weight="800"
+          letter-spacing="-5" fill="#13131c">Dictify</text>
+    <text x="640" y="344" text-anchor="middle" font-size="27" font-weight="500"
+          letter-spacing="-0.3" fill="#6b6c80">Offline transcription for Mac and Windows</text>
+
+    <!-- the window: a transcript reading itself back -->
+    <g transform="translate(250 392)">
+      <rect width="780" height="212" rx="18" fill="#ffffff" stroke="#e6e7f4"/>
+      <rect width="780" height="46" rx="18" fill="#f7f7fd"/>
+      <rect y="28" width="780" height="18" fill="#f7f7fd"/>
+      <rect y="45" width="780" height="1" fill="#e6e7f4"/>
+      <g fill="#d3d5e9">
+        <circle cx="26" cy="23" r="5.5"/>
+        <circle cx="44" cy="23" r="5.5"/>
+        <circle cx="62" cy="23" r="5.5"/>
+      </g>
+      <text x="84" y="28" font-size="14" font-weight="600" fill="#6b6c80">interview-march.mp3</text>
+
+      <!-- segments -->
+      <g font-size="16" fill="#3b3c4c">
+        <text x="26" y="84" font-family="ui-monospace, Consolas, monospace" font-size="12.5" fill="#8e8fa2">00:00</text>
+        <text x="86" y="84">So the first thing we noticed was that</text>
+        <rect x="374" y="70" width="70" height="20" rx="5" fill="#5068f2" fill-opacity=".12"/>
+        <text x="380" y="84" fill="#5068f2" font-weight="600">nobody</text>
+        <text x="452" y="84">read the manual.</text>
+
+        <text x="26" y="118" font-family="ui-monospace, Consolas, monospace" font-size="12.5" fill="#8e8fa2">00:06</text>
+        <text x="86" y="118">Not one person out of forty. They opened the app and started pressing things.</text>
+
+        <text x="26" y="152" font-family="ui-monospace, Consolas, monospace" font-size="12.5" fill="#8e8fa2">00:13</text>
+        <text x="86" y="152">Which, honestly, is how I use software too.</text>
+      </g>
+
+      <!-- progress -->
+      <rect x="26" y="176" width="480" height="7" rx="3.5" fill="#e6e7f4"/>
+      <rect x="26" y="176" width="308" height="7" rx="3.5" fill="url(#gradH)"/>
+      <text x="754" y="183" text-anchor="end" font-size="13" fill="#8e8fa2">Large v3 Turbo · 64%</text>
+    </g>
+
+    <!-- the waveform, the signature motif -->
+    <g transform="translate(546 638)" fill="url(#gradH)">
+      <rect x="0"   y="16" width="6" height="16" rx="3"/>
+      <rect x="13"  y="8"  width="6" height="32" rx="3"/>
+      <rect x="26"  y="0"  width="6" height="48" rx="3"/>
+      <rect x="39"  y="12" width="6" height="24" rx="3"/>
+      <rect x="52"  y="-6" width="6" height="60" rx="3"/>
+      <rect x="65"  y="14" width="6" height="20" rx="3"/>
+      <rect x="78"  y="4"  width="6" height="40" rx="3"/>
+      <rect x="91"  y="18" width="6" height="12" rx="3"/>
+      <rect x="104" y="7"  width="6" height="34" rx="3"/>
+      <rect x="117" y="15" width="6" height="18" rx="3"/>
+      <rect x="130" y="2"  width="6" height="44" rx="3"/>
+      <rect x="143" y="17" width="6" height="14" rx="3"/>
+      <rect x="156" y="10" width="6" height="28" rx="3"/>
+      <rect x="169" y="19" width="6" height="10" rx="3"/>
+    </g>
+  </g>
+</svg>

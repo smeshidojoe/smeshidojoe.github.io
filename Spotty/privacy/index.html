@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-en="Privacy – Spotty" data-ru="Приватность – Spotty">Privacy – Spotty</title>
+<meta name="description" content="What Spotty and this website collect. Short answer: nothing.">
+<link rel="icon" type="image/png" href="/Spotty/assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/Spotty/assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a href="/Spotty/" class="brand">
+      <img src="/Spotty/assets/logo.png" alt="">
+      Spotty
+    </a>
+    <button class="burger" aria-label="Menu">☰</button>
+    <div class="nav-links" id="nav-links">
+      <a href="/Spotty/#find"><span class="only-en">What it finds</span><span class="only-ru">Что находит</span></a>
+      <a href="/Spotty/#keys"><span class="only-en">Keys</span><span class="only-ru">Клавиши</span></a>
+      <a href="/Spotty/#faq"><span class="only-en">FAQ</span><span class="only-ru">Вопросы</span></a>
+      <a href="/Spotty/guide/"><span class="only-en">Guide</span><span class="only-ru">Гайд</span></a>
+      <a href="/Spotty/about/"><span class="only-en">About</span><span class="only-ru">О программе</span></a>
+      <a href="/Spotty/#download" class="nav-cta"><span class="only-en">Download</span><span class="only-ru">Скачать</span></a>
+      <button class="lang-btn" title="Switch language">RU</button>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap narrow prose">
+  <div class="only-en">
+    <h1>Privacy</h1>
+    <p class="lead-p">Short answer: what you type stays on your computer, and this page has no trackers.</p>
+
+    <h2>The app</h2>
+    <ul>
+      <li><b>Queries are never sent anywhere.</b> Matching happens on your machine, against
+      names Spotty already knows. The only exception is the one you ask for: choosing a
+      web search opens your browser with that query, the same as typing it there yourself.</li>
+      <li><b>No tracking.</b> Spotty does not report what you search for, what you open or
+      how often you use it.</li>
+      <li><b>Your data is local.</b> Settings live in <code>%APPDATA%\Spotty</code>; the
+      icon and app-list cache, along with how often you have opened things, lives in
+      <code>%LOCALAPPDATA%\Spotty</code>. Delete the cache and it is rebuilt.</li>
+      <li><b>Names, not contents.</b> Spotty reads file and folder names in the folders you
+      picked. It does not open your documents or look inside them.</li>
+    </ul>
+
+    <h2>When it uses the network</h2>
+    <p>
+      To ask GitHub whether a newer version exists, and to download it if you agree. That
+      check is controlled in Settings. Beyond updates and the web searches you start
+      yourself, there is nothing else.
+    </p>
+
+    <h2>This website</h2>
+    <ul>
+      <li>Static pages on GitHub Pages. No analytics, no trackers, no ads.</li>
+      <li>The site sets no cookies. Your language choice is kept in your own browser and
+      never leaves it.</li>
+      <li>The search bar on the front page is a demo. It runs entirely in your browser
+      against a made-up list, opens nothing and sends nothing.</li>
+      <li>Fonts load from Google Fonts, so that request reaches Google with your IP
+      address, like on any site that uses a font service.</li>
+      <li>GitHub hosts the pages and may keep normal server logs. See the
+      <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">GitHub Privacy Statement</a>.</li>
+    </ul>
+
+    <h2>Questions</h2>
+    <p>
+      Something unclear, or something you want changed? Write an issue on
+      <a href="https://github.com/smeshidojoe/Spotty/issues" target="_blank" rel="noopener">GitHub</a>.
+    </p>
+  </div>
+
+  <div class="only-ru">
+    <h1>Приватность</h1>
+    <p class="lead-p">Коротко: напечатанное остаётся на твоём компьютере, а у этой страницы нет слежки.</p>
+
+    <h2>Программа</h2>
+    <ul>
+      <li><b>Запросы никуда не уходят.</b> Поиск идёт на твоей машине, по названиям, которые
+      Spotty уже знает. Единственное исключение — то, о чём ты просишь сам: выбрав поиск в
+      интернете, ты открываешь браузер с этим запросом, ровно как если бы набрал его там.</li>
+      <li><b>Никакой слежки.</b> Spotty не сообщает никуда, что ты ищешь, что открываешь и
+      как часто пользуешься программой.</li>
+      <li><b>Данные лежат локально.</b> Настройки — в <code>%APPDATA%\Spotty</code>; кэш
+      иконок, список программ и частота запусков — в <code>%LOCALAPPDATA%\Spotty</code>.
+      Кэш можно удалить, он соберётся заново.</li>
+      <li><b>Имена, а не содержимое.</b> Spotty читает имена файлов и папок в выбранных тобой
+      каталогах. Документы он не открывает и внутрь не заглядывает.</li>
+    </ul>
+
+    <h2>Когда она выходит в сеть</h2>
+    <p>
+      Чтобы спросить у GitHub, есть ли версия новее, и скачать её, если ты согласишься. Эта
+      проверка настраивается. Кроме обновлений и поиска в интернете, который ты начинаешь
+      сам, ничего больше нет.
+    </p>
+
+    <h2>Этот сайт</h2>
+    <ul>
+      <li>Статические страницы на GitHub Pages. Ни аналитики, ни счётчиков, ни рекламы.</li>
+      <li>Сайт не ставит куки. Выбранный язык хранится в твоём браузере и никуда из него не
+      уходит.</li>
+      <li>Строка поиска на главной — демонстрация. Она работает целиком в браузере по
+      выдуманному списку, ничего не открывает и никуда ничего не отправляет.</li>
+      <li>Шрифты грузятся из Google Fonts, поэтому этот запрос уходит в Google вместе с твоим
+      IP-адресом — как на любом сайте со шрифтами из сети.</li>
+      <li>Страницы лежат на GitHub, он может вести обычные логи сервера. Подробности — в
+      <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">политике GitHub</a>.</li>
+    </ul>
+
+    <h2>Вопросы</h2>
+    <p>
+      Что-то непонятно или хочется изменить? Напиши в
+      <a href="https://github.com/smeshidojoe/Spotty/issues" target="_blank" rel="noopener">issues на GitHub</a>.
+    </p>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <a href="/Spotty/" class="brand"><img src="/Spotty/assets/logo.png" alt=""> Spotty</a>
+    <div class="foot-links">
+      <a href="/Spotty/guide/"><span class="only-en">Guide</span><span class="only-ru">Гайд</span></a>
+      <a href="/Spotty/about/"><span class="only-en">About</span><span class="only-ru">О программе</span></a>
+      <a href="/Spotty/privacy/"><span class="only-en">Privacy</span><span class="only-ru">Приватность</span></a>
+      <a href="https://github.com/smeshidojoe/Spotty/issues" target="_blank" rel="noopener">Issues</a>
+      <a href="https://github.com/smeshidojoe/Spotty" target="_blank" rel="noopener">GitHub</a>
+      <a href="/"><span class="only-en">All projects</span><span class="only-ru">Все проекты</span></a>
+    </div>
+    <small>MIT © <span id="y"></span> smeshidojoe</small>
+  </div>
+</footer>
+
+<script src="/Spotty/assets/site.js"></script>
+</body>
+</html>

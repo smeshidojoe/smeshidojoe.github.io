@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-en="Clipr – screen recording into a light, sharp GIF" data-ru="Clipr – запись экрана в лёгкий чёткий GIF">Clipr – screen recording into a light, sharp GIF</title>
+<meta name="description" content="Record a slice of your screen, trim it, crop it and export a GIF that stays small and sharp. A tray utility for Windows.">
+<meta property="og:title" content="Clipr – screen recording into a light, sharp GIF">
+<meta property="og:description" content="Record, trim, crop, export. A tray utility for Windows.">
+<meta property="og:image" content="https://smeshidojoe.github.io/Clipr/assets/banner.png">
+<link rel="icon" type="image/png" href="/Clipr/assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/Clipr/assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a href="/Clipr/" class="brand">
+      <img src="/Clipr/assets/logo.png" alt="">
+      Clipr
+    </a>
+    <button class="burger" aria-label="Menu">☰</button>
+    <div class="nav-links" id="nav-links">
+      <a href="#features"><span class="only-en">Features</span><span class="only-ru">Возможности</span></a>
+      <a href="#how"><span class="only-en">How it works</span><span class="only-ru">Как это работает</span></a>
+      <a href="#faq"><span class="only-en">FAQ</span><span class="only-ru">Вопросы</span></a>
+      <a href="/Clipr/guide/"><span class="only-en">Guide</span><span class="only-ru">Гайд</span></a>
+      <a href="https://github.com/smeshidojoe/Clipr" target="_blank" rel="noopener">GitHub</a>
+      <a href="#download" class="nav-cta"><span class="only-en">Download</span><span class="only-ru">Скачать</span></a>
+      <button class="lang-btn" title="Switch language">RU</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ Hero ═══ -->
+<header class="hero">
+  <div class="wrap">
+    <img src="/Clipr/assets/logo.png" alt="" class="hero-logo">
+    <h1>Clipr</h1>
+    <p class="lead">
+      <span class="only-en">Record a slice of your screen, trim it, crop it and export a <b>GIF that stays small and sharp</b>. Lives in the tray, out of your way.</span>
+      <span class="only-ru">Запишите кусок экрана, обрежьте, кадрируйте и сохраните <b>лёгкий и чёткий GIF</b>. Живёт в трее и не мешается.</span>
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="#download">
+        <span class="only-en">Download for Windows</span><span class="only-ru">Скачать для Windows</span>
+      </a>
+      <a class="btn btn-ghost" href="/Clipr/guide/">
+        <span class="only-en">Read the guide</span><span class="only-ru">Читать гайд</span>
+      </a>
+    </div>
+    <div class="hero-meta">
+      <span class="only-en">Free and open source</span><span class="only-ru">Бесплатно, открытый код</span>
+      <span class="only-en">Nothing is uploaded</span><span class="only-ru">Ничего не выгружается</span>
+      <span class="only-en">Windows 10 and 11</span><span class="only-ru">Windows 10 и 11</span>
+    </div>
+
+    <!-- an area being recorded, with the panel sitting right on top of it -->
+    <div class="capture">
+      <div class="frame live">
+        <span class="c-bl"></span><span class="c-br"></span>
+        <div class="fakewin">
+          <div class="fw-bar"><span></span><span></span><span></span></div>
+          <div class="fw-body">
+            <div class="fw-side"><i></i><i></i><i></i><i></i></div>
+            <div class="fw-main"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          </div>
+        </div>
+      </div>
+      <div class="panel-mock float">
+        <span class="rec-dot"></span>
+        <b>00:12</b>
+        <i class="hot">■</i>
+        <i>❚❚</i>
+        <i>⬚</i>
+        <i>📁</i>
+        <i>⚙</i>
+        <i>✕</i>
+      </div>
+    </div>
+    <p class="stage-cap">
+      <span class="only-en">Pick an area, hit record, stop, trim, export. Five steps and none of them opens a video editor — and the panel over the area is not in the shot.</span>
+      <span class="only-ru">Выбрать область, записать, остановить, обрезать, сохранить. Пять шагов, и ни один не открывает видеоредактор, — а панель над областью в кадр не попадает.</span>
+    </p>
+  </div>
+</header>
+
+<!-- ═══ Features ═══ -->
+<section id="features">
+  <div class="wrap">
+    <p class="eyebrow"><span class="only-en">Features</span><span class="only-ru">Возможности</span></p>
+    <h2>
+      <span class="only-en">Made for one job, so it does it properly</span>
+      <span class="only-ru">Сделано под одну задачу — и делает её как следует</span>
+    </h2>
+    <p class="section-sub">
+      <span class="only-en">A short recording of your screen, turned into a GIF you can drop into a chat or a bug report.</span>
+      <span class="only-ru">Короткая запись экрана, из которой получается GIF для чата или отчёта об ошибке.</span>
+    </p>
+
+    <div class="features">
+      <div class="feature">
+        <div class="ico">⬚</div>
+        <h3><span class="only-en">Any area, or a whole monitor</span><span class="only-ru">Любая область или весь монитор</span></h3>
+        <p>
+          <span class="only-en">Drag a frame across the screen, or click once to take the whole monitor. The chosen area stays outlined while you work, and the outline turns red while recording.</span>
+          <span class="only-ru">Протяните рамку по экрану или кликните один раз, чтобы взять монитор целиком. Выбранная область остаётся обведённой, а во время записи рамка краснеет.</span>
+        </p>
+      </div>
+
+      <div class="feature">
+        <div class="ico">❚❚</div>
+        <h3><span class="only-en">Pause without a seam</span><span class="only-ru">Пауза без шва</span></h3>
+        <p>
+          <span class="only-en">Pause to switch a window or wait for something to load. Each pause closes a segment and continuing opens a new one, so nothing frozen ends up in the result.</span>
+          <span class="only-ru">Ставьте на паузу, чтобы переключить окно или дождаться загрузки. Каждая пауза закрывает сегмент, продолжение открывает новый — застывших кадров в результате не будет.</span>
+        </p>
+      </div>
+
+      <div class="feature">
+        <div class="ico">◱</div>
+        <h3><span class="only-en">The panel is never in the shot</span><span class="only-ru">Панель не попадает в кадр</span></h3>
+        <p>
+          <span class="only-en">Clipr excludes its own window from the capture at the system level, so the control panel can sit right over the area you are recording.</span>
+          <span class="only-ru">Clipr исключает своё окно из захвата на уровне системы, поэтому панель управления может висеть прямо над записываемой областью.</span>
+        </p>
+      </div>
+
+      <div class="feature">
+        <div class="ico">✂</div>
+        <h3><span class="only-en">Trim and crop before export</span><span class="only-ru">Обрезка и кадрирование до экспорта</span></h3>
+        <p>
+          <span class="only-en">Markers on the timeline cut the ends, a frame over the picture crops it. Step a single frame at a time with the arrow keys until the start is exactly where you want it.</span>
+          <span class="only-ru">Маркеры на таймлайне режут края, рамка поверх кадра задаёт кадрирование. Стрелками можно шагать по одному кадру, пока начало не встанет ровно там, где нужно.</span>
+        </p>
+      </div>
+
+      <div class="feature">
+        <div class="ico">◐</div>
+        <h3><span class="only-en">Small GIFs that still look right</span><span class="only-ru">Маленькие GIF, которые не мылят</span></h3>
+        <p>
+          <span class="only-en">The palette is built from your actual footage in two passes and aimed at the parts that move, then squeezed further — but only if that makes the file smaller.</span>
+          <span class="only-ru">Палитра строится по вашей записи в два прохода и нацеливается на то, что движется, а затем файл дожимается — но только если от этого он действительно уменьшится.</span>
+        </p>
+      </div>
+
+      <div class="feature">
+        <div class="ico">◎</div>
+        <h3><span class="only-en">Lives in the tray</span><span class="only-ru">Живёт в трее</span></h3>
+        <p>
+          <span class="only-en">Global shortcuts start, pause and stop from any app, and all of them can be reassigned. Click the tray icon to show or hide the panel.</span>
+          <span class="only-ru">Глобальные сочетания запускают, ставят на паузу и останавливают запись из любой программы, и все они переназначаются. Клик по значку в трее показывает или прячет панель.</span>
+        </p>
+      </div>
+    </div>
+
+    <p class="stage-cap" style="margin-top: 34px;">
+      <span class="only-en">The panel holds all of it: record, pause, pick an area, open the folder, settings, close. It follows the mouse wherever you drag it, and lets go with the speed you threw it.</span>
+      <span class="only-ru">Всё это — на панели: запись, пауза, выбор области, папка, настройки, закрыть. Она едет за мышью куда угодно и отпускается с той скоростью, с какой её бросили.</span>
+    </p>
+  </div>
+</section>
+
+<!-- ═══ How it works ═══ -->
+<section id="how">
+  <div class="wrap">
+    <p class="eyebrow"><span class="only-en">How it works</span><span class="only-ru">Как это работает</span></p>
+    <h2>
+      <span class="only-en">Video first, GIF last</span>
+      <span class="only-ru">Сначала видео, GIF в самом конце</span>
+    </h2>
+    <p class="section-sub">
+      <span class="only-en">Most tools write the GIF while they record, which means they spend their effort on frames you are about to throw away. Clipr records video, lets you cut it, and only then builds the GIF — once, from the final picture.</span>
+      <span class="only-ru">Обычно GIF пишется прямо во время записи, то есть силы уходят на кадры, которые вы сейчас выбросите. Clipr пишет видео, даёт его обрезать и только потом собирает GIF — один раз, по итоговой картинке.</span>
+    </p>
+
+    <div class="frame">
+      <span class="c-bl"></span><span class="c-br"></span>
+      <div class="timeline">
+        <div class="track">
+          <div class="keep"></div>
+          <div class="head"></div>
+        </div>
+        <div class="tl-meta">
+          <span>00:00</span>
+          <span class="only-en">kept: 00:04 – 00:11 · 15 fps · 800 px · ≈ 1.4 MB</span>
+          <span class="only-ru">останется: 00:04 – 00:11 · 15 к/с · 800 px · ≈ 1,4 МБ</span>
+          <span>00:16</span>
+        </div>
+      </div>
+      <p style="color: var(--muted); font-size: 0.9rem; margin-top: 18px;">
+        <span class="only-en">The size and the length of the finished GIF are shown next to the export button — before you press it, not after.</span>
+        <span class="only-ru">Размер и длительность готового GIF показаны рядом с кнопкой экспорта — до нажатия, а не после.</span>
+      </p>
+    </div>
+
+    <div class="features" style="margin-top: 34px;">
+      <div class="feature">
+        <div class="ico">1</div>
+        <h3><span class="only-en">Recording</span><span class="only-ru">Запись</span></h3>
+        <p>
+          <span class="only-en">Goes to a temporary video file at full quality. Pausing simply starts a new segment; stopping joins them without re-encoding.</span>
+          <span class="only-ru">Идёт во временный видеофайл в полном качестве. Пауза просто начинает новый сегмент, стоп склеивает их без перекодирования.</span>
+        </p>
+      </div>
+      <div class="feature">
+        <div class="ico">2</div>
+        <h3><span class="only-en">Editing</span><span class="only-ru">Правка</span></h3>
+        <p>
+          <span class="only-en">Play it back, cut the ends, crop the frame. Nothing is converted yet, so changing your mind costs nothing.</span>
+          <span class="only-ru">Просмотр, обрезка краёв, кадрирование. Пока ничего не конвертируется, поэтому передумать ничего не стоит.</span>
+        </p>
+      </div>
+      <div class="feature">
+        <div class="ico">3</div>
+        <h3><span class="only-en">Export</span><span class="only-ru">Экспорт</span></h3>
+        <p>
+          <span class="only-en">One palette pass over the final picture, aimed at the areas that actually change, then the GIF is written and optionally squeezed a little further.</span>
+          <span class="only-ru">Один проход палитры по финальной картинке, нацеленный на меняющиеся области, затем запись GIF и, если это помогает, дожатие.</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ Keys ═══ -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow"><span class="only-en">Shortcuts</span><span class="only-ru">Горячие клавиши</span></p>
+    <h2>
+      <span class="only-en">From any app, without looking</span>
+      <span class="only-ru">Из любой программы, не глядя</span>
+    </h2>
+    <p class="section-sub">
+      <span class="only-en">All four are global and all four can be reassigned in settings.</span>
+      <span class="only-ru">Все четыре глобальные, и все четыре переназначаются в настройках.</span>
+    </p>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th><span class="only-en">Shortcut</span><span class="only-ru">Сочетание</span></th>
+            <th><span class="only-en">What it does</span><span class="only-ru">Что делает</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><kbd>Ctrl</kbd> <kbd>Alt</kbd> <kbd>R</kbd></td>
+            <td><span class="only-en">start / stop</span><span class="only-ru">старт / стоп</span></td></tr>
+          <tr><td><kbd>Ctrl</kbd> <kbd>Alt</kbd> <kbd>P</kbd></td>
+            <td><span class="only-en">pause / continue</span><span class="only-ru">пауза / продолжить</span></td></tr>
+          <tr><td><kbd>Ctrl</kbd> <kbd>Alt</kbd> <kbd>A</kbd></td>
+            <td><span class="only-en">pick an area</span><span class="only-ru">выбрать область</span></td></tr>
+          <tr><td><kbd>Ctrl</kbd> <kbd>Alt</kbd> <kbd>X</kbd></td>
+            <td><span class="only-en">show / hide the panel</span><span class="only-ru">показать / скрыть панель</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="section-sub" style="margin-bottom: 14px;">
+      <span class="only-en">In the editor:</span><span class="only-ru">В редакторе:</span>
+    </p>
+    <div class="tbl-wrap">
+      <table>
+        <tbody>
+          <tr><td><kbd>Space</kbd></td>
+            <td><span class="only-en">play / pause</span><span class="only-ru">плей / пауза</span></td></tr>
+          <tr><td><kbd>←</kbd> <kbd>→</kbd></td>
+            <td><span class="only-en">step one frame</span><span class="only-ru">шаг в один кадр</span></td></tr>
+          <tr><td><kbd>Enter</kbd></td>
+            <td><span class="only-en">export</span><span class="only-ru">экспорт</span></td></tr>
+          <tr><td><kbd>R</kbd></td>
+            <td><span class="only-en">reset the crop</span><span class="only-ru">сбросить кадрирование</span></td></tr>
+          <tr><td><kbd>Esc</kbd></td>
+            <td><span class="only-en">close</span><span class="only-ru">закрыть</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ Download ═══ -->
+<section id="download" class="download">
+  <div class="wrap narrow">
+    <p class="eyebrow"><span class="only-en">Download</span><span class="only-ru">Скачать</span></p>
+    <h2>
+      <span class="only-en">Install it and press Ctrl + Alt + A</span>
+      <span class="only-ru">Установите и нажмите Ctrl + Alt + A</span>
+    </h2>
+    <p class="section-sub">
+      <span class="only-en">Clipr needs two small helper programs to record and to compress. Buttons in settings download them for you, and they survive updates.</span>
+      <span class="only-ru">Для записи и сжатия Clipr нужны две небольшие вспомогательные программы. Кнопки в настройках скачивают их сами, и обновление программы их не трогает.</span>
+    </p>
+
+    <div class="btn-row">
+      <a class="btn btn-primary" data-download
+         href="https://github.com/smeshidojoe/Clipr/releases/latest" target="_blank" rel="noopener">
+        ↓&nbsp;<span class="only-en">Download for Windows</span><span class="only-ru">Скачать для Windows</span>
+      </a>
+      <a class="btn btn-ghost" href="https://github.com/smeshidojoe/Clipr" target="_blank" rel="noopener">
+        <span class="only-en">Source on GitHub</span><span class="only-ru">Исходники на GitHub</span>
+      </a>
+    </div>
+
+    <div class="req">
+      <span data-release-info hidden></span>
+      <span>Windows 10 / 11</span>
+      <span>MIT</span>
+    </div>
+
+    <p class="note-line">
+      <span class="only-en">If Windows shows a blue <b>“Windows protected your PC”</b> window, click <b>More info → Run anyway</b>. That happens with every app without a paid signing certificate.</span>
+      <span class="only-ru">Если Windows покажет синее окно <b>«Система Windows защитила ваш компьютер»</b>, нажмите <b>Подробнее → Выполнить в любом случае</b>. Так бывает со всеми программами без платной цифровой подписи.</span>
+    </p>
+  </div>
+</section>
+
+<!-- ═══ FAQ ═══ -->
+<section id="faq">
+  <div class="wrap">
+    <p class="eyebrow"><span class="only-en">Questions</span><span class="only-ru">Вопросы</span></p>
+    <h2>
+      <span class="only-en">Before you ask</span>
+      <span class="only-ru">Что обычно спрашивают</span>
+    </h2>
+    <p class="section-sub">
+      <span class="only-en">The rest is in the <a href="/Clipr/guide/">guide</a>.</span>
+      <span class="only-ru">Остальное — в <a href="/Clipr/guide/">гайде</a>.</span>
+    </p>
+
+    <div class="faq">
+      <details>
+        <summary><span class="only-en">What are the two helper programs?</span><span class="only-ru">Что за две вспомогательные программы?</span></summary>
+        <p>
+          <span class="only-en">One records and converts, the other squeezes the finished GIF. Both are well-known open-source tools. Settings has a button for each, and they land in Clipr's own folder rather than anywhere system-wide. If you already have them installed, Clipr picks those up instead.</span>
+          <span class="only-ru">Одна записывает и конвертирует, вторая дожимает готовый GIF. Обе — известные программы с открытым кодом. В настройках для каждой есть кнопка, и они кладутся в собственную папку Clipr, а не куда-то в систему. Если они у вас уже установлены, Clipr возьмёт их.</span>
+        </p>
+      </details>
+
+      <details>
+        <summary><span class="only-en">Why is my GIF still large?</span><span class="only-ru">Почему GIF всё равно большой?</span></summary>
+        <p>
+          <span class="only-en">A GIF stores whole frames, so weight comes from movement and from size. Three things help, in this order: cut the recording shorter, crop the frame tighter, and lower the width or the frame rate before exporting.</span>
+          <span class="only-ru">GIF хранит целые кадры, поэтому вес берётся из движения и размера. Помогают три вещи, именно в таком порядке: обрезать запись покороче, кадрировать поплотнее, уменьшить ширину или частоту кадров перед экспортом.</span>
+        </p>
+        <p>
+          <span class="only-en">A screencast of mostly static windows compresses far better than a video playing in the corner.</span>
+          <span class="only-ru">Скринкаст со статичными окнами сжимается куда лучше, чем видео, играющее в углу.</span>
+        </p>
+      </details>
+
+      <details>
+        <summary><span class="only-en">Does the panel show up in the recording?</span><span class="only-ru">Панель попадает в запись?</span></summary>
+        <p>
+          <span class="only-en">No. Both the panel and the outline around the chosen area are excluded from capture at the system level, so you can leave them over the area you are recording.</span>
+          <span class="only-ru">Нет. И панель, и рамка вокруг выбранной области исключены из захвата на уровне системы, так что их можно оставить прямо над записываемой областью.</span>
+        </p>
+      </details>
+
+      <details>
+        <summary><span class="only-en">Where do the files go?</span><span class="only-ru">Куда попадают файлы?</span></summary>
+        <p>
+          <span class="only-en">Finished GIFs go to a <code>Clipr</code> folder inside your Videos folder; both that and the temporary folder can be changed in settings. Abandoned recordings older than a day are cleaned up by themselves.</span>
+          <span class="only-ru">Готовые GIF попадают в папку <code>Clipr</code> внутри «Видео»; и её, и папку для временных файлов можно изменить в настройках. Брошенные записи старше суток убираются сами.</span>
+        </p>
+      </details>
+
+      <details>
+        <summary><span class="only-en">Can it record sound?</span><span class="only-ru">Записывает ли звук?</span></summary>
+        <p>
+          <span class="only-en">No — the output is a GIF, and a GIF has no sound track. Clipr is for short, silent clips: a bug, a gesture, a piece of interface.</span>
+          <span class="only-ru">Нет — на выходе GIF, а у него нет звуковой дорожки. Clipr для коротких немых роликов: ошибка, жест, кусок интерфейса.</span>
+        </p>
+      </details>
+
+      <details>
+        <summary><span class="only-en">Does the panel remember where I left it?</span><span class="only-ru">Панель запоминает, где я её оставил?</span></summary>
+        <p>
+          <span class="only-en">On purpose, no. Every launch starts at the bottom centre, so it is always in the same place when you need it and never hiding behind something you moved.</span>
+          <span class="only-ru">Намеренно нет. Каждый запуск начинается внизу по центру: панель всегда на одном месте и никогда не прячется за тем, что вы куда-то сдвинули.</span>
+        </p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <a href="/Clipr/" class="brand"><img src="/Clipr/assets/logo.png" alt=""> Clipr</a>
+    <div class="foot-links">
+      <a href="/Clipr/guide/"><span class="only-en">Guide</span><span class="only-ru">Гайд</span></a>
+      <a href="/Clipr/about/"><span class="only-en">About</span><span class="only-ru">О программе</span></a>
+      <a href="/Clipr/privacy/"><span class="only-en">Privacy</span><span class="only-ru">Приватность</span></a>
+      <a href="https://github.com/smeshidojoe/Clipr/issues" target="_blank" rel="noopener">Issues</a>
+      <a href="https://github.com/smeshidojoe/Clipr" target="_blank" rel="noopener">GitHub</a>
+      <a href="/"><span class="only-en">All projects</span><span class="only-ru">Все проекты</span></a>
+    </div>
+    <small>MIT © <span id="y"></span> smeshidojoe</small>
+  </div>
+</footer>
+
+<script src="/Clipr/assets/site.js"></script>
+</body>
+</html>

@@ -23,6 +23,25 @@ window.PROJECTS = [
     "media": []
   },
   {
+    "name": "Spotty",
+    "repo": "https://github.com/smeshidojoe/Spotty",
+    "lang": "Python",
+    "desc_ru": "Строка быстрого запуска для Windows — как Spotlight на Mac. Ctrl + E, пара букв, Enter.",
+    "desc_en": "A quick launcher for Windows, like Spotlight on a Mac. Ctrl + E, a few letters, Enter.",
+    "tags": [
+      "Windows",
+      "tray",
+      "launcher"
+    ],
+    "banner": "",
+    "cover": "assets/media/spotty/spotty-cover.svg",
+    "guide": "/Spotty/guide/",
+    "site": "/Spotty/",
+    "about_ru": "Spotty — строка быстрого запуска для Windows, устроенная как Spotlight на Mac. Живёт в трее, появляется поверх всего по Ctrl + E, забирает несколько букв и уходит. Печатаете, выбираете стрелками, открываете Enter.\n\nНаходит программы из меню «Пуск», включая приложения из Магазина, а раз в день сама просматривает все диски и подбирает портативные программы и игры, которых в «Пуске» нет. Рядом с такими написана их папка. Файлы и папки ищутся с рабочего стола, из Документов и Загрузок, а список каталогов меняется в настройках.\n\nТо же поле работает калькулятором: наберите 12*(3+4)^2 — ответ появится сразу, Enter его скопирует. Запрос с «>» выполняется как команда в новом окне командной строки, запрос с «?» уходит в поиск, а адрес вроде github.com Spotty предложит просто открыть.\n\nТри вещи происходят сами: частое поднимается выше, «еудупкфь» всё равно находит Telegram, а сокращения работают — «vsc» это Visual Studio Code. Стекло под строкой — шейдер, который снимает экран, размывает его на видеокарте и преломляет по краю; если железу так не нравится, стекло выключается в настройках.",
+    "about_en": "Spotty is a quick launcher for Windows built the way Spotlight works on a Mac. It lives in the tray, appears over everything on Ctrl + E, takes a few letters and gets out of the way. Type, pick with the arrow keys, open with Enter.\n\nIt finds apps from the Start menu, Store apps included, and once a day it sweeps every drive for portable programs and games that were never installed into Start — those show up with the folder they live in. Files and folders come from your Desktop, Documents and Downloads, and the folder list is yours to change.\n\nThe same field is a calculator: type 12*(3+4)^2 and the answer is already there, Enter copies it. A query starting with “>” runs as a command in a new Command Prompt window, one starting with “?” goes to the web, and an address like github.com is offered as a site to open.\n\nThree things happen by themselves: what you open often moves up, “еудупкфь” still finds Telegram, and abbreviations count — “vsc” is Visual Studio Code. The glass under the bar is a shader that captures the screen, blurs it on the graphics card and bends it along the edge; if your hardware would rather not, it switches off in settings.",
+    "media": []
+  },
+  {
     "name": "Knack",
     "repo": "https://github.com/smeshidojoe/Knack",
     "lang": "Python",
@@ -59,6 +78,46 @@ window.PROJECTS = [
     "site": "/Shotly/",
     "about_ru": "Shotly — скриншотилка для Windows в духе Lightshot: выделить область, порисовать поверх, скопировать или сохранить. Ничего не выгружается на сервер, каждый снимок остаётся на твоём компьютере.\n\nОверлей затемняет сразу все мониторы, рамку можно двигать и тянуть за восемь ручек, а размер виден в подписи. Поверх снимка рисуют карандашом, линией, стрелкой, прямоугольником, маркером и текстом — любым цветом и любой из четырёх толщин.\n\nГотовое уходит в буфер или в файл (PNG, JPG, BMP) по кнопке, горячей клавише или двойному клику. Есть съёмка всего экрана отдельным сочетанием и печать через системный диалог.\n\nИмена файлов идут по порядку и занимают первый свободный номер в папке, поэтому удалённые снимки не оставляют дыр в нумерации. Программа живёт в трее и сама по себе оверлей не открывает.",
     "about_en": "Shotly is a screenshot tool for Windows in the Lightshot spirit: select an area, draw on top, copy or save. Nothing is uploaded to a server — every shot stays on your computer.\n\nThe overlay dims all your monitors at once; the frame can be moved and pulled by eight handles, with its size shown in a label. On top of the shot you draw with a pencil, line, arrow, rectangle, marker or text, in any colour and any of four thicknesses.\n\nThe result goes to the clipboard or into a file (PNG, JPG, BMP) by a button, a hotkey or a double click. A separate shortcut grabs the whole screen, and printing goes through the system dialog.\n\nFile names run in order and take the first free number in the folder, so deleted shots leave no gaps in the numbering. The app lives in the tray and never opens the overlay by itself.",
+    "media": []
+  },
+  {
+    "name": "Clipr",
+    "repo": "https://github.com/smeshidojoe/Clipr",
+    "lang": "Python",
+    "desc_ru": "Запись экрана с обрезкой и экспортом в лёгкий чёткий GIF. Утилита для Windows, живёт в трее.",
+    "desc_en": "Screen recording, trimmed and exported into a light, sharp GIF. A Windows utility that lives in the tray.",
+    "tags": [
+      "Windows",
+      "tray",
+      "GIF",
+      "screen"
+    ],
+    "banner": "",
+    "cover": "assets/media/clipr/clipr-cover.svg",
+    "guide": "/Clipr/guide/",
+    "site": "/Clipr/",
+    "about_ru": "Clipr записывает кусок экрана и превращает его в GIF, который не стыдно бросить в чат: ошибка, жест, кусок интерфейса. Программа живёт в трее, а работа идёт с маленькой плавающей панели — запись, пауза, выбор области, папка, настройки.\n\nОбласть выбирается рамкой или одним кликом по монитору целиком и остаётся обведённой на экране, чтобы было видно, что попадает в кадр; во время записи рамка краснеет. Ни панель, ни рамка в собственную запись не попадают — они исключены из захвата на уровне системы.\n\nГлавное решение: сначала пишется видео, а GIF собирается в самом конце. Поэтому паузу можно ставить без шва (каждая закрывает сегмент, продолжение открывает новый), обрезать и кадрировать — бесплатно, а дорогой проход палитры выполняется один раз, по финальной картинке. Размер и длительность готового файла видны рядом с кнопкой экспорта до нажатия.\n\nПалитра строится по самой записи в два прохода и нацеливается на меняющиеся области — там у скринкаста основной вес, — а затем файл дожимается, но результат берётся только если он действительно меньше. Все четыре горячие клавиши глобальные и переназначаются.",
+    "about_en": "Clipr records a slice of your screen and turns it into a GIF you can drop straight into a chat: a bug, a gesture, a piece of interface. The app lives in the tray and all the work happens on a small floating panel — record, pause, pick an area, folder, settings.\n\nThe area is chosen by dragging a frame or with one click for the whole monitor, and stays outlined on screen so you can see what is in the shot; the outline turns red while recording. Neither the panel nor the outline ends up in the recording — both are excluded from capture at the system level.\n\nThe one decision everything follows from: video is recorded first and the GIF is built last. That is why pausing leaves no seam (each pause closes a segment, continuing opens a new one), why trimming and cropping cost nothing, and why the expensive palette pass runs once, over the final picture. The size and length of the finished file are shown next to the export button before you press it.\n\nThe palette is built from your own footage in two passes and aimed at the parts that change — where a screencast keeps most of its weight — and then the file is squeezed further, but the result is kept only if it really is smaller. All four hotkeys are global and can be reassigned.",
+    "media": []
+  },
+  {
+    "name": "Dictify",
+    "repo": "https://github.com/smeshidojoe/Dictify",
+    "lang": "Python",
+    "desc_ru": "Офлайн-расшифровка аудио и видео в текст для Mac и Windows. Ничего не выгружается.",
+    "desc_en": "Offline audio and video transcription for Mac and Windows. Nothing is uploaded.",
+    "tags": [
+      "Windows",
+      "macOS",
+      "Whisper",
+      "transcription"
+    ],
+    "banner": "",
+    "cover": "assets/media/dictify/dictify-cover.svg",
+    "guide": "/Dictify/guide/",
+    "site": "/Dictify/",
+    "about_ru": "Dictify превращает запись в текст прямо на вашем компьютере. Никакого сервера, аккаунта и оплаты за минуты: модель скачивается один раз, дальше можно работать с выключенной сетью. На входе любой аудио- или видеофайл — mp3, wav, m4a, flac, ogg, opus, mp4, mov, mkv, webm и прочие.\n\nОдно окно: справа панель с моделью, языком и прогрессом, вся область текста — зона перетаскивания. Бросил файл — распознавание началось, текст появляется по мере готовности. Модели Whisper от Tiny до Large v3, английский, русский и ещё 90+ языков с автоопределением. На Mac с чипом M-серии счёт идёт на встроенной графике, на Windows — на процессоре или на видеокарте NVIDIA, для которой нужная библиотека ставится одной кнопкой.\n\nВстроенный плеер подсвечивает каждое звучащее слово, а клик по слову начинает воспроизведение с него — даже пока остальное ещё распознаётся. Текст можно читать сплошняком с абзацами по паузам или строками с таймкодами, искать по нему, править прямо на месте (таймкоды защищены) и выгружать в TXT, Markdown, SRT, Word и PDF.\n\nВыбранная модель загружается в память при старте и остаётся там, поэтому распознавание начинается без ожидания. Интерфейс на английском и русском, светлая и тёмная темы по системной.",
+    "about_en": "Dictify turns a recording into text on your own computer. No server, no account, no per-minute price: the model is downloaded once and after that you can work with the network switched off. It takes any audio or video file — mp3, wav, m4a, flac, ogg, opus, mp4, mov, mkv, webm and the rest.\n\nOne window: a panel on the right with the model, the language and the progress, and the whole text area as a drop zone. Drop a file and recognition starts, with the text appearing as it is ready. Whisper models from Tiny to Large v3, English, Russian and 90+ other languages with automatic detection. On an M-series Mac the work runs on the built-in graphics; on Windows on the processor, or on an NVIDIA card whose library installs with one button.\n\nThe built-in player highlights each word as it is spoken, and clicking a word plays from there — even while the rest is still being recognised. Read it as solid text with paragraphs broken at pauses or as timecoded lines, search it, edit it in place (timecodes are protected) and export to TXT, Markdown, SRT, Word and PDF.\n\nThe model you picked is loaded into memory at startup and stays there, so transcription begins without a wait. The interface is English or Russian, light and dark following the system.",
     "media": []
   },
   {

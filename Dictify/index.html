@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-en="Dictify – offline transcription for Mac and Windows" data-ru="Dictify – офлайн-расшифровка для Mac и Windows">Dictify – offline transcription for Mac and Windows</title>
+<meta name="description" content="Drop in any audio or video file and get the text back. Everything runs on your own computer: nothing is uploaded, no account, no limits.">
+<meta property="og:title" content="Dictify – offline transcription for Mac and Windows">
+<meta property="og:description" content="Drop in any audio or video file and get the text back, entirely on your own computer.">
+<meta property="og:image" content="https://smeshidojoe.github.io/Dictify/assets/logo.png">
+<link rel="icon" type="image/png" href="/Dictify/assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/Dictify/assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a href="/Dictify/" class="brand">
+      <img src="/Dictify/assets/logo.png" alt="">
+      Dictify
+    </a>
+    <button class="burger" aria-label="Menu">☰</button>
+    <div class="nav-links" id="nav-links">
+      <a href="#features"><span class="only-en">Features</span><span class="only-ru">Возможности</span></a>
+      <a href="#models"><span class="only-en">Models</span><span class="only-ru">Модели</span></a>
+      <a href="#faq"><span class="only-en">FAQ</span><span class="only-ru">Вопросы</span></a>
+      <a href="/Dictify/guide/"><span class="only-en">Guide</span><span class="only-ru">Гайд</span></a>
+      <a href="https://github.com/smeshidojoe/Dictify" target="_blank" rel="noopener">GitHub</a>
+      <a href="#download" class="nav-cta"><span class="only-en">Download</span><span class="only-ru">Скачать</span></a>
+      <button class="lang-btn" title="Switch language">RU</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ Hero ═══ -->
+<header class="hero">
+  <div class="wrap">
+    <img src="/Dictify/assets/logo.png" alt="" class="hero-logo">
+    <h1>Dictify</h1>
+    <p class="lead">
+      <span class="only-en">Drop in any audio or video file and get the text back. Everything runs <b>on your own computer</b> — nothing is uploaded, nothing is metered, no account.</span>
+      <span class="only-ru">Бросьте любой аудио- или видеофайл и получите текст. Всё считается <b>на вашем компьютере</b> — ничего не выгружается, ничего не тарифицируется, аккаунт не нужен.</span>
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="#download">
+        <span class="only-en">Download</span><span class="only-ru">Скачать</span>
+      </a>
+      <a class="btn btn-ghost" href="/Dictify/guide/">
+        <span class="only-en">Read the guide</span><span class="only-ru">Читать гайд</span>
+      </a>
+    </div>
+    <div class="hero-meta">
+      <span class="only-en">Mac and Windows</span><span class="only-ru">Mac и Windows</span>
+      <span class="only-en">90+ languages</span><span class="only-ru">90+ языков</span>
+      <span class="only-en">Free and open source</span><span class="only-ru">Бесплатно, открытый код</span>
+    </div>
+
+    <!-- the app window, drawn in CSS -->
+    <div class="win">
+      <div class="win-bar">
+        <span class="dots"><span></span><span></span><span></span></span>
+        <span class="name">interview-march.mp3</span>
+      </div>
+      <div class="win-body">
+        <div class="win-text">
+          <div class="seg">
+            <time>00:00</time>
+            <p>So the first thing we noticed was that <mark>nobody</mark> read the manual.</p>
+          </div>
+          <div class="seg">
+            <time>00:06</time>
+            <p>Not one person out of forty. They opened the app and started pressing things.</p>
+          </div>
+          <div class="seg">
+            <time>00:13</time>
+            <p>Which, honestly, is how I use software too.</p>
+          </div>
+          <div class="seg">
+            <time>00:17</time>
+            <p>So we stopped writing manuals and started making the first screen explain itself.</p>
+          </div>
+        </div>
+        <div class="win-side">
+          <div class="side-card">
+            <b><span class="only-en">Model</span><span class="only-ru">Модель</span></b>
+            <div class="pick"><span>Large v3 Turbo</span><span>▾</span></div>
+          </div>
+          <div class="side-card">
+            <b><span class="only-en">Language</span><span class="only-ru">Язык</span></b>
+            <div class="pick">
+              <span class="only-en">Detect automatically</span><span class="only-ru">Определить автоматически</span>
+              <span>▾</span>
+            </div>
+          </div>
+          <div class="side-card">
+            <b><span class="only-en">Transcribing</span><span class="only-ru">Распознавание</span></b>
+            <div class="bar-line"><i></i></div>
+            <div class="side-note">
+              <span class="only-en">on the graphics card · 64%</span><span class="only-ru">на видеокарте · 64%</span>
+            </div>
+          </div>
+          <div class="wave soft" style="height: 34px; margin-top: 16px;">
+            <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+            <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="win-cap">
+      <span class="only-en">One window. The whole text area is a drop zone, and the text appears as it is recognised.</span>
+      <span class="only-ru">Одно окно. Вся область текста — зона перетаскивания, а текст появляется по мере готовности.</span>
+    </p>
+  </div>
+</header>
+
+<!-- ═══ Features ═══ -->
+<section id="features">
+  <div class="wrap">
+    <p class="eyebrow"><span class="only-en">Features</span><span class="only-ru">Возможности</span></p>
+    <h2>
+      <span class="only-en">Drop a file in, take the text out</span>
+      <span class="only-ru">Бросил файл — забрал текст</span>
+    </h2>
+    <p class="section-sub">
+      <span class="only-en">An interview, a lecture, a voice message, a film — anything with speech in it.</span>
+      <span class="only-ru">Интервью, лекция, голосовое, фильм — всё, где есть речь.</span>
+    </p>
+
+    <div class="features">
+      <div class="feature">
+        <div class="ico">◎</div>
+        <h3><span class="only-en">Nothing leaves your computer</span><span class="only-ru">Ничего не уходит с компьютера</span></h3>
+        <p>
+          <span class="only-en">Recognition happens locally. No server, no account, no per-minute price, and it works with the network switched off.</span>
+          <span class="only-ru">Распознавание идёт локально. Ни сервера, ни аккаунта, ни цены за минуту — и работает с выключенной сетью.</span>
+        </p>
+      </div>
+
+      <div class="feature">
+        <div class="ico">♪</div>
+        <h3><span class="only-en">Any file</span><span class="only-ru">Любой файл</span></h3>
+        <p>
+          <span class="only-en">Audio and video alike: mp3, wav, m4a, flac, ogg, opus, mp4, mov, mkv, webm and the rest. Nothing needs converting first.</span>
+          <span class="only-ru">И аудио, и видео: mp3, wav, m4a, flac, ogg, opus, mp4, mov, mkv, webm и прочие. Ничего не нужно заранее конвертировать.</span>
+        </p>
+      </div>
+
+      <div class="feature">
+        <div class="ico">◐</div>
+        <h3><span class="only-en">Karaoke playback</span><span class="only-ru">Караоке при прослушивании</span></h3>
+        <p>
+          <span class="only-en">The player highlights each word as it is spoken. Click any word to play from there — even while the rest is still being recognised.</span>
+          <span class="only-ru">Плеер подсвечивает каждое звучащее слово. Клик по слову начинает воспроизведение с него — даже пока остальное ещё распознаётся.</span>
+        </p>
+        <p>
+          <span class="only-en">Pause and the highlight stays on the last word said, so you never lose your place.</span>
+          <span class="only-ru">На паузе подсветка остаётся на последнем сказанном слове, так что место не теряется.</span>
+        </p>
+      </div>
+
+      <div class="feature">
+        <div class="ico">⌸</div>
+        <h3><span class="only-en">Two ways to read it</span><span class="only-ru">Два способа читать</span></h3>
+        <p>
+          <span class="only-en">Solid text, broken into paragraphs where the speaker paused — or timecoded lines. Timecodes, paragraph length, the pause threshold and the font size are all yours to set.</span>
+          <span class="only-ru">Сплошной текст с абзацами по паузам говорящего — или строки с таймкодами. Таймкоды, длина абзаца, порог паузы и размер шрифта настраиваются.</span>
+        </p>
+      </div>
+
+      <div class="feature">
+        <div class="ico">✎</div>
+        <h3><span class="only-en">Edit and search</span><span class="only-ru">Правка и поиск</span></h3>
+        <p>
+          <span class="only-en">Fix a name or a term right in the text; the timecodes are protected from accidental edits. Search highlights every match at once.</span>
+          <span class="only-ru">Поправьте имя или термин прямо в тексте — таймкоды защищены от случайной правки. Поиск подсвечивает сразу все совпадения.</span>
+        </p>
+      </div>
+
+      <div class="feature">
+        <div class="ico">↗</div>
+        <h3><span class="only-en">Export anywhere</span><span class="only-ru">Экспорт куда угодно</span></h3>
+        <p>
+          <span class="only-en">TXT, Markdown, SRT subtitles, Word and PDF. Or just press copy and paste the whole thing.</span>
+          <span class="only-ru">TXT, Markdown, субтитры SRT, Word и PDF. Или просто «Копировать» и вставить целиком.</span>
+        </p>
+      </div>
+    </div>
+
+    <div class="wave" style="margin: 52px auto 0; max-width: 300px;">
+      <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+      <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ Platforms ═══ -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow"><span class="only-en">Speed</span><span class="only-ru">Скорость</span></p>
+    <h2>
+      <span class="only-en">It uses whatever your machine has</span>
+      <span class="only-ru">Использует то, что есть в вашей машине</span>
+    </h2>
+    <p class="section-sub">
+      <span class="only-en">On both platforms the work goes to the fastest thing available, and falls back on its own if that does not work out.</span>
+      <span class="only-ru">На обеих платформах работа уходит на самое быстрое, что есть, а если не вышло — сама возвращается к запасному варианту.</span>
+    </p>
+
+    <div class="plats">
+      <div class="plat">
+        <h3>🍎 <span class="only-en">Mac (Apple Silicon)</span><span class="only-ru">Mac (Apple Silicon)</span></h3>
+        <ul>
+          <li><span class="only-en">Runs on the <b>built-in graphics</b> of your M-series chip.</span>
+              <span class="only-ru">Считает на <b>встроенной графике</b> чипа M-серии.</span></li>
+          <li><span class="only-en">Nothing extra to install — it is ready out of the box.</span>
+              <span class="only-ru">Ничего доустанавливать не нужно — работает сразу.</span></li>
+          <li><span class="only-en">Needs an M1 or newer and macOS 13.5 or later.</span>
+              <span class="only-ru">Нужен M1 или новее и macOS 13.5 или свежее.</span></li>
+        </ul>
+      </div>
+      <div class="plat">
+        <h3>🪟 Windows</h3>
+        <ul>
+          <li><span class="only-en">Works on the <b>processor</b> on any machine.</span>
+              <span class="only-ru">Работает на <b>процессоре</b> на любой машине.</span></li>
+          <li><span class="only-en">With an NVIDIA card, one button adds graphics-card support and recognition gets <b>many times faster</b> — on a mid-range card, around thirteen times.</span>
+              <span class="only-ru">С видеокартой NVIDIA одна кнопка добавляет поддержку видеокарты, и распознавание становится <b>в разы быстрее</b> — на средней карте примерно в тринадцать раз.</span></li>
+          <li><span class="only-en">The download is checked against known checksums and continues where it stopped if it breaks off.</span>
+              <span class="only-ru">Загрузка сверяется с известными контрольными суммами и продолжается с того же места, если прервалась.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ Models ═══ -->
+<section id="models">
+  <div class="wrap">
+    <p class="eyebrow"><span class="only-en">Models</span><span class="only-ru">Модели</span></p>
+    <h2>
+      <span class="only-en">Pick your trade between speed and accuracy</span>
+      <span class="only-ru">Выберите размен между скоростью и точностью</span>
+    </h2>
+    <p class="section-sub">
+      <span class="only-en">The model is downloaded the first time you use it and stays on your disk. The one you picked loads into memory at startup, so transcription begins without a wait.</span>
+      <span class="only-ru">Модель скачивается при первом использовании и остаётся на диске. Выбранная загружается в память при запуске, поэтому распознавание начинается без ожидания.</span>
+    </p>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th><span class="only-en">Model</span><span class="only-ru">Модель</span></th>
+            <th><span class="only-en">Size</span><span class="only-ru">Размер</span></th>
+            <th><span class="only-en">Notes</span><span class="only-ru">Комментарий</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Tiny</td><td>75 MB</td>
+            <td><span class="only-en">very fast, rough</span><span class="only-ru">очень быстро, грубо</span></td></tr>
+          <tr><td>Base</td><td>145 MB</td><td></td></tr>
+          <tr><td>Small</td><td>485 MB</td><td></td></tr>
+          <tr><td>Medium</td><td>1.5 GB</td><td></td></tr>
+          <tr class="pick"><td>Large v3 Turbo</td><td>1.6 GB</td>
+            <td><span class="only-en">recommended: nearly Large v3, several times faster</span><span class="only-ru">рекомендуется: почти как Large v3, но в разы быстрее</span></td></tr>
+          <tr><td>Large v3</td><td>3.1 GB</td>
+            <td><span class="only-en">the most accurate, and the slowest</span><span class="only-ru">максимальная точность, медленно</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ Keys ═══ -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow"><span class="only-en">Shortcuts</span><span class="only-ru">Горячие клавиши</span></p>
+    <h2>
+      <span class="only-en">While you read and listen</span>
+      <span class="only-ru">Пока читаете и слушаете</span>
+    </h2>
+    <div class="tbl-wrap">
+      <table>
+        <tbody>
+          <tr><td><kbd>Space</kbd></td>
+            <td><span class="only-en">play / pause</span><span class="only-ru">воспроизведение / пауза</span></td></tr>
+          <tr><td><kbd>←</kbd> <kbd>→</kbd></td>
+            <td><span class="only-en">skip 5 seconds</span><span class="only-ru">перемотка ±5 с</span></td></tr>
+          <tr><td><span class="only-en">Click a word</span><span class="only-ru">Клик по слову</span></td>
+            <td><span class="only-en">play from that word</span><span class="only-ru">воспроизведение с этого слова</span></td></tr>
+          <tr><td><kbd>Ctrl</kbd>/<kbd>Cmd</kbd> <kbd>O</kbd></td>
+            <td><span class="only-en">open a file</span><span class="only-ru">открыть файл</span></td></tr>
+          <tr><td><kbd>Ctrl</kbd>/<kbd>Cmd</kbd> <kbd>E</kbd></td>
+            <td><span class="only-en">edit mode, Esc leaves it</span><span class="only-ru">режим редактирования, Esc — выйти</span></td></tr>
+          <tr><td><kbd>Ctrl</kbd>/<kbd>Cmd</kbd> <kbd>F</kbd></td>
+            <td><span class="only-en">search; Enter and Shift+Enter walk the matches</span><span class="only-ru">поиск; Enter и Shift+Enter ходят по совпадениям</span></td></tr>
+          <tr><td><kbd>Ctrl</kbd>/<kbd>Cmd</kbd> <kbd>Shift</kbd> <kbd>C</kbd></td>
+            <td><span class="only-en">copy the whole text</span><span class="only-ru">скопировать весь текст</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ Download ═══ -->
+<section id="download" class="download">
+  <div class="wrap narrow">
+    <p class="eyebrow"><span class="only-en">Download</span><span class="only-ru">Скачать</span></p>
+    <h2>
+      <span class="only-en">Two builds, one app</span>
+      <span class="only-ru">Две сборки, одна программа</span>
+    </h2>
+    <p class="section-sub">
+      <span class="only-en">Free, open source, and yours to keep. The first transcription downloads the model you picked; after that you can stay offline for good.</span>
+      <span class="only-ru">Бесплатно, с открытым кодом и навсегда ваше. Первое распознавание скачает выбранную модель, а дальше можно не выходить в сеть вовсе.</span>
+    </p>
+
+    <div class="btn-row">
+      <a class="btn btn-primary" data-download="macOS.*\.dmg$"
+         href="https://github.com/smeshidojoe/Dictify/releases/latest" target="_blank" rel="noopener">
+        🍎&nbsp;<span>
+          <span class="only-en">Download for Mac</span><span class="only-ru">Скачать для Mac</span>
+          <small><span class="only-en">Apple Silicon</span><span class="only-ru">Apple Silicon</span> · <span data-size>dmg</span></small>
+        </span>
+      </a>
+      <a class="btn btn-primary" data-download="Windows.*\.zip$"
+         href="https://github.com/smeshidojoe/Dictify/releases/latest" target="_blank" rel="noopener">
+        🪟&nbsp;<span>
+          <span class="only-en">Download for Windows</span><span class="only-ru">Скачать для Windows</span>
+          <small>x64 · <span data-size>zip</span></small>
+        </span>
+      </a>
+    </div>
+
+    <div class="req">
+      <span data-release-info hidden></span>
+      <span>macOS 13.5+ · M1</span>
+      <span>Windows x64</span>
+      <span>MIT</span>
+    </div>
+
+    <p class="note-line">
+      <span class="only-en"><b>On a Mac</b>, drag Dictify into Applications. The app is not signed with an Apple certificate, so the first launch is blocked: open <b>System Settings → Privacy &amp; Security</b> and press <b>Open Anyway</b>.</span>
+      <span class="only-ru"><b>На Mac</b> перетащите Dictify в «Программы». Приложение не подписано сертификатом Apple, поэтому первый запуск будет заблокирован: откройте <b>Системные настройки → Конфиденциальность и безопасность</b> и нажмите <b>«Всё равно открыть»</b>.</span>
+    </p>
+    <p class="note-line">
+      <span class="only-en"><b>On Windows</b>, unpack the archive and run <code>Dictify\Dictify.exe</code>. SmartScreen may warn about an unknown publisher: <b>More info → Run anyway</b>.</span>
+      <span class="only-ru"><b>На Windows</b> распакуйте архив и запустите <code>Dictify\Dictify.exe</code>. SmartScreen может предупредить о неизвестном издателе: <b>Подробнее → Выполнить в любом случае</b>.</span>
+    </p>
+  </div>
+</section>
+
+<!-- ═══ FAQ ═══ -->
+<section id="faq">
+  <div class="wrap">
+    <p class="eyebrow"><span class="only-en">Questions</span><span class="only-ru">Вопросы</span></p>
+    <h2>
+      <span class="only-en">Before you ask</span>
+      <span class="only-ru">Что обычно спрашивают</span>
+    </h2>
+    <p class="section-sub">
+      <span class="only-en">The rest is in the <a href="/Dictify/guide/">guide</a>.</span>
+      <span class="only-ru">Остальное — в <a href="/Dictify/guide/">гайде</a>.</span>
+    </p>
+
+    <div class="faq">
+      <details>
+        <summary><span class="only-en">Is my audio really never uploaded?</span><span class="only-ru">Аудио точно никуда не уходит?</span></summary>
+        <p>
+          <span class="only-en">Really. Recognition runs on your machine. The only thing that is ever downloaded is the model itself, once, and after that you can work with the network off entirely.</span>
+          <span class="only-ru">Точно. Распознавание идёт на вашей машине. Скачивается один раз только сама модель, и после этого можно работать с полностью выключенной сетью.</span>
+        </p>
+      </details>
+
+      <details>
+        <summary><span class="only-en">How accurate is it?</span><span class="only-ru">Насколько точно получается?</span></summary>
+        <p>
+          <span class="only-en">On clear speech the recommended model is close to a careful human typist. Accents, crosstalk, background noise and rare names are where mistakes gather — which is why the text is editable and the player reads along with you.</span>
+          <span class="only-ru">На чистой речи рекомендуемая модель близка к аккуратной ручной расшифровке. Ошибки собираются на акцентах, перебивках, шуме и редких именах — поэтому текст можно править, а плеер читает вместе с вами.</span>
+        </p>
+      </details>
+
+      <details>
+        <summary><span class="only-en">How long does an hour of audio take?</span><span class="only-ru">Сколько считается час записи?</span></summary>
+        <p>
+          <span class="only-en">It depends entirely on the machine and the model. A graphics card turns a long wait into a short one; a smaller model does the same at some cost in accuracy. Start with the recommended model and step down only if it feels slow.</span>
+          <span class="only-ru">Зависит от машины и модели. Видеокарта превращает долгое ожидание в короткое; модель поменьше делает то же, но ценой точности. Начните с рекомендуемой и спускайтесь ниже, только если покажется медленно.</span>
+        </p>
+      </details>
+
+      <details>
+        <summary><span class="only-en">Which languages?</span><span class="only-ru">Какие языки?</span></summary>
+        <p>
+          <span class="only-en">English, Russian and more than ninety others, with automatic detection if you do not want to choose. The interface itself is English or Russian.</span>
+          <span class="only-ru">Английский, русский и ещё более девяноста, с автоопределением, если выбирать не хочется. Сам интерфейс — на английском или русском.</span>
+        </p>
+      </details>
+
+      <details>
+        <summary><span class="only-en">Where do the models live, and can I delete them?</span><span class="only-ru">Где лежат модели и можно ли их удалить?</span></summary>
+        <p>
+          <span class="only-en">In the app's own folder inside your user profile, and yes — there is a button next to the model picker that removes them. They download again when needed.</span>
+          <span class="only-ru">В собственной папке программы внутри профиля пользователя, и да — рядом с выбором модели есть кнопка, которая их удаляет. При надобности они скачаются заново.</span>
+        </p>
+      </details>
+
+      <details>
+        <summary><span class="only-en">Can it tell speakers apart?</span><span class="only-ru">Различает ли она говорящих?</span></summary>
+        <p>
+          <span class="only-en">Not yet. You get the words and their timings, not who said them. For an interview the timecodes plus click-to-play make labelling by hand quick.</span>
+          <span class="only-ru">Пока нет. Вы получаете слова и их время, но не то, кто их сказал. Для интервью таймкоды и клик по слову делают ручную разметку быстрой.</span>
+        </p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <a href="/Dictify/" class="brand"><img src="/Dictify/assets/logo.png" alt=""> Dictify</a>
+    <div class="foot-links">
+      <a href="/Dictify/guide/"><span class="only-en">Guide</span><span class="only-ru">Гайд</span></a>
+      <a href="/Dictify/about/"><span class="only-en">About</span><span class="only-ru">О программе</span></a>
+      <a href="/Dictify/privacy/"><span class="only-en">Privacy</span><span class="only-ru">Приватность</span></a>
+      <a href="https://github.com/smeshidojoe/Dictify/issues" target="_blank" rel="noopener">Issues</a>
+      <a href="https://github.com/smeshidojoe/Dictify" target="_blank" rel="noopener">GitHub</a>
+      <a href="/"><span class="only-en">All projects</span><span class="only-ru">Все проекты</span></a>
+    </div>
+    <small>MIT © <span id="y"></span> smeshidojoe</small>
+  </div>
+</footer>
+
+<script src="/Dictify/assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-en="About – Dictify" data-ru="О программе – Dictify">About – Dictify</title>
+<meta name="description" content="What Dictify is, why transcription belongs on your own machine, and how it is built.">
+<link rel="icon" type="image/png" href="/Dictify/assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/Dictify/assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a href="/Dictify/" class="brand">
+      <img src="/Dictify/assets/logo.png" alt="">
+      Dictify
+    </a>
+    <button class="burger" aria-label="Menu">☰</button>
+    <div class="nav-links" id="nav-links">
+      <a href="/Dictify/#features"><span class="only-en">Features</span><span class="only-ru">Возможности</span></a>
+      <a href="/Dictify/#models"><span class="only-en">Models</span><span class="only-ru">Модели</span></a>
+      <a href="/Dictify/guide/"><span class="only-en">Guide</span><span class="only-ru">Гайд</span></a>
+      <a href="/Dictify/about/" class="active"><span class="only-en">About</span><span class="only-ru">О программе</span></a>
+      <a href="https://github.com/smeshidojoe/Dictify" target="_blank" rel="noopener">GitHub</a>
+      <a href="/Dictify/#download" class="nav-cta"><span class="only-en">Download</span><span class="only-ru">Скачать</span></a>
+      <button class="lang-btn" title="Switch language">RU</button>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap narrow prose">
+  <div class="only-en">
+    <h1>About Dictify</h1>
+    <p class="lead-p">
+      Offline transcription of audio and video for Mac and Windows. One window, one drop
+      zone, and speech recognition that never leaves your machine.
+    </p>
+
+    <h2>Why it exists</h2>
+    <p>
+      Turning a recording into text is normally a subscription. You upload an interview, a
+      lecture or a voice note to somebody's server, wait, and pay by the minute — with
+      whatever was said in that room now sitting in a service you do not control.
+    </p>
+    <p>
+      The models that do this work now run perfectly well on an ordinary laptop. Dictify
+      is that, with a window around it: pick a model, drop a file, read the text.
+    </p>
+
+    <h2>What it is built on</h2>
+    <p>
+      Speech recognition uses OpenAI's Whisper models, run locally in whichever way is
+      fastest on your machine: Apple's own framework on an M-series Mac, and on Windows a
+      build that uses the processor or an NVIDIA graphics card. Decoding of the audio
+      itself is done with FFmpeg, bundled in.
+    </p>
+    <p>
+      The interface is Python and PySide6, with its own window title bar — on Windows a
+      custom one that keeps the shadow, snapping and resizing you expect, on macOS the
+      content sitting under a transparent title bar with the native buttons.
+    </p>
+    <p>
+      Everything is on
+      <a href="https://github.com/smeshidojoe/Dictify" target="_blank" rel="noopener">GitHub</a>
+      under the MIT licence. Each build is checked by a self-test that runs the whole path
+      without an interface — download a model, transcribe a file, load it in the player,
+      export every format — so that the Mac build is verified on every commit even
+      without a Mac on the desk.
+    </p>
+
+    <h2>Two details worth a mention</h2>
+    <p>
+      <b>Every character remembers where it came from.</b> Each character in the editor
+      carries the number of the segment it belongs to. That is why edits, clicks and the
+      playback highlight stay tied to the right moment in the audio no matter how you have
+      rearranged the paragraphs.
+    </p>
+    <p>
+      <b>The highlight is nudged by the sound itself.</b> Word timings from the model are
+      approximate around pauses, so the start of a word after a pause is refined using the
+      loudness of the audio — which is the difference between a highlight that lands on the
+      word and one that arrives just after it.
+    </p>
+
+    <h2>What it is not</h2>
+    <ul>
+      <li>Not a speaker diarisation tool. It gives you the words and their timings, not who said them.</li>
+      <li>Not a live dictation tool. It works from files, not from a microphone.</li>
+      <li>Not an account. There is nothing to sign in to and nothing to sync.</li>
+    </ul>
+
+    <h2>Getting in touch</h2>
+    <p>
+      Bugs and ideas belong in
+      <a href="https://github.com/smeshidojoe/Dictify/issues" target="_blank" rel="noopener">issues</a>.
+      The other things I make are on the <a href="/">projects page</a>.
+    </p>
+  </div>
+
+  <div class="only-ru">
+    <h1>О программе</h1>
+    <p class="lead-p">
+      Офлайн-расшифровка аудио и видео для Mac и Windows. Одно окно, одна зона
+      перетаскивания и распознавание речи, которое не покидает вашу машину.
+    </p>
+
+    <h2>Зачем она</h2>
+    <p>
+      Превратить запись в текст обычно значит оформить подписку. Вы загружаете интервью,
+      лекцию или голосовое на чей-то сервер, ждёте и платите за минуты — а сказанное в той
+      комнате теперь лежит в сервисе, который вам не принадлежит.
+    </p>
+    <p>
+      Модели, которые делают эту работу, сегодня прекрасно считаются на обычном ноутбуке.
+      Dictify — это они, вокруг которых сделано окно: выбрал модель, бросил файл, читаешь
+      текст.
+    </p>
+
+    <h2>На чём сделано</h2>
+    <p>
+      Распознавание — модели Whisper от OpenAI, запущенные локально тем способом, который
+      на вашей машине быстрее: собственный фреймворк Apple на Mac с чипом M-серии, а на
+      Windows сборка, использующая процессор или видеокарту NVIDIA. Само аудио
+      декодируется через FFmpeg, встроенный в программу.
+    </p>
+    <p>
+      Интерфейс — Python и PySide6, со своей шапкой окна: на Windows собственная, с
+      сохранением тени, прилипания к краям и изменения размера, на macOS — содержимое под
+      прозрачным заголовком с родными кнопками.
+    </p>
+    <p>
+      Всё лежит на
+      <a href="https://github.com/smeshidojoe/Dictify" target="_blank" rel="noopener">GitHub</a>
+      под лицензией MIT. Каждая сборка проверяется самотестом, который проходит весь путь
+      без интерфейса — скачать модель, распознать файл, загрузить его в плеер,
+      экспортировать все форматы, — поэтому Mac-версия проверяется на каждом коммите даже
+      без Mac под рукой.
+    </p>
+
+    <h2>Две детали, которые стоит упомянуть</h2>
+    <p>
+      <b>Каждый символ помнит, откуда он.</b> В редакторе у каждого символа хранится номер
+      своего сегмента. Именно поэтому правки, клики и подсветка при воспроизведении
+      остаются привязаны к нужному моменту записи, как бы вы ни перекроили абзацы.
+    </p>
+    <p>
+      <b>Подсветку подправляет сам звук.</b> Пословные тайминги модели около пауз
+      приблизительны, поэтому начало слова после паузы уточняется по громкости звука — это
+      разница между подсветкой, которая попадает в слово, и той, что приходит сразу после
+      него.
+    </p>
+
+    <h2>Чем она не является</h2>
+    <ul>
+      <li>Не разделяет говорящих. Даёт слова и их время, но не то, кто их произнёс.</li>
+      <li>Не диктовка на лету. Работает с файлами, а не с микрофоном.</li>
+      <li>Не аккаунт. Входить некуда, синхронизировать нечего.</li>
+    </ul>
+
+    <h2>Связь</h2>
+    <p>
+      Ошибки и идеи —
+      <a href="https://github.com/smeshidojoe/Dictify/issues" target="_blank" rel="noopener">в issues</a>.
+      Остальное, что я делаю, — на <a href="/">странице проектов</a>.
+    </p>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <a href="/Dictify/" class="brand"><img src="/Dictify/assets/logo.png" alt=""> Dictify</a>
+    <div class="foot-links">
+      <a href="/Dictify/guide/"><span class="only-en">Guide</span><span class="only-ru">Гайд</span></a>
+      <a href="/Dictify/about/"><span class="only-en">About</span><span class="only-ru">О программе</span></a>
+      <a href="/Dictify/privacy/"><span class="only-en">Privacy</span><span class="only-ru">Приватность</span></a>
+      <a href="https://github.com/smeshidojoe/Dictify/issues" target="_blank" rel="noopener">Issues</a>
+      <a href="https://github.com/smeshidojoe/Dictify" target="_blank" rel="noopener">GitHub</a>
+      <a href="/"><span class="only-en">All projects</span><span class="only-ru">Все проекты</span></a>
+    </div>
+    <small>MIT © <span id="y"></span> smeshidojoe</small>
+  </div>
+</footer>
+
+<script src="/Dictify/assets/site.js"></script>
+</body>
+</html>

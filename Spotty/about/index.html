@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-en="About – Spotty" data-ru="О программе – Spotty">About – Spotty</title>
+<meta name="description" content="What Spotty is, why it exists and how it is built.">
+<link rel="icon" type="image/png" href="/Spotty/assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/Spotty/assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a href="/Spotty/" class="brand">
+      <img src="/Spotty/assets/logo.png" alt="">
+      Spotty
+    </a>
+    <button class="burger" aria-label="Menu">☰</button>
+    <div class="nav-links" id="nav-links">
+      <a href="/Spotty/#find"><span class="only-en">What it finds</span><span class="only-ru">Что находит</span></a>
+      <a href="/Spotty/#keys"><span class="only-en">Keys</span><span class="only-ru">Клавиши</span></a>
+      <a href="/Spotty/#faq"><span class="only-en">FAQ</span><span class="only-ru">Вопросы</span></a>
+      <a href="/Spotty/guide/"><span class="only-en">Guide</span><span class="only-ru">Гайд</span></a>
+      <a href="/Spotty/about/" class="active"><span class="only-en">About</span><span class="only-ru">О программе</span></a>
+      <a href="/Spotty/#download" class="nav-cta"><span class="only-en">Download</span><span class="only-ru">Скачать</span></a>
+      <button class="lang-btn" title="Switch language">RU</button>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap narrow prose">
+  <div class="only-en">
+    <h1>About Spotty</h1>
+    <p class="lead-p">
+      A quick launcher for Windows, the way Spotlight works on a Mac: one shortcut, one
+      field, and whatever you were reaching for.
+    </p>
+
+    <h2>Why it exists</h2>
+    <p>
+      Opening a program on Windows means going somewhere — the Start menu, the taskbar, a
+      folder on a drive. Each of those is a small detour away from what you were doing.
+      Spotty removes the detour: the bar appears over whatever is on screen, takes a few
+      letters and gets out of the way.
+    </p>
+    <p>
+      The same field also answers the questions that would otherwise cost you a window:
+      how much is <code>12*(3+4)^2</code>, what does <code>ipconfig /all</code> say, where
+      is that file called “report”.
+    </p>
+
+    <h2>How it works</h2>
+    <p>
+      Spotty sits in the tray and does nothing until you call it. The list of apps is
+      built from the Start menu and refreshed in the background; once a day it also sweeps
+      your drives for portable programs that were never installed. Matching happens
+      locally against those names — there is no index service, no daemon crawling your
+      disk, and nothing to configure before the first search.
+    </p>
+    <p>
+      The glass under the bar is a shader borrowed from
+      <a href="https://github.com/smeshidojoe/CopyPasta" target="_blank" rel="noopener">CopyPasta</a>:
+      the screen underneath is captured, blurred on the graphics card and bent along the
+      edge, the way a thick pane of glass bends what is behind it. If your hardware would
+      rather not, turning it off in Settings makes the bar plain dark.
+    </p>
+    <p>
+      Written in Python 3.13, packaged with PyInstaller and Inno Setup. The source is on
+      <a href="https://github.com/smeshidojoe/Spotty" target="_blank" rel="noopener">GitHub</a>
+      under the MIT licence.
+    </p>
+
+    <h2>What it is not</h2>
+    <ul>
+      <li>Not a file indexer. It searches names, not the contents of your documents.</li>
+      <li>Not a service. Close it and nothing of it is left running.</li>
+      <li>Not an account. There is nothing to sign in to and nothing to sync.</li>
+    </ul>
+
+    <h2>Getting in touch</h2>
+    <p>
+      Bugs, missing features and awkward corners all belong in
+      <a href="https://github.com/smeshidojoe/Spotty/issues" target="_blank" rel="noopener">issues</a>.
+      The other things I make are on the <a href="/">projects page</a>.
+    </p>
+  </div>
+
+  <div class="only-ru">
+    <h1>О программе</h1>
+    <p class="lead-p">
+      Строка быстрого запуска для Windows — как Spotlight на Mac: одно сочетание, одно
+      поле и то, за чем вы тянулись.
+    </p>
+
+    <h2>Зачем она</h2>
+    <p>
+      Чтобы открыть программу в Windows, нужно куда-то пойти: в «Пуск», на панель задач, в
+      папку на диске. Каждый такой поход — маленький крюк в сторону от того, чем вы
+      занимались. Spotty убирает крюк: строка появляется поверх всего, забирает несколько
+      букв и уходит.
+    </p>
+    <p>
+      Это же поле отвечает на вопросы, которые иначе стоили бы отдельного окна: сколько
+      будет <code>12*(3+4)^2</code>, что скажет <code>ipconfig /all</code>, где лежит тот
+      файл со словом «отчёт».
+    </p>
+
+    <h2>Как устроено</h2>
+    <p>
+      Spotty сидит в трее и ничего не делает, пока его не позвали. Список программ
+      собирается из меню «Пуск» и обновляется в фоне; раз в день добавляется обход дисков
+      в поисках портативных программ, которых в «Пуске» нет. Поиск идёт локально по этим
+      названиям — никакой службы индексации, никакого демона, ползающего по диску, и
+      ничего, что нужно настроить до первого запроса.
+    </p>
+    <p>
+      Стекло под строкой — шейдер из
+      <a href="https://github.com/smeshidojoe/CopyPasta" target="_blank" rel="noopener">CopyPasta</a>:
+      экран под ней снимается, размывается на видеокарте и преломляется по краю, как это
+      делает толстое стекло. Если железу такое не по душе, выключите стекло в настройках —
+      строка станет просто тёмной.
+    </p>
+    <p>
+      Написано на Python 3.13, собрано PyInstaller и Inno Setup. Исходники — на
+      <a href="https://github.com/smeshidojoe/Spotty" target="_blank" rel="noopener">GitHub</a>
+      под лицензией MIT.
+    </p>
+
+    <h2>Чем она не является</h2>
+    <ul>
+      <li>Не индексатор файлов. Ищет по именам, а не по содержимому документов.</li>
+      <li>Не служба. Закрыли — и от неё ничего не осталось в памяти.</li>
+      <li>Не аккаунт. Входить некуда, синхронизировать нечего.</li>
+    </ul>
+
+    <h2>Связь</h2>
+    <p>
+      Ошибки, нехватающие возможности и неудобные углы —
+      <a href="https://github.com/smeshidojoe/Spotty/issues" target="_blank" rel="noopener">в issues</a>.
+      Остальное, что я делаю, — на <a href="/">странице проектов</a>.
+    </p>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <a href="/Spotty/" class="brand"><img src="/Spotty/assets/logo.png" alt=""> Spotty</a>
+    <div class="foot-links">
+      <a href="/Spotty/guide/"><span class="only-en">Guide</span><span class="only-ru">Гайд</span></a>
+      <a href="/Spotty/about/"><span class="only-en">About</span><span class="only-ru">О программе</span></a>
+      <a href="/Spotty/privacy/"><span class="only-en">Privacy</span><span class="only-ru">Приватность</span></a>
+      <a href="https://github.com/smeshidojoe/Spotty/issues" target="_blank" rel="noopener">Issues</a>
+      <a href="https://github.com/smeshidojoe/Spotty" target="_blank" rel="noopener">GitHub</a>
+      <a href="/"><span class="only-en">All projects</span><span class="only-ru">Все проекты</span></a>
+    </div>
+    <small>MIT © <span id="y"></span> smeshidojoe</small>
+  </div>
+</footer>
+
+<script src="/Spotty/assets/site.js"></script>
+</body>
+</html>

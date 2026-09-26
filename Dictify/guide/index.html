@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-en="Guide – Dictify" data-ru="Гайд – Dictify">Guide – Dictify</title>
+<meta name="description" content="Installing Dictify, picking a model, transcribing a file, reading along, editing and exporting.">
+<link rel="icon" type="image/png" href="/Dictify/assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/Dictify/assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a href="/Dictify/" class="brand">
+      <img src="/Dictify/assets/logo.png" alt="">
+      Dictify
+    </a>
+    <button class="burger" aria-label="Menu">☰</button>
+    <div class="nav-links" id="nav-links">
+      <a href="/Dictify/#features"><span class="only-en">Features</span><span class="only-ru">Возможности</span></a>
+      <a href="/Dictify/#models"><span class="only-en">Models</span><span class="only-ru">Модели</span></a>
+      <a href="/Dictify/#faq"><span class="only-en">FAQ</span><span class="only-ru">Вопросы</span></a>
+      <a href="/Dictify/guide/" class="active"><span class="only-en">Guide</span><span class="only-ru">Гайд</span></a>
+      <a href="https://github.com/smeshidojoe/Dictify" target="_blank" rel="noopener">GitHub</a>
+      <a href="/Dictify/#download" class="nav-cta"><span class="only-en">Download</span><span class="only-ru">Скачать</span></a>
+      <button class="lang-btn" title="Switch language">RU</button>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap narrow prose">
+
+<!-- ═══════════ ENGLISH ═══════════ -->
+<div class="only-en">
+  <h1>Dictify guide</h1>
+  <p class="lead-p">
+    From installing it to an exported transcript, with the settings that actually change
+    the result explained along the way.
+  </p>
+
+  <h2 id="install">Installing</h2>
+  <h3>Mac</h3>
+  <ol class="steps">
+    <li>
+      <b>Open the disk image and drag Dictify into Applications</b>
+      Take the <code>.dmg</code> from the <a href="/Dictify/#download">download section</a>.
+      You need an M1 chip or newer and macOS 13.5 or later.
+    </li>
+    <li>
+      <b>Allow the first launch</b>
+      The app is not signed with an Apple certificate, so macOS blocks it once. Open
+      <b>System Settings → Privacy &amp; Security</b> and press <b>Open Anyway</b>. From
+      the Terminal, the equivalent is:
+      <p><code>xattr -dr com.apple.quarantine /Applications/Dictify.app</code></p>
+    </li>
+  </ol>
+
+  <h3>Windows</h3>
+  <ol class="steps">
+    <li>
+      <b>Unpack the archive and run Dictify.exe</b>
+      SmartScreen may warn about an unknown publisher: <b>More info → Run anyway</b>.
+    </li>
+    <li>
+      <b>If you have an NVIDIA card, turn it on</b>
+      A “faster on the graphics card” card appears in the side panel. One button downloads
+      the library it needs, once. After that recognition runs on the card and is several
+      times quicker — on a mid-range card, around thirteen times. You need a reasonably
+      current NVIDIA driver.
+    </li>
+  </ol>
+  <div class="callout">
+    The download is taken straight from NVIDIA's own official package, only the two files
+    that are actually needed, and their checksums are compared against the ones built into
+    the app. If it breaks off, it continues from the same place. The button next to the
+    model picker removes it again.
+  </div>
+
+  <h2 id="first">Your first transcript</h2>
+  <ol class="steps">
+    <li>
+      <b>Choose a model and a language</b>
+      Both live in the panel on the right and can be set before you load anything. Start
+      with <b>Large v3 Turbo</b> — it is close to the largest model and several times
+      faster. Leave the language on automatic unless the recording switches between two
+      languages.
+    </li>
+    <li>
+      <b>Drop the file in</b>
+      The whole text area is a drop zone. Recognition starts immediately; the text appears
+      as it is ready and the progress shows in the panel. <kbd>Ctrl</kbd>/<kbd>Cmd</kbd>
+      <kbd>O</kbd> opens a file picker instead.
+    </li>
+    <li>
+      <b>Read along</b>
+      Press <kbd>Space</kbd> and the player highlights each word as it is spoken. Click any
+      word to jump there — this works even while the rest is still being recognised.
+    </li>
+  </ol>
+  <p>
+    The first time you use a model it is downloaded, which takes a while on the larger
+    ones. After that it stays on your disk, and the model you picked is loaded into memory
+    when the app starts, so there is no “loading model” wait before each file. An idle
+    model does not use the processor; it only takes up memory, roughly its size from the
+    table on the front page.
+  </p>
+
+  <h2 id="reading">Reading modes</h2>
+  <p>Two ways to look at the same transcript, switched at the top of the panel:</p>
+  <ul>
+    <li><b>Solid text</b> — no timecodes, broken into paragraphs where the speaker paused,
+    or left as one block. Best for reading and for pasting somewhere else.</li>
+    <li><b>Segments</b> — one line per segment with its timecode. Best for navigating a
+    long recording and for subtitles.</li>
+  </ul>
+  <p>
+    What you can adjust: timecodes on or off and whether to show the end time, how long a
+    paragraph runs and how long a pause has to be to start a new one, and the font size.
+  </p>
+
+  <h2 id="editing">Editing and searching</h2>
+  <p>
+    <kbd>Ctrl</kbd>/<kbd>Cmd</kbd> <kbd>E</kbd> turns on editing, <kbd>Esc</kbd> leaves it.
+    Fix a name, a term, a piece of punctuation. Timecodes are protected, so you cannot
+    break them by accident, and every character keeps its link to the moment it was said —
+    which means playback highlighting still lines up after you have rewritten a sentence.
+  </p>
+  <p>
+    <kbd>Ctrl</kbd>/<kbd>Cmd</kbd> <kbd>F</kbd> searches and highlights every match at once;
+    <kbd>Enter</kbd> and <kbd>Shift</kbd> <kbd>Enter</kbd> walk forwards and backwards. In
+    reading mode you can also select and copy any fragment by hand, and
+    <kbd>Ctrl</kbd>/<kbd>Cmd</kbd> <kbd>Shift</kbd> <kbd>C</kbd> copies everything.
+  </p>
+
+  <h2 id="export">Exporting</h2>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Format</th><th>Good for</th></tr></thead>
+      <tbody>
+        <tr><td>TXT</td><td>plain text, anywhere</td></tr>
+        <tr><td>Markdown</td><td>notes and documentation</td></tr>
+        <tr><td>SRT</td><td>subtitles for a video</td></tr>
+        <tr><td>Word (DOCX)</td><td>handing it to someone who will edit it</td></tr>
+        <tr><td>PDF</td><td>sending it as a finished document</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="keys">Shortcuts</h2>
+  <div class="tbl-wrap">
+    <table>
+      <tbody>
+        <tr><td><kbd>Space</kbd></td><td>play / pause, in reading mode</td></tr>
+        <tr><td><kbd>←</kbd> <kbd>→</kbd></td><td>skip 5 seconds</td></tr>
+        <tr><td>Click a word</td><td>play from that word</td></tr>
+        <tr><td><kbd>Ctrl</kbd>/<kbd>Cmd</kbd> <kbd>O</kbd></td><td>open a file</td></tr>
+        <tr><td><kbd>Ctrl</kbd>/<kbd>Cmd</kbd> <kbd>E</kbd></td><td>edit mode, Esc leaves it</td></tr>
+        <tr><td><kbd>Ctrl</kbd>/<kbd>Cmd</kbd> <kbd>F</kbd></td><td>search</td></tr>
+        <tr><td><kbd>Ctrl</kbd>/<kbd>Cmd</kbd> <kbd>Shift</kbd> <kbd>C</kbd></td><td>copy the whole text</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Playback speed runs from 0.5× to 2× and is set in the player.</p>
+
+  <h2 id="quality">Getting a better result</h2>
+  <ul>
+    <li><b>Give it the best audio you have.</b> The original recording beats a re-encoded
+    copy; a headset beats a room microphone.</li>
+    <li><b>Pick the language if you know it.</b> Automatic detection listens to the first
+    stretch of audio, so a recording that opens with music or a foreign greeting can throw
+    it off.</li>
+    <li><b>Go up a model size</b> before you go looking for other fixes. Most disappointing
+    transcripts are a small model, not a hard recording.</li>
+    <li><b>Expect to fix names.</b> Proper nouns and jargon are where every system slips.
+    Search and replace takes a minute.</li>
+  </ul>
+
+  <h2 id="files">Where things live</h2>
+  <ul>
+    <li>Models — <code>~/Library/Application Support/Dictify/models</code> on macOS,
+    <code>%LOCALAPPDATA%\Dictify\models</code> on Windows</li>
+    <li>Logs — a <code>logs</code> folder next to the models; the <b>Logs</b> button at the
+    bottom of the panel opens it</li>
+  </ul>
+  <p>
+    If the model download site is unreachable from where you are, you can point Dictify at
+    a mirror with the <code>HF_ENDPOINT</code> environment variable.
+  </p>
+
+  <h2 id="trouble">If something is off</h2>
+  <p>
+    <b>Recognition is slow.</b> On Windows, check whether the graphics-card card in the
+    panel is offered — that is the single biggest difference. Otherwise step down a model.
+  </p>
+  <p>
+    <b>The model will not download.</b> Check the connection, and if the site is blocked
+    where you are, set a mirror as above. An interrupted download continues rather than
+    starting over.
+  </p>
+  <p>
+    <b>The text is in the wrong language.</b> Set the language explicitly instead of
+    leaving it on automatic, and transcribe again.
+  </p>
+  <p>
+    Anything else:
+    <a href="https://github.com/smeshidojoe/Dictify/issues" target="_blank" rel="noopener">open an issue</a>.
+  </p>
+</div>
+
+<!-- ═══════════ РУССКИЙ ═══════════ -->
+<div class="only-ru">
+  <h1>Гайд по Dictify</h1>
+  <p class="lead-p">
+    От установки до готовой расшифровки, с объяснением тех настроек, которые правда
+    меняют результат.
+  </p>
+
+  <h2 id="install-ru">Установка</h2>
+  <h3>Mac</h3>
+  <ol class="steps">
+    <li>
+      <b>Откройте образ и перетащите Dictify в «Программы»</b>
+      Файл <code>.dmg</code> лежит в <a href="/Dictify/#download">разделе загрузки</a>.
+      Нужен чип M1 или новее и macOS 13.5 или свежее.
+    </li>
+    <li>
+      <b>Разрешите первый запуск</b>
+      Приложение не подписано сертификатом Apple, поэтому macOS один раз его заблокирует.
+      Откройте <b>Системные настройки → Конфиденциальность и безопасность</b> и нажмите
+      <b>«Всё равно открыть»</b>. То же самое из Терминала:
+      <p><code>xattr -dr com.apple.quarantine /Applications/Dictify.app</code></p>
+    </li>
+  </ol>
+
+  <h3>Windows</h3>
+  <ol class="steps">
+    <li>
+      <b>Распакуйте архив и запустите Dictify.exe</b>
+      SmartScreen может предупредить о неизвестном издателе: <b>Подробнее → Выполнить в
+      любом случае</b>.
+    </li>
+    <li>
+      <b>Если есть видеокарта NVIDIA — включите её</b>
+      В боковой панели появится карточка «Быстрее на видеокарте». Одна кнопка один раз
+      скачивает нужную библиотеку. После этого распознавание идёт на видеокарте и работает
+      в разы быстрее — на средней карте примерно в тринадцать раз. Нужен достаточно свежий
+      драйвер NVIDIA.
+    </li>
+  </ol>
+  <div class="callout">
+    Загрузка берётся прямо из официального пакета NVIDIA, скачиваются только два нужных
+    файла, а их контрольные суммы сверяются с зашитыми в программу. Если загрузка
+    прервалась, она продолжится с того же места. Кнопка рядом с выбором модели удаляет её
+    обратно.
+  </div>
+
+  <h2 id="first-ru">Первая расшифровка</h2>
+  <ol class="steps">
+    <li>
+      <b>Выберите модель и язык</b>
+      И то и другое — в панели справа, и задать их можно до загрузки файла. Начните с
+      <b>Large v3 Turbo</b>: она близка к самой большой модели и в разы быстрее. Язык
+      оставьте на автоопределении, если запись не прыгает между двумя языками.
+    </li>
+    <li>
+      <b>Бросьте файл в окно</b>
+      Вся область текста — зона перетаскивания. Распознавание начинается сразу, текст
+      появляется по мере готовности, прогресс виден в панели.
+      <kbd>Ctrl</kbd>/<kbd>Cmd</kbd> <kbd>O</kbd> открывает обычный выбор файла.
+    </li>
+    <li>
+      <b>Читайте вместе с записью</b>
+      Нажмите <kbd>Пробел</kbd> — плеер подсветит каждое звучащее слово. Клик по любому
+      слову перематывает туда, и это работает даже пока остальное ещё распознаётся.
+    </li>
+  </ol>
+  <p>
+    При первом использовании модель скачивается, и у больших это занимает время. Дальше
+    она лежит на диске, а выбранная загружается в память при старте программы — поэтому
+    ожидания «загрузка модели» перед каждым файлом нет. Простаивающая модель не нагружает
+    процессор, она только занимает память, примерно свой размер из таблицы на главной.
+  </p>
+
+  <h2 id="reading-ru">Режимы чтения</h2>
+  <p>Два способа смотреть на одну и ту же расшифровку, переключаются вверху панели:</p>
+  <ul>
+    <li><b>Сплошной текст</b> — без таймкодов, с абзацами по паузам говорящего или одним
+    блоком. Удобно читать и вставлять куда-то ещё.</li>
+    <li><b>Сегменты</b> — по строке на сегмент с таймкодом. Удобно ориентироваться в
+    длинной записи и делать субтитры.</li>
+  </ul>
+  <p>
+    Что настраивается: таймкоды вкл/выкл и показывать ли время окончания, длина абзаца и
+    порог паузы, после которой начинается новый, а также размер шрифта.
+  </p>
+
+  <h2 id="editing-ru">Правка и поиск</h2>
+  <p>
+    <kbd>Ctrl</kbd>/<kbd>Cmd</kbd> <kbd>E</kbd> включает редактирование,
+    <kbd>Esc</kbd> выходит. Поправьте имя, термин, знак препинания. Таймкоды защищены, так
+    что сломать их случайно нельзя, а каждый символ помнит свой момент в записи — поэтому
+    подсветка при воспроизведении остаётся на месте даже после того, как вы переписали
+    предложение.
+  </p>
+  <p>
+    <kbd>Ctrl</kbd>/<kbd>Cmd</kbd> <kbd>F</kbd> ищет и подсвечивает сразу все совпадения;
+    <kbd>Enter</kbd> и <kbd>Shift</kbd> <kbd>Enter</kbd> ходят вперёд и назад. В режиме
+    чтения можно выделить и скопировать любой фрагмент руками, а
+    <kbd>Ctrl</kbd>/<kbd>Cmd</kbd> <kbd>Shift</kbd> <kbd>C</kbd> копирует всё.
+  </p>
+
+  <h2 id="export-ru">Экспорт</h2>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Формат</th><th>Для чего</th></tr></thead>
+      <tbody>
+        <tr><td>TXT</td><td>простой текст, куда угодно</td></tr>
+        <tr><td>Markdown</td><td>заметки и документация</td></tr>
+        <tr><td>SRT</td><td>субтитры к видео</td></tr>
+        <tr><td>Word (DOCX)</td><td>отдать человеку, который будет править</td></tr>
+        <tr><td>PDF</td><td>отправить готовым документом</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="keys-ru">Горячие клавиши</h2>
+  <div class="tbl-wrap">
+    <table>
+      <tbody>
+        <tr><td><kbd>Пробел</kbd></td><td>воспроизведение / пауза, в режиме чтения</td></tr>
+        <tr><td><kbd>←</kbd> <kbd>→</kbd></td><td>перемотка ±5 с</td></tr>
+        <tr><td>Клик по слову</td><td>воспроизведение с этого слова</td></tr>
+        <tr><td><kbd>Ctrl</kbd>/<kbd>Cmd</kbd> <kbd>O</kbd></td><td>открыть файл</td></tr>
+        <tr><td><kbd>Ctrl</kbd>/<kbd>Cmd</kbd> <kbd>E</kbd></td><td>режим редактирования, Esc — выйти</td></tr>
+        <tr><td><kbd>Ctrl</kbd>/<kbd>Cmd</kbd> <kbd>F</kbd></td><td>поиск</td></tr>
+        <tr><td><kbd>Ctrl</kbd>/<kbd>Cmd</kbd> <kbd>Shift</kbd> <kbd>C</kbd></td><td>скопировать весь текст</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Скорость воспроизведения — от 0,5× до 2×, задаётся в плеере.</p>
+
+  <h2 id="quality-ru">Как получить результат получше</h2>
+  <ul>
+    <li><b>Дайте лучшее аудио, какое есть.</b> Оригинальная запись лучше пережатой копии,
+    гарнитура лучше микрофона посреди комнаты.</li>
+    <li><b>Укажите язык, если знаете его.</b> Автоопределение слушает начало записи,
+    поэтому музыка или иностранное приветствие в первых секундах могут сбить его с толку.</li>
+    <li><b>Сначала поднимите размер модели</b>, а уже потом ищите другие причины.
+    Большинство разочаровавших расшифровок — это маленькая модель, а не трудная запись.</li>
+    <li><b>Имена придётся поправить.</b> Собственные имена и жаргон — там, где ошибается
+    любая система. Поиск с заменой отнимет минуту.</li>
+  </ul>
+
+  <h2 id="files-ru">Где что лежит</h2>
+  <ul>
+    <li>Модели — <code>~/Library/Application Support/Dictify/models</code> на macOS,
+    <code>%LOCALAPPDATA%\Dictify\models</code> на Windows</li>
+    <li>Логи — папка <code>logs</code> рядом с моделями; открывается кнопкой <b>«Логи»</b>
+    внизу панели</li>
+  </ul>
+  <p>
+    Если сайт с моделями из вашей сети недоступен, можно указать зеркало переменной
+    окружения <code>HF_ENDPOINT</code>.
+  </p>
+
+  <h2 id="trouble-ru">Если что-то не так</h2>
+  <p>
+    <b>Распознаётся медленно.</b> На Windows посмотрите, предлагается ли в панели карточка
+    про видеокарту — это самая большая разница. Если нет, возьмите модель поменьше.
+  </p>
+  <p>
+    <b>Модель не скачивается.</b> Проверьте соединение, а если сайт у вас заблокирован —
+    задайте зеркало, как описано выше. Прерванная загрузка продолжается, а не начинается
+    заново.
+  </p>
+  <p>
+    <b>Текст вышел не на том языке.</b> Задайте язык явно вместо автоопределения и
+    распознайте заново.
+  </p>
+  <p>
+    Остальное —
+    <a href="https://github.com/smeshidojoe/Dictify/issues" target="_blank" rel="noopener">в issues</a>.
+  </p>
+</div>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <a href="/Dictify/" class="brand"><img src="/Dictify/assets/logo.png" alt=""> Dictify</a>
+    <div class="foot-links">
+      <a href="/Dictify/guide/"><span class="only-en">Guide</span><span class="only-ru">Гайд</span></a>
+      <a href="/Dictify/about/"><span class="only-en">About</span><span class="only-ru">О программе</span></a>
+      <a href="/Dictify/privacy/"><span class="only-en">Privacy</span><span class="only-ru">Приватность</span></a>
+      <a href="https://github.com/smeshidojoe/Dictify/issues" target="_blank" rel="noopener">Issues</a>
+      <a href="https://github.com/smeshidojoe/Dictify" target="_blank" rel="noopener">GitHub</a>
+      <a href="/"><span class="only-en">All projects</span><span class="only-ru">Все проекты</span></a>
+    </div>
+    <small>MIT © <span id="y"></span> smeshidojoe</small>
+  </div>
+</footer>
+
+<script src="/Dictify/assets/site.js"></script>
+</body>
+</html>

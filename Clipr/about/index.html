@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-en="About – Clipr" data-ru="О программе – Clipr">About – Clipr</title>
+<meta name="description" content="What Clipr is, why it records video before it writes a GIF, and how it is built.">
+<link rel="icon" type="image/png" href="/Clipr/assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/Clipr/assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a href="/Clipr/" class="brand">
+      <img src="/Clipr/assets/logo.png" alt="">
+      Clipr
+    </a>
+    <button class="burger" aria-label="Menu">☰</button>
+    <div class="nav-links" id="nav-links">
+      <a href="/Clipr/#features"><span class="only-en">Features</span><span class="only-ru">Возможности</span></a>
+      <a href="/Clipr/#how"><span class="only-en">How it works</span><span class="only-ru">Как это работает</span></a>
+      <a href="/Clipr/guide/"><span class="only-en">Guide</span><span class="only-ru">Гайд</span></a>
+      <a href="/Clipr/about/" class="active"><span class="only-en">About</span><span class="only-ru">О программе</span></a>
+      <a href="https://github.com/smeshidojoe/Clipr" target="_blank" rel="noopener">GitHub</a>
+      <a href="/Clipr/#download" class="nav-cta"><span class="only-en">Download</span><span class="only-ru">Скачать</span></a>
+      <button class="lang-btn" title="Switch language">RU</button>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap narrow prose">
+  <div class="only-en">
+    <h1>About Clipr</h1>
+    <p class="lead-p">
+      A small Windows utility for the clip you want to paste into a chat: a bug, a
+      gesture, a piece of interface, a few seconds long and a couple of megabytes heavy.
+    </p>
+
+    <h2>Why it exists</h2>
+    <p>
+      Showing someone what happened on your screen is a five-second problem that usually
+      costs five minutes: record, find the file, open an editor, trim, convert, wonder
+      why the result is 40 MB. Clipr keeps all of that in one window and ends with a file
+      you can drop straight into a message.
+    </p>
+
+    <h2>The one decision everything follows from</h2>
+    <p>
+      Clipr records video and builds the GIF only at the very end. That sounds like a
+      detail and it is the whole design.
+    </p>
+    <p>
+      Writing a GIF while recording means paying for every frame — including the ten
+      seconds at the start where you were still reaching for the window, and the frames
+      outside the crop you have not chosen yet. Building it last means the expensive pass
+      happens once, over the final picture, and everything before it stays cheap enough to
+      change your mind about.
+    </p>
+    <p>
+      The same reasoning explains pause. There is no pause in screen capture, and a
+      capture left running would faithfully record frozen frames. So each pause closes a
+      segment and continuing opens a new one; stopping joins them without re-encoding.
+    </p>
+
+    <h2>Two details worth a mention</h2>
+    <p>
+      <b>The panel is not in its own recording.</b> Windows can mark a window as excluded
+      from capture, which hides it both from the plain screen grab and from the faster
+      duplication path. The outline around the chosen area is four thin strips rather than
+      one window with a hole in it, because that particular flag does not work on
+      transparent windows.
+    </p>
+    <p>
+      <b>The interface is built on springs.</b> Motion is described by damping and
+      response instead of duration, animations start from wherever the thing is right now
+      so they can be caught mid-flight, and the speed of your mouse when you let go of the
+      panel carries into the animation, so there is no seam between dragging and settling.
+      At the edges of the screen the panel resists instead of stopping dead.
+    </p>
+
+    <h2>Built with</h2>
+    <p>
+      Python and PySide6 for the interface, FFmpeg for capture and encoding, gifsicle for
+      the last squeeze. Packaged with PyInstaller and Inno Setup. The source is on
+      <a href="https://github.com/smeshidojoe/Clipr" target="_blank" rel="noopener">GitHub</a>
+      under the MIT licence.
+    </p>
+
+    <h2>Getting in touch</h2>
+    <p>
+      Bugs and ideas belong in
+      <a href="https://github.com/smeshidojoe/Clipr/issues" target="_blank" rel="noopener">issues</a>.
+      The other things I make are on the <a href="/">projects page</a>.
+    </p>
+  </div>
+
+  <div class="only-ru">
+    <h1>О программе</h1>
+    <p class="lead-p">
+      Небольшая утилита для Windows ради того самого ролика, который хочется вставить в
+      чат: ошибка, жест, кусок интерфейса — пара секунд и пара мегабайт.
+    </p>
+
+    <h2>Зачем она</h2>
+    <p>
+      Показать человеку, что произошло на экране, — задача на пять секунд, которая обычно
+      стоит пяти минут: записать, найти файл, открыть редактор, обрезать, конвертировать,
+      удивиться, почему вышло 40 МБ. Clipr держит всё это в одном окне и заканчивает
+      файлом, который можно сразу бросить в сообщение.
+    </p>
+
+    <h2>Одно решение, из которого следует всё остальное</h2>
+    <p>
+      Clipr пишет видео, а GIF собирает в самом конце. Звучит как деталь, а это и есть вся
+      конструкция.
+    </p>
+    <p>
+      Писать GIF прямо во время записи — значит платить за каждый кадр, включая те десять
+      секунд в начале, когда вы ещё тянулись к окну, и всё, что лежит за пределами
+      кадрирования, которое вы пока не выбрали. Сборка в конце означает, что дорогой проход
+      выполняется один раз, по финальной картинке, а всё до него остаётся достаточно
+      дешёвым, чтобы можно было передумать.
+    </p>
+    <p>
+      Из той же логики растёт пауза. В захвате экрана паузы нет, а оставленный работать
+      захват честно записал бы застывшие кадры. Поэтому каждая пауза закрывает сегмент,
+      продолжение открывает новый, а стоп склеивает их без перекодирования.
+    </p>
+
+    <h2>Две детали, которые стоит упомянуть</h2>
+    <p>
+      <b>Панель не попадает в собственную запись.</b> Windows умеет помечать окно как
+      исключённое из захвата, и это прячет его и от обычного снимка экрана, и от более
+      быстрого способа дублирования. Рамка вокруг выбранной области собрана из четырёх
+      тонких полосок, а не из одного окна с дыркой, потому что тот самый флаг не работает
+      на прозрачных окнах.
+    </p>
+    <p>
+      <b>Интерфейс построен на пружинах.</b> Движение описывается затуханием и откликом, а
+      не длительностью; анимация стартует от текущего положения вещи, поэтому её можно
+      перехватить на лету; скорость мыши в момент, когда вы отпускаете панель, передаётся
+      в анимацию, так что между перетаскиванием и остановкой нет шва. У краёв экрана панель
+      сопротивляется, а не упирается.
+    </p>
+
+    <h2>На чём сделано</h2>
+    <p>
+      Python и PySide6 для интерфейса, FFmpeg для захвата и кодирования, gifsicle для
+      финального сжатия. Сборка — PyInstaller и Inno Setup. Исходники на
+      <a href="https://github.com/smeshidojoe/Clipr" target="_blank" rel="noopener">GitHub</a>
+      под лицензией MIT.
+    </p>
+
+    <h2>Связь</h2>
+    <p>
+      Ошибки и идеи —
+      <a href="https://github.com/smeshidojoe/Clipr/issues" target="_blank" rel="noopener">в issues</a>.
+      Остальное, что я делаю, — на <a href="/">странице проектов</a>.
+    </p>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <a href="/Clipr/" class="brand"><img src="/Clipr/assets/logo.png" alt=""> Clipr</a>
+    <div class="foot-links">
+      <a href="/Clipr/guide/"><span class="only-en">Guide</span><span class="only-ru">Гайд</span></a>
+      <a href="/Clipr/about/"><span class="only-en">About</span><span class="only-ru">О программе</span></a>
+      <a href="/Clipr/privacy/"><span class="only-en">Privacy</span><span class="only-ru">Приватность</span></a>
+      <a href="https://github.com/smeshidojoe/Clipr/issues" target="_blank" rel="noopener">Issues</a>
+      <a href="https://github.com/smeshidojoe/Clipr" target="_blank" rel="noopener">GitHub</a>
+      <a href="/"><span class="only-en">All projects</span><span class="only-ru">Все проекты</span></a>
+    </div>
+    <small>MIT © <span id="y"></span> smeshidojoe</small>
+  </div>
+</footer>
+
+<script src="/Clipr/assets/site.js"></script>
+</body>
+</html>

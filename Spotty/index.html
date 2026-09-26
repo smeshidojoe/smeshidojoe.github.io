@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-en="Spotty – a quick launcher for Windows" data-ru="Spotty – строка быстрого запуска для Windows">Spotty – a quick launcher for Windows</title>
+<meta name="description" content="Press Ctrl + E, start typing a name, hit Enter. Apps, files, a calculator, commands and the web in one bar. Free, for Windows 10 and 11.">
+<meta property="og:title" content="Spotty – a quick launcher for Windows">
+<meta property="og:description" content="Press Ctrl + E, start typing a name, hit Enter.">
+<meta property="og:image" content="https://smeshidojoe.github.io/Spotty/assets/screenshot.png">
+<link rel="icon" type="image/png" href="/Spotty/assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/Spotty/assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a href="/Spotty/" class="brand">
+      <img src="/Spotty/assets/logo.png" alt="">
+      Spotty
+    </a>
+    <button class="burger" aria-label="Menu">☰</button>
+    <div class="nav-links" id="nav-links">
+      <a href="#find"><span class="only-en">What it finds</span><span class="only-ru">Что находит</span></a>
+      <a href="#keys"><span class="only-en">Keys</span><span class="only-ru">Клавиши</span></a>
+      <a href="#faq"><span class="only-en">FAQ</span><span class="only-ru">Вопросы</span></a>
+      <a href="/Spotty/guide/"><span class="only-en">Guide</span><span class="only-ru">Гайд</span></a>
+      <a href="https://github.com/smeshidojoe/Spotty" target="_blank" rel="noopener">GitHub</a>
+      <a href="#download" class="nav-cta"><span class="only-en">Download</span><span class="only-ru">Скачать</span></a>
+      <button class="lang-btn" title="Switch language">RU</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ Hero ═══ -->
+<header class="hero">
+  <div class="wrap">
+    <img src="/Spotty/assets/logo.png" alt="" class="hero-logo">
+    <h1>Spotty</h1>
+    <p class="lead">
+      <span class="only-en">A quick launcher for Windows. Press <b>Ctrl&nbsp;+&nbsp;E</b>, start typing a name, hit Enter.</span>
+      <span class="only-ru">Строка быстрого запуска для Windows. Нажмите <b>Ctrl&nbsp;+&nbsp;E</b>, начните печатать название — Enter.</span>
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="#download">
+        <span class="only-en">Download for Windows</span><span class="only-ru">Скачать для Windows</span>
+      </a>
+      <a class="btn btn-ghost" href="/Spotty/guide/">
+        <span class="only-en">Read the guide</span><span class="only-ru">Читать гайд</span>
+      </a>
+    </div>
+    <div class="hero-meta">
+      <span class="only-en">Free and open source</span><span class="only-ru">Бесплатно, открытый код</span>
+      <span class="only-en">No administrator rights</span><span class="only-ru">Без прав администратора</span>
+      <span class="only-en">Windows 10 and 11</span><span class="only-ru">Windows 10 и 11</span>
+    </div>
+  </div>
+</header>
+
+<!-- ═══ The bar, live ═══ -->
+<div class="demo-stage">
+  <div class="wrap">
+    <p class="demo-hint">
+      <span class="only-en">This one is real — type in it. <kbd>↑</kbd> <kbd>↓</kbd> to pick, <kbd>Enter</kbd> to open.</span>
+      <span class="only-ru">Эта строка настоящая — печатайте. <kbd>↑</kbd> <kbd>↓</kbd> выбирают, <kbd>Enter</kbd> открывает.</span>
+    </p>
+
+    <div class="bar" id="bar">
+      <div class="bar-input">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+          <circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4.2-4.2"></path>
+        </svg>
+        <input type="text" autocomplete="off" spellcheck="false"
+               data-ph-en="Search for apps, files and commands…"
+               data-ph-ru="Поиск программ, файлов и команд…"
+               placeholder="Search for apps, files and commands…"
+               aria-label="Spotty demo search">
+        <span class="caret-hint">Ctrl + E</span>
+      </div>
+      <div class="bar-body" id="bar-body">
+        <div class="sel-pill" id="sel-pill"></div>
+      </div>
+      <div class="bar-foot">
+        <span class="gear">⚙</span>
+        <div class="foot-keys">
+          <span><span class="only-en">Open</span><span class="only-ru">Открыть</span> <kbd>↵</kbd></span>
+          <span><span class="only-en">Actions</span><span class="only-ru">Действия</span> <kbd>Ctrl</kbd> <kbd>K</kbd></span>
+          <span><span class="only-en">Close</span><span class="only-ru">Закрыть</span> <kbd>Esc</kbd></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="try-list">
+      <button class="try" data-q="vsc"><i>abbreviation ·</i> vsc</button>
+      <button class="try" data-q="еудупкфь"><i>wrong layout ·</i> еудупкфь</button>
+      <button class="try" data-q="12*(3+4)^2"><i>math ·</i> 12*(3+4)^2</button>
+      <button class="try" data-q="&gt; ipconfig /all"><i>command ·</i> &gt; ipconfig /all</button>
+      <button class="try" data-q="? weather tomorrow"><i>web ·</i> ? weather tomorrow</button>
+      <button class="try" data-q="github.com"><i>site ·</i> github.com</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ Screenshot ═══ -->
+<section style="padding-top: 40px;">
+  <div class="wrap">
+    <div class="shot">
+      <img src="/Spotty/assets/screenshot.png" alt="Spotty search bar over the desktop" loading="lazy">
+    </div>
+    <p class="shot-cap">
+      <span class="only-en">The bar over the desktop. The background behind it is captured, blurred on the graphics card and bent along the edge.</span>
+      <span class="only-ru">Строка поверх рабочего стола. Экран под ней снимается, размывается на видеокарте и преломляется по краю.</span>
+    </p>
+  </div>
+</section>
+
+<!-- ═══ What it finds ═══ -->
+<section id="find">
+  <div class="wrap">
+    <p class="eyebrow"><span class="only-en">What it finds</span><span class="only-ru">Что находит</span></p>
+    <h2>
+      <span class="only-en">One bar for everything you open</span>
+      <span class="only-ru">Одна строка на всё, что вы открываете</span>
+    </h2>
+    <p class="section-sub">
+      <span class="only-en">Apps, files, arithmetic, commands and the web — the same field, no modes to switch between.</span>
+      <span class="only-ru">Программы, файлы, арифметика, команды и интернет — одно поле, без переключения режимов.</span>
+    </p>
+
+    <div class="features">
+      <div class="feature">
+        <div class="ico">▣</div>
+        <h3><span class="only-en">Apps</span><span class="only-ru">Программы</span></h3>
+        <p>
+          <span class="only-en">Everything in the Start menu, including Calculator, Settings and other Store apps.</span>
+          <span class="only-ru">Всё, что есть в меню «Пуск», включая Калькулятор, Параметры и другие приложения из Магазина.</span>
+        </p>
+        <p>
+          <span class="only-en">Once a day Spotty also looks through your drives and finds portable apps and games that are not in Start. They show up with the folder they live in.</span>
+          <span class="only-ru">А ещё раз в день Spotty просматривает диски и находит портативные программы и игры, которых в «Пуске» нет. Рядом с ними написана их папка.</span>
+        </p>
+      </div>
+
+      <div class="feature">
+        <div class="ico">▤</div>
+        <h3><span class="only-en">Files and folders</span><span class="only-ru">Файлы и папки</span></h3>
+        <p>
+          <span class="only-en">From your Desktop, Documents and Downloads. The folder list is yours to change in settings.</span>
+          <span class="only-ru">С рабочего стола, из Документов и Загрузок. Список папок меняется в настройках.</span>
+        </p>
+        <p>
+          <span class="only-en">Hidden files and service folders are skipped on purpose, so the results stay readable.</span>
+          <span class="only-ru">Скрытые файлы и служебные папки не ищутся специально — чтобы выдача оставалась читаемой.</span>
+        </p>
+      </div>
+
+      <div class="feature">
+        <div class="ico">÷</div>
+        <h3><span class="only-en">Calculator</span><span class="only-ru">Калькулятор</span></h3>
+        <p>
+          <span class="only-en">Type <code>12*(3+4)^2</code> and the answer is already there. Enter copies it.</span>
+          <span class="only-ru">Наберите <code>12*(3+4)^2</code> — ответ уже на экране. Enter копирует его.</span>
+        </p>
+        <p>
+          <span class="only-en">Brackets, powers, roots, logarithms and constants. A comma works as a decimal point.</span>
+          <span class="only-ru">Скобки, степени, корни, логарифмы и константы. Запятая работает как десятичный знак.</span>
+        </p>
+      </div>
+
+      <div class="feature">
+        <div class="ico">▸</div>
+        <h3><span class="only-en">Commands</span><span class="only-ru">Команды</span></h3>
+        <p>
+          <span class="only-en">Start with <code>&gt;</code> — for example <code>&gt; ipconfig /all</code>. The command opens in a new Command Prompt window.</span>
+          <span class="only-ru">Начните с <code>&gt;</code> — например <code>&gt; ipconfig /all</code>. Команда откроется в новом окне командной строки.</span>
+        </p>
+      </div>
+
+      <div class="feature">
+        <div class="ico">⌕</div>
+        <h3><span class="only-en">The web</span><span class="only-ru">Интернет</span></h3>
+        <p>
+          <span class="only-en">Every search ends with a web search, so nothing is ever a dead end. Start with <code>?</code> to go straight there.</span>
+          <span class="only-ru">Любая выдача заканчивается поиском в интернете, поэтому тупика не бывает. Начните с <code>?</code>, чтобы искать сразу там.</span>
+        </p>
+        <p>
+          <span class="only-en">Type a site address like <code>github.com</code> and Spotty offers to open it. Google, Yandex, DuckDuckGo or Bing.</span>
+          <span class="only-ru">Наберите адрес вроде <code>github.com</code> — Spotty предложит его открыть. Google, Яндекс, DuckDuckGo или Bing.</span>
+        </p>
+      </div>
+
+      <div class="feature">
+        <div class="ico">⌘</div>
+        <h3><span class="only-en">Actions on anything</span><span class="only-ru">Действия с чем угодно</span></h3>
+        <p>
+          <span class="only-en"><kbd>Ctrl</kbd> <kbd>Enter</kbd> is the second action: run as administrator, or show a file in its folder.</span>
+          <span class="only-ru"><kbd>Ctrl</kbd> <kbd>Enter</kbd> — второе действие: запуск от администратора или показать файл в папке.</span>
+        </p>
+        <p>
+          <span class="only-en"><kbd>Ctrl</kbd> <kbd>K</kbd> opens the full list for the selected item: copy path, open a terminal there, hide it from results.</span>
+          <span class="only-ru"><kbd>Ctrl</kbd> <kbd>K</kbd> открывает все действия для выбранного пункта: скопировать путь, открыть там терминал, скрыть из выдачи.</span>
+        </p>
+      </div>
+
+      <div class="feature wide">
+        <div class="ico">◈</div>
+        <h3>
+          <span class="only-en">It learns how you type</span>
+          <span class="only-ru">Подстраивается под то, как вы печатаете</span>
+        </h3>
+        <p>
+          <span class="only-en">Three small things you stop noticing after the first day.</span>
+          <span class="only-ru">Три мелочи, которые перестаёшь замечать уже на второй день.</span>
+        </p>
+        <div class="cols">
+          <div>
+            <b><span class="only-en">What you open often comes first</span><span class="only-ru">Частое поднимается выше</span></b>
+            <p>
+              <span class="only-en">If you always open Telegram after typing “t”, next time it is already at the top.</span>
+              <span class="only-ru">Если на «t» вы всегда открываете Telegram, в следующий раз он будет первым.</span>
+            </p>
+          </div>
+          <div>
+            <b><span class="only-en">The wrong keyboard layout still works</span><span class="only-ru">Неверная раскладка не мешает</span></b>
+            <p>
+              <span class="only-en"><code>еудупкфь</code> finds Telegram. The keys are in the same places, so the query is translated back.</span>
+              <span class="only-ru"><code>еудупкфь</code> найдёт Telegram. Клавиши на тех же местах, поэтому запрос переводится обратно.</span>
+            </p>
+          </div>
+          <div>
+            <b><span class="only-en">Abbreviations count</span><span class="only-ru">Сокращения работают</span></b>
+            <p>
+              <span class="only-en"><code>vsc</code> is Visual Studio Code, <code>ntpd</code> is Notepad.</span>
+              <span class="only-ru"><code>vsc</code> — Visual Studio Code, <code>ntpd</code> — Notepad.</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ Keys ═══ -->
+<section id="keys">
+  <div class="wrap">
+    <p class="eyebrow"><span class="only-en">Keys</span><span class="only-ru">Клавиши</span></p>
+    <h2>
+      <span class="only-en">Hands stay on the keyboard</span>
+      <span class="only-ru">Руки остаются на клавиатуре</span>
+    </h2>
+    <p class="section-sub">
+      <span class="only-en">The shortcut that opens the bar can be changed in settings — <kbd>Alt</kbd> <kbd>Space</kbd> is a popular one.</span>
+      <span class="only-ru">Сочетание для вызова меняется в настройках — например на <kbd>Alt</kbd> <kbd>Space</kbd>.</span>
+    </p>
+
+    <div class="keygrid">
+      <div class="keyrow"><span class="k"><kbd>Ctrl</kbd> <kbd>E</kbd></span>
+        <span class="d"><span class="only-en">open or close the bar</span><span class="only-ru">открыть или закрыть строку</span></span></div>
+      <div class="keyrow"><span class="k"><kbd>↑</kbd> <kbd>↓</kbd></span>
+        <span class="d"><span class="only-en">pick an item</span><span class="only-ru">выбрать пункт</span></span></div>
+      <div class="keyrow"><span class="k"><kbd>Enter</kbd></span>
+        <span class="d"><span class="only-en">open</span><span class="only-ru">открыть</span></span></div>
+      <div class="keyrow"><span class="k"><kbd>Ctrl</kbd> <kbd>Enter</kbd></span>
+        <span class="d"><span class="only-en">run as administrator, or show a file in its folder</span><span class="only-ru">запуск от администратора, для файла — показать в папке</span></span></div>
+      <div class="keyrow"><span class="k"><kbd>Ctrl</kbd> <kbd>K</kbd></span>
+        <span class="d"><span class="only-en">all actions for the item</span><span class="only-ru">все действия с пунктом</span></span></div>
+      <div class="keyrow"><span class="k"><kbd>Ctrl</kbd> <kbd>Shift</kbd> <kbd>C</kbd></span>
+        <span class="d"><span class="only-en">copy the path, the command or the answer</span><span class="only-ru">скопировать путь, команду или ответ</span></span></div>
+      <div class="keyrow"><span class="k"><kbd>Ctrl</kbd> <kbd>,</kbd></span>
+        <span class="d"><span class="only-en">settings</span><span class="only-ru">настройки</span></span></div>
+      <div class="keyrow"><span class="k"><kbd>Esc</kbd></span>
+        <span class="d"><span class="only-en">clear the search, press again to close</span><span class="only-ru">очистить строку, второй раз — закрыть</span></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ Download ═══ -->
+<section id="download" class="download">
+  <div class="wrap narrow">
+    <p class="eyebrow"><span class="only-en">Download</span><span class="only-ru">Скачать</span></p>
+    <h2>
+      <span class="only-en">Install it and press Ctrl + E</span>
+      <span class="only-ru">Установите и нажмите Ctrl + E</span>
+    </h2>
+    <p class="section-sub">
+      <span class="only-en">No administrator rights needed. The bar opens right after install and starts with Windows if you let it.</span>
+      <span class="only-ru">Права администратора не нужны. После установки строка откроется сама, а запуск вместе с Windows включается по желанию.</span>
+    </p>
+
+    <div class="btn-row">
+      <a class="btn btn-primary" data-download
+         href="https://github.com/smeshidojoe/Spotty/releases/latest" target="_blank" rel="noopener">
+        ↓&nbsp;<span class="only-en">Download for Windows</span><span class="only-ru">Скачать для Windows</span>
+      </a>
+      <a class="btn btn-ghost" href="https://github.com/smeshidojoe/Spotty" target="_blank" rel="noopener">
+        <span class="only-en">Source on GitHub</span><span class="only-ru">Исходники на GitHub</span>
+      </a>
+    </div>
+
+    <div class="req">
+      <span data-release-info hidden></span>
+      <span>Windows 10 / 11</span>
+      <span>MIT</span>
+    </div>
+
+    <p class="note-line">
+      <span class="only-en">If Windows shows a blue <b>“Windows protected your PC”</b> window, click <b>More info → Run anyway</b>. That happens with every app without a paid signing certificate.</span>
+      <span class="only-ru">Если Windows покажет синее окно <b>«Система Windows защитила ваш компьютер»</b>, нажмите <b>Подробнее → Выполнить в любом случае</b>. Так бывает со всеми программами без платной цифровой подписи.</span>
+    </p>
+    <p class="note-line only-ru">
+      Интерфейс по умолчанию на английском — русский включается в настройках: <kbd>Ctrl</kbd> <kbd>,</kbd> → Language → Русский.
+    </p>
+  </div>
+</section>
+
+<!-- ═══ FAQ ═══ -->
+<section id="faq">
+  <div class="wrap">
+    <p class="eyebrow"><span class="only-en">Questions</span><span class="only-ru">Вопросы</span></p>
+    <h2>
+      <span class="only-en">Before you ask</span>
+      <span class="only-ru">Что обычно спрашивают</span>
+    </h2>
+    <p class="section-sub">
+      <span class="only-en">Everything else lives in the <a href="/Spotty/guide/">guide</a>.</span>
+      <span class="only-ru">Остальное — в <a href="/Spotty/guide/">гайде</a>.</span>
+    </p>
+
+    <div class="faq">
+      <details>
+        <summary><span class="only-en">I need Ctrl + E in another app</span><span class="only-ru">Ctrl + E нужен мне в другой программе</span></summary>
+        <p>
+          <span class="only-en">While Spotty is running, that shortcut belongs to it — in a browser, <kbd>Ctrl</kbd> <kbd>E</kbd> no longer jumps to the search box. Pick another one in settings, such as <kbd>Alt</kbd> <kbd>Space</kbd>.</span>
+          <span class="only-ru">Пока Spotty запущен, это сочетание работает только для него — в браузере <kbd>Ctrl</kbd> <kbd>E</kbd> больше не ставит курсор в поиск. Выберите другое в настройках, например <kbd>Alt</kbd> <kbd>Space</kbd>.</span>
+        </p>
+      </details>
+
+      <details>
+        <summary><span class="only-en">Spotty says the shortcut is taken</span><span class="only-ru">Spotty пишет, что сочетание занято</span></summary>
+        <p>
+          <span class="only-en">Another app already holds it, often another launcher. Close that app, or choose a different shortcut in settings.</span>
+          <span class="only-ru">Его уже занимает другая программа, часто другой лаунчер. Закройте её или выберите другое сочетание в настройках.</span>
+        </p>
+      </details>
+
+      <details>
+        <summary><span class="only-en">The bar opens slowly, or the glass looks odd</span><span class="only-ru">Строка открывается медленно или стекло выглядит странно</span></summary>
+        <p>
+          <span class="only-en">Turn off <b>Glass Background</b> in settings — the bar becomes plain dark and opens instantly.</span>
+          <span class="only-ru">Выключите <b>«Стеклянный фон»</b> в настройках — строка станет просто тёмной и будет открываться мгновенно.</span>
+        </p>
+      </details>
+
+      <details>
+        <summary><span class="only-en">A file does not show up</span><span class="only-ru">Нужного файла нет в поиске</span></summary>
+        <p>
+          <span class="only-en">Add its folder in settings. Hidden files and service folders like <code>node_modules</code> and <code>.git</code> are skipped on purpose.</span>
+          <span class="only-ru">Добавьте его папку в настройках. Скрытые файлы и служебные папки вроде <code>node_modules</code> и <code>.git</code> не ищутся специально.</span>
+        </p>
+        <p>
+          <span class="only-en">If you hid the file or its folder with <kbd>Ctrl</kbd> <kbd>K</kbd>, bring it back in Settings → Hidden from Results. A hidden folder hides everything inside it.</span>
+          <span class="only-ru">Если вы скрыли файл или его папку через <kbd>Ctrl</kbd> <kbd>K</kbd>, верните в «Настройки → Скрытые из результатов». Скрытая папка прячет всё, что в ней лежит.</span>
+        </p>
+      </details>
+
+      <details>
+        <summary><span class="only-en">An app on my drive does not show up</span><span class="only-ru">Программы с диска нет в поиске</span></summary>
+        <p>
+          <span class="only-en">The drive search skips Windows and ProgramData, Downloads (installers live there), git repositories and service programs: installers, updaters, console tools.</span>
+          <span class="only-ru">Поиск по дискам пропускает Windows и ProgramData, Загрузки (там лежат установщики), git-репозитории и служебные программы: установщики, обновлялки, консольные утилиты.</span>
+        </p>
+        <p>
+          <span class="only-en">Settings → Apps on All Drives shows how many were found; “Refresh Files and Apps” in the bar looks through the drives again.</span>
+          <span class="only-ru">Сколько программ нашлось, видно в «Настройки → Программы на всех дисках»; «Обновить список файлов и программ» в строке просматривает диски заново.</span>
+        </p>
+      </details>
+
+      <details>
+        <summary><span class="only-en">Where does it keep my settings?</span><span class="only-ru">Где лежат настройки?</span></summary>
+        <p>
+          <span class="only-en">In <code>%APPDATA%\Spotty</code>. The icon and app-list cache sits in <code>%LOCALAPPDATA%\Spotty</code> — you can delete it, it is rebuilt. A downloaded update waits in the <code>_update</code> folder next to <code>Spotty.exe</code>.</span>
+          <span class="only-ru">В <code>%APPDATA%\Spotty</code>. Кэш иконок и списка программ — в <code>%LOCALAPPDATA%\Spotty</code>, его можно удалить, он соберётся заново. Скачанное обновление ждёт в папке <code>_update</code> рядом со <code>Spotty.exe</code>.</span>
+        </p>
+      </details>
+
+      <details>
+        <summary><span class="only-en">How do I uninstall it?</span><span class="only-ru">Как удалить?</span></summary>
+        <p>
+          <span class="only-en">Settings → Apps → Spotty → Uninstall. The uninstaller asks whether to keep your settings.</span>
+          <span class="only-ru">«Параметры → Приложения → Spotty → Удалить». Установщик спросит, оставить ли настройки.</span>
+        </p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <a href="/Spotty/" class="brand"><img src="/Spotty/assets/logo.png" alt=""> Spotty</a>
+    <div class="foot-links">
+      <a href="/Spotty/guide/"><span class="only-en">Guide</span><span class="only-ru">Гайд</span></a>
+      <a href="/Spotty/about/"><span class="only-en">About</span><span class="only-ru">О программе</span></a>
+      <a href="/Spotty/privacy/"><span class="only-en">Privacy</span><span class="only-ru">Приватность</span></a>
+      <a href="https://github.com/smeshidojoe/Spotty/issues" target="_blank" rel="noopener">Issues</a>
+      <a href="https://github.com/smeshidojoe/Spotty" target="_blank" rel="noopener">GitHub</a>
+      <a href="/"><span class="only-en">All projects</span><span class="only-ru">Все проекты</span></a>
+    </div>
+    <small>MIT © <span id="y"></span> smeshidojoe</small>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="/Spotty/assets/site.js"></script>
+</body>
+</html>
